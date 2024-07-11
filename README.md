@@ -89,7 +89,7 @@ python manage.py runserver
 
 # Directory Structure
 
-
+```bash
 freshly-set/
 │
 ├── freshly_set/
@@ -112,6 +112,7 @@ freshly-set/
 │
 ├── manage.py
 └── requirements.txt
+```
 
 
 # Contributing
