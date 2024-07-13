@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from decouple import config, Csv
 from pathlib import Path
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -52,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'freshly_set.urls'
@@ -60,7 +58,7 @@ ROOT_URLCONF = 'freshly_set.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,7 +85,6 @@ DATABASES = {
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT', cast=int),
-    
     }
 }
 
@@ -133,20 +130,33 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
+# Directory where static files will be collected
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Additional directories to include for static files
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # Default static directory
+]
 
-
+# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CORS settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
+
+# React build directory
+REACT_APP_DIR = BASE_DIR / 'reactapp/build'
+
+# Including React build static files in STATICFILES_DIRS
+STATICFILES_DIRS.append(REACT_APP_DIR / 'static')
