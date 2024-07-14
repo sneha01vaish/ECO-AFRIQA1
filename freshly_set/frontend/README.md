@@ -38,4 +38,5 @@ Run the Script by :
 ### `./copy-react-build.sh`
 Before running the script ensure that you are in the freshly_set directory. This should then update your Django app with the latest static files served from React. 
 
+If you go to your Django app on localhost:8000, you should now see the same changes
 
