@@ -15,3 +15,4 @@ module.exports = {
     preflight: false, // Disable Tailwind's preflight reset
   },
 };
+
