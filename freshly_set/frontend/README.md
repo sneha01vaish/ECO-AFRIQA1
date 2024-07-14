@@ -33,10 +33,9 @@ After you develop something on the React end, it needs to be migrated over to th
 
 There is a custom script to automate the Build process. It does this by running the build scripts and moving the updated files to the Django Static directories
 
-Run the Script by:
+Run the Script by :
 
 ### `./copy-react-build.sh`
-
-This should then update your Django app with the latest static files served from React
+Before running the script ensure that you are in the freshly_set directory. This should then update your Django app with the latest static files served from React. 
 
 
