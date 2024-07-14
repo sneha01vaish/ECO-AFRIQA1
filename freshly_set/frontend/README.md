@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Setting up Frontend With Django
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+This guide provides step-by-step instructions for integrating a React frontend into an existing Django project. It covers setting up the project, configuring Django to serve React's static files, and automating the process with a script.
 
-In the project directory, you can run:
+# Prerequisites
+Node.js and npm are installed on your machine.
+Python and Django are set up in your development environment.
+
+# Step 1: Setup React
+
+1. Navigate to the Frontend Repository
+
+### `cd frontend/`
+
+2. Install all necessary Dependencies:
+
+### `npm install`
+
+3. Start up the Server
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This will start the React development server at http://localhost:3000.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You should now (hopefully) see this on screen
 
-### `npm test`
+![Alt Text](https://cdn.discordapp.com/attachments/839784544798638090/1261398778498388091/Screen_Shot_2024-07-12_at_9.07.18_PM.png?ex=6692d0a8&is=66917f28&hm=71676dc27877ad6daa1564d8783166257192648133e2711050c200fb303c7227&)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Step 2  - Serving Static Files from React
 
-### `npm run build`
+After you develop something on the React end, it needs to be migrated over to the Django Templates that are setup. These are the steps for that:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+There is a custom script to automate the Build process. It does this by running the build scripts and moving the updated files to the Django Static directories
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Run the Script by:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `./copy-react-build.sh`
 
-### `npm run eject`
+This should then update your Django app with the latest static files served from React
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
