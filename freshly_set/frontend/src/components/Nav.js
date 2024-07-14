@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./Nav.css"
 import { IoMdMenu } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 function Nav() {
 
@@ -41,15 +42,15 @@ function Nav() {
             {/* Nav Buttons */}
 
             <div className="navbarBtns">
-                <div className="navbarBtn">
-                    <p className='navbarTxt'>Home</p>
+                <Link style={{textDecoration:"none"}} to="/" className="navbarBtn">
+                    <p className='navbarTxt text-red-400'>Home</p>
                     <div className="navbarLine"/>
-                </div>
+                </Link>
 
-                <div className="navbarBtn">
+                <Link style={{textDecoration:"none"}} to="/about-us" className="navbarBtn">
                     <p className='navbarTxt'>About</p>
                     <div className="navbarLine"/>
-                </div>
+                </Link>
 
 
                 <div className="navbarBtn">
@@ -57,8 +58,8 @@ function Nav() {
                     <div className="navbarLine"/>
                 </div>
 
-                <div className="navbarBtn">
-                    <p className='navbarTxt'>Signup</p>
+                <div className="navbarBtn ">
+                    <p className='navbarTxt text-red-400'>Signup</p>
                     <div className="navbarLine"/>
                 </div>
             </div>
