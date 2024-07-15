@@ -5,6 +5,7 @@ import Reviews2 from './Reviews2'
 import Nav from './Nav'
 import FreshlyFooter from "../components/footer/FreshlyFooter";
 import Contact from "./Contact";
+import Faq from './Faq'
 function Home() {
   return (
     <div className="">
@@ -13,6 +14,7 @@ function Home() {
      <Hero />
      <Mission />
      <Reviews2 />
+     <Faq />
      {/* <Contact /> */}  
     {/* <FreshlyFooter /> */}
      </div>

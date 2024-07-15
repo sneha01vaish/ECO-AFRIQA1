@@ -86,13 +86,13 @@ function Reviews2() {
                 </div>
 
                 <div className="block">
-                  <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image2.jpg" alt="image4" />
+                  <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image1.png" alt="image4" />
                   <p className="text-black text-[20px] font-[700] font-inter">Stacey Gathoni</p>
                   <p className="text-black font-sans font-[400] leading-[19.5px] text-[15px] w-[199px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
                 </div>
 
                 <div className="block">
-                  <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image2.jpg" alt="image4" />
+                  <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image3.jpg" alt="image4" />
                   <p className="text-black text-[20px] font-[700] font-inter">Stacey Gathoni</p>
                   <p className="text-black font-sans font-[400] leading-[19.5px] text-[15px] w-[199px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
                 </div>
