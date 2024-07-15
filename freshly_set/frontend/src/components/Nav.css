@@ -41,17 +41,17 @@
 
 
 /* Navbar underline effect */
-/* .navbarLine {
+.navbarLine {
     width: 109.005px;
     background: #008000;
     opacity: 0;
     transition: opacity 0.5s ease-out, height 0.75s ease-out; 
-} */
+}
 
-/* .navbarTxt:hover + .navbarLine {
+.navbarTxt:hover + .navbarLine {
     opacity: 1; 
     height: 10px; 
-} */
+}
 
 
 
