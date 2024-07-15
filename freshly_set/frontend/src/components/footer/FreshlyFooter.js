@@ -33,7 +33,7 @@ const FreshlyFooter = () => {
   const year = now.getFullYear();
 
   return (
-    <div className="bg-green-300 text-[10px] md:text-lg text-gray-600 p-4 sm:text-sm">
+    <div className="bg-green-300 text-[10px] md:text-lg text-gray-600 p-4 sm:text-sm mt-[160px]">
       <div className="text-xs md:text-lg flex flex-col justify-center items-start text-gray-600 lg:flex-row border-b border-green-400 pb-8">
 
         <section className="">

@@ -7,14 +7,14 @@ import FreshlyFooter from "../components/footer/FreshlyFooter";
 import Contact from "./Contact";
 function Home() {
   return (
-    <div>
+    <div className="">
         <Nav />
 
      <Hero />
      <Mission />
      <Reviews2 />
      {/* <Contact /> */}  
-    <FreshlyFooter />
+    {/* <FreshlyFooter /> */}
      </div>
   )
 }
