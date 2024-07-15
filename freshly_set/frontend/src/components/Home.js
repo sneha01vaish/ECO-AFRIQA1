@@ -1,7 +1,7 @@
 import React from 'react'
 import Hero from './Hero'
 import Mission from './Mission'
-import Reviews from './Reviews'
+import Reviews2 from './Reviews2'
 import Nav from './Nav'
 import FreshlyFooter from "../components/footer/FreshlyFooter";
 
@@ -12,7 +12,7 @@ function Home() {
 
      <Hero />
      <Mission />
-     <Reviews/>
+     <Reviews2 />
     <FreshlyFooter />
      </div>
   )
