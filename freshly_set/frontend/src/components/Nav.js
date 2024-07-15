@@ -3,8 +3,8 @@ import "./Nav.css"
 import { IoMdMenu } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { IoMdClose } from "react-icons/io";
-import { FaUserCircle } from "react-icons/fa";
-import { CiSettings } from "react-icons/ci";
+import { FaUser, FaUserCircle, FaUsers } from "react-icons/fa";
+import { CiSettings, CiGlobe, CiUser } from "react-icons/ci";
 
 function Nav() {
 
@@ -113,8 +113,8 @@ function Nav() {
              </div>
         </nav>  */}
 
-        <nav className={open ? "flex justify-center z-[50] lg:hidden bg-[#008000]  w-[100%] h-[100%] fixed top-0  ":"bg-white flex justify-between fixed top-0 w-[100%] lg:hidden items-center pl-[18px] z-[60]"}>
-            <img className="h-[77px] w-[80px] object-cover" src="/static/media/logo2.png" alt="navLogo"/>
+        <nav className={open ? "flex justify-center z-[50] lg:hidden bg-[#008000]/[85%]  w-[100%] h-[100%] fixed top-0  ":"bg-white flex justify-between fixed top-0 w-[100%] lg:hidden items-center pl-[18px] z-[60]"}>
+            <img className={!open ? "flex h-[77px] w-[80px] object-cover":"hidden"} src="/static/media/logo2.png" alt="navLogo"/>
                         
                         <div className={!open ? "flex space-x-[33px]":"hidden"}>
                             <div className="block group">
@@ -129,15 +129,12 @@ function Nav() {
                         </div>
                         
             <div className="flex  justify-center">
-                {!open ?(
+                {!open &&(
                     <div className="">
                         
                         <IoMdMenu onClick={() => setOpen(true)}  className="text-black h-[37px] w-[44px] my-[42px] mr-[41px] "/>
                         
                     </div>
-
-                ):(
-                    <IoMdClose onClick={() => setOpen(false)} className="text-black h-[37px] w-[44px] absolute right-[32px] top-[32px] cursor-pointer"/>
 
                 )}
 
@@ -145,41 +142,54 @@ function Nav() {
            
 
             {open  && (
-               
-                <div className="block mt-[50px] space-y-[22px] -ml-[20%]">
-                    <div className="flex justify-center ">
-                        <img className="h-[153px] w-[156px] rounded-full" src="/static/media/user_logo.png" alt="User Icon"/>
-                    </div>
+             
+              <div className="block w-[100%] ">
+                <div className="flex justify-between items-center  pt-[45px]  px-[31px] ">
+                    <img className="h-[77px] w-[80px] bg-white object-cover rounded-[100%]" src="/static/media/logo2.png" alt="navLogo"/>
+                    <IoMdClose onClick={() => setOpen(false)} className="text-white h-[77px] w-[80px] cursor-pointer"/>
 
-                    <p className="text-gray-200  text-center mb-[86px] text-[25px]">User 123456</p>
-
-                <div className="rounded-[8px] bg-[#F5F5F5] py-[10px] px-[30px] ">
-                    <p className="text-center">About Us</p>
                 </div>
-
-                <div className="rounded-[8px] bg-[#F5F5F5] py-[10px] px-[30px]">
-                    <p className="text-center">Blog</p>
-                </div>
-
-
-                <div className="rounded-[8px] bg-[#F5F5F5] py-[10px] px-[30px]">
-                    <p className="text-center">Sign Up</p>
-                </div>
-
-                <div className="rounded-[8px] bg-[#F5F5F5] py-[10px] px-[30px]">
-                    <p className="text-center">Your Profile</p>
-                </div>
-
                 <div className="flex justify-center">
-                    <div className="flex items-center space-x-[12px]">
-                        <CiSettings className="text-white text-[47px]"/>
-                        <p className="text-white text-[25px]">Settings</p>
+                    <div className="block space-y-[40px] mt-[50px]">
+                        <div className="flex space-x-[22px]  items-center ">
+                            <FaUsers className="h-[54px] w-[64px] text-white"/>
+                            <p className="text-white text-[30px] font-[700]">About Us</p>
+                        </div>
 
+                        <div className="flex space-x-[22px]  items-center">
+                            <CiGlobe className="h-[54px] w-[64px] text-white"/>
+                            <p className="text-white text-[30px] font-[700]">Blog</p>
+                        </div>
+
+                        <div className="flex space-x-[22px]  items-center">
+                            <FaUsers className="h-[54px] w-[64px] text-white"/>
+                            <p className="text-white text-[30px] font-[700]">Sign Up</p>
+                        </div>
+
+                        <div className="flex space-x-[22px]  items-center">
+                            <FaUser className="h-[54px] w-[64px] text-white"/>
+                            <p className="text-white text-[30px] font-[700]">Your Profile</p>
+                        </div>
+
+                        <div className="flex space-x-[22px]  items-center">
+                            <CiSettings className="h-[54px] w-[64px] text-white"/>
+                            <p className="text-white text-[30px] font-[700]">Settings</p>
+                        </div>
                     </div>
-                </div>
+                    
+                </div>  
+                
+                
 
 
-            </div>
+
+
+
+
+              </div>
+                
+
+
             // <div className="flex justify-center mt-[60px] bg-red-400 w-[100%] -ml-[20%]">
             //         <h1>Hello world</h1>
             // </div>
