@@ -50,10 +50,9 @@ function Nav() {
             <div className="navbarBtns">
                 <Link onClick={() => setActiveTab("home")} style={{textDecoration:"none"}} to="/" className="navbarBtn">
                     <p className='navbarTxt text-red-400'>Home</p>
-                    { activeTab === "home" ? (
+                        {/* <div className="h-[10px] w-[109.005px] bg-[#008000] -mt-[25px] cursor-pointer "/> */}
                         <div className="navbarLine"/>
 
-                    ):(<></>)} 
                 </Link>
 
                 <Link onClick={() => setActiveTab("about")} style={{textDecoration:"none"}} to="/about-us" className="navbarBtn">
