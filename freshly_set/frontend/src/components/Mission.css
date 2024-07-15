@@ -104,6 +104,16 @@ line-height: 130%;
     display: flex;
     justify-content: center;
 }
+
+.missionRightTop{
+    display: flex;
+    justify-content: center;
+}
+
+.missionRightBottom{
+    display: flex;
+    justify-content: center;
+}
 }
 
 /* Larger Screens */

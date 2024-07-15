@@ -7,7 +7,7 @@
     /* margin: auto; */
     position: fixed;
     top: 0;
-    z-index: 50;
+    z-index: 30;
     background: white;
     width:100%;
     padding-bottom:26.1px
@@ -41,17 +41,17 @@
 
 
 /* Navbar underline effect */
-.navbarLine {
+/* .navbarLine {
     width: 109.005px;
     background: #008000;
-    opacity: 0; /* Initial opacity set to 0 */
-    transition: opacity 0.5s ease-out, height 0.75s ease-out; /* Transition properties */
-}
+    opacity: 0;
+    transition: opacity 0.5s ease-out, height 0.75s ease-out; 
+} */
 
-.navbarTxt:hover + .navbarLine {
-    opacity: 1; /* Change opacity to 1 */
-    height: 10px; /* Change height to 10px */
-}
+/* .navbarTxt:hover + .navbarLine {
+    opacity: 1; 
+    height: 10px; 
+} */
 
 
 
