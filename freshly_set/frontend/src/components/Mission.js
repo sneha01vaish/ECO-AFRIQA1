@@ -2,7 +2,7 @@ import React from 'react'
 import "./Mission.css"
 function Mission() {
   return (
-    <div className="missionBg">
+    <div className="missionBg py-[104px]">
         {/* Left side */}
 
         <div className="missionLeft">
