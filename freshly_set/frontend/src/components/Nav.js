@@ -49,25 +49,25 @@ function Nav() {
 
             <div className="navbarBtns">
                 <Link onClick={() => setActiveTab("home")} style={{textDecoration:"none"}} to="/" className="navbarBtn">
-                    <p className='navbarTxt text-red-400'>Home</p>
+                    <p className='navbarTxt font-inter'>Home</p>
                         {/* <div className="h-[10px] w-[109.005px] bg-[#008000] -mt-[25px] cursor-pointer "/> */}
                         <div className="navbarLine"/>
 
                 </Link>
 
                 <Link onClick={() => setActiveTab("about")} style={{textDecoration:"none"}} to="/about-us" className="navbarBtn">
-                    <p className='navbarTxt'>About</p>
+                    <p className='navbarTxt font-inter'>About</p>
                     <div className="navbarLine"/>
                 </Link>
 
 
                 <div className="navbarBtn">
-                    <p className='navbarTxt'>Blogs</p>
+                    <p className='navbarTxt font-inter'>Blogs</p>
                     <div className="navbarLine"/>
                 </div>
 
                 <div className="navbarBtn ">
-                    <p className='navbarTxt'>Signup</p>
+                    <p className='navbarTxt font-inter'>Signup</p>
                     <div className="navbarLine"/>
                 </div>
             </div>
@@ -117,12 +117,12 @@ function Nav() {
                         
                         <div className={!open ? "flex space-x-[33px]":"hidden"}>
                             <div className="block group">
-                                <p className="text-[20px] font-[700] text-[#008000]">Home</p>
+                                <p className="text-[20px] font-[700] text-[#008000] font-inter">Home</p>
                                 <div className="h-[5px] w-[70px] bg-[#008000] -mt-[15px] hidden group-hover:flex"/>
                             </div>
 
                             <div className="block group">
-                                <p className="text-[20px] font-[700] text-[#008000]">Sign Up</p>
+                                <p className="text-[20px] font-[700] text-[#008000] font-inter">Sign Up</p>
                                 <div className="h-[5px] w-[70px] bg-[#008000] -mt-[15px] hidden group-hover:flex"/>
                             </div>
                         </div>
@@ -152,27 +152,27 @@ function Nav() {
                     <div className="block space-y-[40px] mt-[50px]">
                         <div className="flex space-x-[22px]  items-center ">
                             <FaUsers className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[30px] font-[700]">About Us</p>
+                            <p className="text-white text-[30px] font-[700] font-inter">About Us</p>
                         </div>
 
                         <div className="flex space-x-[22px]  items-center">
                             <CiGlobe className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[30px] font-[700]">Blog</p>
+                            <p className="text-white text-[30px] font-[700] font-inter">Blog</p>
                         </div>
 
                         <div className="flex space-x-[22px]  items-center">
                             <FaUsers className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[30px] font-[700]">Sign Up</p>
+                            <p className="text-white text-[30px] font-[700] font-inter">Sign Up</p>
                         </div>
 
                         <div className="flex space-x-[22px]  items-center">
                             <FaUser className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[30px] font-[700]">Your Profile</p>
+                            <p className="text-white text-[30px] font-[700] font-inter">Your Profile</p>
                         </div>
 
                         <div className="flex space-x-[22px]  items-center">
                             <CiSettings className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[30px] font-[700]">Settings</p>
+                            <p className="text-white text-[30px] font-[700] font-inter">Settings</p>
                         </div>
                     </div>
                     

@@ -44,7 +44,7 @@ function Faq() {
             <div className="mx-[29px] lg:mx-0  rounded-[21px] border-solid border-[1px] border-black/[0.25] pl-[22px] mb-4 shadow-lg">
                 <p className="text-black font-inter text-[12px] lg:text-[22px] font-[700]">What Is Vertical Farming?</p>
                 <div className="flex justify-between items-center align-top">
-                    <p className={clicked[1] ? "text-black/[0.62]  -mt-[10px] lg:-mt-[16px] flex text-[9px] lg:text-[16px]" : "hidden"}>
+                    <p className={clicked[1] ? "text-black/[0.62]  -mt-[10px] lg:-mt-[16px] font-josefin flex text-[9px] lg:text-[16px]" : "hidden"}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco la
                     </p>
                     <div className="flex justify-end w-[100%]">
@@ -80,7 +80,7 @@ function Faq() {
     <div className="mx-[29px] lg:mx-0  rounded-[21px] border-solid border-[1px] border-black/[0.25] pl-[22px] mb-4 shadow-lg">
                 <p className="text-black font-inter text-[12px] lg:text-[22px] font-[700]">Do You Work With Limited Spaces?</p>
                 <div className="flex justify-between items-center align-top">
-                    <p className={clicked[3] ? "text-black/[0.62]  -mt-[10px] lg:-mt-[16px] flex text-[9px] lg:text-[16px]" : "hidden"}>
+                    <p className={clicked[3] ? "text-black/[0.62]  -mt-[10px] font-inter lg:-mt-[16px] flex text-[9px] lg:text-[16px]" : "hidden"}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco la
                     </p>
                     <div className="flex justify-end w-[100%]">
