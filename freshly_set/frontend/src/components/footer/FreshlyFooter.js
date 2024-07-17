@@ -28,9 +28,6 @@ const FreshlyFooter = () => {
       window.removeEventListener('scroll', toggleVisibility);
     };
   }, []);
-  
-  const now = new Date();
-  const year = now.getFullYear();
 
   return (
     <div className="bg-green-300 text-[10px] md:text-lg text-gray-600 p-4 sm:text-sm mt-[160px]">
@@ -91,22 +88,6 @@ const FreshlyFooter = () => {
 
       </div> 
         {/* <hr className="w-full h-[2px] bg-green-500" /> */}
-        <section className="flex justify-between items-end">
-
-          <p>&copy;{year}-<a href="/">Freshly Farms</a></p>
-
-          <p className="flex text-[12px]">
-            <a href="/"><BsTwitterX /></a>
-            <a href="/"><FaFacebookF /></a>
-            <a href="/"><FaInstagramSquare /></a>
-          </p>
-
-          <p className="flex gap-1">
-            <a href="/">Terms</a>
-            <a href="/">Privacy</a>
-            <a href="/">Surport</a>
-          </p>
-        </section>
     </div>
   )
 }
