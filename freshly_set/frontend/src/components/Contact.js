@@ -9,8 +9,9 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 import { FaTiktok } from "react-icons/fa6";
 
 function Contact() {
-  return (
-    <div className="flex w-[100%] justify-between ">
+  return 
+    <div className="hidden lg:flex w-[100%] justify-between">
+
       <div className="mt-[132px] ml-[40px] block space-y-[29px]">
         <div className="flex space-x-[256px]">
           <div classsName="block">
@@ -48,7 +49,8 @@ function Contact() {
               <FaTiktok className="h-[37px]  w-[32px]" />
             </div>
           </div>
-        </div>
+
+    </div>
       </div>
 
       <div className="block mt-[94px] mr-[84px] ">
