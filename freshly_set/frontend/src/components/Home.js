@@ -7,7 +7,7 @@ import FreshlyFooter from "../components/footer/FreshlyFooter";
 import Contact from "./Contact";
 import Faq from './Faq'
 import Services from './Services'
-import Products from './Products'
+import ProductSection from './ProductSection'
 function Home() {
   return (
     <div className="">
@@ -16,7 +16,7 @@ function Home() {
      <Hero />
      <Mission />
      <Services />
-     <Products />
+     <ProductSection />
      <Reviews2 />
      <Faq />
 
