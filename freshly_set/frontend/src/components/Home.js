@@ -6,6 +6,8 @@ import Nav from './Nav'
 import FreshlyFooter from "../components/footer/FreshlyFooter";
 import Contact from "./Contact";
 import Faq from './Faq'
+import Services from './Services'
+import Products from './Products'
 function Home() {
   return (
     <div className="">
@@ -13,8 +15,11 @@ function Home() {
 
      <Hero />
      <Mission />
+     <Services />
+     <Products />
      <Reviews2 />
      <Faq />
+
      <Contact />  
     {/* <FreshlyFooter /> */}
      </div>

@@ -48,7 +48,8 @@ function Contact() {
               <FaTiktok className="h-[37px]  w-[32px]" />
             </div>
           </div>
-        </div>
+
+    </div>
       </div>
       <div className="block mt-[94px] mr-[84px] ">
         <p className="text-[22px] text-black font-[700]">Email</p>

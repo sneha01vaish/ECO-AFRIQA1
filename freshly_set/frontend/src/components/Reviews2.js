@@ -1,5 +1,7 @@
 import React from 'react'
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 function Reviews2() {
   return (
     <div className="flex justify-center relative h-[920px] bg-white/[50%] ">
@@ -18,33 +20,33 @@ function Reviews2() {
 
       </div>
         <div className="hidden lg:block ">
-            <h4 className ="text-[#008000] text-[45px] text-center font-serif" >Our reviews</h4>
-           <h5 className='text-black text-[22px] text-center w-[829px] font-[600] mb-[100px]'>These are some of the reviews we got from our clients’ side on how Freshly Farms helped them grow both economically and knowledgewise in farming</h5>
+            <h4 className ="text-[#008000] text-[45px] text-center font-inter" >Our reviews</h4>
+           <h5 className='text-black text-[22px] text-center w-[829px] font-[600] mb-[100px] font-inter'>These are some of the reviews we got from our clients’ side on how Freshly Farms helped them grow both economically and knowledgewise in farming</h5>
           
           <div className="flex space-x-[20px] ">
             
               <div className="block space-y-[12px]">
                 <img className="h-[400px] w-[200px] object-cover" src="/static/media/image4.jpg" alt="image4" />
-                <p className='text-black text-[24px]  font-[700] z-30 absolute'>Charles Kisika</p>
-                <p className='text-black text-[16px] font-[400] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px] '> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
+                <p className='text-black text-[24px]  font-[700] z-30 absolute font-inter'>Charles Kisika</p>
+                <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[15px] leading-[20.8px]'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
               </div>
 
               <div className="block space-y-[12px]">
                 <img className="h-[400px] w-[200px] object-cover" src="/static/media/image3.jpg" alt="image4" />
                 <p className='text-black text-[24px]  font-[700] z-30 absolute'>Brian Ouma</p>
-                <p className='text-black text-[16px] font-[400] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px]'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
+                <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[15px] leading-[20.8px]'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
               </div>
 
               <div className="block space-y-[12px]">
                 <img className="h-[400px] w-[200px] object-cover" src="/static/media/image2.jpg" alt="image4" />
                 <p className='text-black text-[24px]  font-[700] z-30 absolute'>Stacey Gathoni</p>
-                <p className='text-black text-[16px] font-[400] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px]'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
+                <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[15px] leading-[20.8px]'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
               </div>
 
               <div className="block space-y-[12px]">
                 <img className="h-[400px] w-[200px] object-cover" src="/static/media/image5.png" alt="image4" />
                 <p className='text-black text-[24px]  font-[700] z-30 absolute'>Sheila Mueni</p>
-                <p className='text-black text-[16px] font-[40] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px]'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
+                <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[15px] leading-[20.8px]'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
               </div>
 
 
@@ -67,18 +69,18 @@ function Reviews2() {
 
            {/* Mobile  */}
         
-            <div className="block lg:hidden  overflow-x-scroll relative ">
-              <div className="absolute top-[130px] z-[30] right-[100px] ">
+           <div className="block lg:hidden  overflow-x-scroll relative">
+              <div className="absolute top-[210px] z-[30] right-[100px] ">
                   <img src="/static/media/elipse1_sm.png" alt="Elipse1_sm"/>
                 </div>
               <div className="block mb-[80px]">
                 <p className="text-[35px] font-[700] text-[#008000] font-inter text-center">Our Reviews</p>
-                  <p className="text-[12px] text-black w-[308px] text-center -mt-[20px]">
+                  <p className="text-[12px] text-black w-[308px] text-center font-inter -mt-[20px]">
                   These are some of the reviews we got from our clients’ side on how Freshly Farms helped them grow both economically and knowledgewise in farming
                   </p>
               </div>
 
-              <div className="flex space-x-[20px] mt-[50px] overflow-x-scroll">
+              <div className="flex space-x-[20px] mt-[150px] overflow-x-scroll">
                 <div className="block">
                   <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image2.jpg" alt="image4" />
                   <p className="text-black text-[20px] font-[700] font-inter">Stacey Gathoni</p>
@@ -108,11 +110,7 @@ function Reviews2() {
             
             
              
-              {/* <img className="h-[400px] w-[270px] object-cover z-[10x]" src="/static/media/image3.jpg" alt="image4" />
-              <img className="h-[400px] w-[270px] object-cover z-[10x]" src="/static/media/image3.jpg" alt="image4" />
-              <img className="h-[400px] w-[270px] object-cover z-[10x]" src="/static/media/image3.jpg" alt="image4" />
-              <img className="h-[400px] w-[270px] object-cover z-[10x]" src="/static/media/image3.jpg" alt="image4" /> */}
-
+              
             </div>
            
   </div>
