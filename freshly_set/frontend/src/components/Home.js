@@ -19,7 +19,8 @@ function Home() {
      <Products />
      <Reviews2 />
      <Faq />
-     {/* <Contact />   */}
+
+     <Contact />  
     {/* <FreshlyFooter /> */}
      </div>
   )
