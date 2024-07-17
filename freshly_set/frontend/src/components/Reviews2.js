@@ -26,25 +26,25 @@ function Reviews2() {
               <div className="block space-y-[12px]">
                 <img className="h-[400px] w-[200px] object-cover" src="/static/media/image4.jpg" alt="image4" />
                 <p className='text-black text-[24px]  font-[700] z-30 absolute'>Charles Kisika</p>
-                <p className='text-black text-[16px] font-[400] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px] '> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
+                <p className='text-black text-[16px] font-[400] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px] '> "Freshly Farm's expertise has empowered our local farmers, improving the quality and quantity of our community garden's harvests."</p>
               </div>
 
               <div className="block space-y-[12px]">
                 <img className="h-[400px] w-[200px] object-cover" src="/static/media/image3.jpg" alt="image4" />
                 <p className='text-black text-[24px]  font-[700] z-30 absolute'>Brian Ouma</p>
-                <p className='text-black text-[16px] font-[400] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px]'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
+                <p className='text-black text-[16px] font-[400] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px]'>  "Thanks to Freshly Farms, my knowledge of horticulture has expanded tremendously. My plants are healthier, and my yields have increased."</p>
               </div>
 
               <div className="block space-y-[12px]">
                 <img className="h-[400px] w-[200px] object-cover" src="/static/media/image2.jpg" alt="image4" />
                 <p className='text-black text-[24px]  font-[700] z-30 absolute'>Stacey Gathoni</p>
-                <p className='text-black text-[16px] font-[400] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px]'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
+                <p className='text-black text-[16px] font-[400] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px]'> "Freshly Farms has revolutionized my urban farming approach. Their support transformed my small garden into a thriving oasis."</p>
               </div>
 
               <div className="block space-y-[12px]">
                 <img className="h-[400px] w-[200px] object-cover" src="/static/media/image5.png" alt="image4" />
                 <p className='text-black text-[24px]  font-[700] z-30 absolute'>Sheila Mueni</p>
-                <p className='text-black text-[16px] font-[40] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px]'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
+                <p className='text-black text-[16px] font-[40] w-[199px] z-30 absolute bottom-[15px] leading-[20.8px]'>  "Freshly Farm's high-quality resources and support have significantly improved my urban farming skills, leading to healthier crops ."</p>
               </div>
 
 
