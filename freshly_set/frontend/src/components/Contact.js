@@ -9,8 +9,9 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 import { FaTiktok } from "react-icons/fa6";
 
 function Contact() {
-  return (
-    <div className="flex w-[100%] justify-between">
+  return 
+    <div className="hidden lg:flex w-[100%] justify-between">
+
       <div className="mt-[132px] ml-[40px] block space-y-[29px]">
         <div className="flex space-x-[256px]">
           <div classsName="block">
@@ -31,7 +32,7 @@ function Contact() {
         </div>
         <div className="flex space-x-[256px]">
           <div classsName="block">
-            <FaLocationDot className="h-[49px] w-[45px]" />
+            <FaLocationDot className="h-[49px] w-[45px] flex-shrink-0" />
             <p className="font-[720] text-[72] -mt-[5px] font-inter">Office</p>
             <p className="font-[22] text-[400] text-[#525560] font-josephin -mt-[10px]">
               Nairobi, Kenya
@@ -48,10 +49,12 @@ function Contact() {
               <FaTiktok className="h-[37px]  w-[32px]" />
             </div>
           </div>
-        </div>
+
+    </div>
       </div>
+
       <div className="block mt-[94px] mr-[84px] ">
-        <p className="text-[22px] text-black font-[700]">Email</p>
+        <p className="text-[22px] text-black font-[700] box-border">Email</p>
         <input
           placeholder="john@gmail.com"
           className="w-[474px] h-[46px] py-[10px] px-[14px] rounded-[8px] border-solid border-[1px] border-[#D5DAE1] focus:outline-none"
@@ -63,6 +66,10 @@ function Contact() {
           className="h-[220px] w-[474px]  rounded-[8px] border-solid border-[1px] border-[#D5DAE1] focus:outline-none"
           placeholder="Your message..."
         />
+
+        <div className="flex h-[56px] w-[474px] bg-[#008000] rounded-[14px] py-[16px] px-[28px] mt-[24px] justify-center box-border items-center flex-shrink-0 ">
+          <p className="font-inter text-[25px] font-[700] text-[#FFF] ">Send</p>
+        </div>
       </div>
     </div>
   );
