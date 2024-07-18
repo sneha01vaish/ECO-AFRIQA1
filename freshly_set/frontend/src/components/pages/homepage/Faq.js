@@ -32,7 +32,7 @@ function Faq() {
         {/* Right Side */}
 
         <div className="lg:w-[50%] block ">
-            <p className="text-[29px]  lg:text-[45px] text-center lg:text-start font-[700] font-inter  text-[#008000]">Frequently Asked Questions</p>
+            <p className="text-[29px]  lg:text-[40px]  text-center lg:text-start font-[700] font-inter  text-[#008000] whitespace-nowrap ">Frequently Asked Questions</p>
             <p className="text-black/[0.62] font-[500] text-[22px] text-center lg:text-start font-inter -mt-[40] mx-auto lg:mx-0 w-[311px] lg:w-[483px]">Questions You might ask about our products or services</p>
 
             {/* Cards */}
