@@ -26,7 +26,7 @@ function ProductSection() {
             </div>
 
             <div className="flex justify-center mt-[50px]">
-                <button className="h-[48px] w-[236px] bg-[#008000] text-white rounded-[15px] text-[25px] font-inter font-[500]">Click Here</button>
+                <button className="h-[48px] w-[236px] bg-[#008000] text-white rounded-[15px] text-[25px] font-inter font-[500] border-none cursor-pointer active:scale-90 transition-all duration-500 ease-out">Click Here</button>
               </div>
            
         </div>

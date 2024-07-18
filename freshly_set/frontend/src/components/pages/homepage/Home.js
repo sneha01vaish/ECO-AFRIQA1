@@ -7,12 +7,15 @@ import ProductSection from "./ProductSection"
 import Reviews2 from "./Reviews2";
 import Faq from "./Faq";
 import Contact from "./Contact";
+import Metrics from "../../metrics/Metrics"
+import FreshlyFooter from '../../footer/FreshlyFooter'
 function Home() {
   return (
     <div className="">
       <Nav />
      <Hero  />
      <Mission />
+     <Metrics />
      <Services />
      <ProductSection />
      <Reviews2 />

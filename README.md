@@ -109,6 +109,16 @@ freshly-set/
 │   ├── migrations/
 │   │   └── __init__.py
 │   └── tests.py
+    frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── App.js
+│   │   ├── index.js
+│   ├── package.json
+│   └── 
+    .env
+└── .gitignore
 │
 ├── manage.py
 └── requirements.txt

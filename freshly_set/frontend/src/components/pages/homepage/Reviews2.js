@@ -67,7 +67,7 @@ function Reviews2() {
         </div>
           
         <div className='flex justify-center mt-[180px]'> 
-          <button className='w-[272px] h-[70px] bg-[#008000] rounded-[15px] mt-[62px] text-white text-[25px] '>Read More</button>
+          <button className='w-[272px] h-[70px] bg-[#008000] rounded-[15px] mt-[62px] text-white text-[25px] border-none'>Read More</button>
         </div>
           
         {/* <div className="flex justify-center mt-[38px]">
@@ -101,7 +101,7 @@ function Reviews2() {
           </div>
           <div className="block px-[10px]">
             <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image1.png" alt="image1" />
-            <p className="text-black text-[20px] font-[700] font-inter">Stacey Gathoni</p>
+            <p className="text-black text-[20px] font-[700] font-inter">Charles Kisika</p>
             <p className="text-black font-sans font-[400] leading-[19.5px] text-[15px] w-[199px]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
             </p>
@@ -116,7 +116,7 @@ function Reviews2() {
         </Slider>
 
         <div className="flex justify-center mt-[50px]">
-          <button className="h-[48px] w-[236px] bg-[#008000] text-white rounded-[15px]">Read More</button>
+          <button className="h-[48px] w-[236px] bg-[#008000] text-white rounded-[15px] text-[25px] border-none">Read More</button>
         </div>
       </div>
     </div>
