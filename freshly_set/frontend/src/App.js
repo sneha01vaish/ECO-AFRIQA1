@@ -5,11 +5,13 @@ import Mission from './components/Mission';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import About from './components/About';
 import Home from './components/Home';
+import LoginSignup from './components/LoginSignup/LoginSignup';
 
 function App() {
   return (
     <Router>
     <Routes>
+        <Route path="/" element={<LoginSignup />} />
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<About />} />
     </Routes>
