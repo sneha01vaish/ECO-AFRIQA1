@@ -7,7 +7,6 @@ import ProductSection from "./ProductSection"
 import Reviews2 from "./Reviews2";
 import Faq from "./Faq";
 import Contact from "./Contact";
-import FreshlyFooter from "../../Footer/FreshlyFooter";
 function Home() {
   return (
     <div className="">

@@ -9,7 +9,7 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 import { FaTiktok } from "react-icons/fa6";
 
 function Contact() {
-  return 
+  return (
     <div className="hidden lg:flex w-[100%] justify-between">
 
       <div className="mt-[132px] ml-[40px] block space-y-[29px]">
@@ -75,4 +75,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default Contact
