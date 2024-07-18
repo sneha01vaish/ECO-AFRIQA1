@@ -1,11 +1,9 @@
 import './App.css';
-import Nav from './components/Nav';
-import Hero from './components/Hero';
-import Mission from './components/Mission';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import About from './components/About';
-import Home from './components/Home';
-import LoginSignup from './components/LoginSignup/LoginSignup';
+
+import Home from './components/pages/homepage/Home';
+import About from './components/pages/about-us/About';
 
 function App() {
   return (
