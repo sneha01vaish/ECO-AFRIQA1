@@ -1,21 +1,19 @@
 module.exports = {
   purge: [
-    './src/**/*.{js,jsx,ts,tsx}', // Include all your React components
-    './public/index.html', // Include your index.html
+    "./src/**/*.{js,jsx,ts,tsx}", // Include all your React components
+    "./public/index.html", // Include your index.html
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    fontFamily: {
-      josefin: ['Josefin Sans', 'sans-serif'],
-      inter: ['Inter', 'sans-serif'],
-    },
-    extend: { 
+    extend: {
+      fontFamily: {
+        josefin: ["Josefin Sans", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
       },
+    },
   },
   variants: {
-    extend: {
-     
-    },
+    extend: {},
   },
   plugins: [],
   corePlugins: {
