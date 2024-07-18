@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
+import { Link } from "react-router-dom"
 
 const FreshlyFooter = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -44,37 +45,37 @@ const FreshlyFooter = () => {
 
             <div className="text-nowrap flex flex-col">
               <h4 className="font-bold text-gray-100 underline">Pages</h4>
-              <a href="/">Home</a>
-              <a href="tutor">Services</a>
-              <a href="students">Resources</a>
-              <a href="about">Our History</a>
-              <a href="contact">Contact Us</a>
+              <Link to="/">Home</Link>
+              <Link to="tutor">Services</Link>
+              <Link to="students">Resources</Link>
+              <Link to="about">Our History</Link>
+              <Link to="contact">Contact Us</Link>
             </div>
 
             <div className="text-nowrap flex flex-col">
               <h4 className="font-bold text-gray-100 underline">Explore</h4>
-              <a href="blog">Blog</a>
-              <a href="faq">FAQs</a>
-              <a href="terms">Terms of Service</a>
-              <a href="policy">Privacy Policy</a>
+              <Link to="blog">Blog</Link>
+              <Link to="faq">FAQs</Link>
+              <Link to="terms">Terms of Service</Link>
+              <Link to="policy">Privacy Policy</Link>
             </div>
 
             <div className="text-nowrap flex flex-col">
               <h4 className="font-bold text-gray-100 underline">Services</h4>
-              <a href="about">Personal Info</a>
-              <a href="tutor">Orders</a>
-              <a href="students">Adresses</a>
-              <a href="parents">Parents</a>
-              <a href="contact">New Password</a>
+              <Link to="about">Personal Info</Link>
+              <Link to="tutor">Orders</Link>
+              <Link to="students">Adresses</Link>
+              <Link to="parents">Parents</Link>
+              <Link to="contact">New Password</Link>
             </div>
 
             <div className="text-nowrap flex flex-col">
               <h4 className="font-text-gray-100 text-gray-100 underline">Pages</h4>
-              <a href="/">Home</a>
-              <a href="tutor">Services</a>
-              <a href="students">Resources</a>
-              <a href="about">Our History</a>
-              <a href="contact">Contact Us</a>
+              <Link to="/">Home</Link>
+              <Link to="tutor">Services</Link>
+              <Link to="students">Resources</Link>
+              <Link to="about">Our History</Link>
+              <Link to="contact">Contact Us</Link>
             </div>
 
           </div>
@@ -83,7 +84,7 @@ const FreshlyFooter = () => {
           {isVisible && (
             <button
             onClick={scrollToTop}
-            className="bg-green-600 text-xs p-1 px-1.5 animate-ping cursor-pointer rounded-full text-white border-none transition">
+            className="bg-green-300 text-xs p-1 px-1.5 animate-ping cursor-pointer rounded-full text-white border-none transition">
             <FaArrowUp />
           </button>
           )}
