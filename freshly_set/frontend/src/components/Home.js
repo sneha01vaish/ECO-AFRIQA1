@@ -21,7 +21,7 @@ function Home() {
      <Faq />
 
      <Contact />  
-    {/* <FreshlyFooter /> */}
+    <FreshlyFooter />
      </div>
   )
 }
