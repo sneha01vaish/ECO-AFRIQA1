@@ -29,9 +29,9 @@ const FreshlyFooter = () => {
   }, []);
 
   return (
-    <div className="p-4">
-      <div className="w-[90%] bg-green-700 mx-auto pb-8 rounded-xl">
-        <div className="flex justify-around items-center py-6 text-gray-600 gap-8">
+    <div className="p-4 py-8">
+      <div className="w-full bg-green-800 mx-auto pb-8 rounded-xl">
+        <div className="flex justify-around items-center py-8 text-gray-600 gap-8">
 
           <section className="hidden sm:flex">
 
@@ -41,7 +41,7 @@ const FreshlyFooter = () => {
 
           </section> 
 
-          <div className="flex flex-wrap justify-center items-start gap-6">
+          <div className="flex flex-wrap justify-center items-start gap-8">
 
             <div className="text-nowrap flex flex-col">
               <h4 className="font-bold text-gray-100 underline">Pages</h4>
