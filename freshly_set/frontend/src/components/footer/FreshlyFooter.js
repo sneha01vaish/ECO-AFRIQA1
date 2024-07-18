@@ -30,7 +30,7 @@ const FreshlyFooter = () => {
 
   return (
     <div className="p-4">
-      <div className="w-[90%] bg-green-700 mx-auto pb-8 rounded-xl">
+      <div className="w-[90%] bg-green-800 mx-auto pb-8 rounded-xl">
         <div className="flex justify-around items-center py-6 text-gray-600 gap-8">
 
           <section className="hidden sm:flex">
