@@ -10,6 +10,9 @@ module.exports = {
       inter: ['Inter', 'sans-serif'],
     },
     extend: { 
+      backgroundImage: theme => ({
+        'hero-about': "url('/public/static/media/aboutHero.png')",
+      }),
       },
   },
   variants: {
