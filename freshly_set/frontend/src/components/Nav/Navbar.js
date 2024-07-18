@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./Nav.css"
 import { IoMdMenu } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { IoMdClose } from "react-icons/io";
 import { FaUser, FaUsers } from "react-icons/fa";
 import { CiSettings, CiGlobe } from "react-icons/ci";
+import { PageContext } from '../context/PageContext';
 
 function Nav() {
 
     const [scrolled, setScrolled ] = useState(false);
 
-    const [activeTab, setActiveTab] = useState("home");
+    const [activeTab, setActiveTab] = useContext(PageContext);
 
     const [open, setOpen] = useState(false);
 
@@ -41,35 +42,81 @@ function Nav() {
     <div>
         {/* Large screen navbar */}
 
-        <nav className="navbarBg">
+        <nav className="flex pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-white w-[100%] pb-[20.1px] pt-[20.42px]">
             {/* Logo */}
             <img className={scrolled ? "navbarLogoScroll" : "navbarLogo"} src="/static/media/logo2.png" alt="NavLogo"/>
 
             {/* Nav Buttons */}
 
-            <div className="navbarBtns">
-                <Link onClick={() => setActiveTab("home")} style={{textDecoration:"none"}} to="/" className="navbarBtn">
-                    <p className='navbarTxt font-inter'>Home</p>
-                        {/* <div className="h-[10px] w-[109.005px] bg-[#008000] -mt-[25px] cursor-pointer "/> */}
-                        <div className="navbarLine"/>
+            {/*  font-family: Inter;
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: block;
+    height: 35px;
+    width: 84px;
+    cursor: pointer; */}
+
+            <div className="flex justify-self-end ml-[40%] space-x-[59px] items-center ">
+                <Link onClick={() => setActiveTab("home")}  to="/" className="group text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                    
+                    <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Home</p>
+                    <div className={activeTab === "home" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                     {
+                            activeTab && (
+                                <div className= {` ${activeTab === "home"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                            )
+                        }
 
                 </Link>
 
-                <Link onClick={() => setActiveTab("about")} style={{textDecoration:"none"}} to="/about-us" className="navbarBtn">
-                    <p className='navbarTxt font-inter'>About</p>
-                    <div className="navbarLine"/>
+                <Link to="/about-us" onClick={() => setActiveTab("about")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">About</p>
+
+                    <div className={activeTab === "about" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                  
+                        {
+                            activeTab && (
+                                <div className= {` ${activeTab === "about"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                            )
+                        }
+
+
                 </Link>
 
 
-                <div className="navbarBtn">
-                    <p className='navbarTxt font-inter'>Blogs</p>
-                    <div className="navbarLine"/>
-                </div>
+                <Link onClick={() => setActiveTab("blogs")}  to="/" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Blogs</p>
 
-                <div className="navbarBtn ">
-                    <p className='navbarTxt font-inter'>Signup</p>
-                    <div className="navbarLine"/>
-                </div>
+                    <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                  
+                        {
+                            activeTab && (
+                                <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                            )
+                        }
+
+
+                </Link>
+
+                <Link onClick={() => setActiveTab("signup")}  to="/" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer whitespace-nowrap">Sign Up</p>
+
+                    <div className={activeTab === "signup" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                  
+                        {
+                            activeTab && (
+                                <div className= {` ${activeTab === "signup"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                            )
+                        }
+
+
+                </Link>
             </div>
             
         </nav>

@@ -18,17 +18,7 @@ line-height: normal;
 text-align: start;
 
 }
-.missionLeft p {
-flex-shrink: 0;
-color: var(--Secondary-text, #525560);
-font-family: "Josefin Sans";
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-width: 552px;
-line-height: 130%; /* 26px */
-text-align: start;
-}
+/*  */
 
 .missionImg2{
     margin-left: 0px;
