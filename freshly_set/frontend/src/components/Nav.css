@@ -44,13 +44,13 @@
 .navbarLine {
     width: 109.005px;
     background: #008000;
-    opacity: 0; /* Initial opacity set to 0 */
-    transition: opacity 0.5s ease-out, height 0.75s ease-out; /* Transition properties */
+    opacity: 0;
+    transition: opacity 0.5s ease-out, height 0.75s ease-out; 
 }
 
 .navbarTxt:hover + .navbarLine {
-    opacity: 1; /* Change opacity to 1 */
-    height: 10px; /* Change height to 10px */
+    opacity: 1; 
+    height: 10px; 
 }
 
 

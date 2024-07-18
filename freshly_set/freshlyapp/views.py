@@ -4,9 +4,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from .models import Product, Garden, Service
+from .models import Product, Garden, Service, Blog
 from .forms import ProductForm, ServiceRequestForm
 from django.contrib import messages
+from django.shortcuts import render, get_object_or_404, redirect
+from .forms import BlogForm
 
 
 
@@ -80,3 +82,41 @@ def services(request):
 @login_required
 def profile(request):
     return render(request, 'profile.html')
+
+
+# The blog CRUD 
+def blog_list(request):
+    blogs = Blog.objects.all()
+    return render(request, 'blog_list.html', {'blogs': blogs})
+
+def blog_detail(request, slug):
+    blog = get_object_or_404(Blog, slug=slug)
+    return render(request, 'blog_detail.html', {'blog': blog})
+
+def blog_create(request):
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('blog_list')
+    else:
+        form = BlogForm()
+    return render(request, 'blog_form.html', {'form': form})
+
+def blog_update(request, slug):
+    blog = get_object_or_404(Blog, slug=slug)
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES, instance=blog)
+        if form.is_valid():
+            form.save()
+            return redirect('blog_detail', slug=blog.slug)
+    else:
+        form = BlogForm(instance=blog)
+    return render(request, 'blog_form.html', {'form': form})
+
+def blog_delete(request, slug):
+    blog = get_object_or_404(Blog, slug=slug)
+    if request.method == 'POST':
+        blog.delete()
+        return redirect('blog_list')
+    return render(request, 'blog_confirm_delete.html', {'blog': blog})

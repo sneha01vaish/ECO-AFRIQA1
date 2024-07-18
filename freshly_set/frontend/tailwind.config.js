@@ -5,10 +5,17 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    fontFamily: {
+      josefin: ['Josefin Sans', 'sans-serif'],
+      inter: ['Inter', 'sans-serif'],
+    },
+    extend: { 
+      },
   },
   variants: {
-    extend: {},
+    extend: {
+     
+    },
   },
   plugins: [],
   corePlugins: {
