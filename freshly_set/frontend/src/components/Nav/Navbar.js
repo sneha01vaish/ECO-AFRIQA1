@@ -163,10 +163,10 @@ function Nav() {
             <img className={!open ? "flex h-[77px] w-[80px] object-cover":"hidden"} src="/static/media/logo2.png" alt="navLogo"/>
                         
                         <div className={!open ? "flex space-x-[33px]":"hidden"}>
-                            <div className="block group">
+                            <Link to="/" className="block group">
                                 <p className="text-[20px] font-[700] text-[#008000] font-inter">Home</p>
                                 <div className="h-[5px] w-[70px] bg-[#008000] -mt-[15px] hidden group-hover:flex"/>
-                            </div>
+                            </Link>
 
                             <div className="block group">
                                 <p className="text-[20px] font-[700] text-[#008000] font-inter">Sign Up</p>
@@ -197,29 +197,29 @@ function Nav() {
                 </div>
                 <div className="flex justify-center">
                     <div className="block space-y-[40px] mt-[50px]">
-                        <div className="flex space-x-[22px]  items-center ">
+                        <Link to="/about-us" className="flex space-x-[22px]  items-center ">
                             <FaUsers className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[30px] font-[700] font-inter">About Us</p>
-                        </div>
+                            <p className="text-white text-[25px] font-[700] font-inter">About Us</p>
+                        </Link>
 
                         <div className="flex space-x-[22px]  items-center">
                             <CiGlobe className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[30px] font-[700] font-inter">Blog</p>
+                            <p className="text-white text-[25px] font-[700] font-inter">Blog</p>
                         </div>
 
                         <div className="flex space-x-[22px]  items-center">
                             <FaUsers className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[30px] font-[700] font-inter">Sign Up</p>
+                            <p className="text-white text-[25px] font-[700] font-inter">Sign Up</p>
                         </div>
 
                         <div className="flex space-x-[22px]  items-center">
                             <FaUser className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[30px] font-[700] font-inter">Your Profile</p>
+                            <p className="text-white text-[25px] font-[700] font-inter">Your Profile</p>
                         </div>
 
                         <div className="flex space-x-[22px]  items-center">
                             <CiSettings className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[30px] font-[700] font-inter">Settings</p>
+                            <p className="text-white text-[25px] font-[700] font-inter">Settings</p>
                         </div>
                     </div>
                     
