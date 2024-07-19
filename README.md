@@ -109,6 +109,16 @@ freshly-set/
 │   ├── migrations/
 │   │   └── __init__.py
 │   └── tests.py
+    frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── App.js
+│   │   ├── index.js
+│   ├── package.json
+│   └── 
+    .env
+└── .gitignore
 │
 ├── manage.py
 └── requirements.txt
@@ -125,5 +135,5 @@ Contributions are welcome! Please follow these steps:
 - Create a new Pull Request.
 
 # License
-his project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
