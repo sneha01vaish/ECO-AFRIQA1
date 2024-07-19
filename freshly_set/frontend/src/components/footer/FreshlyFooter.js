@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import { Link } from "react-router-dom"
-import { FaSquareInstagram, FaTiktok,FaFacebook } from "react-icons/fa6";
-import { AiFillTwitterCircle } from "react-icons/ai";
+import { FaSquareInstagram, FaTiktok, FaFacebook, FaLinkedin, FaSquareXTwitter } from "react-icons/fa6";
 
 const FreshlyFooter = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const date = new Date()
+  const year = date.getFullYear()
+  // console.log(now)
 
   const toggleVisibility = () => {
     if (window.pageYOffset > 800) {
@@ -51,7 +53,7 @@ const FreshlyFooter = () => {
               <Link to="tutor">Services</Link>
               <Link to="students">Resources</Link>
               <Link to="about">Our History</Link>
-              <Link to="contact">Contact Us</Link>
+              <Link to="/contact">Contact Us</Link>
             </div>
 
             <div className="text-nowrap flex flex-col">
@@ -77,7 +79,7 @@ const FreshlyFooter = () => {
               <Link to="tutor">Services</Link>
               <Link to="students">Resources</Link>
               <Link to="about">Our History</Link>
-              <Link to="contact">Contact Us</Link>
+              <Link to="/contact">Contact Us</Link>
             </div>
 
           </div>
@@ -96,12 +98,17 @@ const FreshlyFooter = () => {
         <hr className="w-full bg-gray-200" />
 
         <section className="flex flex-wrap gap-2 justify-around items-center text-xs">
-          <div>&copy;2024-Freshly Farms</div>
           <div>
-            <FaSquareInstagram className="mx-2" />
-            <FaTiktok className="mx-2" />
-            <FaFacebook className="mx-2" />
-            <AiFillTwitterCircle className="mx-2" />
+            <span className="text-gray-200">&copy;{year}-</span>
+            <Link to="/">Freshly Farms.</Link>
+            <span className="text-gray-200">All Rights Reserved</span>
+          </div>
+          <div>
+            <Link to="/"><FaSquareInstagram className="mx-2" /></Link>
+            <Link to="https://www.tiktok.com/@infofkexnoo?_t=8o7P91f39aI&_r=1" target="_blank"><FaTiktok className="mx-2" /></Link>
+            <Link to="https://www.facebook.com/profile.php?id=61561757183894" target="_blank"><FaFacebook className="mx-2" /></Link>
+            <Link to="https://x.com/FreshlyFarms5" target="_blank"><FaSquareXTwitter className="mx-2" /></Link>
+            <Link to="/"><FaLinkedin className="mx-2" /></Link>
           </div>
           <div className="flex gap-2">
             <Link to="/">Terms and conditions</Link>
@@ -110,8 +117,6 @@ const FreshlyFooter = () => {
           </div>
         </section>
       </div>
-
-
     </div>
   )
 }
