@@ -34,13 +34,13 @@ const FreshlyFooter = () => {
 
   return (
     <div className="p-4 py-8">
-      <div className="w-full bg-green-800 mx-auto pb-8 rounded-xl">
+      <div className="w-full bg-[#008000] mx-auto pb-8 rounded-xl">
         <div className="flex justify-around items-center py-8 text-gray-600 gap-8">
 
           <section className="hidden sm:flex">
 
             <div className="bg-white rounded-full p-2">
-              <img src="/static/media/logo2.png" alt="Freshly farms logo" />
+              <img className="h-[113px] w-[120px]" src="/static/media/logo2.png" alt="Freshly farms logo" /> 
             </div>
 
           </section> 
@@ -49,7 +49,7 @@ const FreshlyFooter = () => {
 
             <div className="text-nowrap flex flex-col">
               <h4 className="font-bold text-gray-100 underline">Pages</h4>
-              <Link to="/">Home</Link>
+              <Link className="" to="/">Home</Link>
               <Link to="tutor">Services</Link>
               <Link to="students">Resources</Link>
               <Link to="about">Our History</Link>
