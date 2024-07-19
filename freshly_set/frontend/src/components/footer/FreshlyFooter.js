@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import { Link } from "react-router-dom"
+import { FaSquareInstagram, FaTiktok,FaFacebook } from "react-icons/fa6";
+import { AiFillTwitterCircle } from "react-icons/ai";
 
 const FreshlyFooter = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -92,7 +94,24 @@ const FreshlyFooter = () => {
 
         </div> 
         <hr className="w-full bg-gray-200" />
+
+        <section className="flex flex-wrap gap-2 justify-around items-center text-xs">
+          <div>&copy;2024-Freshly Farms</div>
+          <div>
+            <FaSquareInstagram className="mx-2" />
+            <FaTiktok className="mx-2" />
+            <FaFacebook className="mx-2" />
+            <AiFillTwitterCircle className="mx-2" />
+          </div>
+          <div className="flex gap-2">
+            <Link to="/">Terms and conditions</Link>
+            <Link to="/">Privacy Policy</Link>
+            <Link to="/">Support</Link>
+          </div>
+        </section>
       </div>
+
+
     </div>
   )
 }
