@@ -34,7 +34,7 @@ const FreshlyFooter = () => {
 
   return (
     <div className="p-4 py-8">
-      <div className="w-full bg-[#008000] mx-auto pb-8 rounded-xl">
+      <div className="w-full bg-[#008000] mx-auto pb-8 rounded-xl overflow-x-hidden">
         <div className=" lg:flex justify-around items-center py-8 text-gray-600 gap-8">
  
  
@@ -49,30 +49,30 @@ const FreshlyFooter = () => {
           </section>
  
  
-          <div className="flex lg:flex-wrap justify-center items-start gap-x-[40px]">
+          <div className="flex lg:flex-wrap justify-center items-start space-x-[30px] lg:gap-x-[40px]">
  
  
             <div className="text-nowrap flex flex-col space-y-[8px]">
               <h4 className="font-bold text-gray-100 ">Quick Link</h4>
-                <Link className="text-gray-200 font-inter text-[15px] font-[500]" to="/">Home</Link>
-                <Link className="text-gray-200 font-inter text-[15px] font-[500]" to="tutor">Services</Link>
-                <Link className="text-gray-200 font-inter text-[15px] font-[500]" to="students">Resources</Link>
-                <Link className="text-gray-200 font-inter text-[15px] font-[500]" to="about">Our History</Link>
-                <Link className="text-gray-200 font-inter text-[15px] font-[500]" to="contact">Contact Us</Link>
+                <Link className="footerLinks" to="/">Home</Link>
+                <Link className="footerLinks" to="tutor">Services</Link>
+                <Link className="footerLinks" to="students">Resources</Link>
+                <Link className="footerLinks" to="about">Our History</Link>
+                <Link className="footerLinks" to="contact">Contact Us</Link>
              
             </div>
  
  
             <div className="text-nowrap flex flex-col space-y-[8px]">
               <h4 className="font-bold text-gray-100 ">Explore</h4>
-              <Link className="text-gray-200 font-inter text-[15px] font-[500]" to="blog">Blog</Link>
-              <Link className="text-gray-200 font-inter text-[15px] font-[500]" to="faq">FAQs</Link>
-              <Link className="text-gray-200 font-inter text-[15px] font-[500]" to="terms">Terms of Service</Link>
-              <Link className="text-gray-200 font-inter text-[15px] font-[500]" to="policy">Privacy Policy</Link>
+              <Link className="footerLinks" to="blog">Blog</Link>
+              <Link className="footerLinks" to="faq">FAQs</Link>
+              <Link className="footerLinks" to="terms">Terms of Service</Link>
+              <Link className="footerLinks" to="policy">Privacy Policy</Link>
             </div>
  
  
-            <div className="text-nowrap flex flex-col space-y-[8px]">
+            <div className="text-nowrap hidden lg:flex flex-col space-y-[8px]">
               <h4 className="font-bold text-gray-100 ">Services</h4>
               <Link  className="text-gray-200 font-inter  text-[15px] font-[500] underline" to="about">Careers</Link>
               <Link  className="text-gray-200 font-inter text-[15px] font-[500] underline" to="tutor">Blog</Link>
