@@ -15,7 +15,7 @@ function Contact() {
             />
             <p className="font-[720] text-[72] -mt-[5px] font-inter">Email</p>
             <a href="mailto:info@freshlyfarms" className="font-normal no-underline" target="_blank">
-              <p className="font-[22] text-[400] text-[#525560] font-josefin -mt-[10px]">info@freshlyfarms</p>
+              <p className="font-[22] text-[400] text-[#525560] font-josefin -mt-[10px]">info.freshlyfarms5@gmail.com</p>
             </a>
           </div>
 
