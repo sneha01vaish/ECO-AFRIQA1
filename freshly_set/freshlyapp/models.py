@@ -17,6 +17,7 @@ class Garden(models.Model):
     location = models.CharField(max_length=255)
     size = models.CharField(max_length=100)
     features = models.TextField()
+    description = models.CharField(max_length=140, default='DEFAULT VALUE')
 
     def __str__(self):
         return self.location
