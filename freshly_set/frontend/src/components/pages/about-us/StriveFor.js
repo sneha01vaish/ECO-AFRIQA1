@@ -1,6 +1,11 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 function StriveFor() {
+
+    useEffect(() => {
+        AOS.init();
+    },[])
   return (
     <div className="flex   mt-[174px]">
         <div className="block w-[100%]">
@@ -17,11 +22,11 @@ function StriveFor() {
 
             {/* First */}
 
-            <div className=" w-[100%] relative">
+            <div data-aos="fade-up" data-aos-duration="4000" data-aos-easing="linear" className=" w-[100%] relative">
                 <div className="flex ">
                     {/* Ellipse */}
-                    <img className=" h-[176.809px] w-[179.534px] lg:h-[425.063px] z-[10] absolute left-[28px] lg:left-[134px] top-[40px] lg:top-[90px] lg:w-[466.91px] rotate-[-21.653deg] lg:rotate-[-23.241deg]" src="/static/media/striveForEllipse1.png" alt="StriveFor2"/>
-                    <img className="absolute z-[20] h-[125.132px] w-[157.603px] lg:h-[296px] lg:w-[418px] left-[45px] top-[60px] lg:left-[208px] lg:top-[105px]" src="/static/media/striveForTrash.png" alt="StriveFor2"/>
+                    <img data-aos="fade-in" data-aos-duration="4000"  className=" h-[176.809px] w-[179.534px] lg:h-[425.063px] z-[10] absolute left-[28px] lg:left-[134px] top-[40px] lg:top-[90px] lg:w-[466.91px] rotate-[-21.653deg] lg:rotate-[-23.241deg]" src="/static/media/striveForEllipse1.png" alt="StriveFor2"/>
+                    <img data-aos="fade-in" data-aos-duration="4000"  data-aos-delay="500" data-aos-easing="linear" className="absolute z-[20] h-[125.132px] w-[157.603px] lg:h-[296px] lg:w-[418px] left-[45px] top-[60px] lg:left-[208px] lg:top-[105px]" src="/static/media/striveForTrash.png" alt="StriveFor2"/>
                     {/* Text */}
                     <div className=" bg-black  absolute left-[214px] top-[25px] lg:top-[0px] lg:left-[602px] rounded-full h-[55px] w-[58px]  lg:h-[100px] lg:w-[100px] text-white pb-[5%] pl-[6%] lg:pl-[0px] lg:pb-[0px] lg:text-center text-[40px] lg:text-[50px]"><p className="mt-[15px] my-auto">1.</p></div>
 
@@ -36,8 +41,8 @@ function StriveFor() {
             <div className=" w-[100%] relative">
 
                 <div className="flex">
-                    <img className="absolute h-[210.501px] w-[194.07px] lg:h-[495.363px] lg:w-[500.785px] top-[476px] lg:top-[650px] right-[46px] lg:right-[134px]" src="/static/media/striveForEllipse2.png" alt="Strive For Section Img 2"/>
-                    <img className="absolute h-[162.364px] lg:h-[381px] w-[152.238px]  lg:w-[394px] top-[490px]  lg:top-[670px] right-[94px] lg:right-[94px]" src="/static/media/striveForGloves.png" alt="StriveFor3"/>
+                    <img data-aos="fade-in" data-aos-duration="4000" className="absolute h-[210.501px] w-[194.07px] lg:h-[495.363px] lg:w-[500.785px] top-[476px] lg:top-[650px] right-[46px] lg:right-[134px]" src="/static/media/striveForEllipse2.png" alt="Strive For Section Img 2"/>
+                    <img data-aos="fade-in" data-aos-duration="4000"  data-aos-delay="500" className="absolute h-[162.364px] lg:h-[381px] w-[152.238px]  lg:w-[394px] top-[490px]  lg:top-[670px] right-[94px] lg:right-[94px]" src="/static/media/striveForGloves.png" alt="StriveFor3"/>
                 </div>
 
                 <div className=" bg-black  absolute  top-[455px] lg:top-[690px] left-[60px] lg:left-[602px] rounded-full h-[55px] w-[58px]  lg:h-[100px] lg:w-[100px] text-white pb-[5%] pl-[6%] lg:pl-[0px] lg:pb-[0px] lg:text-center text-[40px] lg:text-[50px]"><p className="mt-[15px] my-auto">2.</p></div>
@@ -54,8 +59,8 @@ function StriveFor() {
             <div className=" w-[100%] relative">
                 <div className="flex ">
                     {/* Ellipse */}
-                    <img className=" h-[176.809px] w-[179.534px] lg:h-[425.063px] z-[10] absolute left-[28px] lg:left-[114px] top-[940px] lg:top-[1290px] lg:w-[466.91px] rotate-[-21.653deg] lg:rotate-[-23.241deg]" src="/static/media/striveForEllipse3.png" alt="StriveFor2"/>
-                    <img className="absolute z-[20] h-[125.132px] w-[157.603px] lg:h-[296px] lg:w-[418px] left-[45px] top-[960px] lg:left-[148px] lg:top-[1305px]" src="/static/media/striveForFarm.png" alt="StriveFor2"/>
+                    <img data-aos="fade-in" data-aos-duration="4000" className="h-[176.809px] w-[179.534px] lg:h-[425.063px] z-[10] absolute left-[28px] lg:left-[114px] top-[940px] lg:top-[1290px] lg:w-[466.91px] rotate-[-21.653deg] lg:rotate-[-23.241deg]" src="/static/media/striveForEllipse3.png" alt="StriveFor2"/>
+                    <img data-aos="fade-in" data-aos-duration="4000"  data-aos-delay="500" className="absolute z-[20] h-[125.132px] w-[157.603px] lg:h-[296px] lg:w-[418px] left-[45px] top-[960px] lg:left-[148px] lg:top-[1305px]" src="/static/media/striveForFarm.png" alt="StriveFor2"/>
                     {/* Text */}
                     <div className=" bg-black  absolute left-[214px] top-[925px] lg:top-[1290px] lg:left-[602px] rounded-full h-[55px] w-[58px]  lg:h-[100px] lg:w-[100px] text-white pb-[5%] pl-[6%] lg:pl-[0px] lg:pb-[0px] lg:text-center text-[40px] lg:text-[50px]"><p className="mt-[15px] my-auto">3.</p></div>
 
