@@ -4,6 +4,7 @@ import Hero from './Hero'
 import MissionVision from './MissionVision'
 import WhyChoose from './WhyChoose'
 import JoinUs from './JoinUs'
+import StriveFor from './StriveFor'
 
 function About() {
   return (
@@ -14,6 +15,9 @@ function About() {
       <WhyChoose/>
       <MissionVision />
       <JoinUs />
+        <Hero />
+        <MissionVision />
+        <StriveFor />
     </div>
   )
 }
