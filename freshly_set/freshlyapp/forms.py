@@ -15,7 +15,7 @@ class SignUpForm(UserCreationForm):
 class GardenForm(forms.ModelForm):
     class Meta:
         model = Garden
-        fields = [ 'location', 'size','features', 'description']
+        fields = [ 'name', 'location', 'size','features', 'description']
         
 class ProductForm(forms.ModelForm):
     class Meta:
