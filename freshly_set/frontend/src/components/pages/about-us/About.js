@@ -2,6 +2,7 @@ import React from 'react'
 import Nav from '../../Nav/Navbar'
 import Hero from './Hero'
 import MissionVision from './MissionVision'
+import StriveFor from './StriveFor'
 
 function About() {
   return (
@@ -10,6 +11,7 @@ function About() {
 
         <Hero />
         <MissionVision />
+        <StriveFor />
     </div>
   )
 }
