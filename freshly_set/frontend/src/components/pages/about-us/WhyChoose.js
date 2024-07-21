@@ -41,7 +41,7 @@ function WhyChoose() {
             <div className="block space-y-[29px] lg:space-y-[63px] my-0">
                 <div className="mr-[56px] lg:mb-[18] lg:w-[574px] rounded-[11px] border-solid border-[1px] border-black/[0.25]  mb-[34px] shadow-lg">
                     <div className='lg:flex justify-start'>
-                          <p className="text-black font-inter text-[20px] lg:text-[22px] font-[700] h-[17px] w-[422px] mt-[16px] ml-[23px] mb-[19px] mr-[71px]">We Implement Technology In Farming</p>
+                          <p className="text-black font-inter text-[20px] lg:text-[22px] font-[700] h-[17px] w-[422px] mt-[16px] ml-[23px] mb-[19px] mr-[71px]">We Promote Food Security</p>
                               <img className = "h-[37px] mt-[9px] mb-[8px]  mr-[23px]" src='/static/media/threeDots.png'/>
                       </div>
                       
@@ -57,7 +57,7 @@ function WhyChoose() {
             <div className="block space-y-[29px] lg:space-y-[63px] my-0">
                 <div className="mr-[56px] lg:mb-[18] lg:w-[574px] rounded-[11px] border-solid border-[1px] border-black/[0.25]  mb-[34px] shadow-lg">
                     <div className='lg:flex justify-start'>
-                          <p className="text-black font-inter text-[20px] lg:text-[22px] font-[700] h-[17px] w-[422px] mt-[16px] ml-[23px] mb-[19px] mr-[71px]">We Implement Technology In Farming</p>
+                          <p className="text-black font-inter text-[20px] lg:text-[22px] font-[700] h-[17px] w-[422px] mt-[16px] ml-[23px] mb-[19px] mr-[71px]">We Enhance Vertical Farming</p>
                               <img className = "h-[37px] mt-[9px] mb-[8px] mr-[23px]" src='/static/media/threeDots.png'/>
                       </div>
                       
@@ -73,7 +73,7 @@ function WhyChoose() {
             <div className="block space-y-[29px] lg:space-y-[63px] my-0">
                 <div className="mr-[56px] lg:mb-[18] lg:w-[574px] rounded-[11px] border-solid border-[1px] border-black/[0.25]  mb-[34px] shadow-lg">
                     <div className='lg:flex justify-start'>
-                          <p className="text-black font-inter text-[20px] lg:text-[22px] font-[700] h-[17px] w-[422px] mt-[16px] ml-[23px] mb-[19px] mr-[71px]">We Implement Technology In Farming</p>
+                          <p className="text-black font-inter text-[20px] lg:text-[22px] font-[700] h-[17px] w-[422px] mt-[16px] ml-[23px] mb-[19px] mr-[71px]">We Enhance Urban Farming</p>
                               <img className = "h-[37px] mt-[9px] mb-[8px]  mr-[23px]" src='/static/media/threeDots.png'/>
                       </div>
                       
@@ -89,7 +89,7 @@ function WhyChoose() {
             <div className="block space-y-[29px] lg:space-y-[63px] my-0">
                 <div className="mr-[56px] lg:mb-[18] lg:w-[574px] rounded-[11px] border-solid border-[1px] border-black/[0.25]  mb-[34px] shadow-lg">
                     <div className='lg:flex justify-start'>
-                          <p className="text-black font-inter text-[20px] lg:text-[22px] font-[700] h-[17px] w-[422px] mt-[16px] ml-[23px] mb-[19px] mr-[71px]">We Implement Technology In Farming</p>
+                          <p className="text-black font-inter text-[20px] lg:text-[22px] font-[700] h-[17px] w-[422px] mt-[16px] ml-[23px] mb-[19px] mr-[71px]">We Promote Indoor Farming</p>
                               <img className = "h-[37px] mt-[9px] mb-[8px]  mr-[23px]" src='/static/media/threeDots.png'/>
                       </div>
                       
