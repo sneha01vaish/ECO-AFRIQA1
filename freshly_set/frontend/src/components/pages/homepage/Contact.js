@@ -4,7 +4,7 @@ import { FaTiktok } from "react-icons/fa6";
 
 function Contact() {
   return (
-    <div className="hidden lg:flex w-[100%] justify-between">
+    <div className="block lg:flex w-[100%] justify-between">
       <div className="mt-[132px] ml-[40px] block space-y-[29px]">
         <div className="flex justify-between lg:w-[478px]">
           <div classsName="block">
@@ -98,19 +98,24 @@ function Contact() {
 
     </div>
       </div>
-      <div className="block mt-[94px] mr-[84px] ">
+      <div className="block mt-[94px] ml-[20px] lg:ml-[187px] lg:mr-[84px] ">
         <p className="text-[22px] text-black font-[700]">Email</p>
         <input
           placeholder="john@gmail.com"
-          className="w-[474px] h-[46px] py-[10px] px-[14px] rounded-[8px] border-solid border-[1px] border-[#D5DAE1] focus:outline-none"
+          className="h-[46px] w-[308px] mx-auto lg:w-[474px] lg:h-[46px] py-[10px] px-[14px] rounded-[8px] border-solid border-[1px] border-[#D5DAE1] focus:outline-none"
         />
         <p className="font-inter text-[16px] font-[500] text-[#333F51]">
           Message
         </p>
         <textarea
-          className="h-[220px] w-[474px]  rounded-[8px] border-solid border-[1px] border-[#D5DAE1] focus:outline-none"
+          className="h-[220px] w-[332px] lg:h-[220px] lg:w-[474px]  rounded-[8px] border-solid border-[1px] border-[#D5DAE1] focus:outline-none"
           placeholder="Your message..."
         />
+
+        <div className="lg:flex justify-center">
+          <button className="h-[56px] w-[332px] rounded-[14px] bg-[#008000] border-none font-inter text-[25px]  text-white font-[700] mt-[41px]">Send</button>
+
+        </div>
       </div>
     </div>
   );

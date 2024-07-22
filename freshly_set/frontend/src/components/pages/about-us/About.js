@@ -13,9 +13,7 @@ function About() {
 
       <Hero />
       <WhyChoose/>
-      <MissionVision />
       <JoinUs />
-        <Hero />
         <MissionVision />
         <StriveFor />
     </div>
