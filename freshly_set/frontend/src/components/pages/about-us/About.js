@@ -9,15 +9,13 @@ import StriveFor from './StriveFor'
 function About() {
   return (
     <div>
-        <Nav />
-
+      <Nav />
       <Hero />
       <WhyChoose/>
       <MissionVision />
-      <JoinUs />
-        <Hero />
-        <MissionVision />
       <StriveFor />
+      <JoinUs />
+
       
     </div>
   )
