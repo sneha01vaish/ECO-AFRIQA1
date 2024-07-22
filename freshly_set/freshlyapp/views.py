@@ -14,8 +14,14 @@ from django.contrib.auth.views import PasswordResetView
 from django.contrib.auth.forms import PasswordResetForm
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
+from rest_framework.response import Response
 from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
+from .serializers import GardenSerializer
+from rest_framework import generics
+from rest_framework import viewsets
+from rest_framework.generics import get_object_or_404
+from .serializers import BlogSerializer, ProductSerializer
 
 
 
@@ -41,7 +47,7 @@ def signup(request):
             messages.error(request, 'Please correct the errors below.')
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, '/SignUp/signUp.jsx', {'form': form})
 
 
 def login_view(request):
@@ -151,3 +157,28 @@ class CustomPasswordResetView(PasswordResetView):
         else:
             messages.error(self.request, 'No user is associated with this email address.')
             return self.form_invalid(form)
+        
+
+# serialiser 
+class GardenListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Garden.objects.all()
+    serializer_class = GardenSerializer
+
+class GardenRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Garden.objects.all()
+    serializer_class = GardenSerializer
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+class BlogViewSet(viewsets.ModelViewSet):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+    lookup_field = 'slug'
+
+    def retrieve(self, request, slug=None):
+        queryset = self.get_queryset()
+        blog = get_object_or_404(queryset, slug=slug)
+        serializer = BlogSerializer(blog)
+        return Response(serializer.data)
