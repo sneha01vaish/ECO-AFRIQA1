@@ -12,9 +12,11 @@ function About() {
       <Nav />
       <Hero />
       <WhyChoose/>
-      <JoinUs />
       <MissionVision />
       <StriveFor />
+      <JoinUs />
+
+      
     </div>
   )
 }
