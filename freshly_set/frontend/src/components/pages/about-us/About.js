@@ -17,7 +17,8 @@ function About() {
       <JoinUs />
         <Hero />
         <MissionVision />
-        <StriveFor />
+      <StriveFor />
+      
     </div>
   )
 }
