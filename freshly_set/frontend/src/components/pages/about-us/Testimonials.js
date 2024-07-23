@@ -85,7 +85,7 @@ function Testimonials() {
           <img src="/static/media/elipse1_sm.png" alt="Elipse1_sm"/>
         </div>
         <div className="block mb-[80px]">
-          <p className="text-[35px] font-[700] text-[#008000] font-inter text-center">Our Reviews</p>
+          <p className="text-[35px] font-[700] text-[#008000] font-inter text-center">Our Testimonials</p>
           <p className="text-[12px] text-black w-[308px] text-center font-inter -mt-[20px]">
             These are some of the reviews we got from our clients’ side on how Freshly Farms helped them grow both economically and knowledgewise in farming
           </p>
