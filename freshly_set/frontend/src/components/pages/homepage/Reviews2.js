@@ -80,7 +80,7 @@ function Reviews2() {
       </div> 
 
       {/* Mobile  */}
-      <div className="block lg:hidden relative w-full">
+      <div className="block lg:hidden relative w-full mx-auto">
         <div className="absolute top-[210px] z-[30] right-[100px] ">
           <img src="/static/media/elipse1_sm.png" alt="Elipse1_sm"/>
         </div>

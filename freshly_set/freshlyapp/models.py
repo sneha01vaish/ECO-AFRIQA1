@@ -14,9 +14,11 @@ class Product(models.Model):
         return self.name
 
 class Garden(models.Model):
+    name = models.CharField(max_length=100, default='DEFAULT VALUE')
     location = models.CharField(max_length=255)
     size = models.CharField(max_length=100)
     features = models.TextField()
+    description = models.CharField(max_length=140, default='DEFAULT VALUE')
 
     def __str__(self):
         return self.location
