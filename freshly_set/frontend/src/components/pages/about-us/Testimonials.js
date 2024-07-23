@@ -39,28 +39,28 @@ function Testimonials() {
           <div className="block space-y-[12px]">
             <img className="h-[400px] w-[200px] object-cover" src="/static/media/image4.jpg" alt="image4" />
             <p className='text-black text-[24px] font-[700] z-30 absolute font-inter'>Charles Kisika</p>
-            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[15px] leading-[20.8px]'>
+            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
             "Freshly Farm's expertise has empowered our local farmers, improving the quality and quantity of our community garden's harvests."</p>
             
           </div>
           <div className="block space-y-[12px]">
             <img className="h-[400px] w-[200px] object-cover" src="/static/media/image3.jpg" alt="image4" />
             <p className='text-black text-[24px] font-[700] z-30 absolute'>Brian Ouma</p>
-            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[15px] leading-[20.8px]'>
+            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
             </p>
           </div>
           <div className="block space-y-[12px]">
             <img className="h-[400px] w-[200px] object-cover" src="/static/media/image2.jpg" alt="image4" />
             <p className='text-black text-[24px] font-[700] z-30 absolute'>Stacey Gathoni</p>
-            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[15px] leading-[20.8px]'>
+            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
             </p>
           </div>
-          <div className="block space-y-[12px]">
+          <div className="block space-y-[12px] ">
             <img className="h-[400px] w-[200px] object-cover" src="/static/media/image5.png" alt="image4" />
             <p className='text-black text-[24px] font-[700] z-30 absolute'>Sheila Mueni</p>
-            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[15px] leading-[20.8px]'>
+            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
             </p>
           </div>
@@ -70,7 +70,7 @@ function Testimonials() {
           <button className='w-[272px] h-[70px] bg-[#008000] rounded-[15px] mt-[62px] text-white text-[25px] border-none'>Read More</button>
         </div>
           
-        { <div className="flex justify-center mt-[8px]">
+        { <div className="flex justify-center mt-[25px]">
           <svg xmlns="http://www.w3.org/2000/svg" width="145" height="32" viewBox="0 0 145 32" fill="none">
             <ellipse cx="12.9464" cy="12" rx="12.9464" ry="12" fill="#D9D9D9"/>
             <ellipse cx="68.1849" cy="12" rx="12.9464" ry="12" fill="#D9D9D9"/>
