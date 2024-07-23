@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { FaPhoneAlt, FaFacebookF,FaArrowUp, FaInstagramSquare } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { BsTwitterX } from "react-icons/bs";
+import { FaArrowUp } from "react-icons/fa";
+import { Link } from "react-router-dom"
+import { FaSquareInstagram, FaTiktok, FaFacebook, FaLinkedin, FaSquareXTwitter } from "react-icons/fa6";
 
 const FreshlyFooter = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const date = new Date()
+  const year = date.getFullYear()
+  // console.log(now)
 
   const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
+    if (window.pageYOffset > 800) {
       setIsVisible(true);
       // console.log("window scroll to height > 300", isVisible)
     } else {
@@ -28,85 +31,92 @@ const FreshlyFooter = () => {
       window.removeEventListener('scroll', toggleVisibility);
     };
   }, []);
-  
-  const now = new Date();
-  const year = now.getFullYear();
 
   return (
-    <div className="bg-green-300 text-[10px] md:text-lg text-gray-600 p-4 sm:text-sm mt-[160px]">
-      <div className="text-xs md:text-lg flex flex-col justify-center items-start text-gray-600 lg:flex-row border-b border-green-400 pb-8">
+    <div className="p-4 py-8">
+      <div className="w-full bg-green-800 mx-auto pb-8 rounded-xl">
+        <div className="flex justify-around items-center py-8 text-gray-600 gap-8">
 
-        <section className="">
-          <h1 className="text-center font-bold pb-2">LOGO</h1>
-          <div className="hidden lg:flex">
-            <div className="gap-4">
+          <section className="hidden sm:flex">
 
-              <p className="">We are revolutionizing urban farming by transforming urban spaces into lush, green sanctuaries, bringing farm-fresh goodness closer to your table. Join us</p>
-              <div className="pt-2 flex gap-2">
-                <a href="+254 712345678"><FaPhoneAlt /></a>
-                <a href= "mailto: info@freshlyfarms.com"><MdEmail /></a>
-              </div>
+            <div className="bg-white rounded-full p-2">
+              <img src="/static/media/logo2.png" alt="Freshly farms logo" />
             </div>
+
+          </section> 
+
+          <div className="flex flex-wrap justify-center items-start gap-8">
+
+            <div className="text-nowrap flex flex-col">
+              <h4 className="font-bold text-gray-100 underline">Pages</h4>
+              <Link to="/">Home</Link>
+              <Link to="tutor">Services</Link>
+              <Link to="students">Resources</Link>
+              <Link to="about">Our History</Link>
+              <Link to="/contact">Contact Us</Link>
+            </div>
+
+            <div className="text-nowrap flex flex-col">
+              <h4 className="font-bold text-gray-100 underline">Explore</h4>
+              <Link to="blog">Blog</Link>
+              <Link to="faq">FAQs</Link>
+              <Link to="terms">Terms of Service</Link>
+              <Link to="policy">Privacy Policy</Link>
+            </div>
+
+            <div className="text-nowrap flex flex-col">
+              <h4 className="font-bold text-gray-100 underline">Services</h4>
+              <Link to="about">Personal Info</Link>
+              <Link to="tutor">Orders</Link>
+              <Link to="students">Adresses</Link>
+              <Link to="parents">Parents</Link>
+              <Link to="contact">New Password</Link>
+            </div>
+
+            <div className="text-nowrap flex flex-col">
+              <h4 className="font-text-gray-100 text-gray-100 underline">Pages</h4>
+              <Link to="/">Home</Link>
+              <Link to="tutor">Services</Link>
+              <Link to="students">Resources</Link>
+              <Link to="about">Our History</Link>
+              <Link to="/contact">Contact Us</Link>
+            </div>
+
+          </div>
+
+          <div className="p-1 fixed bottom-4 right-4">
+          {isVisible && (
+            <button
+            onClick={scrollToTop}
+            className="bg-green-300 text-xs p-1 px-1.5 animate-ping cursor-pointer rounded-full text-white border-none transition">
+            <FaArrowUp />
+          </button>
+          )}
+          </div>
+
+        </div> 
+        <hr className="w-full bg-gray-200" />
+
+        <section className="flex flex-wrap gap-2 justify-around items-center text-xs">
+          <div>
+            <span className="text-gray-200">&copy;{year}-</span>
+            <Link to="/">Freshly Farms.</Link>
+            <span className="text-gray-200">All Rights Reserved</span>
+          </div>
+          <div>
+            <Link to="/"><FaSquareInstagram className="mx-2" /></Link>
+            <Link to="https://www.tiktok.com/@infofkexnoo?_t=8o7P91f39aI&_r=1" target="_blank"><FaTiktok className="mx-2" /></Link>
+            <Link to="https://www.facebook.com/profile.php?id=61561757183894" target="_blank"><FaFacebook className="mx-2" /></Link>
+            <Link to="https://x.com/FreshlyFarms5" target="_blank"><FaSquareXTwitter className="mx-2" /></Link>
+            <Link to="/"><FaLinkedin className="mx-2" /></Link>
+          </div>
+          <div className="flex gap-2">
+            <Link to="/">Terms and conditions</Link>
+            <Link to="/">Privacy Policy</Link>
+            <Link to="/">Support</Link>
           </div>
         </section>
-
-        <div className="flex justify-center items-start gap-6 sm:gap-4 md:gap-8 mx-auto">
-
-          <div className="text-nowrap flex flex-col">
-            <h4 className="font-bold pb-2 underline">Pages</h4>
-            <a href="/">Home</a>
-            <a href="tutor">Services</a>
-            <a href="students">Resources</a>
-            <a href="about">Our History</a>
-            <a href="contact">Contact Us</a>
-          </div>
-
-          <div className="text-nowrap flex flex-col">
-            <h4 className="font-bold pb-2 underline">Explore</h4>
-            <a href="blog">Blog</a>
-            <a href="faq">FAQs</a>
-            <a href="terms">Terms of Service</a>
-            <a href="policy">Privacy Policy</a>
-          </div>
-
-          <div className="text-nowrap flex flex-col">
-            <h4 className="font-bold pb-2 underline">Services</h4>
-            <a href="about">Personal Info</a>
-            <a href="tutor">Orders</a>
-            <a href="students">Adresses</a>
-            <a href="parents">Parents</a>
-            <a href="contact">New Password</a>
-          </div>
-        </div>
-
-        <div className="animate-ping fixed bottom-4 right-4 ">
-        {isVisible && (
-          <button
-          onClick={scrollToTop}
-          className="bg-green-600 p-2 text-white rounded-full shadow-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition">
-          <FaArrowUp />
-        </button>
-        )}
-        </div>
-
-      </div> 
-        {/* <hr className="w-full h-[2px] bg-green-500" /> */}
-        <section className="flex justify-between items-end">
-
-          <p>&copy;{year}-<a href="/">Freshly Farms</a></p>
-
-          <p className="flex text-[12px]">
-            <a href="/"><BsTwitterX /></a>
-            <a href="/"><FaFacebookF /></a>
-            <a href="/"><FaInstagramSquare /></a>
-          </p>
-
-          <p className="flex gap-1">
-            <a href="/">Terms</a>
-            <a href="/">Privacy</a>
-            <a href="/">Surport</a>
-          </p>
-        </section>
+      </div>
     </div>
   )
 }

@@ -5,14 +5,19 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    fontFamily: {
+      josefin: ['Josefin Sans', 'sans-serif'],
+      inter: ['Inter', 'sans-serif'],
+    },
+    extend: { 
+      backgroundImage: theme => ({
+        'hero-about': "url('/public/static/media/aboutHero.png')",
+      }),
+      },
   },
   variants: {
     extend: {
-      fontFamily: {
-        josefin: ['Josefin Sans', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
-      },
+     
     },
   },
   plugins: [],
@@ -20,4 +25,3 @@ module.exports = {
     preflight: false, // Disable Tailwind's preflight reset
   },
 };
-

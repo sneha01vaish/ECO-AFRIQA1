@@ -84,6 +84,7 @@ def profile(request):
     return render(request, 'profile.html')
 
 
+# The blog CRUD 
 def blog_list(request):
     blogs = Blog.objects.all()
     return render(request, 'blog_list.html', {'blogs': blogs})
@@ -94,7 +95,7 @@ def blog_detail(request, slug):
 
 def blog_create(request):
     if request.method == 'POST':
-        form = BlogForm(request.POST)
+        form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('blog_list')
@@ -105,7 +106,7 @@ def blog_create(request):
 def blog_update(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     if request.method == 'POST':
-        form = BlogForm(request.POST, instance=blog)
+        form = BlogForm(request.POST, request.FILES, instance=blog)
         if form.is_valid():
             form.save()
             return redirect('blog_detail', slug=blog.slug)

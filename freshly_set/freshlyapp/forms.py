@@ -16,7 +16,7 @@ class ServiceRequestForm(forms.ModelForm):
 class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ['title', 'content', 'slug']
+        fields = ['title', 'content', 'slug', 'image']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -24,6 +24,7 @@ class BlogForm(forms.ModelForm):
         self.fields['title'].widget.attrs.update({'class': 'form-control'})
         self.fields['content'].widget.attrs.update({'class': 'form-control'})
         self.fields['slug'].widget.attrs.update({'class': 'form-control'})
+        self.fields['image'].widget.attrs.update({'class': 'form-control'})
 
     def save(self, *args, **kwargs):
         instance = super().save(commit=False)
