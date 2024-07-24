@@ -17,11 +17,13 @@ from django.urls import reverse_lazy
 from rest_framework.response import Response
 from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
-from .serializers import GardenSerializer
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from .models import Blog, Comment, Like, Share
+from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer
 
 
 
@@ -143,6 +145,48 @@ def blog_delete(request, slug):
         blog.delete()
         return redirect('blog_list')
     return render(request, 'blog_confirm_delete.html', {'blog': blog})
+
+# Implemented views for CRUD operations and like/share actions
+
+class BlogListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.query_params.get('search', None)
+        if search_query:
+            queryset = queryset.filter(
+                Q(title__icontains=search_query) |
+                Q(content__icontains=search_query)
+            )
+        return queryset
+
+class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+
+class CommentListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+class CommentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+class LikeCreateAPIView(generics.CreateAPIView):
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class ShareCreateAPIView(generics.CreateAPIView):
+    queryset = Share.objects.all()
+    serializer_class = ShareSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 class CustomPasswordResetView(PasswordResetView):
     email_template_name = 'password_reset_email.html'
