@@ -39,29 +39,29 @@ function Testimonials() {
           <div className="block space-y-[12px]">
             <img className="h-[400px] w-[200px] object-cover" src="/static/media/image4.jpg" alt="image4" />
             <p className='text-black text-[24px] font-[700] z-30 absolute font-inter'>Charles Kisika</p>
-            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
+            <p className='text-black text-[16px] font-[250] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
             "Freshly Farm's expertise has empowered our local farmers, improving the quality and quantity of our community garden's harvests."</p>
             
           </div>
           <div className="block space-y-[12px]">
             <img className="h-[400px] w-[200px] object-cover" src="/static/media/image3.jpg" alt="image4" />
             <p className='text-black text-[24px] font-[700] z-30 absolute'>Brian Ouma</p>
-            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
+            <p className='text-black text-[16px] font-[250] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
             </p>
           </div>
           <div className="block space-y-[12px]">
             <img className="h-[400px] w-[200px] object-cover" src="/static/media/image2.jpg" alt="image4" />
             <p className='text-black text-[24px] font-[700] z-30 absolute'>Stacey Gathoni</p>
-            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
+            <p className='text-black text-[16px] font-[250] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
             </p>
           </div>
           <div className="block space-y-[12px] ">
             <img className="h-[400px] w-[200px] object-cover" src="/static/media/image5.png" alt="image4" />
             <p className='text-black text-[24px] font-[700] z-30 absolute'>Sheila Mueni</p>
-            <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
+            <p className='text-black text-[16px] font-[250] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
             </p>
           </div>
         </div>
@@ -96,21 +96,21 @@ function Testimonials() {
             <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image2.jpg" alt="image2" />
             <p className="text-black text-[20px] font-[700] font-inter">Stacey Gathoni</p>
             <p className="text-black font-sans font-[400] leading-[19.5px] text-[15px] w-[199px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
             </p>
           </div>
           <div className="block px-[10px]">
             <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image1.png" alt="image1" />
             <p className="text-black text-[20px] font-[700] font-inter">Charles Kisika</p>
             <p className="text-black font-sans font-[400] leading-[19.5px] text-[15px] w-[199px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
+             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
             </p>
           </div>
           <div className="block px-[10px]">
             <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image3.jpg" alt="image3" />
             <p className="text-black text-[20px] font-[700] font-inter">Stacey Gathoni</p>
             <p className="text-black font-sans font-[400] leading-[19.5px] text-[15px] w-[199px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
             </p>
           </div>
         </Slider>
