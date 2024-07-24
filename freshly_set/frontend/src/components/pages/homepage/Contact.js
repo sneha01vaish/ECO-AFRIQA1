@@ -4,7 +4,7 @@ import { FaTiktok } from "react-icons/fa6";
 
 function Contact() {
   return (
-    <div className="block lg:flex w-[100%] justify-between">
+    <div className="block lg:flex w-[100%] justify-between ">
       <div className="mt-[132px] ml-[40px] block space-y-[29px]">
         <div className="flex justify-between lg:w-[478px]">
           <div classsName="block">
