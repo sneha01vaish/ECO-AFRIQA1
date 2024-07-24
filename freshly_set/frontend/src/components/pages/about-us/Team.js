@@ -16,7 +16,7 @@ function Team() {
           ></div>
           <p className='text-black text-[24px] font-[700] font-inter'>Malaika Muchiri</p>
           <p className='text-[#008000] text-[20px] font-[700] font-inter'>Chief Executive Officer</p>
-          <p className='text-black text-[16px] font-[40] w-[199px] font-josefin  leading-[20.8px] text-start'>
+          <p className='text-black text-[16px] font-[300] w-[199px] font-josefin  leading-[20.8px] text-start'>
             "Freshly Farm's expertise has empowered our local farmers, improving the quality and quantity of our community garden's harvests."
           </p>
         </div>
@@ -27,7 +27,7 @@ function Team() {
           ></div>
           <p className='text-black text-[24px] font-[700] font-inter'>Malaika Muchiri</p>
           <p className='text-[#008000] text-[20px] font-[700] font-inter'>Chief Executive Officer</p>
-          <p className='text-black text-[16px] font-[40] w-[199px] font-josefin  leading-[20.8px] text-start'>
+          <p className='text-black text-[16px] font-[300] w-[199px] font-josefin  leading-[20.8px] text-start'>
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           </p>
         </div>
@@ -38,7 +38,7 @@ function Team() {
           ></div>
           <p className='text-black text-[24px] font-[700] font-inter'>Malaika Muchiri</p>
           <p className='text-[#008000] text-[20px] font-[700] font-inter'>Chief Executive Officer</p>
-          <p className='text-black text-[16px] font-[40] w-[199px] font-josefin  leading-[20.8px] text-start'>
+          <p className='text-black text-[16px] font-[300] w-[199px] font-josefin  leading-[20.8px] text-start'>
             "Freshly Farm's expertise has empowered our local farmers, improving the quality and quantity of our community garden's harvests."
           </p>
         </div>
@@ -52,7 +52,7 @@ function Team() {
           ></div>
           <p className='text-black text-[24px] font-[700] font-inter'>Malaika Muchiri</p>
           <p className='text-[#008000] text-[20px] font-[700] font-inter'>Chief Executive Officer</p>
-          <p className='text-black text-[16px] font-[40] w-[199px] font-josefin  leading-[20.8px] text-start'>
+          <p className='text-black text-[16px] font-[300] w-[199px] font-josefin  leading-[20.8px] text-start'>
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           </p>
         </div>
@@ -63,7 +63,7 @@ function Team() {
           ></div>
           <p className='text-black text-[24px] font-[700] font-inter'>Malaika Muchiri</p>
           <p className='text-[#008000] text-[20px] font-[700] font-inter'>Chief Executive Officer</p>
-          <p className='text-black text-[16px] font-[40] w-[199px] font-josefin  leading-[20.8px] text-start'>
+          <p className='text-black text-[16px] font-[300] w-[199px] font-josefin  leading-[20.8px] text-start'>
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           </p>
         </div>
@@ -74,7 +74,7 @@ function Team() {
           ></div>
           <p className='text-black text-[24px] font-[700] font-inter'>Malaika Muchiri</p>
           <p className='text-[#008000] text-[20px] font-[700] font-inter'>Chief Executive Officer</p>
-          <p className='text-black text-[16px] font-[40] w-[199px] font-josefin  leading-[20.8px] text-start'>
+          <p className='text-black text-[16px] font-[300] w-[199px] font-josefin  leading-[20.8px] text-start'>
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           </p>
         </div>
