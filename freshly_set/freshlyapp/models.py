@@ -57,3 +57,26 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+    
+# Added models for Comment, Like, and Share.
+class Comment(models.Model):
+    blog = models.ForeignKey(Blog, related_name='comments', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.content
+
+class Like(models.Model):
+    blog = models.ForeignKey(Blog, related_name='likes', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('blog', 'user')
+
+class Share(models.Model):
+    blog = models.ForeignKey(Blog, related_name='shares', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    shared_at = models.DateTimeField(auto_now_add=True)
