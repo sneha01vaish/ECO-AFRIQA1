@@ -7,7 +7,7 @@ function StriveFor() {
         AOS.init();
     },[])
   return (
-    <div className="flex lg:h-[1800px]  mt-[174px]">
+    <div className="flex h-[1500px] lg:h-[1800px] mt-[140px]  ">
         <div className="block w-[100%]">
             <div className="block lg:flex justify-center items-center w-[100%]">
                 <div className="flex justify-center lg:hidden ">
