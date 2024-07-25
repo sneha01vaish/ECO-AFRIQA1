@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Nav from '../../Nav/Navbar';
 import BlogHero from './BlogHero';
+import FreshlyFooter from '../../footer/FreshlyFooter';
+import BlogWidgets from './BlogWidgets';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -24,6 +26,7 @@ const Blogs = () => {
     <div>
       <Nav />
       <BlogHero />
+
       <ul>
         {blogs.map(blog => (
           <li key={blog.id}>
@@ -33,6 +36,8 @@ const Blogs = () => {
           </li>
         ))}
       </ul>
+      <BlogWidgets />
+      <FreshlyFooter />
     </div>
   );
 };
