@@ -40,8 +40,8 @@ function Reviews2() {
             <img className="h-[400px] w-[200px] object-cover" src="/static/media/image4.jpg" alt="image4" />
             <p className='text-black text-[24px] font-[700] z-30 absolute font-inter'>Charles Kisika</p>
             <p className='text-black text-[16px] font-[40] w-[199px] z-30 font-josefin absolute bottom-[15px] leading-[20.8px]'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru
-            </p>
+            "Freshly Farm's expertise has empowered our local farmers, improving the quality and quantity of our community garden's harvests."</p>
+            
           </div>
           <div className="block space-y-[12px]">
             <img className="h-[400px] w-[200px] object-cover" src="/static/media/image3.jpg" alt="image4" />
@@ -80,7 +80,7 @@ function Reviews2() {
       </div> 
 
       {/* Mobile  */}
-      <div className="block lg:hidden relative w-full">
+      <div className="block lg:hidden relative w-full mx-auto">
         <div className="absolute top-[210px] z-[30] right-[100px] ">
           <img src="/static/media/elipse1_sm.png" alt="Elipse1_sm"/>
         </div>

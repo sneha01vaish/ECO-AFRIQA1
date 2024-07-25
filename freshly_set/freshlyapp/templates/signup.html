@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign Up - Freshly Farms</title>
+    <title>Register</title>
 </head>
 <body>
-    <h1>Sign Up</h1>
+    <h2>SignUp</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Sign Up</button>
+        <button type="submit">SignUp</button>
     </form>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>

@@ -8,7 +8,7 @@ function Hero() {
             {/* <img className="bgSm" src="/images/small_bg.png"/> */}
         {/* <div className="heroTest"></div> */}
 
-            <h1 className="font-inter">Urbanization Farming and    
+            <h1 className="font-inter text-[30px] text-white">Urbanization Farming and    
             Vertical Farming</h1>
 
             <p className="font-inter text-[#FFF3E5] lg:w-[806px] text-center font-[400]">Freshly Farms is known for urbanizing the food farming industry especially on horticulture. It helps farmers understand their crops and how to manage them to grow better</p>
