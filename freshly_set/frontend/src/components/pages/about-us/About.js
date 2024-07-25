@@ -5,19 +5,22 @@ import MissionVision from './MissionVision'
 import WhyChoose from './WhyChoose'
 import JoinUs from './JoinUs'
 import StriveFor from './StriveFor'
+import FreshlyFooter from "../../footer/FreshlyFooter";
+import Team from './Team'
+import Testimonials from './Testimonials'
 
 function About() {
   return (
-    <div>
-        <Nav />
-
+    <div className="overflow-x-hidden">
+      <Nav />
       <Hero />
       <WhyChoose/>
       <MissionVision />
+      <StriveFor />
+      <Testimonials />
+      <Team />
       <JoinUs />
-        <Hero />
-        <MissionVision />
-        <StriveFor />
+      <FreshlyFooter />
     </div>
   )
 }
