@@ -10,10 +10,6 @@ const Blogs = () => {
   // useEffect(() => {
   //   const fetchBlogs = async () => {
   //     const response = await axios.get('/api/blogs/', {
-  //       headers: {
-  //         'Authorization': `Token ${localStorage.getItem('authToken')}`,
-  //       },
-  //     });
   //     setBlogs(response.data);
   //   };
 
