@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Nav from '../../Nav/Navbar';
 import BlogHero from './BlogHero';
+import BlogForm from './BlogForm';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -20,6 +21,7 @@ const Blogs = () => {
     <div>
       <Nav />
       <BlogHero />
+      <BlogForm/>
       <ul>
         {blogs.map(blog => (
           <li key={blog.id}>

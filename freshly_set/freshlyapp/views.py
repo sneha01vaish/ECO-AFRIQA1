@@ -35,8 +35,9 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+@api_view(['GET'])
 def blogs(request):
-    return render(request, 'blogs.html')
+    return render(request, 'BlogForm.jsx')
 
 def signup(request):
     if request.method == 'POST':

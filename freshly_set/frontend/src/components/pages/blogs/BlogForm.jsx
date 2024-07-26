@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 function BlogForm() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [image, setImage] = useState(null);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -18,13 +18,13 @@ function BlogForm() {
             formData.append('image', image);
         }
 
-        axios.post('/api/blogs/', formData, {
+        axios.post('http://localhost:8000/freshlyapp/blogs/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
             .then(response => {
-                history.push('/');
+                navigate.push('/');
             })
             .catch(error => {
                 console.error('There was an error creating the blog!', error);
