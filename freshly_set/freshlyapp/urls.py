@@ -17,7 +17,7 @@ urlpatterns = [
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
-    path('blogs/', views.blogs, name='blogs'),
+    path(r'^$', views.blogs, name='blogs'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('signup/', views.signup, name='signup'),
     path('logout/', logout_view, name='logout'),

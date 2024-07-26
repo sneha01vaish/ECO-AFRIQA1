@@ -18,7 +18,7 @@ function BlogForm() {
             formData.append('image', image);
         }
 
-        axios.post('http://localhost:8000/freshlyapp/blogs/', formData, {
+        axios.get('http://localhost:8000/freshlyapp/blogs/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
