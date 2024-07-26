@@ -8,7 +8,7 @@ const BlogPosts = ({ post }) => {
 
     // const { id } = post
     // console.log(id)
-    const [toggle, setToggle] = useState(null);
+    const [toggle, setToggle] = useState(3);
 
     const toggleTab = (index) => setToggle(index)
 

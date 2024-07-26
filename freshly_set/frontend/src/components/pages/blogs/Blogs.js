@@ -5,6 +5,15 @@ import api from '../../../api/blogs'
 const Blogs = () => {
 
   const [blogs, setBlogs] = useState([])
+  const [visible, setVisible] = useState(3)
+
+  const showMore = () => {
+    setVisible((prevCount) => Math.min(prevCount + 3, blogs.length))
+  }
+
+  const showLess = () => {
+    setVisible((prevCount) => Math.max(prevCount - 3, 3))
+  }
 
  useEffect(() => {
 
@@ -30,15 +39,21 @@ const Blogs = () => {
 
 //  console.log(blogs)
   return (
-    <div className="bg-slate-100 min-h-[100vh] py-8">
+    <div className="bg-slate-100 min-h-[100vh] py-16">
       <h1 className="text-center text-6xl text-green-800 tracking-wider m-0">What's new?</h1>
         <div className="flex flex-col gap-8 py-8 max-w-[96%] sm:w-full mx-auto">
           {
-            blogs ? blogs.map((blog) => {
+            blogs ? blogs.slice(0, visible).map((blog) => {
               return <BlogPosts key={blog.id} post={blog} />
             })
             : <h4>Loading ... </h4>
           }
+      </div>
+      <div className="flex flex-wrap justify-center mx-auto gap-3 z-10">
+
+        <button className="px-6 py-3 relative border-2 font-medium border-green-800 bg-green-400 uppercase text-white transition-colors before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-green-600 before:transition-transform before:duration-300 before:content-[''] rounded-xl overflow-hidden hover:text-white before:hover:scale-x-100 cursor-pointer before:opacity-50" disabled={visible >= blogs.length } onClick={showMore}>View All Updates</button>
+
+        <button className="px-6 py-3 relative border-2 font-medium border-green-800 bg-green-400 uppercase text-white transition-colors before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-green-600 before:transition-transform before:duration-300 before:content-[''] text-center rounded-xl overflow-hidden hover:text-white before:hover:scale-x-100 cursor-pointer before:opacity-50" disabled={visible <= 3} onClick={showLess}>View less Updates</button>
       </div>
     </div>
   );
