@@ -51,9 +51,9 @@ const Blogs = () => {
       </div>
       <div className="flex flex-wrap justify-center mx-auto gap-3 z-10">
 
-        <button className="px-6 py-3 relative border-2 font-medium border-green-800 bg-green-400 uppercase text-white transition-colors before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-green-600 before:transition-transform before:duration-300 before:content-[''] rounded-xl overflow-hidden hover:text-white before:hover:scale-x-100 cursor-pointer before:opacity-50" disabled={visible >= blogs.length } onClick={showMore}>View All Updates</button>
+        <button className="px-6 py-3 relative border-1 font-medium border-green-600 bg-green-400 text-white transition-colors before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-green-600 before:transition-transform before:duration-300 before:content-[''] rounded-xl overflow-hidden hover:text-white before:hover:scale-x-100 cursor-pointer shadow-sm before:opacity-50" disabled={visible >= blogs.length } onClick={showMore}>View All Updates</button>
 
-        <button className="px-6 py-3 relative border-2 font-medium border-green-800 bg-green-400 uppercase text-white transition-colors before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-green-600 before:transition-transform before:duration-300 before:content-[''] text-center rounded-xl overflow-hidden hover:text-white before:hover:scale-x-100 cursor-pointer before:opacity-50" disabled={visible <= 3} onClick={showLess}>View less Updates</button>
+        <button className="px-6 py-3 relative border-1 font-medium border-green-600 bg-green-400 text-white transition-colors before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-green-600 before:transition-transform before:duration-300 before:content-[''] text-center rounded-xl overflow-hidden hover:text-white before:hover:scale-x-100 cursor-pointer shadow-sm before:opacity-50" disabled={visible <= 3} onClick={showLess}>View less Updates</button>
       </div>
     </div>
   );
