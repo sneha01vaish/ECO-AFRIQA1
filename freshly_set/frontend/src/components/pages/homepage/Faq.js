@@ -6,8 +6,8 @@ function Faq() {
     const [clicked, setClicked] = useState({
         1: true,  // Question 1 is open by default
         2: true, // Question 2 is closed by default
-        3:true,
-        4:false
+        3: true,
+        4: true
       });
     
       const toggleFAQ = (id) => {

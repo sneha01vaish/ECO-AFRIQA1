@@ -13,7 +13,7 @@ function About() {
     <div>
       <Nav />
       <Hero />
-      <WhyChoose/>
+      <WhyChoose />
       <MissionVision />
       <StriveFor />
       <Testimonials/>
