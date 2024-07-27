@@ -26,7 +26,7 @@ function BlogWidgets() {
     }
   };
   return (
-    <div className="block">
+    <div className="hidden lg:block">
         <div className="flex justify-center w-[100%]">
             <h3 className="font-[900] text-[45px] text-[#008000] font-inter">ARTICLE CENTER</h3>
         </div>
