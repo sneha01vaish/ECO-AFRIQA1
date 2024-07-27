@@ -202,20 +202,20 @@ function Nav() {
                             <p className="text-white text-[25px] font-[700] font-inter">About Us</p>
                         </Link>
 
-                        <div className="flex space-x-[22px]  items-center">
+                        <Link to="/blogs" className="flex space-x-[22px]  items-center">
                             <CiGlobe className="h-[54px] w-[64px] text-white"/>
                             <p className="text-white text-[25px] font-[700] font-inter">Blog</p>
-                        </div>
+                        </Link>
 
-                        <div className="flex space-x-[22px]  items-center">
+                        <Link className="flex space-x-[22px]  items-center">
                             <FaUsers className="h-[54px] w-[64px] text-white"/>
                             <p className="text-white text-[25px] font-[700] font-inter">Sign Up</p>
-                        </div>
+                        </Link>
 
-                        <div className="flex space-x-[22px]  items-center">
+                        <Link className="flex space-x-[22px]  items-center">
                             <FaUser className="h-[54px] w-[64px] text-white"/>
                             <p className="text-white text-[25px] font-[700] font-inter">Your Profile</p>
-                        </div>
+                        </Link>
 
                         <div className="flex space-x-[22px]  items-center">
                             <CiSettings className="h-[54px] w-[64px] text-white"/>
