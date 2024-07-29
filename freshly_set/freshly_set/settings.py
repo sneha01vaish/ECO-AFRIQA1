@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'corsheaders',
     'freshlyapp', # our app 
 ]
@@ -95,6 +96,11 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'freshlyapp.AppUser'
+REST_FRAMEWORK= {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.SessionAuthentication',),
+}
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -172,8 +178,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    'http://127.0.0.1:3000',
 ]
-
+CORS_ALLOWED_CREDENTIALS = True
 # React build directory
 REACT_APP_DIR = BASE_DIR / 'frontend/build'
 

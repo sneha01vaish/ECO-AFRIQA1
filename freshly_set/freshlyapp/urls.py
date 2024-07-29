@@ -17,6 +17,13 @@ urlpatterns = [
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
+<<<<<<< HEAD
+    path('blogs/', views.blogs, name='blogs'),
+    path('signup/', views.UserRegister.as_view(), name='register'),
+    path('login/', views.UserLogin.as_view(), name='login'),
+    path('logout/', views.UserLogout.as_view(), name='logout'),
+    path('user/', views.UserView.as_view(), name='user'),
+=======
     path(r'^$', views.blogs, name='blogs'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('signup/', views.signup, name='signup'),
@@ -29,6 +36,7 @@ urlpatterns = [
     name='password_reset_confirm'),
     path('reset/done/',auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), 
     name='password_reset_complete'),
+>>>>>>> Simanga-dev
     path('products/', views.products, name='products'),
     path('services/', views.services, name='services'),
     path('profile/', views.profile, name='profile'),

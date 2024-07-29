@@ -23,7 +23,7 @@ function BlogHero() {
     }
   };
   return (
-    <div className="mt-[130px] relative h-[415px] lg:h-[495px] w-[100%]  grayscale bg-cover bg-no-repeat mix-blend-luminosity ">
+    <div className="mt-[130px] relative h-[415px] lg:h-[720px] w-[100%]  grayscale bg-cover bg-no-repeat mix-blend-luminosity ">
         
 
         <video
@@ -31,6 +31,7 @@ function BlogHero() {
         className="w-full h-full object-cover"
         src="/static/media/BlogHero.mp4"
         muted={isMuted}
+        autoPlay
         loop
       ></video>
     

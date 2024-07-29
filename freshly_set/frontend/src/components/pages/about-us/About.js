@@ -14,7 +14,7 @@ function About() {
     <div className="overflow-x-hidden">
       <Nav />
       <Hero />
-      <WhyChoose/>
+      <WhyChoose />
       <MissionVision />
       <StriveFor />
       <Testimonials />

@@ -10,14 +10,14 @@ import Blogs from "./components/pages/blogs/Blogs";
 function App() {
   return (
     <Router>
-    <Routes>
+      <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/about-us" element={<About />} />
-    </Routes>
-</Router>
-
+        {/* <Route path="/api/blogs" element={<Blogs />} /> */}
+      </Routes>
+    </Router>
   );
 }
 
