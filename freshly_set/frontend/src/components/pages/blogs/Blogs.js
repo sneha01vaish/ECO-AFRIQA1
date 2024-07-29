@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import BlogPosts from './BlogPosts'
+import BlogPosts from './BlogList'
 import api from '../../../api/blogs'
 
 const Blogs = () => {
