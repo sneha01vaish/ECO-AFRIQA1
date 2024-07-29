@@ -3,10 +3,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Nav from '../../Nav/Navbar';
 import BlogHero from './BlogHero';
+<<<<<<< HEAD
 import FreshlyFooter from '../../footer/FreshlyFooter';
 import BlogWidgets from './BlogWidgets';
 import BlogPosts from './BlogPosts'
 import api from '../../../api/blogs'
+=======
+import BlogForm from './BlogForm';
+>>>>>>> Simanga-dev
 
 const Blogs = () => {
 
@@ -45,6 +49,7 @@ const Blogs = () => {
 
 //  console.log(blogs)
   return (
+<<<<<<< HEAD
 
     <div className="bg-slate-100 min-h-[100vh] py-16">
     <Nav />
@@ -66,6 +71,21 @@ const Blogs = () => {
       </div>
       <BlogWidgets />
       <FreshlyFooter />
+=======
+    <div>
+      <Nav />
+      <BlogHero />
+      <BlogForm/>
+      <ul>
+        {blogs.map(blog => (
+          <li key={blog.id}>
+            <h2>{blog.title}</h2>
+            <p>{blog.content}</p>
+            <p>Author: {blog.author}</p>
+          </li>
+        ))}
+      </ul>
+>>>>>>> Simanga-dev
     </div>
   );
 };
