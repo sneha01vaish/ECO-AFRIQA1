@@ -43,7 +43,7 @@ function BlogWidgets() {
             <div className="flex justify-center space-x-[59px] mt-[63px]">
                 {/* PollCard */}
 
-                <div className="block w-[563px]   rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
+                <div className="block w-[563px] bg-white   rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
                     
                     <h3 className="text-[45px] font-inter font-[700] text-center">Urban Farming?</h3>
                     {/* Polls */}
@@ -90,7 +90,7 @@ function BlogWidgets() {
                 </div>
 
                 {/* Card 2 */}
-                <div className="block w-[563px] rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
+                <div className="block w-[563px] bg-white rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
                    <div className="flex justify-between mx-[42px]">
                         <h3 className="text-[45px] font-inter font-[700] text-center w-[366px]">Farming And Technology</h3>
                         <FaCaretDown className="h-[52px] w-[52px] mt-[34px]"/>
@@ -124,8 +124,8 @@ function BlogWidgets() {
             </div>
                             {/* Card 3 */}
 
-            <div className="flex justify-center space-x-[59px] mt-[63px]">
-                <div className="block w-[563px] rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
+            <div className="flex  justify-center space-x-[59px] mt-[63px]">
+                <div className="block w-[563px] bg-white  rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
                    <div className="flex justify-between mx-[42px]">
                         <h3 className="text-[45px] font-inter font-[700] w-[366px]">Growth Of Vertical Farms In Kenya</h3>
                         <FaCaretDown className="h-[52px] w-[52px] mt-[34px]"/>
@@ -159,7 +159,7 @@ function BlogWidgets() {
                                 {/* Card 4 */}
 
             <div className="flex justify-center space-x-[59px] ">
-                <div className="block w-[563px] rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
+                <div className="block w-[563px] bg-white  rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
                    <div className="flex justify-between mx-[42px]">
                         <h3 className="text-[45px] font-inter font-[700] w-[475px]">Vegetable Farmer Using Our Technology</h3>
                         <FaCaretDown className="h-[52px] w-[52px] mt-[34px]"/>
@@ -209,7 +209,7 @@ function BlogWidgets() {
 
             {/* Card 5 */}
             <div className="flex justify-center space-x-[59px] mt-[103px] lg:h-[1264px]">
-                <div className="block w-[563px] rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
+                <div className="block w-[563px] bg-white  rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
                    <div className="flex justify-between mx-[42px]">
                         <h3 className="text-[45px] font-inter font-[700] w-[475px]"><span className="text-[#008000]">Podcast</span> - Why do People Associate Farming with Traditionalism</h3>
                         <FaCaretDown className="h-[52px] w-[52px] mt-[34px]"/>
@@ -248,7 +248,7 @@ function BlogWidgets() {
                 {/* Card 6 */}
 
             <div className="flex justify-center space-x-[59px]  lg:h-[1264px]">
-                <div className="block w-[563px] rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
+                <div className="block w-[563px] bg-white  rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">
                    <div className="flex justify-between mx-[42px]">
                         <h3 className="text-[45px] font-inter font-[700] w-[475px]">Take This Quiz To Know What You Should Implement On Your Farms</h3>
                         <FaCaretDown className="h-[52px] w-[52px] mt-[34px]"/>
