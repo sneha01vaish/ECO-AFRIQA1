@@ -14,11 +14,14 @@ from django.contrib.auth.forms import PasswordResetForm
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
+
 from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from .models import Blog, Comment, Like, Share
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
@@ -72,8 +75,13 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+
+    
+@api_view(['GET'])
+
 def blogs(request):
-    return render(request, 'blogs.html')
+    renderer_classes = [JSONRenderer]
+    return render(request, 'blogs/BlogForm.jsx')
 
 
 @login_required
