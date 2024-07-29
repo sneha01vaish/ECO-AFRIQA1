@@ -1,9 +1,10 @@
 from django.contrib import admin
+from .models import *
 
 # Register your models here.
 
 from .models import Product, Garden, Service, Blog
-
+admin.site.register(AppUser)
 admin.site.register(Product)
 class ProductModelAdmin(admin.ModelAdmin):
     fields = ['name', 'description', 'price', 'image']
