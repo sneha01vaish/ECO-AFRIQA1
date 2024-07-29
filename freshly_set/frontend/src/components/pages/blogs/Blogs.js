@@ -4,8 +4,8 @@ import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
 import FreshlyFooter from '../../footer/FreshlyFooter';
 import BlogWidgets from './BlogWidgets';
-import BlogPosts from './BlogPosts'
-import api from '../../../api/blogs'
+import BlogPosts from './BlogPosts';
+import api from '../../../api/blogs';
 import BlogForm from './BlogForm';
 
 const Blogs = () => {
@@ -46,6 +46,7 @@ const Blogs = () => {
       <BlogSearch />
       <BlogHero />
       <BlogForm />
+      <BlogWidgets />
       <ul>
         {blogs.length === 0 ? (
           <p>No blogs available.</p>
@@ -70,8 +71,20 @@ const Blogs = () => {
           )) : <h4>Loading ... </h4>}
         </div>
         <div className="flex flex-wrap justify-center mx-auto gap-3 z-10">
-          <button className="px-6 py-3 relative border-1 font-medium border-green-600 bg-green-400 text-white transition-colors before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-green-600 before:transition-transform before:duration-300 before:content-[''] rounded-xl overflow-hidden hover:text-white before:hover:scale-x-100 cursor-pointer shadow-sm before:opacity-50" disabled={visible >= blogs.length } onClick={showMore}>View All Updates</button>
-          <button className="px-6 py-3 relative border-1 font-medium border-green-600 bg-green-400 text-white transition-colors before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-green-600 before:transition-transform before:duration-300 before:content-[''] text-center rounded-xl overflow-hidden hover:text-white before:hover:scale-x-100 cursor-pointer shadow-sm before:opacity-50" disabled={visible <= 3} onClick={showLess}>View less Updates</button>
+          <button
+            className="px-6 py-3 relative border-1 font-medium border-green-600 bg-green-400 text-white transition-colors before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-green-600 before:transition-transform before:duration-300 before:content-[''] rounded-xl overflow-hidden hover:text-white before:hover:scale-x-100 cursor-pointer shadow-sm before:opacity-50"
+            disabled={visible >= blogs.length}
+            onClick={showMore}
+          >
+            View All Updates
+          </button>
+          <button
+            className="px-6 py-3 relative border-1 font-medium border-green-600 bg-green-400 text-white transition-colors before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-green-600 before:transition-transform before:duration-300 before:content-[''] text-center rounded-xl overflow-hidden hover:text-white before:hover:scale-x-100 cursor-pointer shadow-sm before:opacity-50"
+            disabled={visible <= 3}
+            onClick={showLess}
+          >
+            View less Updates
+          </button>
         </div>
         <BlogWidgets />
         <FreshlyFooter />

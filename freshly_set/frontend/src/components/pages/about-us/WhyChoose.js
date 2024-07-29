@@ -25,7 +25,7 @@ function WhyChoose() {
     },[clicked])
   return (
      
-    <div className="w-full lg:w-auto flex  justify-center mt-[59px] lg:mt-[82px] lg:px-6 mx-1 lg:mx-[5em] rounded-[23px] border-solid border-[1px] border-gray-400/[0.25] shadow-lg ">
+    <div className="w-full lg:w-auto flex  justify-center mt-[59px] lg:mt-[82px] lg:px-6 mx-1 lg:mx-auto max-w-[1094px] rounded-[23px] border-solid border-[1px] border-gray-400/[0.25] shadow-lg ">
 
         {/* Left side */}
         <div className="hidden lg:flex ">
@@ -35,7 +35,7 @@ function WhyChoose() {
 
         {/* Right Side */}
 
-          <div className="relative mx-auto w-full block px-1 ml-[10px] lg:ml-[32px] lg:w-auto ">
+          <div className="relative mx-auto w-full block px-1 ml-[10px] lg:ml-[32px] lg:w- ">
               <div className='flex  mt-[29px] '>
                   <img className='flex w-[46px] h-[48px] lg:mb-[18px]' src='/static/media/WhyChoose_small.png' alt='garden'/>
                   <p className="flex text-[20px] lg:text-[28px] my-0 font-[700] pl-[10px] font-inter  text-[#008000] h-[56px] lg:mb-[18px]">Why You Should Choose Freshly Farms</p>
@@ -44,7 +44,7 @@ function WhyChoose() {
              
 
             {/* Card 1 */}
-            <div className="block relative px-2 mt-[18px]  mb-[34px]">
+            <div className="block relative px-2 mt-[18px] w-[574px]  mb-[34px] cursor-pointer">
                 <div className=" rounded-[11px] border-solid border-[1px] border-black/[0.25]  shadow-lg">
                       <div className='flex '>
                           <p className="text-black font-inter w-full text-[12px] lg:text-[20px] font-[700]  ml-[23px] lg:ml-[23px]">We Implement Technology In Farming</p>
@@ -63,7 +63,7 @@ function WhyChoose() {
               
 
             {/* Card 2*/}
-            <div className="block relative px-2 mt-[18px]  mb-[34px]">
+            <div className="block relative px-2 mt-[18px]  w-[574px]   mb-[34px] cursor-pointer">
                 <div className=" rounded-[11px] border-solid border-[1px] border-black/[0.25]  shadow-lg">
                       <div className='flex '>
                           <p className="text-black font-inter w-full text-[12px] lg:text-[20px] font-[700]  ml-[23px] lg:ml-[23px]">We Implement Technology In Farming</p>
@@ -81,7 +81,7 @@ function WhyChoose() {
               </div> 
 
             {/* Card 3*/}
-            <div className="block relative px-2 mt-[18px]  mb-[34px]">
+            <div className="block relative px-2 mt-[18px]  w-[574px]   mb-[34px] cursor-pointer">
                 <div className=" rounded-[11px] border-solid border-[1px] border-black/[0.25]  shadow-lg">
                       <div className='flex '>
                           <p className="text-black font-inter w-full text-[12px] lg:text-[20px] font-[700]  ml-[23px] lg:ml-[23px]">We Implement Technology In Farming</p>
@@ -99,7 +99,7 @@ function WhyChoose() {
               </div> 
 
             {/* Card 4*/}
-            <div className="block relative px-2 mt-[18px]  mb-[34px]">
+            <div className="block relative px-2 mt-[18px]  w-[574px]   mb-[34px] cursor-pointer">
                 <div className=" rounded-[11px] border-solid border-[1px] border-black/[0.25]  shadow-lg">
                       <div className='flex '>
                           <p className="text-black font-inter w-full text-[12px] lg:text-[20px] font-[700]  ml-[23px] lg:ml-[23px]">We Implement Technology In Farming</p>
@@ -117,7 +117,7 @@ function WhyChoose() {
               </div>  
 
             {/* Card 5*/}         
-            <div className="block relative px-2 mt-[18px]  mb-[34px]">
+            <div className="block relative px-2 mt-[18px]  w-[574px]  mb-[34px] cursor-pointer">
                 <div className=" rounded-[11px] border-solid border-[1px] border-black/[0.25]  shadow-lg">
                       <div className='flex '>
                           <p className="text-black font-inter w-full text-[12px] lg:text-[20px] font-[700]  ml-[23px] lg:ml-[23px]">We Implement Technology In Farming</p>
