@@ -20,29 +20,19 @@ function Contact() {
 
           {/* mail */}
           <div classsName="block">
-            <img
-              className="h-[49px] w-[45px] space-x-1"
-              src="/static/media/mail.png"
-              alt="email"
-            />
-            <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px]">Email</p>
-            <a href="mailto:info.freshlyfarms5@gmail.com" className="font-normal no-underline" target="_blank">
-              <p className="font-[400] text-[17px] lg:text-[22px] text-[#525560] font-josefin -mt-[10px]">info.freshlyfarms</p>
-            </a>
+            <img className="h-[49px] w-[45px] space-x-1" src="/static/media/mail.png" alt="email" />
+              <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px]">Email</p>
+              
+              <a href="mailto:info.freshlyfarms5@gmail.com" className="font-normal no-underline" target="_blank">
+                <p className="font-[400] text-[17px] lg:text-[22px] text-[#525560] font-josefin -mt-[10px]">info.freshlyfarms</p>
+              </a>
           </div>
 
           {/* Call */}
           <div classsName="block -ml-[30px]">
-            <img
-              className="h-[49px] w-[49px]"
-              src="/static/media/phone.png"
-              alt="phone"
-            />
+            <img className="h-[49px] w-[49px]" src="/static/media/phone.png" alt="phone" />
             <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px]  mr-[90px]">Phone</p>
-            <p className="font-[400] text-[17px] lg:text-[22px] text-[#525560] font-josefin -mt-[10px]">
-              {" "}
-              +254 701 234 567{" "}
-            </p>
+            <p className="font-[400] text-[17px] lg:text-[22px] text-[#525560] font-josefin -mt-[10px]">+254 701 234 567 </p>
           </div>
         </div>
 
@@ -51,27 +41,17 @@ function Contact() {
 
           {/* Location */}
           <div classsName="block">
-            <img
-              className="h-[49px] w-[49px]"
-              src="/static/media/location.png"
-              alt="Office"
-            />
+            <img className="h-[49px] w-[49px]" src="/static/media/location.png" alt="Office" />
             <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px]">Office</p>
-            <p className=" font-josefin text-[#525560] font-[400] text-[17px] lg:text-[22px] -mt-[10px]">
-              {" "}
-              Nairobi, Kenya{" "}
-            </p>
+            <p className=" font-josefin text-[#525560] font-[400] text-[17px] lg:text-[22px] -mt-[10px]"> Nairobi, Kenya </p>
           </div>
 
           {/* Social Media Accounts */}
-          <div classsName="block ">
-            <img
-              className="h-[49px] w-[49px] mr-[90px]"
-              src="/static/media/globe.png"
-              alt="Social Media"
-            />
-            <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px] mr-[90px]">Socials</p>
-            <div className=" space-x-[5px]  ">
+            <div classsName="block ">
+              
+              <img className="h-[49px] w-[49px] mr-[90px]" src="/static/media/globe.png" alt="Social Media" />
+              <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px] mr-[90px]">Socials</p>
+              <div className=" space-x-[5px]  ">
 
               {/* Instagram */}
               <a href="#" title="Instagram" target="_blank">
@@ -95,14 +75,14 @@ function Contact() {
               <a href="https://www.tiktok.com/@infofkexnoo?_t=8o7P91f39aI&_r=1" title="Tiktok" target="_blank" >
                 <img src="/static/media/tiktok.svg" className="h-[37px]  w-[32px]" />
               </a>
-             </div>                        {/* Social Media Accounts Ends here */}
+             </div>        {/* Accounts for Social media ends here */}
           </div>           {/* Socials Lower Segment ends here */}
 
       </div >    {/* Social Medias ends here */}
       </div>
       
-      {/* Users Mailing Section */}
-      <div className="block mt-[94px] mx-[10vw] lg:ml-[187px]  lg:mr-[84px] ">
+      {/* Users' Mailing Section */}
+      <div className="Mailing-Section block mt-[94px] mx-[10vw] lg:ml-[187px]  lg:mr-[84px] ">
 
         {/* User email address*/}
         <p className="text-[22px] text-black font-[700] font-inter">Email</p>
@@ -110,10 +90,7 @@ function Contact() {
         <p className="font-inter text-[16px] font-[500] text-[#333F51]"> Message </p>
         
         {/* User text input */}
-        <textarea
-          className="h-[220px] w-[80vw] lg:h-[220px] lg:w-[474px]  rounded-[8px] border-solid border-[1px] border-[#D5DAE1] focus:outline-none text-[16px] lg:text-[24px] font-inter px-[14px] py-[10px]"
-          placeholder="Your message..."
-        />
+        <textarea className="h-[220px] w-[80vw] lg:h-[220px] lg:w-[474px]  rounded-[8px] border-solid border-[1px] border-[#D5DAE1] focus:outline-none text-[16px] lg:text-[24px] font-inter px-[14px] py-[10px]" placeholder="Your message..." />
 
         {/* User Send Button */}
         <div className="flex justify-center mx-[2vw] lg:mx-0">
