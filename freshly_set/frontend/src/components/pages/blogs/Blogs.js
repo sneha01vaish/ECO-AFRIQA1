@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Nav from '../../Nav/Navbar';
 import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
@@ -52,6 +52,7 @@ const Blogs = () => {
       <BlogSearch />
       <BlogHero />
       <BlogForm/>
+      <BlogWidgets />
       <ul>
         {blogs.length === 0 ? (
           <p>No blogs available.</p>
@@ -65,6 +66,7 @@ const Blogs = () => {
           ))
         )}
       </ul>
+      <FreshlyFooter />
     </div>
   );
 };
