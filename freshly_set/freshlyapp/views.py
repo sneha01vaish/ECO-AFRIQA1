@@ -14,8 +14,16 @@ from django.contrib.auth.views import PasswordResetView
 from django.contrib.auth.forms import PasswordResetForm
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
+from rest_framework.response import Response
 from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
+from rest_framework import generics, permissions
+from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from .models import Blog, Comment, Like, Share
+from django.db.models import Q
+from rest_framework.generics import get_object_or_404
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer
 
 
 
@@ -41,7 +49,7 @@ def signup(request):
             messages.error(request, 'Please correct the errors below.')
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, '/SignUp/signUp.jsx', {'form': form})
 
 
 def login_view(request):
@@ -138,6 +146,48 @@ def blog_delete(request, slug):
         return redirect('blog_list')
     return render(request, 'blog_confirm_delete.html', {'blog': blog})
 
+# Implemented views for CRUD operations and like/share actions
+
+class BlogListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.query_params.get('search', None)
+        if search_query:
+            queryset = queryset.filter(
+                Q(title__icontains=search_query) |
+                Q(content__icontains=search_query)
+            )
+        return queryset
+
+class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+
+class CommentListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+class CommentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+class LikeCreateAPIView(generics.CreateAPIView):
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class ShareCreateAPIView(generics.CreateAPIView):
+    queryset = Share.objects.all()
+    serializer_class = ShareSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 class CustomPasswordResetView(PasswordResetView):
     email_template_name = 'password_reset_email.html'
     success_url = reverse_lazy('password_reset_done')
@@ -151,3 +201,28 @@ class CustomPasswordResetView(PasswordResetView):
         else:
             messages.error(self.request, 'No user is associated with this email address.')
             return self.form_invalid(form)
+        
+
+# serialiser 
+class GardenListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Garden.objects.all()
+    serializer_class = GardenSerializer
+
+class GardenRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Garden.objects.all()
+    serializer_class = GardenSerializer
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+class BlogViewSet(viewsets.ModelViewSet):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+    lookup_field = 'slug'
+
+    def retrieve(self, request, slug=None):
+        queryset = self.get_queryset()
+        blog = get_object_or_404(queryset, slug=slug)
+        serializer = BlogSerializer(blog)
+        return Response(serializer.data)

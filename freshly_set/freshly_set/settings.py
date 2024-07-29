@@ -169,7 +169,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # React build directory
-REACT_APP_DIR = BASE_DIR / 'reactapp/build'
+REACT_APP_DIR = BASE_DIR / 'frontend/build'
 
 # Including React build static files in STATICFILES_DIRS
-STATICFILES_DIRS.append(REACT_APP_DIR / 'static')
+STATICFILES_DIRS.append(REACT_APP_DIR / 'static/media')
