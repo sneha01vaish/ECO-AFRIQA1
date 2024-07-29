@@ -2,28 +2,56 @@ import React, { useState } from 'react';
 import Nav from '../../Nav/Navbar';
 import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
+import FreshlyFooter from '../../footer/FreshlyFooter';
+import BlogWidgets from './BlogWidgets';
+import BlogPosts from './BlogPosts'
+import api from '../../../api/blogs'
+import BlogForm from './BlogForm';
 
 const Blogs = () => {
-  const [blogs] = useState([]); // No need for setBlogs if you're not using it
 
-   // useEffect(() => {
-  //   const fetchBlogs = async () => {
-  //     const response = await axios.get('/api/blogs/', {
-  //       headers: {
-  //         'Authorization': Token ${localStorage.getItem('authToken')},
-  //       },
-  //     });
-  //     setBlogs(response.data);
-  //   };
 
-  //   fetchBlogs();
-  // }, []);
+  const [blogs, setBlogs] = useState([])
+  const [visible, setVisible] = useState(3)
 
+  const showMore = () => {
+    setVisible((prevCount) => Math.min(prevCount + 3, blogs.length))
+  }
+
+  const showLess = () => {
+    setVisible((prevCount) => Math.max(prevCount - 3, 3))
+  }
+
+ useEffect(() => {
+
+  const fetchBlogs = async () => {
+    try {
+      const response = await api.get('/blogs');
+      setBlogs(response.data);
+
+    } catch (error) {
+      if (error) {
+        // Catch errors out of 200 range
+        console.log(error.response.data)
+        console.log(error.response.headers)
+        console.log(error.response.status)
+      } else {
+        // any other errors within 200
+        console.log(error.response.message)
+      }
+    }
+  }
+  fetchBlogs()
+ }, [])
+
+//  console.log(blogs)
   return (
+
     <div>
       <Nav />
       <BlogSearch />
       <BlogHero />
+      <BlogForm/>
       <ul>
         {blogs.length === 0 ? (
           <p>No blogs available.</p>
@@ -42,3 +70,4 @@ const Blogs = () => {
 };
 
 export default Blogs;
+
