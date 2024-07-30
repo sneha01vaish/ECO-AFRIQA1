@@ -4,9 +4,16 @@ import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
 import FreshlyFooter from '../../footer/FreshlyFooter';
 import BlogWidgets from './BlogWidgets';
+<<<<<<< HEAD
 import BlogPosts from './BlogPosts';
 import api from '../../../api/blogs';
 import BlogForm from './BlogForm';
+=======
+import BlogPosts from './BlogPosts'
+// import api from '../../../api/blogs'
+// import BlogForm from './BlogForm';
+import Contact from './Contact';
+>>>>>>> 063eb3cb3f32fba515959918f50e36c141a3d192
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -45,8 +52,13 @@ const Blogs = () => {
       <Nav />
       <BlogSearch />
       <BlogHero />
+<<<<<<< HEAD
       <BlogForm />
+=======
+      {/* <BlogForm/> */}
+>>>>>>> 063eb3cb3f32fba515959918f50e36c141a3d192
       <BlogWidgets />
+      <Contact />
       <ul>
         {blogs.length === 0 ? (
           <p>No blogs available.</p>
