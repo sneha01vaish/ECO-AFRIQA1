@@ -82,7 +82,7 @@ function Team() {
       {/* Display first 3 CEOs without testimonials initially */}
       {/* {!showAll && ( */}
         <div className="block space-y-[100px]">
-              <div className="flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]">
+              <div className="block lg:flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]">
           {groupedMembers['Chief Executive Officer']?.slice(0, 3).map((member, index) => (
             <div key={index} className="block mx-auto w-[204px] space-y-[12px] relative">
               <div
@@ -95,7 +95,7 @@ function Team() {
           ))}
         </div>
 
-          <div className={showAll ? "flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]":"hidden"}>
+          <div className={showAll ? "block lg:flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]":"hidden"}>
             {groupedMembers['Chief Executive Officer']?.slice(0, 3).map((member, index) => (
               <div key={index} className="block mx-auto w-[204px] space-y-[12px] relative">
                 <div
