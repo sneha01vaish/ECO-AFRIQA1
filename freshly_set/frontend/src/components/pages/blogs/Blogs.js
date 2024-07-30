@@ -5,8 +5,9 @@ import BlogHero from './BlogHero';
 import FreshlyFooter from '../../footer/FreshlyFooter';
 import BlogWidgets from './BlogWidgets';
 import BlogPosts from './BlogPosts'
-import api from '../../../api/blogs'
-import BlogForm from './BlogForm';
+// import api from '../../../api/blogs'
+// import BlogForm from './BlogForm';
+import Contact from './Contact';
 
 const Blogs = () => {
 
@@ -51,8 +52,9 @@ const Blogs = () => {
       <Nav />
       <BlogSearch />
       <BlogHero />
-      <BlogForm/>
+      {/* <BlogForm/> */}
       <BlogWidgets />
+      <Contact />
       <ul>
         {blogs.length === 0 ? (
           <p>No blogs available.</p>
