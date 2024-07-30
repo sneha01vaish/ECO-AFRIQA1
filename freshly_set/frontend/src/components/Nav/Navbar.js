@@ -104,7 +104,8 @@ function Nav() {
                 </Link>
 
                 <Link to="/SignUp" onClick={() => setActiveTab("Sign Up")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">LoginSignUp</p>
+                        {/* Later add conditional for if user is authenticated to show Login or signup */}
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Signup</p>
 
                     <div className={activeTab === "about" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
                   
