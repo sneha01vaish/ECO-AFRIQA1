@@ -5,7 +5,7 @@ import { FaTiktok } from "react-icons/fa6";
 function Contact() {
   return (
 
-    <div className="Contacts-section mt-[62px]">
+    <div className="Contacts-section items-center mt-[62px] lg:mx-[65px]">
       <div className="Contacts-Title flex justify-between lg:w-[948px] lg:mx-auto mx-6 mb-[30px] ">
         <p className="text-[#008000] font-inter text-[20px] lg:text-[45px] font-[700] mb-0">Want Your Articles Be Featured On Our Blog? Contact Us</p>
       </div>
@@ -21,7 +21,7 @@ function Contact() {
           {/* mail */}
           <div classsName="block">
             <img className="h-[49px] w-[45px] space-x-1" src="/static/media/mail.png" alt="email" />
-              <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px]">Email</p>
+              <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px] ">Email</p>
               
               <a href="mailto:info.freshlyfarms5@gmail.com" className="font-normal no-underline" target="_blank">
                 <p className="font-[400] text-[17px] lg:text-[22px] text-[#525560] font-josefin -mt-[10px]">info.freshlyfarms</p>
@@ -82,7 +82,7 @@ function Contact() {
       </div>
       
       {/* Users' Mailing Section */}
-      <div className="Mailing-Section block mt-[94px] mx-[10vw] lg:ml-[187px]  lg:mr-[84px] ">
+      <div className="Mailing-Section block  mx-[10vw]   lg:mr-[84px] ">
 
         {/* User email address*/}
         <p className="text-[22px] text-black font-[700] font-inter">Email</p>
