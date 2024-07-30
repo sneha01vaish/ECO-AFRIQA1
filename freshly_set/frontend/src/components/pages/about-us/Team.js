@@ -80,8 +80,9 @@ function Team() {
       </h5>
 
       {/* Display first 3 CEOs without testimonials initially */}
-      {!showAll && (
-        <div className="flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]">
+      {/* {!showAll && ( */}
+        <div className="block space-y-[100px]">
+              <div className="flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]">
           {groupedMembers['Chief Executive Officer']?.slice(0, 3).map((member, index) => (
             <div key={index} className="block mx-auto w-[204px] space-y-[12px] relative">
               <div
@@ -93,14 +94,32 @@ function Team() {
             </div>
           ))}
         </div>
-      )}
+
+          <div className={showAll ? "flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]":"hidden"}>
+            {groupedMembers['Chief Executive Officer']?.slice(0, 3).map((member, index) => (
+              <div key={index} className="block mx-auto w-[204px] space-y-[12px] relative">
+                <div
+                  className=" bg-center w-[286px] h-[380px] gap-[10px] border-radius-[12px] flex-shrink-0 border-[#008000] filter grayscale"
+                  style={{ backgroundImage: "url('/static/media/teamMember2.png')" }}
+                ></div>
+                <p className='text-black text-[24px] font-[700] font-inter'>{member.name}</p>
+                <p className='text-[#008000] text-[20px] font-[700] font-inter'>{member.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      
+
+
+
+      {/* )} */}
 
       {/* Display "View All" button only if not showing all */}
       {!showAll && (
         <div className='flex justify-center mt-[120px]'>
           <button
             onClick={() => setShowAll(true)}
-            className='w-[272px] h-[70px] bg-[#008000] rounded-[15px] mt-[62px] text-white text-[25px] border-none'
+            className='w-[272px] cursor-pointer h-[70px] bg-[#008000] rounded-[15px] mt-[40px] text-white text-[25px] border-none'
           >
             View All
           </button>
@@ -108,18 +127,16 @@ function Team() {
       )}
 
       {/* Display all team members in sections with testimonials */}
+{/*       
       {showAll && (
         <div
           className={`transition-transform transform ${showAll ? 'translate-x-0' : 'translate-x-full'} duration-500 ease-in-out`}
           style={{ opacity: showAll ? 1 : 0 }}
         >
-          {/* Executive Team Section with testimonials first */}
           {renderGroupSection('Executive Team', 'Chief Executive Officer', 3)}
 
-          {/* Finance Team Section with testimonials next */}
           {renderGroupSection('Finance Team', 'Finance Team Member', 2, true)}
 
-          {/* Tech Team Section with testimonials in a grid */}
           <div className="mt-[71px]">
             <h6 className="text-[#008000] text-[35px] text-center font-inter mb-[20px]  lg:[space-y-[0px]" >Tech Team</h6>
             <div className="grid grid-cols-3 gap-6">
@@ -127,10 +144,9 @@ function Team() {
             </div>
           </div>
 
-          {/* Sales Team Section with testimonials last */}
           {renderGroupSection('Sales Team', 'Sales Team Member', 1)}
         </div>
-      )}
+      )} */}
     </div>
   );
 }
