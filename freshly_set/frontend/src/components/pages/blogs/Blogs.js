@@ -4,7 +4,8 @@ import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
 import FreshlyFooter from '../../footer/FreshlyFooter';
 import BlogWidgets from './BlogWidgets';
-import BlogPosts from './BlogPosts'
+import BlogPosts from './BlogList'
+
 import api from '../../../api/blogs'
 // import BlogForm from './BlogForm';
 import Contact from './Contact';
