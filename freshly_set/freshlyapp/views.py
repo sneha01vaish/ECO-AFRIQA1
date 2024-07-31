@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -15,69 +14,76 @@ from django.contrib.auth.forms import PasswordResetForm
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
+
 from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from .models import Blog, Comment, Like, Share
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
 from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer
+from django.shortcuts import render
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import permissions, status
+from django.contrib.auth import get_user_model, login, logout
+from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerializer
+from rest_framework.validators import UniqueValidator
+from .validators import custom_validation , validate_email, validate_password # Import your custom validation here
 
 
 
 # This is for typical django frontend html
 
+class UserRegister(APIView):
+    permission_classes =(permissions.AllowAny,)
+    def post(self, request):
+        clean_data = custom_validation(request.data)
+        serializer = UserRegisterSerializer(data=clean_data)
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.create(clean_data)
+            if user:
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class UserLogin(APIView):
+     permission_classes =(permissions.AllowAny,)
+     authentication_classes=(SessionAuthentication,)
+     def post(self, request):
+         data = request.data
+         assert validate_email(data)
+         assert validate_password(data)
+         serializer = UserLoginSerializer(data=data)
+         if serializer.is_valid(raise_exception=True):
+             user= serializer.check_user(data)
+             login(request, user)
+             return Response(serializer.data, status= status.HTTP_200_OK)
+
+class UserLogout(APIView):
+    def post(self, request):
+        logout(request)
+        return Response(status=status.HTTP_200_OK)
 def home(request):
     return render(request, 'index.html')
 
 def about(request):
     return render(request, 'about.html')
 
+
+    
+@api_view(['GET'])
+
 def blogs(request):
-    return render(request, 'blogs.html')
-
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('profile')
-        else:
-            messages.error(request, 'Please correct the errors below.')
-    else:
-        form = SignUpForm()
-    return render(request, '/SignUp/signUp.jsx', {'form': form})
+    renderer_classes = [JSONRenderer]
+    return render(request, 'blogs/BlogForm.jsx')
 
 
-def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-
-        if form.is_valid():
-            if user is not None:
-                login(request, user)
-                return redirect('profile')
-            else:
-                if not User.objects.filter(username=username).exists():
-                    messages.error(request, 'User does not exist. Please register.')
-                else:
-                    messages.error(request, 'Incorrect username or password.')
-        else:
-            messages.error(request, 'Incorrect username or password.')
-    else:
-        form = AuthenticationForm()
-
-    return render(request, 'login.html', {'form': form})
-
-def logout_view(request):
-    logout(request)
-    return redirect('login')
 @login_required
 def products(request):
     if request.method == 'POST':

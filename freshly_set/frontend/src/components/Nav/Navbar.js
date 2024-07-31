@@ -109,14 +109,16 @@ function Nav() {
                     }
                 </Link>
 
-                <Link onClick={() => setActiveTab("signup")}  to="/signup" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer whitespace-nowrap">Sign Up</p>
+                <Link to="/SignUp" onClick={() => setActiveTab("signUp")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                        {/* Later add conditional for if user is authenticated to show Login or signup */}
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Signup</p>
 
-                    <div className={activeTab === "signup" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                    <div className={activeTab === "signUp" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
                   
-                    {
-                        activeTab && (
-                            <div className= {` ${activeTab === "signup"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                        {
+                            activeTab && (
+                                <div className= {` ${activeTab === "signUp"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
 
                         )
                     }
@@ -207,20 +209,20 @@ function Nav() {
                             <p className="text-white text-[25px] font-[700] font-inter">About Us</p>
                         </Link>
 
-                        <div className="flex space-x-[22px]  items-center">
+                        <Link to="/blogs" className="flex space-x-[22px]  items-center">
                             <CiGlobe className="h-[54px] w-[64px] text-white"/>
                             <p className="text-white text-[25px] font-[700] font-inter">Blog</p>
-                        </div>
+                        </Link>
 
-                        <div className="flex space-x-[22px]  items-center">
+                        <Link className="flex space-x-[22px]  items-center">
                             <FaUsers className="h-[54px] w-[64px] text-white"/>
                             <p className="text-white text-[25px] font-[700] font-inter">Sign Up</p>
-                        </div>
+                        </Link>
 
-                        <div className="flex space-x-[22px]  items-center">
+                        <Link className="flex space-x-[22px]  items-center">
                             <FaUser className="h-[54px] w-[64px] text-white"/>
                             <p className="text-white text-[25px] font-[700] font-inter">Your Profile</p>
-                        </div>
+                        </Link>
 
                         <div className="flex space-x-[22px]  items-center">
                             <CiSettings className="h-[54px] w-[64px] text-white"/>
