@@ -1,11 +1,11 @@
 .sign-up-form {
   max-width: 400px;
   margin: 40px auto;
-  padding: 30px;
-  background-color: #fff;
+  padding: 20px;
+  background-color: #f9f9f9;
   border: 1px solid #ddd;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .close-btn {
@@ -33,19 +33,17 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="password"] {
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 16px;
+  border-radius: 5px;
 }
 
 select {
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 16px;
+  border-radius: 5px;
 }
 
 .password-field {
@@ -101,34 +99,4 @@ p {
 a {
   text-decoration: none;
   color: #4285f4;
-}
-
-/* Additional styles to match the Figma design */
-.sign-up-form {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="password"] {
-  background-color: #f9f9f9;
-}
-
-select {
-  background-color: #f9f9f9;
-}
-
-.social-signup button {
-  font-weight: 600;
-}
-
-.google {
-  background-color: #4285f4;
-  color: #fff;
-}
-
-.facebook {
-  background-color: #4267b2;
-  color: #fff;
 }

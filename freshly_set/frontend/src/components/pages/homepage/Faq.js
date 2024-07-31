@@ -102,7 +102,7 @@ function Faq() {
      
 
             <div className="flex justify-center my-5">
-                <button className="h-[48px] lg:h-[70px] w-[236px] lg:w-[272px] bg-[#008000] text-white rounded-[15px] mt-5 text-[22px] lg:text-[25px] font-[700]">Read More</button>
+                <button className="standardBtn">Read More</button>
               </div>
 
 
