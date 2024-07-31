@@ -103,14 +103,15 @@ function Nav() {
 
                 </Link>
 
-                <Link onClick={() => setActiveTab("signup")}  to="/signup" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer whitespace-nowrap">Sign Up</p>
+                <Link to="/SignUp" onClick={() => setActiveTab("signUp")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                        {/* Later add conditional for if user is authenticated to show Login or signup */}
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Signup</p>
 
-                    <div className={activeTab === "signup" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                    <div className={activeTab === "signUp" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
                   
                         {
                             activeTab && (
-                                <div className= {` ${activeTab === "signup"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+                                <div className= {` ${activeTab === "signUp"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
 
                             )
                         }

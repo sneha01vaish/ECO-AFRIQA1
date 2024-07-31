@@ -80,22 +80,9 @@ function Team() {
       </h5>
 
       {/* Display first 3 CEOs without testimonials initially */}
-      {/* {!showAll && ( */}
+      {!showAll && (
         <div className="block space-y-[100px]">
-              <div className="block lg:flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]">
-          {groupedMembers['Chief Executive Officer']?.slice(0, 3).map((member, index) => (
-            <div key={index} className="block mx-auto w-[204px] space-y-[12px] relative">
-              <div
-                className=" bg-center w-[286px] h-[380px] gap-[10px] border-radius-[12px] flex-shrink-0 border-[#008000] filter grayscale"
-                style={{ backgroundImage: "url('/static/media/teamMember2.png')" }}
-              ></div>
-              <p className='text-black text-[24px] font-[700] font-inter'>{member.name}</p>
-              <p className='text-[#008000] text-[20px] font-[700] font-inter'>{member.role}</p>
-            </div>
-          ))}
-        </div>
-
-          <div className={showAll ? "block lg:flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]":"hidden"}>
+          <div className="block lg:flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]">
             {groupedMembers['Chief Executive Officer']?.slice(0, 3).map((member, index) => (
               <div key={index} className="block mx-auto w-[204px] space-y-[12px] relative">
                 <div
@@ -108,11 +95,7 @@ function Team() {
             ))}
           </div>
         </div>
-      
-
-
-
-      {/* )} */}
+      )}
 
       {/* Display "View All" button only if not showing all */}
       {!showAll && (
@@ -127,7 +110,6 @@ function Team() {
       )}
 
       {/* Display all team members in sections with testimonials */}
-     
       {showAll && (
         <div
           className={`transition-transform transform ${showAll ? 'translate-x-0' : 'translate-x-full'} duration-500 ease-in-out`}
@@ -138,7 +120,7 @@ function Team() {
           {renderGroupSection('Finance Team', 'Finance Team Member', 2, true)}
 
           <div className="mt-[71px]">
-            <h6 className="text-[#008000] text-[35px] text-center font-inter mb-[20px]  lg:[space-y-[0px]" >Tech Team</h6>
+            <h6 className="text-[#008000] text-[35px] text-center font-inter mb-[20px] lg:space-y-[0px]">Tech Team</h6>
             <div className="grid grid-cols-3 gap-6">
               {renderMembers(groupedMembers['Tech Team Member']?.slice(0, 6) || [])}
             </div>
@@ -146,7 +128,7 @@ function Team() {
 
           {renderGroupSection('Sales Team', 'Sales Team Member', 1)}
         </div>
-      )} 
+      )}
     </div>
   );
 }

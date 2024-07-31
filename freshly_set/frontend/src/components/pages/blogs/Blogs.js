@@ -5,7 +5,7 @@ import BlogHero from './BlogHero';
 import FreshlyFooter from '../../footer/FreshlyFooter';
 import BlogWidgets from './BlogWidgets';
 import BlogPosts from './BlogPosts'
-// import api from '../../../api/blogs'
+import api from '../../../api/blogs'
 // import BlogForm from './BlogForm';
 import Contact from './Contact';
 
@@ -26,6 +26,7 @@ const Blogs = () => {
       try {
         const response = await api.get('/blogs');
         setBlogs(response.data);
+      
       } catch (error) {
         if (error.response) {
           // Catch errors out of 200 range
@@ -39,10 +40,12 @@ const Blogs = () => {
       }
     };
     fetchBlogs();
+    console.log("Blogs fetched", blogs)
   }, []);
 
   return (
     <div>
+      <BlogSearch/>
 
       <div className="bg-slate-100 min-h-[100vh] py-16">
         <Nav />
