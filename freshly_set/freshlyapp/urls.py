@@ -2,9 +2,11 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.urls import re_path
-from .views import CustomPasswordResetView, logout_view
+from .views import CustomPasswordResetView, search_blog 
 from .forms import  MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
+
+
 
 from .views import (
     BlogListCreateAPIView, BlogRetrieveUpdateDestroyAPIView, 
@@ -17,17 +19,12 @@ urlpatterns = [
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
-<<<<<<< HEAD
-    path('blogs/', views.blogs, name='blogs'),
-    path('signup/', views.UserRegister.as_view(), name='register'),
-    path('login/', views.UserLogin.as_view(), name='login'),
-    path('logout/', views.UserLogout.as_view(), name='logout'),
-    path('user/', views.UserView.as_view(), name='user'),
-=======
     path(r'^$', views.blogs, name='blogs'),
+    path(r'^$', views.blog_create, name='blogs_create'),
+
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('signup/', views.signup, name='signup'),
-    path('logout/', logout_view, name='logout'),
+    #path('signup/', views.signup, name='signup'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('password_change/', auth_views.PasswordChangeView.as_view(template_name='password_change.html'), name='password_change'),
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),
     path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
@@ -36,7 +33,6 @@ urlpatterns = [
     name='password_reset_confirm'),
     path('reset/done/',auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), 
     name='password_reset_complete'),
->>>>>>> Simanga-dev
     path('products/', views.products, name='products'),
     path('services/', views.services, name='services'),
     path('profile/', views.profile, name='profile'),
@@ -46,4 +42,5 @@ urlpatterns = [
     path('comments/<int:pk>/', CommentRetrieveUpdateDestroyAPIView.as_view(), name='comment_detail'),
     path('likes/', LikeCreateAPIView.as_view(), name='like_create'),
     path('shares/', ShareCreateAPIView.as_view(), name='share_create'),
+    path('search/', search_blog, name='search_blog'),
 ]

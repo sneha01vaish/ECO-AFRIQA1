@@ -1,13 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function BlogSearch() {
   const [query, setQuery] = useState('');
+// Uses useEffect hook and axios to call from backend 
+  useEffect(() => {
+    axios.get('/freshlyapp/blogs')
+      .then(response => {
+        setBlogs(response.data);
+        setFilteredBlogs(response.data);
+      })
+      .catch(error => console.error('Error fetching blogs:', error));
+  }, []);
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
   };
 
   const handleSearch = () => {
+    axios.get(`/freshlyapp/search?q=${query}`)
+      .then(response => {
+        setFilteredBlogs(response.data);
+      })
+      .catch(error => console.error('Error searching blogs:', error));
     console.log(`Searching for ${query}`);
     //  search 
   };

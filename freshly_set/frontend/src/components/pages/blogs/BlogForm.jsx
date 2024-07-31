@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+function getCSRFToken() {
+    let csrfToken = null;
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        const [name, value] = cookie.split('=');
+        if (name.trim() === 'csrftoken') {
+            csrfToken = value;
+            break;
+        }
+    }
+    return csrfToken;
+}
 
 function BlogForm() {
     const [title, setTitle] = useState('');
@@ -18,17 +31,20 @@ function BlogForm() {
             formData.append('image', image);
         }
 
-        axios.get('http://localhost:8000/freshlyapp/blogs/', formData, {
+        const csrfToken = getCSRFToken();
+
+        axios.post('http://localhost:8000/freshlyapp/blogs/', formData, {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
+                'X-CSRFToken': csrfToken
             }
         })
-            .then(response => {
-                navigate.push('/');
-            })
-            .catch(error => {
-                console.error('There was an error creating the blog!', error);
-            });
+        .then(response => {
+            navigate('/');
+        })
+        .catch(error => {
+            console.error('There was an error creating the blog!', error);
+        });
     };
 
     return (

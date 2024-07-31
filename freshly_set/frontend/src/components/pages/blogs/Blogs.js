@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import Nav from '../../Nav/Navbar';
 import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
@@ -26,7 +27,7 @@ const Blogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await api.get('/blogs');
+      const response = await api.get('freshlyapp/blogs');
       setBlogs(response.data);
 
     } catch (error) {
