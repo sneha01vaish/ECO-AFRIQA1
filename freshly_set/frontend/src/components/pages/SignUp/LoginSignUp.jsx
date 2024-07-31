@@ -59,7 +59,7 @@ const LoginSignUp = () => {
         
         
         
-        <div className="flex flex-col lg:flex-row justify-between lg:px-[77px] lg:py-[88px] lg:w-[1197px] mx-[40px] my-[100px] bg-white lg:h-[1069px] rounded-[132px]">
+        <div className="flex flex-col lg:flex-row justify-between lg:px-[77px] lg:py-[88px] lg:w-[1197px] mx-[40px] my-[100px] bg-white  rounded-[132px]">
         {/* <div className="close-btn">×</div> */}
         
         {/* Left side */}
@@ -154,7 +154,7 @@ const LoginSignUp = () => {
               </span>
             </div>
             {errors.password && <p className="error">{errors.password}</p>}
-            <div className="">
+            <div className="password-field">
               <input
                 type={confirmPasswordToggle ? 'text' : 'password'}
                 name="confirmPassword"
