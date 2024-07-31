@@ -7,6 +7,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.conf import settings
 
+
 class AppUserManager(BaseUserManager):
     def create_user(self, email, username, password=None):
         """
@@ -19,6 +20,7 @@ class AppUserManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True)
@@ -35,8 +37,10 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
+
 class Product(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -44,6 +48,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Garden(models.Model):
     name = models.CharField(max_length=100, default='DEFAULT VALUE')
@@ -54,6 +59,7 @@ class Garden(models.Model):
 
     def __str__(self):
         return self.location
+
 
 class Service(models.Model):
     SERVICE_TYPES = (
@@ -89,11 +95,15 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
-    
+
 # Added models for Comment, Like, and Share.
+
+
 class Comment(models.Model):
-    blog = models.ForeignKey(Blog, related_name='comments', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    blog = models.ForeignKey(
+        Blog, related_name='comments', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -101,14 +111,20 @@ class Comment(models.Model):
     def __str__(self):
         return self.content
 
+
 class Like(models.Model):
-    blog = models.ForeignKey(Blog, related_name='likes', on_delete=models.CASCADE)
-    user = models.ForeignKey(Usettings.AUTH_USER_MODELr, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, related_name='likes',
+                             on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('blog', 'user')
 
+
 class Share(models.Model):
-    blog = models.ForeignKey(Blog, related_name='shares', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    blog = models.ForeignKey(
+        Blog, related_name='shares', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     shared_at = models.DateTimeField(auto_now_add=True)

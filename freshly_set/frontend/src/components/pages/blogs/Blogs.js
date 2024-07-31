@@ -4,9 +4,10 @@ import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
 import FreshlyFooter from '../../footer/FreshlyFooter';
 import BlogWidgets from './BlogWidgets';
-import BlogPosts from './BlogPosts';
-import api from '../../../api/blogs';
-import BlogForm from './BlogForm';
+import BlogPosts from './BlogPosts'
+// import api from '../../../api/blogs'
+// import BlogForm from './BlogForm';
+import Contact from './Contact';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -42,27 +43,6 @@ const Blogs = () => {
 
   return (
     <div>
-      <Nav />
-      <BlogSearch />
-      <BlogHero />
-
-      {/* <BlogForm/> */}
-
-      <BlogWidgets />
-      <Contact />
-      <ul>
-        {blogs.length === 0 ? (
-          <p>No blogs available.</p>
-        ) : (
-          blogs.map(blog => (
-            <li key={blog.id}>
-              <h2>{blog.title}</h2>
-              <p>{blog.content}</p>
-              <p>Author: {blog.author}</p>
-            </li>
-          ))
-        )}
-      </ul>
 
       <div className="bg-slate-100 min-h-[100vh] py-16">
         <Nav />
@@ -90,6 +70,7 @@ const Blogs = () => {
           </button>
         </div>
         <BlogWidgets />
+        <Contact />
         <FreshlyFooter />
       </div>
     </div>
