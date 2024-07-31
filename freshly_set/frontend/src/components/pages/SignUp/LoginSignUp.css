@@ -1,22 +1,27 @@
 .sign-up-form {
   max-width: 400px;
   margin: 40px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
+  padding: 30px;
+  background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .close-btn {
-  float: right;
+  position: absolute;
+  top: 15px;
+  right: 15px;
   font-size: 24px;
   cursor: pointer;
+  color: #999;
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 24px;
 }
 
 form {
@@ -28,17 +33,19 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="password"] {
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
 select {
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
 .password-field {
@@ -48,9 +55,11 @@ select {
 .toggle-password {
   position: absolute;
   top: 50%;
-  right: 10px;
+  right: 15px;
   transform: translateY(-50%);
   cursor: pointer;
+  font-size: 14px;
+  color: #666;
 }
 
 .error {
@@ -66,10 +75,11 @@ select {
 .social-signup button {
   width: 100%;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .google {
@@ -85,9 +95,40 @@ select {
 p {
   text-align: center;
   margin-top: 20px;
+  font-size: 14px;
 }
 
 a {
   text-decoration: none;
   color: #4285f4;
+}
+
+/* Additional styles to match the Figma design */
+.sign-up-form {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+  background-color: #f9f9f9;
+}
+
+select {
+  background-color: #f9f9f9;
+}
+
+.social-signup button {
+  font-weight: 600;
+}
+
+.google {
+  background-color: #4285f4;
+  color: #fff;
+}
+
+.facebook {
+  background-color: #4267b2;
+  color: #fff;
 }
