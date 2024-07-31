@@ -42,7 +42,7 @@ function Nav() {
     <div>
         {/* Large screen navbar */}
 
-        <nav className="flex pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-white w-[100%] pb-[20.1px] pt-[20.42px]">
+        <nav className="flex  pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-white w-screen pb-[20.1px] pt-[20.42px]">
             {/* Logo */}
             <img className={scrolled ? "navbarLogoScroll" : "navbarLogo"} src="/static/media/logo2.png" alt="NavLogo"/>
 
@@ -58,74 +58,68 @@ function Nav() {
     width: 84px;
     cursor: pointer; */}
 
-        <div className="flex justify-self-end ml-[40%] space-x-[59px] items-center ">
-            <Link onClick={() => setActiveTab("home")}  to="/" className="group text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                
-                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Home</p>
-                <div className={activeTab === "home" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-                {
-                    activeTab && (
-                        <div className= {` ${activeTab === "home"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+            <div className="flex justify-self-end ml-[40%] space-x-[59px] items-center ">
+                <Link onClick={() => setActiveTab("home")}  to="/" className="group text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                    
+                    <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Home</p>
+                    <div className={activeTab === "home" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                     {
+                            activeTab && (
+                                <div className= {` ${activeTab === "home"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
 
-                    )
-                }
+                            )
+                        }
 
-            </Link>
+                </Link>
 
-            <Link to="/about-us" onClick={() => setActiveTab("about")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-            <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">About</p>
+                <Link to="/about-us" onClick={() => setActiveTab("about")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">About</p>
 
-            <div className={activeTab === "about" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-            
-                {
-                    activeTab && (
-                        <div className= {` ${activeTab === "about"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+                    <div className={activeTab === "about" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                  
+                        {
+                            activeTab && (
+                                <div className= {` ${activeTab === "about"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
 
-                    )
-                }
-            </Link>
+                            )
+                        }
 
 
-            <Link onClick={() => setActiveTab("blogs")}  to="/blogs" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-            <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Blogs</p>
-            <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"} />
-                {
-                    activeTab && (
-                        <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
-
-                        )
-                    }
                 </Link>
 
 
-                <Link onClick={() => setActiveTab("blogs")}  to="/products" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Products</p>
-                <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"} />
-                    {
-                        activeTab && (
-                            <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+                <Link onClick={() => setActiveTab("blogs")}  to="/blogs" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Blogs</p>
 
-                        )
-                    }
+                    <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                  
+                        {
+                            activeTab && (
+                                <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                            )
+                        }
+
+
                 </Link>
 
                 <Link to="/SignUp" onClick={() => setActiveTab("signUp")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
                         {/* Later add conditional for if user is authenticated to show Login or signup */}
                 <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Signup</p>
 
-                    <div className={activeTab === "signUp" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                    <div className={activeTab === "about" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
                   
-
                         {
                             activeTab && (
-                                <div className= {` ${activeTab === "signUp"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+                                <div className= {` ${activeTab === "about"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
 
-                        )
-                    }
+                            )
+                        }
 
 
                 </Link>
             </div>
+            
         </nav>
 
         {/* Small screen Navbar */}
@@ -169,17 +163,17 @@ function Nav() {
         <nav className={open ? "flex justify-center z-[50] lg:hidden bg-[#008000]/[85%]  w-[100%] h-[100%] fixed top-0  ":"bg-white flex justify-between fixed top-0 w-[100%] lg:hidden items-center pl-[18px] z-[60]"}>
             <img className={!open ? "flex h-[77px] w-[80px] object-cover":"hidden"} src="/static/media/logo2.png" alt="navLogo"/>
                         
-                <div className={!open ? "flex space-x-[33px]":"hidden"}>
-                    <Link to="/" className="block group">
-                        <p className="text-[20px] font-[700] text-[#008000] font-inter">Home</p>
-                        <div className="h-[5px] w-[70px] bg-[#008000] -mt-[15px] hidden group-hover:flex"/>
-                    </Link>
+                        <div className={!open ? "flex space-x-[33px]":"hidden"}>
+                            <Link to="/" className="block group">
+                                <p className="text-[20px] font-[700] text-[#008000] font-inter">Home</p>
+                                <div className="h-[5px] w-[70px] bg-[#008000] -mt-[15px] hidden group-hover:flex"/>
+                            </Link>
 
-                    <div className="block group">
-                        <p className="text-[20px] font-[700] text-[#008000] font-inter">Sign Up</p>
-                        <div className="h-[5px] w-[70px] bg-[#008000] -mt-[15px] hidden group-hover:flex"/>
-                    </div>
-                </div>
+                            <div className="block group">
+                                <p className="text-[20px] font-[700] text-[#008000] font-inter">Sign Up</p>
+                                <div className="h-[5px] w-[70px] bg-[#008000] -mt-[15px] hidden group-hover:flex"/>
+                            </div>
+                        </div>
                         
             <div className="flex  justify-center">
                 {!open &&(
@@ -231,6 +225,14 @@ function Nav() {
                     </div>
                     
                 </div>  
+                
+                
+
+
+
+
+
+
               </div>
                 
 
