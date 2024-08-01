@@ -54,7 +54,7 @@ function Details() {
             <div className="mt-[130px] w-[100%]">
                 <div className="flex justify-end lg:pr-[95px]">
                     <div className="block">
-                    <h3 className="text-[30px] font-inter font-[900] text-[#008000] ">EXECUTIVE TEAM</h3>
+                    <h3 className="text-[30px] font-inter font-[900] text-[#008000] ">FINANCE TEAM</h3>
 
                     <p className="text-[#525560]  lg:mx-[0px] font-josfin text-[15px] font-[700] leading-[32.5px] w-[325px] lg:w-[926px] text-start ml-[150px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
                     <p className="text-[#525560]  lg:mx-[0px] font-josfin text-[15px] font-[700] leading-[32.5px] w-[325px] lg:w-[926px] text-start ml-[150px]">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,</p>
