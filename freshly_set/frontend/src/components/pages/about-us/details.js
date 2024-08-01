@@ -129,7 +129,7 @@ function Details() {
                 <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Tech Team</p>
               </div>
             </div>
-          </div>
+          </div>cd
         </div>
         
 
@@ -137,10 +137,10 @@ function Details() {
         {/* Sales Team */}
         <div className="mt-[200px] w-[100%] lg:mt-[300px]">
           <div className="flex justify-end lg:pr-[95px]">
-            <div className="block text-right lg:text">
-              <h3 className="text-[30px] font-inter font-[900] text-[#008000]">SALES TEAM</h3>
+            <div className="block text-right lg:text ">
+              <h3 className="text-[30px] font-inter font-[900] text-[#008000]  ">SALES TEAM</h3>
               
-              <p className="text-[#525560] lg:mx-[0px] font-josfin text-[15px] font-[700] leading-[32.5px] w-[325px] lg:w-[926px] text-right ml-[150px] ">
+              <p className="text-[#525560] lg:mx-[0px] font-josfin text-[15px] font-[700] leading-[32.5px] w-[325px] lg:w-[926px] text-right ml-[150px] cd">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.
               </p>
               <p className="text-[#525560] lg:mx-[0px] font-josfin text-[15px] font-[700] leading-[32.5px] w-[325px] lg:w-[926px] text-right ml-[150px]">
@@ -149,17 +149,20 @@ function Details() {
             </div>
           </div>
           <div className="flex justify-center w-[100%]">
-            <div className="block">
-              <div className="grid grid-cols-2 lg:grid-cols-2 lg:gap-x-[122px] gap-y-[38px] lg:gap-y-[0px] lg:mt-[100px] mx-auto">
-                <div className="block w-[165px] lg:w-[286px]">
-                  <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
-                  <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
-                  <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Sales Team</p>
+  <div className="block">
+    <div className="grid grid-cols-2 lg:grid-cols-2 lg:gap-x-[122px] gap-y-[38px] lg:gap-y-[0px] lg:mt-[100px] mx-auto">
+      <div className="block w-[165px] lg:w-[286px] relative">
+        <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500  bg-opacity-50">
+          <img src="/static/media/linkedinn.png" alt="LinkedIn Icon" className="h-[32px] w-[32px]" />
+        </div>
+        <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
+        <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Sales Team</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div>f
       </div>
     </div>
   );
