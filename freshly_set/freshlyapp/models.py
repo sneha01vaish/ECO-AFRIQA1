@@ -36,8 +36,6 @@ class AppUserManager(BaseUserManager):
 
         return user
 
-<<<<<<< HEAD
-=======
     def create_user(self, email, name, phone, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
@@ -53,7 +51,6 @@ class AppUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
         
         return self._create_user(email, name, phone, password, **extra_fields)
->>>>>>> Simanga-dev
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True)
@@ -152,15 +149,8 @@ class Comment(models.Model):
 
 
 class Like(models.Model):
-<<<<<<< HEAD
-    blog = models.ForeignKey(Blog, related_name='likes',
-                             on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-=======
     blog = models.ForeignKey(Blog, related_name='likes', on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
->>>>>>> Simanga-dev
 
     class Meta:
         unique_together = ('blog', 'user')
