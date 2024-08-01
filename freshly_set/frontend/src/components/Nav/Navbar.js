@@ -42,7 +42,7 @@ function Nav() {
     <div>
         {/* Large screen navbar */}
 
-        <nav className="flex pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-white w-[100%] pb-[20.1px] pt-[20.42px]">
+        <nav className="flex  pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-white w-screen pb-[20.1px] pt-[20.42px]">
             {/* Logo */}
             <img className={scrolled ? "navbarLogoScroll" : "navbarLogo"} src="/static/media/logo2.png" alt="NavLogo"/>
 
@@ -103,8 +103,8 @@ function Nav() {
 
                 </Link>
 
-                <Link onClick={() => setActiveTab("signup")}  to="/signup" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer whitespace-nowrap">Sign Up</p>
+                <Link to="/SignUp" onClick={() => setActiveTab("Sign Up")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Signup</p>
 
                     <div className={activeTab === "signup" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
                   
