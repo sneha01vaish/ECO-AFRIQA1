@@ -1,8 +1,46 @@
-
+import React, { useState, useEffect } from 'react';
 import { GoArrowRight } from "react-icons/go";
-import { RiArrowRightSLine, RiArrowLeftSLine } from "react-icons/ri";
 
 export default function Deals() {
+
+    function calculateTimeLeft() {
+        const difference = +new Date('2024-09-01T00:00:00Z') - +new Date()
+        let timeLeft = {}
+
+        if (difference >= 0) {
+            timeLeft = {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24 )),
+                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((difference / 1000 / 60) % 60),
+                seconds: Math.floor((difference / 1000) % 60),
+            }
+        } else {
+            timeLeft = {
+                days: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+            }
+        }
+        // console.log(timeLeft)
+        return timeLeft
+    }
+    
+    const [ timeLeft, setTimeLeft ] = useState(calculateTimeLeft())
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setTimeLeft(calculateTimeLeft())
+        }, 1000)
+        return () => clearTimeout(timer)
+    })
+
+    const { days, hours, minutes, seconds } = timeLeft
+
+    function addZero(time) {
+        return time < 10 ? `0${time}` : time
+    }
+    
     return (
         <main className="w-full">
             <h1 className="text-3xl sm:text-5xl text-green-700 text-center">Farm Produce Center</h1>
@@ -11,20 +49,20 @@ export default function Deals() {
                 <div className='w-[320.00px] h-[340.00px] border border-solid bg-emerald-600 rounded-xl border-slate-200 text-white/80 shadow-sm flex flex-col justify-start items-center p-3 py-8'>
                     <p className='text-xl font-bold capitalize my-1'>Deal of the week</p>
                     <p className="flex gap-2">
-                        <span className='flex flex-col'>
-                            <span className='text-3xl font-bold tracking-wide text-nowrap'>00 :</span>
+                        <span className='flex flex-col justify-start items-start'>
+                            <span className='text-3xl font-bold tracking-wide text-nowrap'>{addZero(days)} :</span>
                             <span className="text-[12px]">Days</span>
                         </span>
                         <span className='flex flex-col justify-start items-start'>
-                            <span className='text-3xl font-bold tracking-wide text-nowrap'>05 :</span>
+                            <span className='text-3xl font-bold tracking-wide text-nowrap'>{addZero(hours)} :</span>
                             <span className="text-[12px]">Hours</span>
                         </span>
-                        <span className='flex flex-col'>
-                            <span className='text-3xl font-bold tracking-wide text-nowrap'>08 :</span>
+                        <span className='flex flex-col justify-start items-start'>
+                            <span className='text-3xl font-bold tracking-wide text-nowrap'>{addZero(minutes)} :</span>
                             <span className="text-[12px]">Mins</span>
                         </span>
-                        <span className='flex flex-col'>
-                            <span className='text-3xl font-bold tracking-wide text-nowrap'>45 </span>
+                        <span className='flex flex-col  justify-start items-start'>
+                            <span className='text-3xl font-bold tracking-wide text-nowrap'>{addZero(seconds)}</span>
                             <span className="text-[12px]">Secs</span>
                         </span>
                     </p>
@@ -74,15 +112,6 @@ export default function Deals() {
                             alt='farm produce sales'
                         />
                     </div>
-                </div>
-            </div>
-
-
-            <div className='flex justify-between items-center py-4 px-0'>
-                <p className='text-green-600 text-xl font-bold'>Categories</p>
-                <div className='text-green-600 text-xl font-bold flex'>
-                    <button className='border-none text-green-600 text-[48.00px] font-bold bg-transparent cursor-pointer p-0'><RiArrowLeftSLine /></button>
-                    <button className='border-none text-green-600 text-[48.00px] font-josefin bg-transparent cursor-pointer p-0'><RiArrowRightSLine /></button>
                 </div>
             </div>
         </main>
