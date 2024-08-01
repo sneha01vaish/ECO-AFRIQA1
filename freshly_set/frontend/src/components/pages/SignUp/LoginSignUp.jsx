@@ -5,6 +5,7 @@ import { BiShow } from "react-icons/bi";
 import Nav from '../../Nav/Navbar';
 
 const LoginSignUp = () => {
+  const [showForm, setShowForm] = useState(true);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -35,9 +36,12 @@ const LoginSignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Form submission logic (e.g., send data to backend)
-    console.log('Form submitted:', formData);
-  };
+    validateForm();
+    if (Object.keys(errors).length === 0) {
+      // Form submission logic (e.g., send data to backend)
+      console.log('Form submitted:', formData);
+    }
+  };  
 
   const validateForm = () => {
     const errors = {};
