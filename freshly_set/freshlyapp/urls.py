@@ -2,9 +2,16 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.urls import re_path
+<<<<<<< HEAD
 # from .views import CustomPasswordResetView, logout_view
 from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
+=======
+from .views import CustomPasswordResetView, search_blog 
+from .forms import  MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
+>>>>>>> Simanga-dev
 from . import views
+
+
 
 from .views import (
     BlogListCreateAPIView, BlogRetrieveUpdateDestroyAPIView,
@@ -17,9 +24,15 @@ urlpatterns = [
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
+<<<<<<< HEAD
 
+=======
+>>>>>>> Simanga-dev
     path(r'^$', views.blogs, name='blogs'),
+    path(r'^$', views.blog_create, name='blogs_create'),
+
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+<<<<<<< HEAD
     # path('signup/', views.signup, name='signup'),
     # path('logout/', logout_view, name='logout'),
     path('password_change/', auth_views.PasswordChangeView.as_view(
@@ -34,6 +47,18 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'),
          name='password_reset_complete'),
 
+=======
+    #path('signup/', views.signup, name='signup'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='password_change.html'), name='password_change'),
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),
+    path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),name='password_reset_done'),
+    path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'), 
+    name='password_reset_confirm'),
+    path('reset/done/',auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), 
+    name='password_reset_complete'),
+>>>>>>> Simanga-dev
     path('products/', views.products, name='products'),
     path('services/', views.services, name='services'),
     path('profile/', views.profile, name='profile'),
@@ -46,4 +71,5 @@ urlpatterns = [
          CommentRetrieveUpdateDestroyAPIView.as_view(), name='comment_detail'),
     path('likes/', LikeCreateAPIView.as_view(), name='like_create'),
     path('shares/', ShareCreateAPIView.as_view(), name='share_create'),
+    path('search/', search_blog, name='search_blog'),
 ]
