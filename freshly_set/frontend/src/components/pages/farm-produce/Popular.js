@@ -14,17 +14,17 @@ export default function Popular() {
     {
       id: 2,
       img: "/static/media/c-2.png",
-      title: "Fresh fruits",
+      title: "Fresh vegetables",
     },
     {
       id: 3,
       img: "/static/media/c-3.png",
-      title: "Fresh fruits",
+      title: "Fresh legumes",
     },
     {
       id: 4,
       img: "/static/media/c-4.png",
-      title: "Fresh fruits",
+      title: "Fresh spices",
     },
     {
       id: 5,
@@ -72,7 +72,7 @@ export default function Popular() {
   return (
     <section>
 
-      <div className='flex justify-between items-center py-4 px-0'>
+      <div className='flex justify-between items-center py-4 pl-3'>
         <p className='text-green-600 text-xl font-bold'>Categories</p>
         <div className='text-green-600 text-xl font-bold flex'>
 
@@ -89,13 +89,13 @@ export default function Popular() {
       >
         {
           items.map((item) => (
-            <div key={item.id} className='bg-green-200 min-w-[160.00px] h-[160.00px] flex flex-col justify-center items-center rounded-lg'>
+            <div key={item.id} className='bg-green-200 min-w-[160.00px] h-[160.00px] flex flex-col justify-center items-center rounded-lg shadow-gray-400 shadow-sm mb-3'>
               <img
-                className='w-[112px]'
+                className='w-[120px]'
                 src={item.img}
-                alt='Fresh fruits'
+                alt={item.title}
               />
-              <p className='font-bold text-black/80'>{item.title}</p>
+              <p className='font-bold text-black/80 mb-3'>{item.title}</p>
             </div>
           ))
         }
