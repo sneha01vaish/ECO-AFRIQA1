@@ -7,6 +7,7 @@ import Home from "./components/pages/homepage/Home"
 import LoginSignUp from "./components/pages/SignUp/LoginSignUp";
 import Blogs from "./components/pages/blogs/Blogs";
 import ProduceCenter from "./components/pages/farm-produce/ProduceCenter";
+import Details from './components/pages/about-us/details';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/products" element={<ProduceCenter />} />
         <Route path="/about-us" element={<About />} />
+        <Route path="/team-detail" element={<Details />} />
+
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}
       </Routes>
     </Router>

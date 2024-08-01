@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Team() {
   const [showAll, setShowAll] = useState(false);
@@ -82,7 +83,20 @@ function Team() {
       {/* Display first 3 CEOs without testimonials initially */}
       {!showAll && (
         <div className="block space-y-[100px]">
-          <div className="block lg:flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]">
+              <div className="block lg:flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]">
+          {groupedMembers['Chief Executive Officer']?.slice(0, 3).map((member, index) => (
+            <Link to="/team-detail" key={index} className="block cursor-pointer mx-auto w-[204px] space-y-[12px] relative">
+              <div
+                className=" bg-center w-[286px] h-[380px] gap-[10px] border-radius-[12px] flex-shrink-0 border-[#008000] filter grayscale"
+                style={{ backgroundImage: "url('/static/media/teamMember2.png')" }}
+              ></div>
+              <p className='text-black text-[24px] font-[700] font-inter'>{member.name}</p>
+              <p className='text-[#008000] text-[20px] font-[700] font-inter'>{member.role}</p>
+            </Link>
+          ))}
+        </div>
+
+          <div className={showAll ? "block lg:flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]":"hidden"}>
             {groupedMembers['Chief Executive Officer']?.slice(0, 3).map((member, index) => (
               <div key={index} className="block mx-auto w-[204px] space-y-[12px] relative">
                 <div
