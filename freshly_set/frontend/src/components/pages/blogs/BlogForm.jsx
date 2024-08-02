@@ -1,6 +1,25 @@
+<<<<<<< HEAD
 // import React, { useState } from 'react';
 // import axios from 'axios';
 // import { useNavigate} from 'react-router-dom';
+=======
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+function getCSRFToken() {
+    let csrfToken = null;
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        const [name, value] = cookie.split('=');
+        if (name.trim() === 'csrftoken') {
+            csrfToken = value;
+            break;
+        }
+    }
+    return csrfToken;
+}
+>>>>>>> Simanga-dev
 
 // function BlogForm() {
 //     const [title, setTitle] = useState('');
@@ -18,6 +37,7 @@
 //             formData.append('image', image);
 //         }
 
+<<<<<<< HEAD
 //         axios.get('http://localhost:8000/freshlyapp/blogs/', formData, {
 //             headers: {
 //                 'Content-Type': 'multipart/form-data'
@@ -30,6 +50,23 @@
 //                 console.error('There was an error creating the blog!', error);
 //             });
 //     };
+=======
+        const csrfToken = getCSRFToken();
+
+        axios.post('http://localhost:8000/freshlyapp/blogs/', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'X-CSRFToken': csrfToken
+            }
+        })
+        .then(response => {
+            navigate('/');
+        })
+        .catch(error => {
+            console.error('There was an error creating the blog!', error);
+        });
+    };
+>>>>>>> Simanga-dev
 
 //     return (
 //         <div>

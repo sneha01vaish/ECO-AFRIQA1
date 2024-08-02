@@ -180,9 +180,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     'http://127.0.0.1:3000',
 ]
+CORS_ORIGIN_WHITELIST = ( 'localhost:3000', )
 CORS_ALLOWED_CREDENTIALS = True
 # React build directory
 REACT_APP_DIR = BASE_DIR / 'frontend/build'
 
 # Including React build static files in STATICFILES_DIRS
 STATICFILES_DIRS.append(REACT_APP_DIR / 'static/media')
+
+
