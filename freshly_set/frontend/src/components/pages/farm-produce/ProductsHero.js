@@ -2,7 +2,7 @@ import React from 'react'
 
 function ProductsHero() {
   return (
-    <div className="block">
+    <div className="block overflow-x-hidden">
         <div className="mt-[130px] relative h-[415px] lg:h-[667px] w-[100%] bg-hero-products  bg-cover bg-no-repeat mix-blend-luminosity ">
             
 

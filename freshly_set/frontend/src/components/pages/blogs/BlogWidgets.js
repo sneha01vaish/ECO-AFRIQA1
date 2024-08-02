@@ -216,12 +216,23 @@ function BlogWidgets() {
                         <h3 className="text-[45px] font-inter font-[700] w-[475px]"><span className="text-[#008000]">Podcast</span> - Why do People Associate Farming with Traditionalism</h3>
                         <FaCaretDown className="h-[52px] w-[52px] mt-[34px]"/>
                    </div>
+                   <div className="flex justify-center">
+                    <FaVolumeUp className="h-[322px] w-[352px]"/>
+
+                   </div>
 
                     <div className="flex justify-center ">
-                        <FaVolumeUp className="h-[322px] w-[352px]"/>
+
+                    <audio controls>
+
+                    <source src="/static/media/audioTest.mp3" type="audio/mp3" />
+                    <source src="/static/media/audioTest.mp3" type="audio/ogg" />
+
+                    Your browser does not support the audio element.
+      </audio>
                     </div>
                    
-                    <div className="flex justify-center ">
+                    <div className="flex justify-center mt-[10px] ">
                         <button className='w-[272px] h-[70px] bg-[#008000] rounded-[15px] text-white text-[25px] border-none'>View All</button>
                     </div>
 
