@@ -10,8 +10,8 @@ function Products() {
     <div>
         <Nav />
         <ProductsHero />
-        <FarmingSystems />
-        <FarmGardenSetups />
+        {/* <FarmingSystems /> */}
+        {/* <FarmGardenSetups /> */}
         <ProduceCenter />
 
     </div>
