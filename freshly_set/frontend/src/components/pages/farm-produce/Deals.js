@@ -44,9 +44,9 @@ export default function Deals() {
     return (
         <main className="w-full">
             <h1 className="text-3xl sm:text-5xl text-green-700 text-center">Farm Produce Center</h1>
-            <div className="w-full flex flex-wrap justify-center gap-8 py-8">
+            <div className="w-full block lg:flex  justify-center space-y-[38px] lg:space-y-[0px] lg:gap-y-[0px] lg:gap-8 lg:py-8 ml-[36px]">
 
-                <div className='w-[320.00px] h-[340.00px] border border-solid bg-emerald-600 rounded-xl border-slate-200 text-white/80 shadow-sm flex flex-col justify-start items-center p-3 py-8'>
+                <div className='w-[358px] h-[340.00px] border border-solid bg-[#00AA5B] rounded-xl border-slate-200 text-white/80 shadow-sm flex flex-col justify-start items-center p-3 py-8'>
                     <p className='text-xl font-bold capitalize my-1'>Deal of the week</p>
                     <p className="flex gap-2">
                         <span className='flex flex-col justify-start items-start'>
@@ -78,7 +78,7 @@ export default function Deals() {
                     </div>
                 </div>
 
-                <div className='w-[320.00px] h-[340.00px] border border-solid bg-zinc-900 rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8'>
+                <div className='w-[358px] h-[340.00px]border border-solid bg-zinc-900 rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8'>
 
                     <p className='text-xl font-bold capitalize my-1 text-green-600'>Fruits sale !!!</p>
                     <p className="font-thin my-2">
@@ -96,7 +96,7 @@ export default function Deals() {
                     </div>
                 </div>
             
-                <div className='w-[320.00px] h-[340.00px] border border-solid bg-red-600 rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8'>
+                <div className='w-[358px] h-[340.00px] border border-solid bg-[#FF0C1A] rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8'>
 
                     <p className='text-xl font-bold capitalize my-1 text-white'>Fresh Vegetables</p>
                     <p className="font-thin my-1">
