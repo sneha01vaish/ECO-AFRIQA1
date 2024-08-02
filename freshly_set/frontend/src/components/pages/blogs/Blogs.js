@@ -48,9 +48,8 @@ const Blogs = () => {
  
   return (
     <div>
-      <BlogSearch/>
 
-      <div className="bg-gray-50 min-h-[100vh] py-16">
+      <div className=" min-h-[100vh] py-16">
         <Nav />
         <BlogSearch />
         <BlogHero />
