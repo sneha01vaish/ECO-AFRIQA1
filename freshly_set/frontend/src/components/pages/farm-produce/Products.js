@@ -3,6 +3,7 @@ import Nav from '../../Nav/Navbar'
 import ProduceCenter from './ProduceCenter'
 import ProductsHero from './ProductsHero'
 import FarmingSystems from './FarmingSystems'
+import FarmGardenSetups from './FarmGardenSetups'
 
 function Products() {
   return (
@@ -10,6 +11,7 @@ function Products() {
         <Nav />
         <ProductsHero />
         <FarmingSystems />
+        <FarmGardenSetups />
         <ProduceCenter />
 
     </div>
