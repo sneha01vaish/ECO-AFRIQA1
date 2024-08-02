@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+import React, { useEffect, useState } from 'react';
+
+>>>>>>> Simanga-dev
 import Nav from '../../Nav/Navbar';
 import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
@@ -22,6 +27,7 @@ const Blogs = () => {
     setVisible((prevCount) => Math.max(prevCount - 3, 3));
   };
 
+<<<<<<< HEAD
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -38,6 +44,24 @@ const Blogs = () => {
           // Any other errors within 200
           console.log(error.message);
         }
+=======
+ useEffect(() => {
+
+  const fetchBlogs = async () => {
+    try {
+      const response = await api.get('freshlyapp/blogs');
+      setBlogs(response.data);
+
+    } catch (error) {
+      if (error) {
+        // Catch errors out of 200 range
+        console.log(error.response.data)
+        console.log(error.response.headers)
+        console.log(error.response.status)
+      } else {
+        // any other errors within 200
+        console.log(error.response.message)
+>>>>>>> Simanga-dev
       }
     };
     fetchBlogs();
