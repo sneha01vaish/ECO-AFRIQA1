@@ -7,6 +7,7 @@ import Home from "./components/pages/homepage/Home"
 import LoginSignUp from "./components/pages/SignUp/LoginSignUp";
 import Blogs from "./components/pages/blogs/Blogs";
 import ProduceCenter from "./components/pages/farm-produce/ProduceCenter";
+
 import Details from './components/pages/about-us/Details';
 import Products from './components/pages/farm-produce/Products';
 
