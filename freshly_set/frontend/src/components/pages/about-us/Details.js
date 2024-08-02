@@ -106,53 +106,91 @@ function Details() {
           </div>
           <div className="flex justify-center lg:justify-start mt-[100px]">
             <div className="grid grid-cols-3 gap-x-[40px] gap-y-[40px] mx-auto">
-              <div className="flex flex-col items-center w-[165px] lg:w-[286px] space-y-[10px]">
+              <div className="relative block flex-col items-center w-[165px] lg:w-[286px] space-y-[10px] z-30 group">
+              <a href="#" target='_blank'>
+                    <img className="absolute top-[150px] cursor-pointer transition-all duration-500 ease-out left-[120px] z-20 h-[60px] w-[60px] grayscale hidden group-hover:flex" src="/static/media/linkedinn.png"  alt="LinkedInImg"/>
+
+                </a>
                 <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
                 <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
                 <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Tech Team</p>
               </div>
-              <div className="flex flex-col items-center w-[165px] lg:w-[286px] space-y-[10px]">
+              <div className="relative block flex-col items-center w-[165px] lg:w-[286px] space-y-[10px] z-30 group">
+              <a href="#" target='_blank'>
+                    <img className="absolute top-[150px] cursor-pointer transition-all duration-500 ease-out left-[120px] z-20 h-[60px] w-[60px] grayscale hidden group-hover:flex" src="/static/media/linkedinn.png"  alt="LinkedInImg"/>
+
+                </a>
                 <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
                 <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
                 <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Tech Team</p>
               </div>
-              <div className="flex flex-col items-center w-[165px] lg:w-[286px] space-y-[10px]">
+              <div className="relative block flex-col items-center w-[165px] lg:w-[286px] space-y-[10px] z-30 group">
+              <a href="#" target='_blank'>
+                    <img className="absolute top-[150px] cursor-pointer transition-all duration-500 ease-out left-[120px] z-20 h-[60px] w-[60px] grayscale hidden group-hover:flex" src="/static/media/linkedinn.png"  alt="LinkedInImg"/>
+
+                </a>
                 <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
                 <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
                 <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Tech Team</p>
               </div>
-              <div className="flex flex-col items-center w-[165px] lg:w-[286px] space-y-[10px]">
+              <div className="relative block flex-col items-center w-[165px] lg:w-[286px] space-y-[10px] z-30 group">
+              <a href="#" target='_blank'>
+                    <img className="absolute top-[150px] cursor-pointer transition-all duration-500 ease-out left-[120px] z-20 h-[60px] w-[60px] grayscale hidden group-hover:flex" src="/static/media/linkedinn.png"  alt="LinkedInImg"/>
+
+                </a>
                 <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
                 <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
                 <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Tech Team</p>
               </div>
-              <div className="flex flex-col items-center w-[165px] lg:w-[286px] space-y-[10px]">
+              <div className="relative block flex-col items-center w-[165px] lg:w-[286px] space-y-[10px] z-30 group">
+              <a href="#" target='_blank'>
+                    <img className="absolute top-[150px] cursor-pointer transition-all duration-500 ease-out left-[120px] z-20 h-[60px] w-[60px] grayscale hidden group-hover:flex" src="/static/media/linkedinn.png"  alt="LinkedInImg"/>
+
+                </a>
                 <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
                 <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
                 <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Tech Team</p>
               </div>
-              <div className="flex flex-col items-center w-[165px] lg:w-[286px] space-y-[10px]">
+              <div className="relative block flex-col items-center w-[165px] lg:w-[286px] space-y-[10px] z-30 group">
+              <a href="#" target='_blank'>
+                    <img className="absolute top-[150px] cursor-pointer transition-all duration-500 ease-out left-[120px] z-20 h-[60px] w-[60px] grayscale hidden group-hover:flex" src="/static/media/linkedinn.png"  alt="LinkedInImg"/>
+
+                </a>
                 <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
                 <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
                 <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Tech Team</p>
               </div>
-              <div className="flex flex-col items-center w-[165px] lg:w-[286px] space-y-[10px]">
+              <div className="relative block flex-col items-center w-[165px] lg:w-[286px] space-y-[10px] z-30 group">
+              <a href="#" target='_blank'>
+                    <img className="absolute top-[150px] cursor-pointer transition-all duration-500 ease-out left-[120px] z-20 h-[60px] w-[60px] grayscale hidden group-hover:flex" src="/static/media/linkedinn.png"  alt="LinkedInImg"/>
+
+                </a>
                 <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
                 <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
                 <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Tech Team</p>
               </div>
-              <div className="flex flex-col items-center w-[165px] lg:w-[286px] space-y-[10px]">
+              <div className=" relative block flex-col items-center w-[165px] lg:w-[286px] space-y-[10px] z-30 group">
+
+              <a href="#" target='_blank'>
+                    <img className="absolute top-[150px] cursor-pointer transition-all duration-500 ease-out left-[120px] z-20 h-[60px] w-[60px] grayscale hidden group-hover:flex" src="/static/media/linkedinn.png"  alt="LinkedInImg"/>
+
+                </a>
                 <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
                 <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
                 <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Tech Team</p>
               </div>
-              <div className="flex flex-col items-center w-[165px] lg:w-[286px] space-y-[10px]">
+              <div className="relative block flex-col items-center w-[165px] lg:w-[286px] space-y-[10px] z-30 group">
+              
+                <a href="#" target='_blank'>
+                    <img className="absolute top-[150px] cursor-pointer transition-all duration-500 ease-out left-[120px] z-20 h-[60px] w-[60px] grayscale hidden group-hover:flex" src="/static/media/linkedinn.png"  alt="LinkedInImg"/>
+
+                </a>
                 <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
                 <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
                 <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Tech Team</p>
               </div>
             </div>
-          </div>cd
+          </div>
         </div>
         
 
@@ -174,11 +212,14 @@ function Details() {
           <div className="flex justify-center w-[100%]">
   <div className="block">
     <div className="grid grid-cols-2 lg:grid-cols-2 lg:gap-x-[122px] gap-y-[38px] lg:gap-y-[0px] lg:mt-[100px] mx-auto">
-      <div className="block w-[165px] lg:w-[286px] relative">
+    <div className="relative block w-[165px] lg:w-[286px] z-30 group">
+                <a href="#" target='_blank'>
+                    <img className="absolute top-[150px] cursor-pointer transition-all duration-500 ease-out left-[120px] z-20 h-[60px] w-[60px] grayscale hidden group-hover:flex" src="/static/media/linkedinn.png"  alt="LinkedInImg"/>
+
+                </a>
+
         <img className="h-[232.56px] lg:h-[380px] w-[165px] lg:w-[286px] grayscale hover:grayscale-0 transform transition-all duration-500 cursor-pointer" src="/static/media/teamMember2.png" alt="MeetTeamImg" />
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500  bg-opacity-50">
-          <img src="/static/media/linkedinn.png" alt="LinkedIn Icon" className="h-[32px] w-[32px]" />
-        </div>
+        
         <p className="text-[15px] lg:text-[24px] text-black font-inter font-[700] text-center">Malaika Muchiri</p>
         <p className="text-[12px] lg:text-[20px] text-[#008000] font-inter font-[700] text-center">Sales Team</p>
                 </div>
