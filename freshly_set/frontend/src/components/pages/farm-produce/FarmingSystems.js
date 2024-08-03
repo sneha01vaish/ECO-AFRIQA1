@@ -6,7 +6,7 @@ function FarmingSystems() {
     <div className="block">
         <div className="flex justify-center items-center">
             <div className="block">
-                <h3 className="text-[40px] font-[900] font-inter text-[#008000]">POPULAR FARMING SYSTEMS</h3>
+                <h3 className="text-[25px] lg:text-[40px] font-[900] font-inter text-[#008000] text-center">POPULAR FARMING SYSTEMS</h3>
 
                 {/* Farm Cards */}
                 <div className="block space-y-[30px] lg:space-y-[41px]">
