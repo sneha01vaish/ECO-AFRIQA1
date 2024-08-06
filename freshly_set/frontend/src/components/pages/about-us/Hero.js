@@ -2,7 +2,7 @@ import React from 'react'
 
 function Hero() {
   return (
-    <div className="mt-[130px] relative h-[415px] lg:h-[495px] w-[100%] bg-hero-gif grayscale bg-cover bg-no-repeat mix-blend-luminosity ">
+    <div className="mt-[130px] relative h-[415px] lg:h-[495px] w-[100%] bg-hero-gif bg-fixed grayscale bg-cover bg-no-repeat mix-blend-luminosity ">
         
 
         <div className="absolute top-[161px] lg:top-[177px] z-[25] lg:left-[25%] lg:h-[106px]  lg:w:[946px] rounded-[16px] bg-black/[28%] px-[14px]  pt-[5px] lg:px-[28px] lg:pt-[20px]">
