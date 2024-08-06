@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Nav from '../../Nav/Navbar';
 import BlogSearch from './BlogSearch';
@@ -10,6 +10,7 @@ import BlogPosts from './BlogList'
 import api from '../../../api/blogs'
 // import BlogForm from './BlogForm';
 import Contact from './Contact';
+import { PageContext } from '../../context/PageContext';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -22,6 +23,12 @@ const Blogs = () => {
   const showLess = () => {
     setVisible((prevCount) => Math.max(prevCount - 3, 3));
   };
+
+  const [activeTab, setActiveTab] = useContext(PageContext);
+
+  useEffect(() => {
+    setActiveTab("products")
+},[activeTab])
 
 //  useEffect(() => {
 

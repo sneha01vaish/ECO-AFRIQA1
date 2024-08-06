@@ -1,6 +1,7 @@
 // src/components/Signup.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { PageContext } from '../context/PageContext';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -22,6 +23,11 @@ const Signup = () => {
     }
   };
 
+  const [activeTab, setActiveTab] = useContext(PageContext);
+
+  useEffect(() => {
+    setActiveTab("signUp")
+},[activeTab])
   return (
     <div>
       <h1>Signup</h1>
