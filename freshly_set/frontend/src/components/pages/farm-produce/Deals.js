@@ -44,7 +44,7 @@ export default function Deals() {
     return (
         <main className="w-full">
             <h1 className="text-3xl sm:text-5xl text-green-700 text-center">Farm Produce Center</h1>
-            <div className="w-full flex flex-wrap justify-center gap-8 py-8">
+            <div className="w-full flex flex-wrap justify-around gap-3 py-8">
 
                 <div className='w-[320.00px] h-[340.00px] border border-solid bg-emerald-600 rounded-xl border-slate-200 text-white/80 shadow-sm flex flex-col justify-start items-center p-3 py-8'>
                     <p className='text-xl font-bold capitalize my-1'>Deal of the week</p>
