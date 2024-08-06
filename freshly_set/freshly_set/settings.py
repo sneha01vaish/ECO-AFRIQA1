@@ -47,6 +47,12 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
     ]
 }
 
@@ -177,12 +183,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    'http://127.0.0.1:3000',
+    "https://localhost:3000",
+    'https://127.0.0.1:3000',
 ]
+CORS_ORIGIN_WHITELIST = ( 'localhost:3000', )
 CORS_ALLOWED_CREDENTIALS = True
 # React build directory
 REACT_APP_DIR = BASE_DIR / 'frontend/build'
 
 # Including React build static files in STATICFILES_DIRS
 STATICFILES_DIRS.append(REACT_APP_DIR / 'static/media')
+
+
