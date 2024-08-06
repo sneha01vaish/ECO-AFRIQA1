@@ -158,7 +158,7 @@ function NavAuthenticated() {
                 <div className="-mt-[20px]">
                     <FaShoppingBasket className="absolute freshlyGreenText text-[40px]"/>
 
-                    <div className="bg-[#f30024] h-[25px] w-[25px] rounded-[100%] relative -top-[12px] left-[30px] text-center">{1}</div>
+                    <div className="bg-[#f30024] h-[25px] w-[25px] rounded-[100%] relative -top-[12px] left-[30px] text-center font-inter mt-[5px]">{1}</div>
                 </div>
                 
                 <FaRegUserCircle className="text-[40px] freshlyGreenText"/>
