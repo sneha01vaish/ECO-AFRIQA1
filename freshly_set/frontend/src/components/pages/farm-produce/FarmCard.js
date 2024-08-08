@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FaCaretDown, FaStar } from 'react-icons/fa'
+import { FaCaretDown, FaLongArrowAltRight, FaStar } from 'react-icons/fa'
 
 function FarmCard({  img, title, body, rating, number}) {
     const [clicked, setClicked] = useState({
@@ -20,36 +20,48 @@ function FarmCard({  img, title, body, rating, number}) {
         console.log("clicked", clicked)
     },[clicked])
   return (
-    <div className="flex relative  w-[344px] lg:w-[673px] bg-[#00AA5B1A]/[0.10] rounded-[24px] py-[32px] px-[31px]"> 
-        {/* Left side */}
-        <div className="">
-            <img className="h-[134.734px] w-[92.634px] lg:h-[200.465px] lg:w-[153.267px]" src={img} alt="CardImg"/>
-        </div>
+    <div className="flex justify-center items-center w-[373px] shadow-2xl rounded-[24px]"> 
+       
+       <div className="block">
+          <div>
+            <img className="w-[373.07px] h-[200px] object-cover rounded-t-[24px]" src={img}/>
+          </div>
+          
+          <div className="flex items-center px-[20px]">
+            <p className="freshlyGreenText font-inter font-[700]">In Stock</p>
 
-        {/* Right Side */}
+            <div className="flex space-x-[8px] ml-[20px]">
+              <FaStar className="freshlyGreenText text-[25px]"/>
+              <FaStar className="freshlyGreenText text-[25px]"/>
+              <FaStar className="freshlyGreenText text-[25px]"/>
+              <FaStar className="freshlyGreenText text-[25px]"/>
+              <FaStar className="freshlyGreenText text-[25px]"/>
+              <FaStar className="freshlyGreenText text-[25px]"/>
 
-        <div className="ml-[31px] block lg:-mt-[20px]">
-            <h4 className="font-inter text-[12px] font-[900] lg:text-[20px] lg:font-[900] -mt-[0px] ">{title}</h4>
-            <p className={clicked[number] === true ? "flex mt-[14px] text-[10px] lg:text-[16px] font-[600] text-start w-[131.875px] lg:w-[258px] lg:leading-[20.8px] leading-[13px] font-josefin":"hidden"}>{body}</p>
-           
-            <div className="flex justify-between items-center">
-                <p className="text-[#008000] font-inter text-[12px] lg:text-[18px] font-[900] text-start whitespace-nowrap">In Stock</p>
-                <div className="flex lg:space-x-[10px] ml-[90px] lg:ml-[251px]">
-                    <FaStar className="text-[#008000] text-[18px]"/>
-                    <FaStar className="text-[#008000] text-[18px]"/>
-                    <FaStar className="text-[#008000] text-[18px]"/>
-                    <FaStar className="text-[#008000] text-[18px]"/>
-                    <FaStar className="text-[#008000] text-[18px]"/>
+            </div>
+          </div>
 
 
-                </div>
-            </div>  
-        </div>
+          <div className="">
+            {/* Text */}
+            <h2 className="text-black text-[32px] font-inter font-[700] text-start mt-0 ml-[20px]">{title}</h2>
 
-        <FaCaretDown 
-                        onClick={() => toggleCard(number)} 
-                        className={`text-black h-[30px] lg:h-[52px] w-[20.8px] lg:w-[55px]  mr-[14px] lg:mr-[17px]  cursor-pointer transition-all duration-300 ease-in-out ${clicked[number] ? "rotate-180" : ""}`}
-                    />
+            <p className="max-w-[350px]  ml-[20px]  font-josefin text-[15px] font-[600] leading-[32.5px] text-[#525560] lg:w-[498px] text-start">{body}</p>
+
+            <p className="max-w-[350px]  ml-[20px] font-josefin text-[15px] font-[600] leading-[32.5px] text-[#525560] lg:w-[498px] text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+
+          </div>
+          <div className="flex justify-between items-center lg:mx-[30px]">
+              <div className="flex space-x-[15px] items-center">
+                <p className="text-[20px] freshlyGreenText cursor-pointer">Read More</p>
+                  <FaLongArrowAltRight className="freshlyGreenText cursor-pointer" />
+              </div>
+
+             <img className="h-[40px] w-[40px] cursor-pointer" src="/static/media/docLogo.png" alt="DocLogo"/>
+           </div>
+       </div>
+
+    
         
      </div>
   )
