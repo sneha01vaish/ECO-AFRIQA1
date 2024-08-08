@@ -91,16 +91,27 @@ function Nav() {
                 <Link onClick={() => setActiveTab("blogs")}  to="/blogs" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
                 <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Blogs</p>
 
-                    <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-                  
-                        {
-                            activeTab && (
-                                <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+                <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                
+                    {
+                        activeTab && (
+                            <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
 
-                            )
-                        }
+                        )
+                    }
+                </Link>
 
+                <Link onClick={() => setActiveTab("products")}  to="/products" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Products</p>
 
+                <div className={activeTab === "products" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                
+                    {
+                        activeTab && (
+                            <div className= {` ${activeTab === "products"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                        )
+                    }
                 </Link>
 
                 <Link to="/SignUp" onClick={() => setActiveTab("signUp")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
