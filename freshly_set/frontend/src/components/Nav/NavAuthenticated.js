@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import "./Nav.css"
 import { IoMdMenu } from "react-icons/io";
 import { Link, NavLink } from 'react-router-dom';
-import { IoMdClose } from "react-icons/io";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 import { FaRegUserCircle, FaShoppingBasket, FaUser, FaUsers } from "react-icons/fa";
 import { CiSettings, CiGlobe } from "react-icons/ci";
 import { PageContext } from '../context/PageContext';
@@ -44,7 +44,7 @@ function NavAuthenticated() {
     <div>
         {/* Large screen navbar */}
 
-        <nav className={authenticated ? "flex justify-between  w-[100%]   pl-[67.48px] pr-[40.14px] fixed top-0 z-50 bg-white pb-[20.1px] pt-[20.42px]": "flex  justify-between w-[90%]  pl-[67.48px] pr-[120.14px] fixed top-0 z-50 bg-white  pb-[20.1px] pt-[20.42px]"}>
+        <nav className={authenticated ? "flex justify-between  w-[100%]   pl-[67.48px] pr-[40.14px] fixed top-0 z-50 bg-white pb-[20.1px] pt-[20.42px]": "flex  justify-between w-[90%]  pl-[67.48px] pr-[120.14px] fixed  top-0 z-50 bg-white  pb-[20.1px] pt-[20.42px]"}>
             {/* Logo */}
             <div className="">
                 <img className={scrolled ? "navbarLogoScroll" : "navbarLogo"} src="/static/media/logo2.png" alt="NavLogo"/>
@@ -63,7 +63,7 @@ function NavAuthenticated() {
     width: 84px;
     cursor: pointer; */}
 
-            <div className={authenticated ? "flex justify-between  items-center w-[70%]":"flex  space-x-[59px] items-center  "}>
+            <div className={authenticated ? "flex justify-between  items-center w-[70%]" :"flex  space-x-[59px] items-center   "}>
                 <Link onClick={() => setActiveTab("home")}  to="/" className="group text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
                     
                     <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Home</p>
@@ -172,44 +172,8 @@ function NavAuthenticated() {
         </nav>
 
         {/* Small screen Navbar */}
-{/* 
-        <nav className="navbarSmBg">
-            <img src="/static/media/logo2.png"/>
 
-            <div className="navbarSmBtns">
-                <div className="navbarSmBtn">
-                    <p className=''>Home</p>
-                    <div className="navbarLine"/>
-                </div>
-
-                <div className="navbarSmBtn">
-                    <p style={{marginLeft:"25px"}} className=''>Signup</p>
-                    <div className="navbarLine"/>
-                </div>
-
-                {
-                    !open ? (
-                        <IoMdMenu onClick={() => setOpen(true)} style={{marginLeft:"25px"}}  className="menuIcon"/>
-
-                    ):(
-                        <IoMdClose className="menuIcon" style={{marginLeft:"25px"}}  onClick={() => setOpen(false)} />
-
-                    )
-                }
-                
-                <div className={open ? " flex justify-center  z-50  h-screen":"hidden"}>
-                        <div className="block">
-                            <li>Home</li>
-                        </div>
-
-                </div>
-
-
-              
-             </div>
-        </nav>  */}
-
-        <nav className={open ? "flex justify-center z-[50] lg:hidden bg-[#008000]/[85%]  w-[100%] h-[100%] fixed top-0  ":"bg-white flex justify-between fixed top-0 w-[100%] lg:hidden items-center pl-[18px] z-[60]"}>
+        <nav className={open ? "flex justify-center z-[50] border rounded-[15px] lg:hidden bg-[#008000]  w-[100%] h-[100%] fixed  ":"bg-white flex justify-between fixed  top-0  w-[100%] lg:hidden items-center z-[60]"}>
             <img className={!open ? "flex h-[77px] w-[80px] object-cover":"hidden"} src="/static/media/logo2.png" alt="navLogo"/>
                         
                         <div className={!open ? "flex space-x-[33px]":"hidden"}>
@@ -227,10 +191,10 @@ function NavAuthenticated() {
             <div className="flex  justify-center">
                 {!open &&(
                     <div className="">
-                        
-                        <IoMdMenu onClick={() => setOpen(true)}  className="text-black h-[37px] w-[44px] my-[42px] mr-[41px] "/>
-                        
+                          <IoMdMenu onClick={() => setOpen(true)} className="text-black h-[37px] w-[44px] my-[42px] mr-[41px] " />
                     </div>
+                    
+                    
 
                 )}
 
@@ -239,56 +203,82 @@ function NavAuthenticated() {
 
             {open  && (
              
-              <div className="block w-[100%] ">
-                <div className="flex justify-between items-center  pt-[45px]  px-[31px] ">
+              <div className="MenuOpened block w-[100%] ">
+                <div className="flex justify-between items-center px-[31px] ">
                     <img className="h-[77px] w-[80px] bg-white object-cover rounded-[100%]" src="/static/media/logo2.png" alt="navLogo"/>
-                    <IoMdClose onClick={() => setOpen(false)} className="text-white h-[77px] w-[80px] cursor-pointer"/>
+                    <IoMdCloseCircleOutline onClick={() => setOpen(false)} className="ClosedLogo block w-[40px] h-[40px] fill-white mt-[63px] cursor-pointer"/>
 
                 </div>
-                <div className="flex justify-center">
-                    <div className="block space-y-[40px] mt-[50px]">
-                        <Link to="/about-us" className="flex space-x-[22px]  items-center ">
-                            <FaUsers className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[25px] font-[700] font-inter">About Us</p>
-                        </Link>
+                
+                <div className='SecondRow block justify-start mt-[31px] ml-[72px] '>
+                    <img className='UserLogo w-[93px] h-[94px] ' src='/static/media/user2.png'  />
+                    <p className=' text-[#fff] font-inter text-[25px] font-[700] text-left mt-[11px]'> New User </p>
+                </div>
+                      
+                <div className="SetOfIcons  mt-[34px] ml-[72px] ">
+                    <div className="block space-y-[30px] mt-[50px]">
+                        <div className='AboutTab mb-[20px]'>
+                      <Link to="/about-us" className='flex justify-start '>
+                            <FaUsers className='block w-[35px] h-[33px] fill-white mr-[8px]' />
+                            <p className='text-[#fff] font-inter text-[22px] font-[700] block my-0'>About</p>
+                      </Link>
+                  </div>
 
-                        <Link to="/blogs" className="flex space-x-[22px]  items-center">
-                            <CiGlobe className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[25px] font-[700] font-inter">Blog</p>
-                        </Link>
+                  <div className='BlogTab flex justify-start mt-0 mb-[20px]'>
+                    <Link to="/blogs" className='flex justify-start'>
+                            <CiGlobe  className='block w-[31px] h-[33px] fill-white mr-[12px]' />
+                            <p className='text-[#fff] font-inter text-[22px] font-[700] block my-0'>Blog</p>
+                    </Link>
+                  </div>
 
-                        <Link to="/signup" onClick={() => setActiveTab("signUp")} className="flex space-x-[22px]  items-center">
-                            <FaUsers className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[25px] font-[700] font-inter">Sign Up</p>
-                        </Link>
+                  <div className='ServicesTab flex justify-start mt-0 mb-[20px]'> {/* Currently link Lead to Homepage */}
+                    <Link to="/" className='flex justify-start'>
+                            <CiGlobe className='block w-[31px] h-[33px] fill-white mr-[12px]' />
+                            <p className='text-[#fff] font-inter text-[22px] font-[700] block my-0'>Services</p>
+                    </Link>
+                  </div>
 
-                        <Link className="flex space-x-[22px]  items-center">
-                            <FaUser className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[25px] font-[700] font-inter">Your Profile</p>
-                        </Link>
+                  <div className='FarmProduceTab flex justify-start  mb-[20px]'> {/* Currently link Lead to Homepage */}
+                    <Link to="/" className='flex justify-start'>
+                            <CiGlobe  className='block w-[31px] h-[33px] fill-white mr-[12px]' />
+                            <p className='text-[#fff] font-inter text-[22px] font-[700] block my-0'>Farm Produce</p>
+                    </Link>
+                  </div>
 
-                        <div className="flex space-x-[22px]  items-center">
-                            <CiSettings className="h-[54px] w-[64px] text-white"/>
-                            <p className="text-white text-[25px] font-[700] font-inter">Settings</p>
-                        </div>
-                    </div>
+                  <div className='FarmingSystemsTab flex justify-start  mb-[20px]'> {/* Currently link Lead to Homepage */}
+                    <Link to="/" className='flex justify-start'>
+                            <CiGlobe  className='block w-[31px] h-[33px] fill-white mr-[12px]' />
+                            <p className='text-[#fff] font-inter text-[22px] font-[700] block my-0'>Farming Systems</p>
+                    </Link>
+                  </div>
+
+                  <div className='GardenSetupsTab flex justify-start  mb-[20px]'> {/* Currently link Lead to Homepage */}
+                    <Link to="/" className='flex justify-start'>
+                            <CiGlobe  className='block w-[31px] h-[33px] fill-white mr-[12px]' />
+                            <p className='text-[#fff] font-inter text-[22px] font-[700] block my-0'>Garden Setups</p>
+                    </Link>
+                  </div>
+
+                  <div className='GardenTab flex justify-start  mb-[20px]'>  {/* Currently link Lead to Homepage */}
+                    <Link to="/" className='flex justify-start'>
+                            <CiGlobe  className='block w-[31px] h-[33px] fill-white mr-[12px]' />
+                            <p className='text-[#fff] font-inter text-[22px] font-[700] block my-0'>Garden</p>
+                    </Link>
+                  </div>
+
+                  <div className='Settings pb-[80px]'> {/* Currently link Lead to Homepage */}
+                    <Link to="/" className='flex justify-start'>
+                          <CiSettings  className='block w-[31px] h-[33px] fill-white mr-[12px]' />
+                          <p className='text-[#fff] font-inter text-[22px] font-[700] block my-0'>Settings</p>
+                    </Link>
+                  </div>
+                    </div> {/**End here */}
                     
                 </div>  
-                
-                
-
-
-
-
-
-
+   
               </div>
                 
 
-
-            // <div className="flex justify-center mt-[60px] bg-red-400 w-[100%] -ml-[20%]">
-            //         <h1>Hello world</h1>
-            // </div>
             )}
         </nav>
     </div>
