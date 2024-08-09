@@ -48,7 +48,7 @@ function FarmCard({  img, title, body, rating, number}) {
 
             <p className="max-w-[350px]  ml-[20px]  font-josefin text-[15px] font-[600] leading-[32.5px] text-[#525560] lg:w-[498px] text-start">{body}</p>
 
-            <p className="max-w-[350px]  ml-[20px] font-josefin text-[15px] font-[600] leading-[32.5px] text-[#525560] lg:w-[498px] text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+            <p className="max-w-[350px]  ml-[20px]  font-josefin text-[15px] font-[600] leading-[32.5px] text-[#525560] lg:w-[498px] text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
           </div>
           <div className="flex justify-between items-center lg:mx-[30px]">

@@ -105,7 +105,7 @@ function BlogWidgets() {
                    </div>
 
                     <div className="flex justify-center">
-                        {/* <img className="h-[480px] w-[514px] rounded-[21px] object-cover" src="/static/media/farmingTech.png" alt="blogWidgetFarmingAndTech"/> */}
+                        <img className="h-[148px] w-[167px] lg:h-[480px] lg:w-[514px] rounded-[21px] object-cover" src="/static/media/farmingTech.png" alt="blogWidgetFarmingAndTech"/>
 
                     </div>
 
