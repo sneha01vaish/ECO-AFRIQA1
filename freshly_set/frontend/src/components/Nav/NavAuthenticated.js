@@ -44,7 +44,7 @@ function NavAuthenticated() {
     <div>
         {/* Large screen navbar */}
 
-        <nav className={authenticated ? "flex justify-between  w-[100%]   pl-[67.48px] pr-[40.14px] fixed top-0 z-50 bg-white pb-[20.1px] pt-[20.42px]": "flex  justify-between w-[90%]  pl-[67.48px] pr-[120.14px] fixed  top-0 z-50 bg-white  pb-[20.1px] pt-[20.42px]"}>
+        <nav className={authenticated ? "hidden lg:flex justify-between  w-[100%]   pl-[67.48px] pr-[40.14px] fixed top-0 z-50 bg-white pb-[20.1px] pt-[20.42px]": "hidden lg:flex  justify-between w-[90%]  pl-[67.48px] pr-[120.14px] fixed  top-0 z-50 bg-white  pb-[20.1px] pt-[20.42px]"}>
             {/* Logo */}
             <div className="">
                 <img className={scrolled ? "navbarLogoScroll" : "navbarLogo"} src="/static/media/logo2.png" alt="NavLogo"/>
@@ -173,7 +173,7 @@ function NavAuthenticated() {
 
         {/* Small screen Navbar */}
 
-        <nav className={open ? "flex justify-center z-[50] border rounded-[15px] lg:hidden bg-[#008000]  w-[100%] h-[100%] fixed  ":"bg-white flex justify-between fixed  top-0  w-[100%] lg:hidden items-center z-[60]"}>
+        <nav className={open ? "flex justify-center z-[50] border rounded-[15px] lg:hidden bg-[#008000]  w-[100vw] h-[100%] fixed  ":"bg-white flex justify-between fixed  top-0  w-[100%] lg:hidden items-center z-[60]"}>
             <img className={!open ? "flex h-[77px] w-[80px] object-cover":"hidden"} src="/static/media/logo2.png" alt="navLogo"/>
                         
                         <div className={!open ? "flex space-x-[33px]":"hidden"}>

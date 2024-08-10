@@ -1,6 +1,6 @@
 const ProduceBanner = () => {
     return(
-        <div className="relative lg:h-[410px] lg:w-[100%] freshlyGreen rounded-[16px]">
+        <div className="hidden lg:flex relative lg:h-[410px] lg:w-[100%] freshlyGreen rounded-[16px]">
             
             {/* Left Images */}
             <div className="">
