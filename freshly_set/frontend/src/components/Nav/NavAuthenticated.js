@@ -203,7 +203,7 @@ function NavAuthenticated() {
 
             {open  && (
              
-              <div className="MenuOpened block w-[100%] ">
+              <div className=" block w-[100%] ">
                 <div className="flex justify-between items-center px-[31px] ">
                     <img className="h-[77px] w-[80px] bg-white object-cover rounded-[100%]" src="/static/media/logo2.png" alt="navLogo"/>
                     <IoMdCloseCircleOutline onClick={() => setOpen(false)} className="ClosedLogo block w-[40px] h-[40px] fill-white mt-[63px] cursor-pointer"/>
