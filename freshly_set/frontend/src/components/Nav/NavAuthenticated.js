@@ -6,7 +6,7 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import { FaRegUserCircle, FaShoppingBasket, FaUser, FaUsers } from "react-icons/fa";
 import { CiSettings, CiGlobe } from "react-icons/ci";
 import { PageContext } from '../context/PageContext';
-
+import { motion } from "framer-motion";
 function NavAuthenticated() {
 
     const [scrolled, setScrolled ] = useState(false);
@@ -173,7 +173,13 @@ function NavAuthenticated() {
 
         {/* Small screen Navbar */}
 
-        <nav className={open ? "flex justify-center z-[50] border rounded-[15px] lg:hidden bg-[#008000]  w-[100vw] h-[100%] fixed  ":"bg-white flex justify-between fixed  top-0  w-[100%] lg:hidden items-center z-[60]"}>
+        <nav
+      className={
+        open
+          ? 'flex justify-center z-[50] border rounded-[15px] lg:hidden bg-[#008000] w-[90vw] h-[80%] fixed animate-slideIn'
+          : 'bg-white flex justify-between fixed top-0 w-[100%] lg:hidden items-center z-[60]'
+      }
+    >            
             <img className={!open ? "flex h-[77px] w-[80px] object-cover":"hidden"} src="/static/media/logo2.png" alt="navLogo"/>
                         
                         <div className={!open ? "flex space-x-[33px]":"hidden"}>
@@ -206,7 +212,7 @@ function NavAuthenticated() {
               <div className=" block w-[100%] ">
                 <div className="flex justify-between items-center px-[31px] ">
                     <img className="h-[77px] w-[80px] bg-white object-cover rounded-[100%]" src="/static/media/logo2.png" alt="navLogo"/>
-                    <IoMdCloseCircleOutline onClick={() => setOpen(false)} className="ClosedLogo block w-[40px] h-[40px] fill-white mt-[63px] cursor-pointer"/>
+                    <IoMdCloseCircleOutline onClick={() => setOpen(false)} className="ClosedLogo block w-[40px] h-[40px] fill-white mt-[63px] cursor-pointer animate-slideOut"/>
 
                 </div>
                 
