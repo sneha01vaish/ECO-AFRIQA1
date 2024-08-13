@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import { IoStarSharp } from "react-icons/io5";
 import { RiArrowRightSLine, RiArrowLeftSLine } from "react-icons/ri";
 import { BsArrowRight } from "react-icons/bs";
-import Products from './json/Products.json'
+import Products from './json/Products.json';
+import Navbar from '../../../components/Nav/Navbar'
 
 // REPLACE **Products.json** FILE WITH FETCHED PRODUCTS FROM THE DATABASE
 const productImages = {
@@ -21,6 +22,13 @@ const Categories = () => {
     return acc
   }, {}))[0])
 
+  const categoryStyles = {
+    fruits: 'bg-[#FF9E0C]/80 hover:bg-[#FF9E0C]',
+    legumes: 'bg-[#AA2900]/80 hover:bg-[#AA2900]',
+    vegetables: 'bg-[#008000]/80 hover:bg-[#008000]',
+    spices: 'bg-[#FF0C1A]/80 hover:bg-[#FF0C1A]'
+  }
+
   const groupedProducts = products.reduce((acc, product) => {
     const { category } = product
 
@@ -29,6 +37,7 @@ const Categories = () => {
         id: category,
         items: [],
         img: productImages[category],
+        styles: categoryStyles[category]
       }
     }
     acc[category].items.push(product)
@@ -45,7 +54,9 @@ const Categories = () => {
   const scrollRight = () => {scrollContainer.current.scrollBy({ left: 400, behavior: 'smooth' })}
 
   return (
-    <section className='bg-white/80 sm:max-w-[74%] w-full mx-auto py-8' >
+    <>
+    <Navbar />
+    <section className='bg-white/80 sm:max-w-[74%] w-full mx-auto py-8 mt-[112px] relative' >
       <div className="" >
       <h2 className='text-green-700 text-xl text-center font-bold my-0'>Category</h2>     
         <div className='text-green-700 font-bold flex justify-end'>
@@ -59,9 +70,9 @@ const Categories = () => {
             categories?.map(category => (
               <div
               key={category}
-              onClick={() => handleCatClick(category)} className='bg-[#FF9E0C]/80 transition delay-200 ease-in-out hover:bg-[#FF9E0C] min-w-[160.00px] h-[160.00px] flex flex-col justify-end items-center rounded-lg shadow-gray-400 shadow-md hover:shadow-lg cursor-pointer'>
+              onClick={() => handleCatClick(category)} className={`transition delay-200 ease-in-out min-w-[160.00px] h-[160.00px] flex flex-col justify-end items-center rounded-lg  hover:shadow-lg cursor-pointer ${groupedProducts[category].styles} ${selectedCategory === category ? ' shadow-md shadow-slate-600' : ''}`}>
             <img
-              className='w-[128px]'
+              className='w-[152px]'
               src={groupedProducts[category].img}
               alt="Fresh fruits"
             />
@@ -104,8 +115,8 @@ const Categories = () => {
         }
       </div>
     </div>
- 
     </section>
+    </>
   )
 }
 
