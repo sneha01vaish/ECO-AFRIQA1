@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -65,11 +66,13 @@ function Reviews2() {
             </p>
           </div>
         </div>
-          
+        
         <div className='flex justify-center mt-[180px]'> 
+          <Link to="/reviews2-detailed" className="block cursor-pointer mx-auto w-[204px] space-y-[12px] relative"> 
           <button className='w-[272px] h-[70px] bg-[#008000] rounded-[15px] mt-[62px] text-white text-[25px] border-none'>Read More</button>
+        </Link>
         </div>
-          
+        
         {/* <div className="flex justify-center mt-[38px]">
           <svg xmlns="http://www.w3.org/2000/svg" width="145" height="32" viewBox="0 0 145 32" fill="none">
             <ellipse cx="12.9464" cy="12" rx="12.9464" ry="12" fill="#D9D9D9"/>
