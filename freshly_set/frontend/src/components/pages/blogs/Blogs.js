@@ -4,13 +4,14 @@ import Nav from '../../Nav/Navbar';
 import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
 import FreshlyFooter from '../../footer/FreshlyFooter';
-import BlogWidgets from './BlogWidgets';
 import BlogPosts from './BlogList'
 
 import api from '../../../api/blogs'
 // import BlogForm from './BlogForm';
 import Contact from './Contact';
 import { PageContext } from '../../context/PageContext';
+import BlogWidgetsNew from './BlogWidgetsNew';
+import BlogWidgets from './BlogWidgets';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -56,7 +57,7 @@ const Blogs = () => {
   return (
     <div>
 
-      <div className=" min-h-[100vh] py-16">
+      <div className=" min-h-[100vh] py-16 bg-[#F5FAF9]">
         <Nav />
         <BlogSearch />
         <BlogHero />
@@ -82,7 +83,8 @@ const Blogs = () => {
             View less Updates
           </button>
         </div>
-        <BlogWidgets />
+          <BlogWidgetsNew />  
+          <BlogWidgets />
         <Contact />
         <FreshlyFooter />
       </div>
