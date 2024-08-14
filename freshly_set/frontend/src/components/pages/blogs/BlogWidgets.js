@@ -40,7 +40,7 @@ function BlogWidgets() {
         {/* Cards */}
 
         <div className="block">
-            <div className="flex justify-center space-x-[12px] lg:space-x-[59px]  mt-[63px] mx-[12px]">
+            <div className="flex justify-center space-x-[] lg:space-x-[59px]  mt-[63px] mx-[12px]">
                 {/* PollCard */}
 
                 <div className="block lg:h-[1264px] lg:w-[563px] bg-white   rounded-[27px] border-solid border-[1px] border-[#00000047]/[0.28] shadow-lg">

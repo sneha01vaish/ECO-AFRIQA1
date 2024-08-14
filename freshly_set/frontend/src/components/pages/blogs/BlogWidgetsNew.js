@@ -25,11 +25,11 @@ function BlogWidgetsNew() {
       }
     };
   return (
-    <div className="hidden lg:grid lg:grid-cols-3 gap-y-[28px] mx-[68px] mt-[70px] ">
+    <div className="hidden lg:grid lg:grid-cols-3 gap-y-[28px] mx-[7px] lg:mx-[68px] mt-[70px] ">
 
         {/* Cards Start */}
 
-        <div className="relative h-[506px] w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  block">
+        <div className="relative h-[281.016px] lg:h-[506px] w-[195.489px] lg:w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  block">
             {/* Card 1 */}
 
             <FaChevronDown className="absolute top-[42px] right-[20px] h-[18.949px] w-[30.053px] text-black cursor-pointer"/>
