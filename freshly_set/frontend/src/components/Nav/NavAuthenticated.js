@@ -176,7 +176,7 @@ function NavAuthenticated() {
         <nav
       className={
         open
-          ? 'flex justify-center z-[50] border rounded-[15px] lg:hidden bg-[#008000] w-[90vw] h-[80%] fixed animate-slideIn'
+          ? 'flex justify-center z-[50] border rounded-[15px] lg:hidden bg-[#008000] ml-[20px] mt-[20px] w-[100%] h-[100%] fixed animate-slideIn'
           : 'bg-white flex justify-between fixed top-0 w-[100%] lg:hidden items-center z-[60]'
       }
     >            
@@ -212,7 +212,7 @@ function NavAuthenticated() {
               <div className=" block w-[100%] ">
                 <div className="flex justify-between items-center px-[31px] ">
                     <img className="h-[77px] w-[80px] bg-white object-cover rounded-[100%]" src="/static/media/logo2.png" alt="navLogo"/>
-                    <IoMdCloseCircleOutline onClick={() => setOpen(false)} className="ClosedLogo block w-[40px] h-[40px] fill-white mt-[63px] cursor-pointer animate-slideOut"/>
+                    <IoMdCloseCircleOutline onClick={() => setOpen(false)} className="ClosedLogo block w-[40px] h-[40px] fill-white  cursor-pointer mr-[30px] animate-slideOut"/>
 
                 </div>
                 
