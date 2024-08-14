@@ -10,6 +10,7 @@ import Products from './components/pages/farm-produce/Products';
 import FarmingSystemsDetail from './components/pages/farm-produce/FarmingSystemsDetail';
 import GardenSetupsDetail from './components/pages/farm-produce/GardenSetupsDetail';
 import Detail from "./components/pages/homepage/Detailed"
+import Categories from './components/pages/farm-produce/Categories';
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/products/categories" element={<Categories />} />
         <Route path="/about-us" element={<About />} />
         <Route path="/team-detail" element={<Detail />} />
         <Route path="/farmingSystems" element={<FarmingSystemsDetail />}/>
