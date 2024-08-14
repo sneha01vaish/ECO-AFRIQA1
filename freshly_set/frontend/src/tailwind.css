@@ -8,4 +8,8 @@
     .footerLinks {
         @apply text-gray-200 font-inter text-[15px] font-[500];
     }
+
+    .freshlyGreenText{
+        @apply text-[#008000]
+    }
   }

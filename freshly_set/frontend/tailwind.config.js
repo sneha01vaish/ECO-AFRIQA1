@@ -13,6 +13,7 @@ module.exports = {
       backgroundImage: theme => ({
         'hero-about': "url('/public/static/media/aboutHero.png')",
         'hero-products':"url('/public/static/media/productsHero.png')",
+        'hero-gif':"url('/public/static/media/heroGIF.gif')"
       }),
       },
   },
@@ -21,7 +22,9 @@ module.exports = {
      
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
   corePlugins: {
     preflight: false, // Disable Tailwind's preflight reset
   },

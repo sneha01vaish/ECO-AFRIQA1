@@ -15,6 +15,8 @@ function Nav() {
 
     const [open, setOpen] = useState(false);
 
+    const [authenticated, setAuthenticated] = useState(false);
+
     const showStar = () =>{
         if(window.scrollY>60){
             setScrolled(true)
@@ -42,9 +44,12 @@ function Nav() {
     <div>
         {/* Large screen navbar */}
 
-        <nav className="flex  pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-white w-screen pb-[20.1px] pt-[20.42px]">
+        <nav className={authenticated ? "flex justify-between  w-[100%]   pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-white pb-[20.1px] pt-[20.42px]": "flex  justify-between w-[90%]  pl-[67.48px] pr-[177.14px] fixed top-0 z-50 bg-white  pb-[20.1px] pt-[20.42px]"}>
             {/* Logo */}
-            <img className={scrolled ? "navbarLogoScroll" : "navbarLogo"} src="/static/media/logo2.png" alt="NavLogo"/>
+            <div className="">
+                <img className={scrolled ? "navbarLogoScroll" : "navbarLogo"} src="/static/media/logo2.png" alt="NavLogo"/>
+
+            </div>
 
             {/* Nav Buttons */}
 
@@ -58,7 +63,7 @@ function Nav() {
     width: 84px;
     cursor: pointer; */}
 
-            <div className="flex justify-self-end ml-[40%] space-x-[59px] items-center ">
+            <div className={authenticated ? "flex justify-between  items-center w-[60%]":"flex  space-x-[59px] items-center mr-[100px] "}>
                 <Link onClick={() => setActiveTab("home")}  to="/" className="group text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
                     
                     <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Home</p>
@@ -91,17 +96,83 @@ function Nav() {
                 <Link onClick={() => setActiveTab("blogs")}  to="/blogs" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
                 <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Blogs</p>
 
-                    <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-                  
-                        {
-                            activeTab && (
-                                <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+                <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                
+                    {
+                        activeTab && (
+                            <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
 
-                            )
-                        }
-
-
+                        )
+                    }
                 </Link>
+
+                <Link onClick={() => setActiveTab("products")}  to="/products" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Products</p>
+
+                <div className={activeTab === "products" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                
+                    {
+                        activeTab && (
+                            <div className= {` ${activeTab === "products"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                        )
+                    }
+                </Link>
+
+                {
+                    authenticated && (
+                        <div className="flex ">
+                            <Link onClick={() => setActiveTab("blogs")}  to="/blogs" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                            <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Products</p>
+
+                                <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                            
+                                    {
+                                        activeTab && (
+                                            <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                                        )
+                                    }
+
+
+                            </Link>
+
+
+                            <Link onClick={() => setActiveTab("blogs")}  to="/blogs" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                            <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Services</p>
+
+                                <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                            
+                                    {
+                                        activeTab && (
+                                            <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                                        )
+                                    }
+
+
+                            </Link>
+
+
+                            <Link onClick={() => setActiveTab("blogs")}  to="/blogs" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                            <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Gardens</p>
+
+                                <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                            
+                                    {
+                                        activeTab && (
+                                            <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                                        )
+                                    }
+
+
+                            </Link>
+                        </div>
+                    )
+                }
+
+                
 
                 <Link to="/SignUp" onClick={() => setActiveTab("signUp")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
                 <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Signup</p>

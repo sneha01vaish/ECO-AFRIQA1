@@ -12,11 +12,11 @@ body
 @tailwind utilities;
 
 a {
-  @apply text-blue-200 no-underline
+  @apply text-green-600 no-underline
 }
 
 a:visited {
-  @apply text-purple-200
+  @apply text-green-400
 }
 
 .standardBtn{
