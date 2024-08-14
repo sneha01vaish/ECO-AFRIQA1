@@ -7,7 +7,7 @@ function Contact() {
 
     <div className="Contacts-section items-center mt-[62px] lg:mx-[65px]">
       <div className="Contacts-Title flex justify-between lg:w-[948px] lg:mx-auto mx-6 mb-[30px] ">
-        <p className="text-[#008000] font-inter text-[20px] lg:text-[45px] font-[700] mb-0">Want Your Articles Be Featured On Our Blog? Contact Us</p>
+        <p className="text-[#008000] font-inter text-[20px] lg:text-[45px] font-[700] mb-0 text-start">Want Your Articles Be Featured On Our Blog? Contact Us</p>
       </div>
 
       <div className="block lg:flex w-[100%] justify-between ">
@@ -21,7 +21,7 @@ function Contact() {
           {/* mail */}
           <div classsName="block">
             <img className="h-[49px] w-[45px] space-x-1" src="/static/media/mail.png" alt="email" />
-              <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px] ">Email</p>
+              <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px] lg:-ml-[80px] ">Email</p>
               
               <a href="mailto:info.freshlyfarms5@gmail.com" className="font-normal no-underline" target="_blank">
                 <p className="font-[400] text-[17px] lg:text-[22px] text-[#525560] font-josefin -mt-[10px]">info.freshlyfarms</p>
@@ -42,7 +42,7 @@ function Contact() {
           {/* Location */}
           <div classsName="block">
             <img className="h-[49px] w-[49px]" src="/static/media/location.png" alt="Office" />
-            <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px]">Office</p>
+            <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px] lg:-ml-[80px]">Office</p>
             <p className=" font-josefin text-[#525560] font-[400] text-[17px] lg:text-[22px] -mt-[10px]"> Nairobi, Kenya </p>
           </div>
 
