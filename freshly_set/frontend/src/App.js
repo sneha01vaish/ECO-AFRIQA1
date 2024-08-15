@@ -1,5 +1,5 @@
 import './App.css';
-
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import About from './components/pages/about-us/About';
@@ -11,6 +11,8 @@ import FarmingSystemsDetail from './components/pages/farm-produce/FarmingSystems
 import GardenSetupsDetail from './components/pages/farm-produce/GardenSetupsDetail';
 import Detail from "./components/pages/homepage/Detailed"
 import Categories from './components/pages/farm-produce/Categories';
+import FaqDetails from './components/pages/cta-detail/FaqDetails';
+
 function App() {
   return (
     <Router>
@@ -23,7 +25,9 @@ function App() {
         <Route path="/about-us" element={<About />} />
         <Route path="/team-detail" element={<Detail />} />
         <Route path="/farmingSystems" element={<FarmingSystemsDetail />}/>
-        <Route path="/gardenSetups" element={<GardenSetupsDetail />}/>
+        <Route path="/gardenSetups" element={<GardenSetupsDetail />} />
+        <Route path="/cta-detail/" element={<FaqDetails />} />
+        
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}
       </Routes>
     </Router>
