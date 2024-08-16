@@ -29,7 +29,7 @@ function ProductsHero() {
                 {/* Right side */}
 
                 <div className="block">
-                    <p className="text-black font-inter font-[900] text-[16px] -mt-[7px]">Request Invoice</p>
+                    <p className="text-black font-inter font-[900] text-[16px] -mt-[7px] cursor-pointer">Request Invoice</p>
                     <p className="text-[#0000008F]/[56%] w-[99px] lg:w-[144px] -mt-[7px]">Receive it in your e-mail or Phone Number</p>
                 </div>
             </div>

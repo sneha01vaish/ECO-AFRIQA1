@@ -12,4 +12,8 @@
     .freshlyGreenText{
         @apply text-[#008000]
     }
+
+    .freshlyGreen{
+        @apply bg-[#008000]
+    }
   }

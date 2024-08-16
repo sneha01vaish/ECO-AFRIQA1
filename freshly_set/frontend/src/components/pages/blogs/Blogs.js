@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 import Nav from '../../Nav/Navbar';
 import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
 import FreshlyFooter from '../../footer/FreshlyFooter';
-import BlogWidgets from './BlogWidgets';
 import BlogPosts from './BlogList'
 
 import api from '../../../api/blogs'
 // import BlogForm from './BlogForm';
 import Contact from './Contact';
 import { PageContext } from '../../context/PageContext';
+import BlogWidgetsNew from './BlogWidgetsNew';
+import BlogWidgets from './BlogWidgets';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -52,16 +54,23 @@ const Blogs = () => {
 //     console.log("Blogs fetched", blogs)
 //   }, [] };
 
+const navigate = useNavigate()
+const handleNavigateToAllBlogs = () => navigate('all-blogs-update')
  
   return (
     <div>
 
-      <div className=" min-h-[100vh] py-16">
+      <div className=" min-h-[100vh] py-16 bg-[#F5FAF9]">
         <Nav />
         <BlogSearch />
         <BlogHero />
-        <h1 className="text-center  text-[54px] lg:text-[140px] text-[#008000] font-inter font-[900]">What's new?</h1>
-        <div className="flex flex-col gap-8 py-8 max-w-[96%] sm:w-full mx-auto">
+        <h1 className="text-center text-nowrap text-[48px] my-2 sm:text-[64px] lg:text-[140px] text-[#008000] font-inter font-[900]">What's new?</h1>
+
+        <div className='flex justify-end items-center pr-3 sm:pr-16'>
+          <button onClick={handleNavigateToAllBlogs} className='standardBtn'>View All Updates</button>
+        </div>
+
+        <div className="flex flex-col gap-8 pb-8 max-w-[96%] sm:w-full mx-auto">
           {blogs ? blogs.slice(0, visible).map((blog) => (
             <BlogPosts key={blog.id} post={blog} />
           )) : <h4>Loading ... </h4>}
@@ -82,7 +91,8 @@ const Blogs = () => {
             View less Updates
           </button>
         </div>
-        <BlogWidgets />
+          <BlogWidgetsNew />  
+          {/* <BlogWidgets /> */}
         <Contact />
         <FreshlyFooter />
       </div>

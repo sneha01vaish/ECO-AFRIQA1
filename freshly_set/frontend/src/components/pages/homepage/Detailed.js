@@ -15,7 +15,7 @@ function Detailed() {
   />
 </div>
 
-        <h4 className="text-[#008000] text-[35px] text-center font-inter">reviews</h4>
+        <h4 className="text-[#008000] text-[35px] text-center font-inter">Our Reviewers</h4>
         
       </div>
 
