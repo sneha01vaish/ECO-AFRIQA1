@@ -8,8 +8,10 @@ import LoginSignUp from "./components/pages/SignUp/LoginSignUp";
 import Blogs from "./components/pages/blogs/Blogs";
 import Categories from "./components/pages/farm-produce/Categories"
 import Details from './components/pages/about-us/Details';
+import Detail from './components/pages/about-us/Detail';
 import Products from './components/pages/farm-produce/Products';
 import Detailed from './components/pages/homepage/Detailed';
+
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/about-us" element={<About />} />
         <Route path="/team-detail" element={<Details />} />
+        <Route path="/whychoose-detail" element={<Detail />} />
         <Route path="/reviews2-detailed" element={<Detailed />} />
+        
       </Routes>
     </Router>
   );
