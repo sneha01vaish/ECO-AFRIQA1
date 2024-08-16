@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 function WhyChoose() {
     
   const [clicked, setClicked] = useState({
         1: false,  // First description 1 is closed by default
         2: false, // Second description is closed by default and so on...(all set to false)
-        3: false,
+        c: false,
         4: false,
         5: false
       });
@@ -136,10 +137,12 @@ function WhyChoose() {
 
             {/*Eplore More Button */}
             <div className="flex justify-center lg:mt-0">
+            <Link to="/whychoose-detail" className="block cursor-pointer mx-auto w-[204px] space-y-[12px] relative"> 
                 <button className=" bg-[#008000] text-white rounded-[15px] h-[48px] lg:h-[54.3px] w-[231px] text-[23px] font-inter font-[700] mb-[39px] lg:mb-[65.68px]">Explore More</button>
+                </Link>
               </div>
               
-
+3
         </div>
     </div> 
 
