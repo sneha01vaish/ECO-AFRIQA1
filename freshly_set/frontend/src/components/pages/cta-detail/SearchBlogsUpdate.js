@@ -25,7 +25,7 @@ export default function SearchBlogsUpdate() {
         <div className='w-7/12'>
           <img
             src='/static/media/blogsUpdate.png'
-            alt='blogs update thumbnail'
+            alt='blogs thumbnail'
             className='w-full'
           />
         </div>
