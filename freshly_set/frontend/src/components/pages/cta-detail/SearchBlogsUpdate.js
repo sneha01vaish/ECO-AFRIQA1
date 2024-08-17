@@ -21,52 +21,61 @@ export default function SearchBlogsUpdate() {
         </div>
       </div>
 
-      <div className='flex my-8 gap-3'>    
-        <div className='w-7/12'>
+      <div className='sm:flex block my-8 gap-5 overflow-hidden rounded-lg'>
+        <div className='sm:w-7/12 w-full h-auto relative rounded-lg'>
           <img
             src='/static/media/blogsUpdate.png'
             alt='blogs thumbnail'
-            className='w-full'
+            className='w-full object-cover rounded-lg'
           />
+          <p className='capitalize bg-black/60 text-white opacity-90 font-inter text-[16px] sm:text-[18px] md:text-[22px] font-bold absolute bottom-0 w-full m-0 inset-x-0 rounded-lg'>
+            <span className='flex justify-start pl-3'>new product release enhance </span>
+            <span className='block text-start pl-3'>urban farming</span>
+            <span className='text-[12px] text-end block capitalize pr-3 my-0'>freshly farms</span>
+          </p>
         </div>
 
-        <div className='w-5/12'>
-          <h1 className='mt-0 text-center text-3xl text-green-500 font-bold'>Popular updates</h1>
+        <div className='w-full sm:w-6/12 font-inter grow'>
+          <h1 className='sm:mt-0 sm:mb-4 sm:text-center text-xl md:text-3xl capitalize text-green-600 font-bold'>Popular updates</h1>
 
-          <div className='flex flex-col gap-3'>
+          <div className='flex flex-col gap-3 text-[32.00px] sm:max-h-[200px] md:max-h-[240px] lg:max-h-[340px] xl:max-h-[400px] overflow-y-auto scrollbar-thumb-green-200 scrollbar-thin hover:scrollbar-thumb-green-400'>
 
-            <div className='flex gap-3 items-start'>
+            <div className='flex gap-3 items-center'>
               <img
-                src='/static/media/blogsUpdate.png'
+                src='/static/media/update1.png'
                 alt='blogs thumbnail'
-                className='w-5/12'
+                className='w-3/12 rounded-lg'
               />
-              <h6 className='capitalize text-xl mt-0'>benefits of vertical farming both financially and socially</h6>
+              <h6 className='capitalize text-[12px] sm:text-[13.00px] md:text-[16px] lg:text-[18px] m-0 grow'>benefits of vertical farming both financially and socially</h6>
             </div>
 
-            <div className='flex gap-3 items-start'>
+            <div className='flex gap-3 items-center'>
               <img
-                src='/static/media/blogsUpdate.png'
-                alt='blogs update thumbnail'
-                className='w-5/12'
+                src='/static/media/update2.png'
+                alt='blogs thumbnail'
+                className='w-3/12 rounded-lg'
               />
-              <h6 className='capitalize text-xl mt-0'>benefits of vertical farming both financially and socially</h6>
+              <h6 className='capitalize text-[12px] sm:text-[13.00px] md:text-[16px] lg:text-[18px] m-0 grow'>freshly farms new developments in Kenya </h6>
             </div>
-
-            <div className='flex gap-3 items-start'>
+            <div className='flex gap-3 items-center'>
               <img
-                src='/static/media/blogsUpdate.png'
-                alt='blogs update thumbnail'
-                className='w-5/12'
+                src='/static/media/update3.png'
+                alt='blogs thumbnail'
+                className='w-3/12 rounded-lg'
               />
-              <h6 className='capitalize text-xl mt-0'>benefits of vertical farming both financially and socially</h6>
+              <h6 className='capitalize text-[12px] sm:text-[13.00px] md:text-[16px] lg:text-[18px] m-0 grow'>our produce difference and benefits</h6>
             </div>
-
+            <div className='flex gap-3 items-center'>
+              <img
+                src='/static/media/update4.png'
+                alt='blogs thumbnail'
+                className='w-3/12 rounded-lg'
+              />
+              <h6 className='capitalize text-[12px] sm:text-[13.00px] md:text-[16px] lg:text-[18px] m-0 grow'>benefits of vertical farming both financially and .. </h6>
+            </div>
           </div>
-
         </div>
       </div>
-
     </section>
   )
 }
