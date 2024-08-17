@@ -38,7 +38,7 @@ export default function SearchBlogsUpdate() {
             <div className='flex gap-3 items-start'>
               <img
                 src='/static/media/blogsUpdate.png'
-                alt='blogs update thumbnail'
+                alt='blogs thumbnail'
                 className='w-5/12'
               />
               <h6 className='capitalize text-xl mt-0'>benefits of vertical farming both financially and socially</h6>
