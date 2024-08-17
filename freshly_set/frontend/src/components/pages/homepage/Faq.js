@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaCaretDown } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 function Faq() {
 
@@ -101,9 +102,12 @@ function Faq() {
 
      
 
-            <div className="flex justify-center my-5">
-                <button className="standardBtn">Read More</button>
-              </div>
+            <div className="flex justify-center my-5 " >
+                <Link to="/cta-detail">
+                    <button className="standardBtn cursor-pointer active:scale-90 transition-all duration-500 ease-out">Read More</button>
+                </Link>
+                
+            </div>
 
 
        

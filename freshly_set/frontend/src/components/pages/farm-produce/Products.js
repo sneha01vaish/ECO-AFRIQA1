@@ -5,7 +5,9 @@ import FarmingSystems from './FarmingSystems'
 import FarmGardenSetups from './FarmGardenSetups'
 import HamburgerMenu from './HamburgerMenu'
 import NavAuthenticated from '../../Nav/NavAuthenticated'
+import FreshlyFooter from "../../footer/FreshlyFooter";
 import { PageContext } from '../../context/PageContext'
+import ProduceBanner from './ProduceBanner'
 
 function Products() {
   const [activeTab, setActiveTab] = useContext(PageContext);
@@ -21,6 +23,8 @@ function Products() {
         <FarmingSystems />
         <FarmGardenSetups />
         <ProduceCenter />
+        <ProduceBanner />
+        <FreshlyFooter />
     </div>
   )
 }

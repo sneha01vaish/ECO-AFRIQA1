@@ -6,7 +6,7 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import { FaRegUserCircle, FaShoppingBasket, FaUser, FaUsers } from "react-icons/fa";
 import { CiSettings, CiGlobe } from "react-icons/ci";
 import { PageContext } from '../context/PageContext';
-
+import { motion } from "framer-motion";
 function NavAuthenticated() {
 
     const [scrolled, setScrolled ] = useState(false);
@@ -44,7 +44,7 @@ function NavAuthenticated() {
     <div>
         {/* Large screen navbar */}
 
-        <nav className={authenticated ? "flex justify-between  w-[100%]   pl-[67.48px] pr-[40.14px] fixed top-0 z-50 bg-white pb-[20.1px] pt-[20.42px]": "flex  justify-between w-[90%]  pl-[67.48px] pr-[120.14px] fixed  top-0 z-50 bg-white  pb-[20.1px] pt-[20.42px]"}>
+        <nav className={authenticated ? "hidden lg:flex justify-between  w-[100%]   pl-[67.48px] pr-[40.14px] fixed top-0 z-50 bg-white pb-[20.1px] pt-[20.42px]": "hidden lg:flex  justify-between w-[90%]  pl-[67.48px] pr-[120.14px] fixed  top-0 z-50 bg-white  pb-[20.1px] pt-[20.42px]"}>
             {/* Logo */}
             <div className="">
                 <img className={scrolled ? "navbarLogoScroll" : "navbarLogo"} src="/static/media/logo2.png" alt="NavLogo"/>
@@ -173,7 +173,13 @@ function NavAuthenticated() {
 
         {/* Small screen Navbar */}
 
-        <nav className={open ? "flex justify-center z-[50] border rounded-[15px] lg:hidden bg-[#008000]  w-[100%] h-[100%] fixed  ":"bg-white flex justify-between fixed  top-0  w-[100%] lg:hidden items-center z-[60]"}>
+        <nav
+      className={
+        open
+          ? 'flex justify-center z-[50] border rounded-[15px] lg:hidden bg-[#008000] ml-[20px] mt-[20px] w-[100%] h-[100%] fixed animate-slideIn'
+          : 'bg-white flex justify-between fixed top-0 w-[100%] lg:hidden items-center z-[60]'
+      }
+    >            
             <img className={!open ? "flex h-[77px] w-[80px] object-cover":"hidden"} src="/static/media/logo2.png" alt="navLogo"/>
                         
                         <div className={!open ? "flex space-x-[33px]":"hidden"}>
@@ -203,10 +209,10 @@ function NavAuthenticated() {
 
             {open  && (
              
-              <div className="MenuOpened block w-[100%] ">
+              <div className=" block w-[100%] ">
                 <div className="flex justify-between items-center px-[31px] ">
                     <img className="h-[77px] w-[80px] bg-white object-cover rounded-[100%]" src="/static/media/logo2.png" alt="navLogo"/>
-                    <IoMdCloseCircleOutline onClick={() => setOpen(false)} className="ClosedLogo block w-[40px] h-[40px] fill-white mt-[63px] cursor-pointer"/>
+                    <IoMdCloseCircleOutline onClick={() => setOpen(false)} className="ClosedLogo block w-[40px] h-[40px] fill-white  cursor-pointer mr-[30px] animate-slideOut"/>
 
                 </div>
                 
