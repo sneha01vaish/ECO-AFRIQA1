@@ -19,7 +19,7 @@ function Contact() {
         <div className="flex justify-between lg:w-[478px]">
 
           {/* mail */}
-          <div classsName="block">
+          <div className="block">
             <img className="h-[49px] w-[45px] space-x-1" src="/static/media/mail.png" alt="email" />
               <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px] lg:-ml-[80px] ">Email</p>
               
@@ -29,7 +29,7 @@ function Contact() {
           </div>
 
           {/* Call */}
-          <div classsName="block -ml-[30px]">
+          <div className="block -ml-[30px]">
             <img className="h-[49px] w-[49px]" src="/static/media/phone.png" alt="phone" />
             <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px]  mr-[90px]">Phone</p>
             <p className="font-[400] text-[17px] lg:text-[22px] text-[#525560] font-josefin -mt-[10px]">+254 701 234 567 </p>
@@ -40,14 +40,14 @@ function Contact() {
         <div className="flex justify-between lg:w-[478px]">
 
           {/* Location */}
-          <div classsName="block">
+          <div className="block">
             <img className="h-[49px] w-[49px]" src="/static/media/location.png" alt="Office" />
             <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px] lg:-ml-[80px]">Office</p>
             <p className=" font-josefin text-[#525560] font-[400] text-[17px] lg:text-[22px] -mt-[10px]"> Nairobi, Kenya </p>
           </div>
 
           {/* Social Media Accounts */}
-            <div classsName="block ">
+            <div className="block ">
               
               <img className="h-[49px] w-[49px] mr-[90px]" src="/static/media/globe.png" alt="Social Media" />
               <p className="font-[700] text-[22px] lg:text-[32px] -mt-[5px] font-inter mb-[10px] mr-[90px]">Socials</p>

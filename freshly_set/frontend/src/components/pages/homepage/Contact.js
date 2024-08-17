@@ -7,7 +7,7 @@ function Contact() {
     <div className="block lg:flex w-[100%] justify-between ">
       <div className="mt-[62px] ml-[40px] block space-y-[29px] ">
         <div className="flex justify-between lg:w-[478px]">
-          <div classsName="block">
+          <div className="block">
             <img
               className="h-[49px] w-[45px] space-x-1"
               src="/static/media/mail.png"
@@ -19,7 +19,7 @@ function Contact() {
             </a>
           </div>
 
-          <div classsName="block -ml-[30px]">
+          <div className="block -ml-[30px]">
             <img
               className="h-[49px] w-[49px]"
               src="/static/media/phone.png"
@@ -33,7 +33,7 @@ function Contact() {
           </div>
         </div>
         <div className="flex justify-between lg:w-[478px]">
-          <div classsName="block">
+          <div className="block">
             <img
               className="h-[49px] w-[49px]"
               src="/static/media/location.png"
@@ -46,7 +46,7 @@ function Contact() {
             </p>
           </div>
 
-          <div classsName="block ">
+          <div className="block ">
             <img
               className="h-[49px] w-[49px] mr-[90px]"
               src="/static/media/globe.png"
