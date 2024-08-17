@@ -33,7 +33,7 @@ function BlogWidgetsNew() {
 
         {/* Widgets start */}
 
-        <div className="hidden lg:grid lg:grid-cols-3 gap-y-[28px] mx-[7px] lg:mx-[68px] mt-[70px] ">
+        <div className="grid grid-cols-2 lg:grid lg:grid-cols-3 gap-y-[28px] mx-[7px] lg:mx-[68px] mt-[70px] ">
 
 {/* Cards Start */}
 
