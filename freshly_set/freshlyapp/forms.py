@@ -28,6 +28,8 @@ class ServiceRequestForm(forms.ModelForm):
         fields = ['type', 'description', 'price']
 
 
+
+
 class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
