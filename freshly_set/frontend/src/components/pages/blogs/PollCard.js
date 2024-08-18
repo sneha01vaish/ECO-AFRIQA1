@@ -32,7 +32,7 @@ function PollCard() {
     console.log("Poll data", pollData)
    },[pollData])
   return (
-    <div className="relative h-[281.016px] lg:h-[506px] w-[195.489px] lg:w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  block">
+    <div className="relative h-[281.016px] lg:h-[506px] w-auto lg:w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  block">
     {/* Card 1 */}
 
     <FaChevronDown className="absolute top-[42px] right-[20px] h-[18.949px] w-[30.053px] text-black cursor-pointer"/>
@@ -59,12 +59,12 @@ function PollCard() {
 
             <h4 className="w-[152.873px] lg:w-[275.266px] text-[6.664px]  lg:text-[12px] font-[700] font-inter ml-[21.49px] lg:ml-[38px] ">Vote & Give A Reason For Your Choice</h4>
             
-            <div className="">
+            <div className="flex justify-center">
                 
-                <textarea className="h-[53.871px] w-[157.724px] ml-[21.49px] lg:ml-[38px] lg:h-[97px] lg:w-[284px] rounded-[19px] border-solid border-[#00000040]/[25%]"/>
+                <textarea className="h-[53.871px] w-[140px] lg:h-[97px] lg:w-[284px] rounded-[19px] border-solid border-[#00000040]/[25%]"/>
 
             </div>
-            <div className="absolute left-[118px] bottom-[42px]">
+            <div className="absolute  flex justify-center w-[100%]  bottom-[42px]">
                 <div className=" items-center space-x-[32px]  mt-[26px]">
                     <MdMessage className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
                     <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
@@ -74,7 +74,10 @@ function PollCard() {
             </div>
 
               {/* Date and author...can be made dynamic later*/}
-              <p className="absolute bottom-[0px] left-[25%] text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+              <div className="flex justify-center">
+                 <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+
+              </div>
 </div>
 )
 }

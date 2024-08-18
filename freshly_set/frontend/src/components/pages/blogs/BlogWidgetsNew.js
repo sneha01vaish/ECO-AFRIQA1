@@ -26,36 +26,37 @@ function BlogWidgetsNew() {
       }
     };
   return (
-    <div className="block">
+    <div className="block overflow-x-hidden">
       
       
             
 
         {/* Widgets start */}
 
-        <div className="grid grid-cols-2 lg:grid lg:grid-cols-3 gap-y-[28px] mx-[7px] lg:mx-[68px] mt-[70px] ">
+        <div className="grid grid-cols-2 lg:grid lg:grid-cols-3 gap-y-[28px] gap-x-[26.6px]  mx-[7px] lg:mx-[68px] mt-[70px] ">
 
 {/* Cards Start */}
 
 <PollCard />
 
 
-<div className="relative h-[506px] w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  block">
-    {/* Card 2 */}
+<div className="relative h-[281.016px] lg:h-[506px] w-auto lg:w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  block">
+{/* Card 2 */}
     <FaChevronDown className="absolute top-[42px] right-[20px] h-[18.949px] w-[30.053px] text-black cursor-pointer"/>
 
-    <h3 className="freshlyGreenText ml-[38px]">Farming And Technology</h3>
-        <div className="block ml-[38px]">
-            <p className="text-[13.027px] text-[#525560] font-[400] leading-[16.935px] w-[269.553px] text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
-            <p className="text-[13.027px] text-[#525560] font-[400] leading-[16.935px] w-[269.553px] text-start">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,</p>
+    <h3 className="freshlyGreenText ml-[18px] lg:ml-[38px] text-[8.779px] lg:text-[18.238px] w-[149.701px] lg:w-[269.553px]">Farming And Technology</h3>
+        <div className="block ml-[18px] lg:ml-[38px]">
+            <p className="text-[13.027px] text-[#525560] font-[400] leading-[16.935px]  w-[149.701px]  lg:w-[269.553px] text-start text-ellipsis overflow-hidden h-[80px] lg:h-[80px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+            <p className="hidden lg:flex text-[13.027px] text-[#525560] font-[400] leading-[16.935px]  w-[149.701px]  lg:w-[269.553px] text-start">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,</p>
 
 
         </div>
 
-        <div className="ml-[38px] mt-[22px]">
-            <img className="h-[122px] w-[293px] object-cover rounded-[4.69px]" src="/static/media/farmingTech.png" alt="FarmingAndTEchnologyWidget"/>
+        <div className="flex justify-center mt-[22px]">
+            <img className="h-[67.755px]  w-[140.723px] lg:h-[122px]  lg:w-[293px] object-cover rounded-[4.69px]" src="/static/media/farmingTech.png" alt="FarmingAndTEchnologyWidget"/>
         </div>
-            <div className="absolute left-[118px] bottom-[42px]">
+           
+            <div className="absolute  flex justify-center w-[100%]  bottom-[42px]">
                 <div className=" items-center space-x-[32px]  mt-[26px]">
                     <MdMessage className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
                     <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
@@ -65,29 +66,33 @@ function BlogWidgetsNew() {
             </div>
 
               {/* Date and author...can be made dynamic later*/}
-              <p className="absolute bottom-[0px] left-[25%] text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+              <div className="flex justify-center">
+                 <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+
+              </div>
            
 </div>
 
 
-<div className="relative h-[506px] w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  block">
+<div className="hidden lg:block relative h-[281.016px] lg:h-[506px] w-auto lg:w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  ">
     {/* Card 3 */}
     <FaChevronDown className="absolute top-[42px] right-[20px] h-[18.949px] w-[30.053px] text-black cursor-pointer"/>
 
-    <h3 className="freshlyGreenText ml-[38px] w-[252.131px]">Growth Of Vertical Farms In Kenya</h3>
+    <h3 className="cardHeading">Growth Of Vertical Farms In Kenya</h3>
         
 
         <div className="flex justify-center">
-            <img className="h-[182.601px] w-[258.308px] -mt-[40px]" src="/static/media/farmingStats.png" alt="FarmingStats"/>
+            <img className="h-[160.009px] lg:h-[182.601px] w-[171.249px] lg:w-[258.308px] lg:-mt-[40px]" src="/static/media/farmingStats.png" alt="FarmingStats"/>
         </div>
 
-        <div className="block ml-[38px]">
-            <p className="text-[13.027px] text-[#525560] font-[400] leading-[16.935px] w-[269.553px] text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+        <div className="block ml-[18px] lg:ml-[38px]">
+            <p className="text-[13.027px] text-[#525560] font-[400] leading-[16.935px]  w-[149.701px]  lg:w-[269.553px] text-start text-ellipsis overflow-hidden h-[80px] lg:h-[80px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
             <p className="text-[13.027px] text-[#525560] font-[400] leading-[16.935px] w-[269.553px] text-start">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,</p>
 
 
         </div>
-            <div className="absolute left-[118px] bottom-[42px]">
+            
+            <div className="absolute  flex justify-center w-[100%]  bottom-[42px]">
                 <div className=" items-center space-x-[32px]  mt-[26px]">
                     <MdMessage className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
                     <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
@@ -97,20 +102,22 @@ function BlogWidgetsNew() {
             </div>
 
               {/* Date and author...can be made dynamic later*/}
-              <p className="absolute bottom-[0px] left-[25%] text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
-           
+              <div className="flex justify-center">
+                 <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+
+              </div>
 </div>
 
 
-<div className="relative h-[506px] w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  block">
+<div className="block relative h-[281.016px] lg:h-[506px] w-auto lg:w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  ">
     {/* Card 4 */}
     <FaChevronDown className="absolute top-[42px] right-[20px] h-[18.949px] w-[30.053px] text-black cursor-pointer"/>
 
-    <h3 className="freshlyGreenText ml-[25px] w-[270px]">Vegetable Farmer Using Our Technology</h3>
+    <h3 className="cardHeading">Vegetable Farmer Using Our Technology</h3>
         
         {/* Video Start */}
 
-        <div className="flex justify-center relative z-[10]">
+        <div className="flex justify-center relative z-[10] w-[100%]">
             <button      
             onClick={handlePlayPause}
         
@@ -118,7 +125,7 @@ function BlogWidgetsNew() {
 
                 <video
                     ref={videoRef}
-                    className="absolute  w-[165px] lg:w-[308.353px] h-[209px] lg:h-[169.273px] object-cover z-[20] rounded-[20px]"
+                    className="absolute left-[12px] bottom-[120px] lg:top-0 lg:left-[22px] w-[140px] lg:w-[308.353px] h-[94.009px] lg:h-[169.273px] object-cover z-[20] rounded-[20px]"
                     src="/static/media/vegetableFarmer.mp4"
                     muted={isMuted}
                     autoPlay
@@ -131,7 +138,7 @@ function BlogWidgetsNew() {
                 <p className="text-[13.027px] text-[#525560] font-[400] leading-[16.935px] w-[269.553px] text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
             </div>
         
-            <div className="absolute left-[118px] bottom-[42px]">
+            <div className="absolute  flex justify-center w-[100%]  bottom-[42px]">
                 <div className=" items-center space-x-[32px]  mt-[26px]">
                     <MdMessage className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
                     <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
@@ -141,8 +148,10 @@ function BlogWidgetsNew() {
             </div>
 
               {/* Date and author...can be made dynamic later*/}
-              <p className="absolute bottom-[0px] left-[25%] text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
-           
+              <div className="flex justify-center">
+                 <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+
+              </div>
 </div>
 
 
@@ -178,7 +187,7 @@ function BlogWidgetsNew() {
                 <p className="text-[13.027px] text-[#525560] font-[400] leading-[16.935px] w-[269.553px] text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
             </div>
         
-            <div className="absolute left-[118px] bottom-[42px]">
+            <div className="absolute  flex justify-center w-[100%]  bottom-[42px]">
                 <div className=" items-center space-x-[32px]  mt-[26px]">
                     <MdMessage className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
                     <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
@@ -188,8 +197,10 @@ function BlogWidgetsNew() {
             </div>
 
               {/* Date and author...can be made dynamic later*/}
-              <p className="absolute bottom-[0px] left-[25%] text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
-           
+              <div className="flex justify-center">
+                 <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+
+              </div>
 </div>
 
 
@@ -224,7 +235,7 @@ function BlogWidgetsNew() {
            </div>
        
         
-            <div className="absolute left-[118px] bottom-[42px]">
+           <div className="absolute  flex justify-center w-[100%]  bottom-[42px]">
                 <div className=" items-center space-x-[32px]  mt-[26px]">
                     <MdMessage className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
                     <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
@@ -234,8 +245,10 @@ function BlogWidgetsNew() {
             </div>
 
               {/* Date and author...can be made dynamic later*/}
-              <p className="absolute bottom-[0px] left-[25%] text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
-           
+              <div className="flex justify-center">
+                 <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+
+              </div>
 </div>
 
 </div>
