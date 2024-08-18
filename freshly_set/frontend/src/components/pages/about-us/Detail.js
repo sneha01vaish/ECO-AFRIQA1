@@ -3,12 +3,12 @@ import Nav from '../../Nav/Navbar';
 
 function Detail() {
   return (
-    <div className="min-h-screen bg-[#F5FAF9] flex flex-col">
+    <div className="min-h-screen bg-[#F5FAF9] flex flex-col overflow-x-hidden">
       <Nav />
       <div className="flex flex-grow mt-[200px]">
         {/* {first reason} */}
         {/* Sidebar */}
-        <div className="lg:w-[343px] w-[147px] lg:h-[640px] h-[796px] flex-shrink-0 lg:rounded-[10px] rounded-4px bg-green-600 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col justify-center">
+        <div className="lg:w-[343px] w-[147px] lg:h-[640px] h-[896px] flex-shrink-0 lg:rounded-[10px] rounded-4px bg-green-600 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col justify-center">
           {/* Sidebar Content */}
           <p className="text-[22px] text-[rgba(255, 255, 255, 0.50)] font-Inter font-bold mb-[10px]">
             Technology Farming
@@ -50,13 +50,13 @@ function Detail() {
   <div className="flex flex-col lg:ml-[143px] ml-2 flex-grow">
     {/* H1 with Image */}
     <div className="flex items-center lg:w-[854px] w-[440px] lg:h-[70px] h:[52px]">
-      <h1 className="text-black font-Inter lg:text-[35px] text-[20px] font-bold leading-normal">
+      <h1 className="text-black font-Inter lg:text-[35px] text-[15px] font-bold leading-normal">
         We implement Technology In Farming
       </h1>
       <img
         src="/static/media/image10.png"
         alt="image10"
-        className="w-[61px] h-[47px] flex-shrink-0 ml-14"
+        className="w-[61px] h-[47px] flex-shrink-0 lg:ml-14"
       />
     </div>
 
@@ -72,56 +72,62 @@ function Detail() {
           </div>
           
           {/* Image 194 with Paragraphs */}
-          <div className="flex flex-wrap  lg:gap-[35px] gap-4 lg:ml-[-22px] ml-2 mt-[20px]">
-            <div className="flex flex-col items-center">
-              <div className="flex-shrink-0 rounded-[6.1614]">
-                <img
-                  src="/static/media/image 194.png"
-                  alt="image 194"
-                  className="lg:w-[114.284px] w-[76] lg:h-[106.91px] h-[56.71px]"
-                />
-              </div>
-              <p className="mt-[10px] w-[176px] lg:h-[178px] h-[58px] lg:text-[15px] text-[10px] font-[Josefin Sans] text-black text-center font-semibold leading-[19.5px]">
-                 Lorem ipsum dolor sit amet,<br></br>
-               consectetur adipiscing elit,<br></br>
-               sed do eiusmod tempor incididunt<br></br>
-                ut labore et dolore magna aliqua. <br></br>
-                Ut enim ad minim veniam, quis nostru
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="flex-shrink-0 rounded-[6.1614]">
-                <img
-                  src="/static/media/image 194.png"
-                  alt="image 194"
-                  className="w-lg:w-[114.284px] w-[76] lg:h-[106.91px] h-[56.71px]"
-                />
-              </div>
-              <p className="mt-[10px] w-[176px] h-[178px] text-[15px] font-[Josefin Sans] text-black text-center font-semibold leading-[19.5px]">
-              Lorem ipsum dolor sit amet,<br></br>
-               consectetur adipiscing elit,<br></br>
-               sed do eiusmod tempor incididunt<br></br>
-                ut labore et dolore magna aliqua. <br></br>
-                Ut enim ad minim veniam, quis nostru
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="flex-shrink-0 rounded-[6.1614]">
-                <img
-                  src="/static/media/image 194.png"
-                  alt="image 194"
-                  className="w-lg:w-[114.284px] w-[76] lg:h-[106.91px] h-[56.71px]"
-                />
-              </div>
-              <p className="mt-[10px] w-[176px] h-[178px] text-[15px] font-[Josefin Sans] text-black text-center font-semibold leading-[19.5px]">
-              Lorem ipsum dolor sit amet,<br></br>
-               consectetur adipiscing elit,<br></br>
-               sed do eiusmod tempor incididunt<br></br>
-                ut labore et dolore magna aliqua. <br></br>
-                Ut enim ad minim veniam, quis nostru
-              </p>
-            </div>
-          </div>
+          
+  <div className="flex flex-col lg:flex-row lg:gap-[35px] gap-[2px] lg:ml-[-22px] ml-[52px] mt-[20px]">
+    <div className="flex flex-col items-center lg:items-start">
+      <div className="flex-shrink-0  rounded-[6.1614]">
+        <img
+          src="/static/media/image 194.png"
+          alt="image 194"
+          className="lg:w-[114.284px] w-[76px] lg:h-[106.91px] h-[56.71px]"
+        />
+      </div>
+      <p className="mt-[10px] lg:w-[176px] w-[176px] lg:h-[178px] h-[58px] lg:text-[15px] text-[10px] font-[Josefin Sans] text-black text-center lg:text-left font-semibold leading-[19.5px]">
+        Lorem ipsum dolor sit amet,<br />
+        consectetur adipiscing elit,<br />
+        sed do eiusmod tempor incididunt<br />
+        ut labore et dolore magna aliqua.<br />
+        Ut enim ad minim veniam, quis nostru
+      </p>
+    </div>
+    <div className="flex flex-col items-center lg:items-start">
+      <div className="flex-shrink-0 rounded-[6.1614]">
+        <img
+          src="/static/media/image 194.png"
+          alt="image 194"
+          className="lg:w-[114.284px] w-[76px] lg:h-[106.91px] h-[56.71px]"
+        />
+      </div>
+      <p className="mt-[10px] lg:w-[176px] w-[176px] lg:h-[178px] h-[58px] lg:text-[15px] text-[10px] font-[Josefin Sans] text-black text-center lg:text-left font-semibold leading-[19.5px]">
+        Lorem ipsum dolor sit amet,<br />
+        consectetur adipiscing elit,<br />
+        sed do eiusmod tempor incididunt<br />
+        ut labore et dolore magna aliqua.<br />
+        Ut enim ad minim veniam, quis nostru
+      </p>
+    </div>
+    <div className="flex flex-col items-center lg:items-start">
+      <div className="flex-shrink-0 rounded-[6.1614]">
+        <img
+          src="/static/media/image 194.png"
+          alt="image 194"
+          className="lg:w-[114.284px] w-[76px] lg:h-[106.91px] h-[56.71px]"
+        />
+      </div>
+      <p className="mt-[10px] lg:w-[176px] w-[176px] lg:h-[178px] h-[58px] lg:text-[15px] text-[10px] font-[Josefin Sans] text-black text-center lg:text-left font-semibold leading-[19.5px]">
+        Lorem ipsum dolor sit amet,<br />
+        consectetur adipiscing elit,<br />
+        sed do eiusmod tempor incididunt<br />
+        ut labore et dolore magna aliqua.<br />
+        Ut enim ad minim veniam, quis nostru
+      </p>
+    </div>
+  </div>
+
+
+  
+
+
         </div>
       </div>
 
