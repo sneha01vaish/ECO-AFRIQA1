@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
+from django.middleware.csrf import get_token
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
+from django.http import HttpResponseNotAllowed, JsonResponse
 from .models import Product, Garden, Service, Blog
 from .forms import ProductForm, ServiceRequestForm
 from django.contrib import messages
@@ -16,13 +17,13 @@ from django.urls import reverse_lazy
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import AllowAny
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from rest_framework import generics, permissions
 from rest_framework import viewsets
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from .models import Blog, Comment, Like, Share
 from django.db.models import Q
@@ -38,12 +39,17 @@ from django.contrib.auth import get_user_model, login, logout
 from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerializer
 from rest_framework.validators import UniqueValidator
 from .validators import custom_validation , validate_email, validate_password # Import your custom validation here
-
-
+#csrf_protect_method = method_decorator(csrf_protect)
 
 
 # This is for typical django frontend html
 
+from rest_framework import status
+import logging
+
+logger = logging.getLogger(__name__)
+
+"""
 class UserRegister(APIView):
     permission_classes =(permissions.AllowAny,)
     def post(self, request):
@@ -80,6 +86,11 @@ class UserLogout(APIView):
     def post(self, request):
         logout(request)
         return Response(status=status.HTTP_200_OK)
+"""
+def index(request):
+    get_token(request)
+    return render(request, 'index.html')
+   
 def home(request):
     return render(request, 'index.html')
 
@@ -89,10 +100,15 @@ def about(request):
 
     
 @api_view(['GET'])
+#class Blogs(APIView):
+    #permission_classes = (AllowAny,)
+    #authentication_classes = ()
+    #@csrf_protect_method
 @csrf_exempt
 def blogs(request):
-    renderer_classes = [JSONRenderer]
-    return render(request, 'blogs/BlogForm.jsx')
+    if request.user.is_authenticated:
+    #renderer_classes = [JSONRenderer]
+        return render(request, 'blogs/BlogForm.jsx')
 
 
 @login_required
@@ -129,24 +145,39 @@ def profile(request):
 # The blog CRUD 
 @csrf_exempt
 def blog_list(request):
-    blogs = Blog.objects.all()
-    return render(request, 'blog_list.html', {'blogs': blogs})
+    if request.method == 'GET':
+        blogs = Blog.objects.all()
+        return render(request, 'blog_list.html', {'blogs': blogs})
+    else:
+        return HttpResponseNotAllowed(['GET'])
 @csrf_exempt
 def blog_detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     return render(request, 'blog_detail.html', {'blog': blog})
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 @csrf_exempt
+@permission_classes([AllowAny])
 def blog_create(request):
     if request.method == 'POST':
         form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('blog_list')
+            return redirect('blogs/BlogForm.jsx')
     else:
         form = BlogForm()
     return render(request, 'blogs/BlogForm.jsx', {'form': form})
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([AllowAny])
+def blog_create(request):
+    serializer = BlogSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
 @csrf_exempt
 def blog_update(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
@@ -168,9 +199,32 @@ def blog_delete(request, slug):
 
 # Implemented views for CRUD operations and like/share actions
 
-class BlogListCreateAPIView(generics.ListCreateAPIView):
+class BlogListView(generics.ListAPIView):
+    permission_classes = [AllowAny]
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
+
+    def list(self, request, *args, **kwargs):
+        logger.info(f"Request method: {request.method}")
+        logger.info(f"Request data: {request.data}")
+        return super().list(request, *args, **kwargs)
+
+
+class BlogListCreateView(generics.ListCreateAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+    permission_classes = [AllowAny]  # This allows unauthenticated access
+
+    def blog_create(request):
+        if request.method == 'POST':
+            form = BlogForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('blogs/BlogForm.jsx')
+        else:
+            form = BlogForm()
+        return render(request, 'blogs/BlogForm.jsx', {'form': form})
+
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -256,10 +310,13 @@ class BlogViewSet(viewsets.ModelViewSet):
 - If no query is provided, it returns all blog posts.
 - The result is returned as a JSON response with only the id, title, and content fields.
 """
+@api_view(['GET'])
 def search_blog(request):
-    query = request.GET.get('q', '')
+    query = request.query_params.get('q', '')
     if query:
-        blogs = Blog.objects.filter(Q(title__icontains=query) | Q(content__icontains=query)).values('id', 'title', 'content')
+        blogs = Blog.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
     else:
-        blogs = Blog.objects.all().values('id', 'title', 'content')
-    return JsonResponse(list(blogs), safe=False)
+        blogs = Blog.objects.all()
+    
+    serializer = BlogSerializer(blogs, many=True)
+    return Response(serializer.data)

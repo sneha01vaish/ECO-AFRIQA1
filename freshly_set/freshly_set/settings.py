@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'freshlyapp', # our app 
 ]
@@ -50,6 +51,8 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
        'rest_framework.authentication.SessionAuthentication',
+       'rest_framework.authentication.TokenAuthentication',
+       'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -59,12 +62,13 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'freshly_set.urls'
@@ -72,7 +76,7 @@ ROOT_URLCONF = 'freshly_set.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'frontend/build'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -102,10 +106,11 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'freshlyapp.AppUser'
+#AUTH_USER_MODEL = 'freshlyapp.AppUser'
 REST_FRAMEWORK= {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
-    'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.SessionAuthentication',),
+    'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.SessionAuthentication',
+                                      'rest_framework.authentication.TokenAuthentication',),
 }
 CACHES = {
     'default': {
@@ -169,6 +174,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Additional directories to include for static files
 STATICFILES_DIRS = [
     BASE_DIR / 'static',  # Default static directory
+    os.path.join(BASE_DIR, 'freshly_set', 'static'),
 ]
 
 # Media files
@@ -182,12 +188,22 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings
+# Allow all origins (not recommended for production)
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    "https://localhost:3000",
-    'https://127.0.0.1:3000',
+    "http://localhost:3000",
+    'http://127.0.0.1:3000',
 ]
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = ( 'localhost:3000', )
 CORS_ALLOWED_CREDENTIALS = True
+#X_FRAME_OPTIONS = 'ALLOW-FROM http://74.207.232.194'
+# CSRF settings
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    # Add other trusted origins here
+]
 # React build directory
 REACT_APP_DIR = BASE_DIR / 'frontend/build'
 
