@@ -1,17 +1,30 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 from django.urls import re_path
-from .views import CustomPasswordResetView, search_blog 
+from rest_framework.routers import DefaultRouter
+from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog 
 from .forms import  MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 
 
 
 from .views import (
+<<<<<<< HEAD
     BlogListCreateAPIView, BlogRetrieveUpdateDestroyAPIView,
     CommentListCreateAPIView, CommentRetrieveUpdateDestroyAPIView,
     LikeCreateAPIView, ShareCreateAPIView, CustomPasswordResetView
+=======
+     BlogRetrieveUpdateDestroyAPIView, 
+    CommentListCreateAPIView, CommentRetrieveUpdateDestroyAPIView, 
+    LikeCreateAPIView, ShareCreateAPIView
+>>>>>>> Simanga-dev
 )
 
 urlpatterns = [
@@ -19,8 +32,13 @@ urlpatterns = [
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
-    path(r'^$', views.blogs, name='blogs'),
-    path(r'^$', views.blog_create, name='blogs_create'),
+    #path('blogs/', views.blogs, name='blogs'),
+    path('freshlyapp/blogs/', BlogListView.as_view(), name='blog-list'),
+     path('freshlyapp/create/', BlogListCreateView.as_view(), name='blog-list-create'),
+    #path('create-blogs/', views.blog_create, name='blogs_create'),
+    #path('freshlyapp/blogs/', views.blog_create, name='blog_create'),
+    path('freshlyapp/search/', views.search_blog, name='search_blog'),
+    
 
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     #path('signup/', views.signup, name='signup'),
@@ -36,6 +54,7 @@ urlpatterns = [
     path('products/', views.products, name='products'),
     path('services/', views.services, name='services'),
     path('profile/', views.profile, name='profile'),
+<<<<<<< HEAD
     path('blogs/', BlogListCreateAPIView.as_view(), name='blog_list_create'),
     path('blogs/<int:pk>/', BlogRetrieveUpdateDestroyAPIView.as_view(),
          name='blog_detail'),
@@ -43,7 +62,16 @@ urlpatterns = [
          name='comment_list_create'),
     path('comments/<int:pk>/',
          CommentRetrieveUpdateDestroyAPIView.as_view(), name='comment_detail'),
+=======
+    #path('blogs/', BlogListCreateAPIView.as_view(), name='blog_list_create'),
+    path('blogs/<int:pk>/', BlogRetrieveUpdateDestroyAPIView.as_view(), name='blog_detail'),
+    path('comments/', CommentListCreateAPIView.as_view(), name='comment_list_create'),
+    path('comments/<int:pk>/', CommentRetrieveUpdateDestroyAPIView.as_view(), name='comment_detail'),
+>>>>>>> Simanga-dev
     path('likes/', LikeCreateAPIView.as_view(), name='like_create'),
     path('shares/', ShareCreateAPIView.as_view(), name='share_create'),
-    path('search/', search_blog, name='search_blog'),
+    path('search_blog/<int:pk>/', views.search_blog, name='search_blog'),
+    path('freshlyapp/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('freshlyapp/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
 ]
