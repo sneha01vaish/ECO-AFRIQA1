@@ -1,9 +1,9 @@
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from django.contrib.auth import views as auth_views
 from django.urls import re_path
 from rest_framework.routers import DefaultRouter
-from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog 
+from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog , PollViewSet, VoteNodeViewSet
 from .forms import  MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
 
@@ -20,9 +20,12 @@ from .views import (
     CommentListCreateAPIView, CommentRetrieveUpdateDestroyAPIView, 
     LikeCreateAPIView, ShareCreateAPIView
 )
-
+router = DefaultRouter()
+router.register(r'polls', PollViewSet)
+router.register(r'votes', VoteNodeViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(router.urls)),
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),

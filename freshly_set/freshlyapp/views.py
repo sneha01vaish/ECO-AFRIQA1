@@ -23,12 +23,12 @@ from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from rest_framework import generics, permissions
 from rest_framework import viewsets
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.views import APIView
-from .models import Blog, Comment, Like, Share
+from .models import Blog, Comment, Like, Share, Poll, VoteNode
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer,PollSerializer, VoteNodeSerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -320,3 +320,35 @@ def search_blog(request):
     
     serializer = BlogSerializer(blogs, many=True)
     return Response(serializer.data)
+
+# Polls 
+class PollViewSet(viewsets.ModelViewSet):
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
+
+    @action(detail=True, methods=['post'])
+    def add_vote(self, request, pk=None):
+        poll = self.get_object()
+        choice = request.data.get('choice')
+        if choice:
+            # Create a new vote node
+            new_vote = VoteNode.objects.create(poll=poll, choice=choice)
+
+            # If the poll has no votes, set the new vote as the head
+            if poll.head is None:
+                poll.head = new_vote
+                poll.save()
+            else:
+                # Otherwise, traverse to the end of the list and add the new vote
+                node = poll.head
+                while node.next_vote is not None:
+                    node = node.next_vote
+                node.next_vote = new_vote
+                node.save()
+
+            return Response({'status': 'vote added'}, status=201)
+        return Response({'error': 'Invalid vote data'}, status=400)
+
+class VoteNodeViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = VoteNode.objects.all()
+    serializer_class = VoteNodeSerializer

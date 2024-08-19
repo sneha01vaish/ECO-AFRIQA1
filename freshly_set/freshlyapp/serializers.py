@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Blog, Product, Garden, Comment, Like, Share
+from .models import Blog, Product, Garden, Comment, Like, Share, Poll, VoteNode
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
 
@@ -67,3 +67,16 @@ class ShareSerializer(serializers.ModelSerializer):
     class Meta:
         model = Share
         fields = ['id', 'blog', 'user', 'shared_at']
+
+# Polls serializer
+class VoteNodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VoteNode
+        fields = ['id', 'choice', 'next_vote']
+
+class PollSerializer(serializers.ModelSerializer):
+    votes = VoteNodeSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Poll
+        fields = ['id', 'title', 'description', 'votes']
