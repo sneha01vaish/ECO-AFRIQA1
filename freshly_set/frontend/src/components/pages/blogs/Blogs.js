@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
-
 import Nav from '../../Nav/Navbar';
 import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
@@ -13,6 +11,8 @@ import Contact from './Contact';
 import { PageContext } from '../../context/PageContext';
 import BlogWidgetsNew from './BlogWidgetsNew';
 import BlogWidgets from './BlogWidgets';
+import { useNavigate } from 'react-router-dom';
+
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState(blogItems);
@@ -55,7 +55,8 @@ const Blogs = () => {
 
 const navigate = useNavigate()
 const handleNavigateToAllBlogs = () => navigate('all-blogs-update')
- 
+const handleNavigateToAllUpdates = () => navigate('allUpdates')
+
   return (
     <div>
 
@@ -66,7 +67,8 @@ const handleNavigateToAllBlogs = () => navigate('all-blogs-update')
         <h1 className="text-center text-nowrap text-[48px] my-2 sm:text-[64px] lg:text-[140px] text-[#008000] font-inter font-[900]">What's new?</h1>
 
         <div className='flex justify-end items-center pr-3 sm:pr-16'>
-          <button onClick={handleNavigateToAllBlogs} className='standardBtn'>View All Updates</button>
+          <button onClick={handleNavigateToAllBlogs}            className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
+          >View All Updates</button>
         </div>
 
         <div className="flex flex-col gap-8 pb-8 max-w-[96%] sm:w-full mx-auto">
@@ -91,11 +93,13 @@ const handleNavigateToAllBlogs = () => navigate('all-blogs-update')
             View less Updates
           </button>
         </div>
+
           <BlogWidgetsNew />  
           {/* <BlogWidgets /> */}
         <Contact />
         <FreshlyFooter />
       </div>
+
     </div>
   );
 };

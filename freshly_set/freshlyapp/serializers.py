@@ -43,13 +43,14 @@ class GardenSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'location', 'size', 'description']
 
 class BlogSerializer(serializers.ModelSerializer):
-    comments = serializers.StringRelatedField(many=True)
-    likes = serializers.StringRelatedField(many=True)
-    shares = serializers.StringRelatedField(many=True)
+    #comments = serializers.StringRelatedField(many=True)
+    #likes = serializers.StringRelatedField(many=True)
+    #shares = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Blog
-        fields = ['id', 'title', 'content', 'created_at', 'updated_at', 'image', 'comments', 'likes', 'shares']
+        fields = ['id', 'user', 'title', 'content', 'comments', 'likes', 'shares']
+        read_only_fields = ['id', 'comments', 'likes', 'shares']  # These fields are typically read-only
 
 # Created serializers for Blog, Comment, Like, and Share.
 class CommentSerializer(serializers.ModelSerializer):
