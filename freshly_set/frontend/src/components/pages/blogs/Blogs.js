@@ -6,8 +6,8 @@ import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
 import FreshlyFooter from '../../footer/FreshlyFooter';
 import BlogPosts from './BlogList'
+import blogItems from './blogItems.json'
 
-import api from '../../../api/blogs'
 // import BlogForm from './BlogForm';
 import Contact from './Contact';
 import { PageContext } from '../../context/PageContext';
@@ -15,8 +15,9 @@ import BlogWidgetsNew from './BlogWidgetsNew';
 import BlogWidgets from './BlogWidgets';
 
 const Blogs = () => {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState(blogItems);
   const [visible, setVisible] = useState(3);
+  const [activeTab, setActiveTab] = useContext(PageContext);
 
   const showMore = () => {
     setVisible((prevCount) => Math.min(prevCount + 3, blogs.length));
@@ -25,8 +26,6 @@ const Blogs = () => {
   const showLess = () => {
     setVisible((prevCount) => Math.max(prevCount - 3, 3));
   };
-
-  const [activeTab, setActiveTab] = useContext(PageContext);
 
   useEffect(() => {
     setActiveTab("products")
@@ -75,6 +74,7 @@ const handleNavigateToAllBlogs = () => navigate('all-blogs-update')
             <BlogPosts key={blog.id} post={blog} />
           )) : <h4>Loading ... </h4>}
         </div>
+
         <div className="flex flex-wrap justify-center mx-auto gap-3 z-10">
           <button
             className="standardBtn"
