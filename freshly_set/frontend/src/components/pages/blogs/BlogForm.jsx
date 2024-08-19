@@ -1,62 +1,24 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 // import React, { useState } from 'react';
 // import axios from 'axios';
 // import { useNavigate} from 'react-router-dom';
-=======
-import React, { useState } from 'react';
-=======
 import React, { useState, useEffect } from 'react';
->>>>>>> Simanga-dev
 import axios from 'axios';
 
 const BlogForm = ({ onBlogCreated }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
-  const [csrfToken, setCsrfToken] = useState('');
 
   useEffect(() => {
     const token = document.querySelector('meta[name="csrf-token"]');
     if (token) {
       setCsrfToken(token.getAttribute('content'));
     }
-<<<<<<< HEAD
     return csrfToken;
-}
->>>>>>> Simanga-dev
+},[])
 
-// function BlogForm() {
-//     const [title, setTitle] = useState('');
-//     const [content, setContent] = useState('');
-//     const [image, setImage] = useState(null);
-//     const navigate = useNavigate();
 
-//     const handleSubmit = event => {
-//         event.preventDefault();
-
-//         const formData = new FormData();
-//         formData.append('title', title);
-//         formData.append('content', content);
-//         if (image) {
-//             formData.append('image', image);
-//         }
-
-<<<<<<< HEAD
-//         axios.get('http://localhost:8000/freshlyapp/blogs/', formData, {
-//             headers: {
-//                 'Content-Type': 'multipart/form-data'
-//             }
-//         })
-//             .then(response => {
-//                 navigate.push('/');
-//             })
-//             .catch(error => {
-//                 console.error('There was an error creating the blog!', error);
-//             });
-//     };
-=======
-        const csrfToken = getCSRFToken();
+const csrfToken = getCSRFToken();
 
         axios.post('http://localhost:8000/freshlyapp/blogs/', formData, {
             headers: {
@@ -71,7 +33,6 @@ const BlogForm = ({ onBlogCreated }) => {
             console.error('There was an error creating the blog!', error);
         });
     };
->>>>>>> Simanga-dev
 
 //     return (
 //         <div>
@@ -104,8 +65,6 @@ const BlogForm = ({ onBlogCreated }) => {
 //         </div>
 //     );
 // }
-=======
-  }, []);
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -168,7 +127,5 @@ const BlogForm = ({ onBlogCreated }) => {
       </form>
     </div>
   );
-};
->>>>>>> Simanga-dev
 
 // export default BlogForm;
