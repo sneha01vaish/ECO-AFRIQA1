@@ -99,7 +99,6 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
         <Contact />
         <FreshlyFooter />
       </div>
-
     </div>
   );
 };

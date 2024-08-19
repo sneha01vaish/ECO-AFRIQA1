@@ -97,6 +97,7 @@ const csrfToken = getCSRFToken();
     }
   };
 
+function BlogForm() {
   return (
     <div>
       <h1>Create Blog</h1>
@@ -127,5 +128,5 @@ const csrfToken = getCSRFToken();
       </form>
     </div>
   );
-
-// export default BlogForm;
+}
+export default BlogForm

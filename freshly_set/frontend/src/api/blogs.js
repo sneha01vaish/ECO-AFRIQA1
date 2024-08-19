@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-<<<<<<< HEAD
-export default axios.create({
-    baseURL: 'http://localhost:3000/'
-})
-=======
 // Function to get CSRF token from meta tag
 function getCSRFToken() {
   const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
@@ -36,4 +31,3 @@ api.interceptors.request.use(config => {
 });
 
 export default api;
->>>>>>> Simanga-dev
