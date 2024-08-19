@@ -26,8 +26,19 @@ function BlogWidgetsNew() {
       }
     };
   return (
-    // Make mobile responsive
-    <div className="grid grid-cols-2 gap-x-[26px] lg:grid lg:grid-cols-3 gap-y-[28px] mx-[7px] lg:mx-[68px] mt-[70px] ">
+    <div className="block">
+ <div className="flex justify-center w-[100%]">
+            <h3 className="font-[900] text-[35px] lg:text-[45px] text-[#008000] font-inter text-center whitespace-nowrap">ARTICLE CENTER</h3>
+        </div>
+
+        <div className="flex justify-center space-x-[19px] lg:space-x-[78px]">
+            <img className="h-[132px] w-[132px] lg:h-[512px] lg:w-[512px]" src="/static/media/bulbWidget.png" alt="Article light bulb"/>
+
+            <p className="text-[27.5px] lg:text-[55px] font-[900] lg:w-[478px] font-inter">Vertical Farms Can Be Implemented In Slums ?</p>
+        </div>
+
+
+        <div className="grid grid-cols-2 gap-x-[26px] lg:grid lg:grid-cols-3 gap-y-[28px] mx-[7px] lg:mx-[68px] mt-[70px] ">
 
         {/* Cards Start */}
 
@@ -35,10 +46,10 @@ function BlogWidgetsNew() {
 
 
         <div className="relative h-[281.016px] lg:h-[506px] w-auto lg:w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  block">
-{/* Card 2 */}
-    <FaChevronDown className="absolute top-[42px] right-[20px] h-[18.949px] w-[30.053px] text-black cursor-pointer"/>
+        {/* Card 2 */}
+        <FaChevronDown className="absolute top-[42px] right-[20px] h-[18.949px] w-[30.053px] text-black cursor-pointer"/>
 
-    <h3 className="freshlyGreenText ml-[18px] lg:ml-[38px] text-[8.779px] lg:text-[18.238px] w-[149.701px] lg:w-[269.553px]">Farming And Technology</h3>
+        <h3 className="freshlyGreenText ml-[18px] lg:ml-[38px] text-[8.779px] lg:text-[18.238px] w-[149.701px] lg:w-[269.553px]">Farming And Technology</h3>
         <div className="block ml-[18px] lg:ml-[38px]">
             <p className="text-[13.027px] text-[#525560] font-[400] leading-[16.935px]  w-[149.701px]  lg:w-[269.553px] text-start text-ellipsis overflow-hidden h-[80px] lg:h-[80px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
             <p className="hidden lg:flex text-[13.027px] text-[#525560] font-[400] leading-[16.935px]  w-[149.701px]  lg:w-[269.553px] text-start">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,</p>
@@ -56,22 +67,22 @@ function BlogWidgetsNew() {
                     <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
                 </div>
 
-              
+            
             </div>
 
-              {/* Date and author...can be made dynamic later*/}
-              <div className="flex justify-center">
-                 <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+            {/* Date and author...can be made dynamic later*/}
+            <div className="flex justify-center">
+                <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
 
-              </div>
+            </div>
         </div>
 
 
         <div className="hidden lg:block relative h-[281.016px] lg:h-[506px] w-auto lg:w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  ">
-    {/* Card 3 */}
-    <FaChevronDown className="absolute top-[42px] right-[20px] h-[18.949px] w-[30.053px] text-black cursor-pointer"/>
+        {/* Card 3 */}
+        <FaChevronDown className="absolute top-[42px] right-[20px] h-[18.949px] w-[30.053px] text-black cursor-pointer"/>
 
-    <h3 className="cardHeading">Growth Of Vertical Farms In Kenya</h3>
+        <h3 className="cardHeading">Growth Of Vertical Farms In Kenya</h3>
 
 
         <div className="flex justify-center">
@@ -91,19 +102,19 @@ function BlogWidgetsNew() {
                     <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
                 </div>
 
-              
+            
             </div>
 
-              {/* Date and author...can be made dynamic later*/}
-              <div className="flex justify-center">
-                 <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+            {/* Date and author...can be made dynamic later*/}
+            <div className="flex justify-center">
+                <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
 
-              </div>
-</div>
+            </div>
+        </div>
 
 
-<div className="relative h-[281.016px] lg:h-[506px] w-auto lg:w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  block">
-{/* Card 4 */}
+        <div className="relative h-[281.016px] lg:h-[506px] w-auto lg:w-[352px] rounded-[10.546px] bg-white shadow-lg pt-[29px]  block">
+        {/* Card 4 */}
             <FaChevronDown className="absolute top-[42px] right-[20px] h-[18.949px] w-[30.053px] text-black cursor-pointer"/>
 
             <h3 className="cardHeading">Vegetable Farmer Using Our Technology</h3>
@@ -137,14 +148,14 @@ function BlogWidgetsNew() {
                     <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
                 </div>
 
-              
+            
             </div>
 
-              {/* Date and author...can be made dynamic later*/}
-              <div className="flex justify-center">
-                 <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+            {/* Date and author...can be made dynamic later*/}
+            <div className="flex justify-center">
+                <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
 
-              </div>
+            </div>
         </div>
 
 
@@ -161,7 +172,7 @@ function BlogWidgetsNew() {
                 <div className="flex justify-center mt-[12px]">
                     <FaVolumeUp className="h-[73.794px] w-[83.344px] lg:h-[132.874px] lg:w-[150.069px]"/>
 
-                   </div>
+                </div>
 
                     <div className="flex justify-center ">
 
@@ -173,7 +184,7 @@ function BlogWidgetsNew() {
                         Your browser does not support the audio element.
                     </audio>
                     </div>
-                   
+                
                     <div className="flex justify-center mt-[10px] ">
                         <button className='h-[20.257px] w-[104.469px] lg:w-[188.108px] lg:h-[36.475px]  bg-[#008000] rounded-[15px] text-white lg:text-[15.632px] font-[800] border-none text-[8.682px]'>LISTEN</button>
                     </div>
@@ -188,14 +199,14 @@ function BlogWidgetsNew() {
                     <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
                 </div>
 
-              
+            
             </div>
 
-              {/* Date and author...can be made dynamic later*/}
-              <div className="flex justify-center">
-                 <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+            {/* Date and author...can be made dynamic later*/}
+            <div className="flex justify-center">
+                <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
 
-              </div>
+            </div>
         </div>
 
 
@@ -218,8 +229,8 @@ function BlogWidgetsNew() {
 
                         </div>
 
-                       {/* Input 1  */}
-                       <div className="flex justify-center space-x-[27.32px]">
+                    {/* Input 1  */}
+                    <div className="flex justify-center space-x-[27.32px]">
                             <p className="text-[15.632px] font-[700] font-inter">2.</p><p className="text-[15.632px] font-[700] font-inter">Is It In An Urban Setting?</p>
                         </div>
 
@@ -227,8 +238,8 @@ function BlogWidgetsNew() {
                             <textarea className="h-[63.05px] w-[290px] mx-auto rounded-[27px] border-solid border-[#00000047] bg-[#F5FAF9] "/>
 
                         </div>
-                   </div>
-               
+                </div>
+            
                 
                     <div className="absolute left-[118px] bottom-[42px]">
                         <div className=" items-center space-x-[32px]  mt-[26px]">
@@ -236,15 +247,17 @@ function BlogWidgetsNew() {
                             <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
                         </div>
 
-                      
+                    
                     </div>
 
-                      {/* Date and author...can be made dynamic later*/}
-                      <p className="absolute bottom-[0px] left-[25%] text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
-                   
+                    {/* Date and author...can be made dynamic later*/}
+                    <p className="absolute bottom-[0px] left-[25%] text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+                
         </div> 
 
+        </div>
     </div>
+    
   )
 }
 

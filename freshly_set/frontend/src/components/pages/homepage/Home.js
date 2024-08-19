@@ -10,6 +10,7 @@ import Contact from "./Contact";
 import Metrics from "../../metrics/Metrics"
 import FreshlyFooter from '../../footer/FreshlyFooter'
 import { PageContext } from '../../context/PageContext'
+import Banner from './Banner'
 function Home() {
 
   const [activeTab, setActiveTab] = useContext(PageContext);
@@ -23,6 +24,7 @@ function Home() {
      <Hero  />
      <Mission />
      <Metrics />
+     <Banner />
      <Services />
      <ProductSection />
      <Reviews2 />
