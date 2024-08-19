@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Nav from '../../Nav/Navbar';
 import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
 import FreshlyFooter from '../../footer/FreshlyFooter';
-import BlogWidgets from './BlogWidgets';
-import api from '../../../api/blogs';
-import BlogWidgetsNew from './BlogWidgetsNew';
+import BlogPosts from './BlogList'
+import blogItems from './blogItems.json'
+
 // import BlogForm from './BlogForm';
+import Contact from './Contact';
+import { PageContext } from '../../context/PageContext';
+import BlogWidgetsNew from './BlogWidgetsNew';
+import BlogWidgets from './BlogWidgets';
+import { useNavigate } from 'react-router-dom';
+
 
 const Blogs = () => {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState(blogItems);
   const [visible, setVisible] = useState(3);
+  const [activeTab, setActiveTab] = useContext(PageContext);
 
   const showMore = () => {
     setVisible((prevCount) => Math.min(prevCount + 3, blogs.length));
@@ -19,8 +26,6 @@ const Blogs = () => {
   const showLess = () => {
     setVisible((prevCount) => Math.max(prevCount - 3, 3));
   };
-
-  const [activeTab, setActiveTab] = useContext(PageContext);
 
   useEffect(() => {
     setActiveTab("products")
@@ -71,27 +76,22 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
             <BlogPosts key={blog.id} post={blog} />
           )) : <h4>Loading ... </h4>}
         </div>
-        <div className="flex justify-center w-[100%]">
-            <h3 className="font-[900] text-[35px] lg:text-[45px] text-[#008000] font-inter text-center whitespace-nowrap">ARTICLE CENTER</h3>
-        </div>
 
-        <div className="flex justify-center space-x-[19px] lg:space-x-[78px]">
-            <img className="h-[132px] w-[132px] lg:h-[512px] lg:w-[512px]" src="/static/media/bulbWidget.png" alt="Article light bulb"/>
-
-            <p className="text-[27.5px] lg:text-[55px] font-[900] lg:w-[478px] font-inter">Vertical Farms Can Be Implemented In Slums ?</p>
-
-           
-        </div>
-
-        <div className="flex justify-end lg:mr-[40px]">
-          
-            <button
-                className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
-                onClick={handleNavigateToAllUpdates}
-            >
-                View All Updates
-
-            </button>
+        <div className="flex flex-wrap justify-center mx-auto gap-3 z-10">
+          <button
+            className="standardBtn"
+            disabled={visible >= blogs.length}
+            onClick={showMore}
+          >
+            View All Updates
+          </button>
+          <button
+            className="standardBtn"
+            disabled={visible <= 3}
+            onClick={showLess}
+          >
+            View less Updates
+          </button>
         </div>
 
           <BlogWidgetsNew />  
