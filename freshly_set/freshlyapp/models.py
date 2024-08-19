@@ -9,11 +9,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.conf import settings
 from django.contrib.auth.models import User
 
-<<<<<<< HEAD
-
-=======
 """
->>>>>>> Simanga-dev
 class AppUserManager(BaseUserManager):
 
     use_in_migrations = True
@@ -81,12 +77,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Product(models.Model):
-<<<<<<< HEAD
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-=======
     user = models.ForeignKey(User, on_delete=models.CASCADE)
->>>>>>> Simanga-dev
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -151,15 +142,8 @@ class Blog(models.Model):
 
 
 class Comment(models.Model):
-<<<<<<< HEAD
-    blog = models.ForeignKey(
-        Blog, related_name='comments', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-=======
     blog = models.ForeignKey(Blog, related_name='blog_comments', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
->>>>>>> Simanga-dev
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -177,14 +161,6 @@ class Like(models.Model):
 
 
 class Share(models.Model):
-<<<<<<< HEAD
-    blog = models.ForeignKey(
-        Blog, related_name='shares', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    shared_at = models.DateTimeField(auto_now_add=True)
-=======
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_shares')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     shared_at = models.DateTimeField(auto_now_add=True)
->>>>>>> Simanga-dev

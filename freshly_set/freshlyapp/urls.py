@@ -16,15 +16,9 @@ from rest_framework_simplejwt.views import (
 
 
 from .views import (
-<<<<<<< HEAD
-    BlogListCreateAPIView, BlogRetrieveUpdateDestroyAPIView,
-    CommentListCreateAPIView, CommentRetrieveUpdateDestroyAPIView,
-    LikeCreateAPIView, ShareCreateAPIView, CustomPasswordResetView
-=======
      BlogRetrieveUpdateDestroyAPIView, 
     CommentListCreateAPIView, CommentRetrieveUpdateDestroyAPIView, 
     LikeCreateAPIView, ShareCreateAPIView
->>>>>>> Simanga-dev
 )
 
 urlpatterns = [
@@ -54,20 +48,10 @@ urlpatterns = [
     path('products/', views.products, name='products'),
     path('services/', views.services, name='services'),
     path('profile/', views.profile, name='profile'),
-<<<<<<< HEAD
-    path('blogs/', BlogListCreateAPIView.as_view(), name='blog_list_create'),
-    path('blogs/<int:pk>/', BlogRetrieveUpdateDestroyAPIView.as_view(),
-         name='blog_detail'),
-    path('comments/', CommentListCreateAPIView.as_view(),
-         name='comment_list_create'),
-    path('comments/<int:pk>/',
-         CommentRetrieveUpdateDestroyAPIView.as_view(), name='comment_detail'),
-=======
     #path('blogs/', BlogListCreateAPIView.as_view(), name='blog_list_create'),
     path('blogs/<int:pk>/', BlogRetrieveUpdateDestroyAPIView.as_view(), name='blog_detail'),
     path('comments/', CommentListCreateAPIView.as_view(), name='comment_list_create'),
     path('comments/<int:pk>/', CommentRetrieveUpdateDestroyAPIView.as_view(), name='comment_detail'),
->>>>>>> Simanga-dev
     path('likes/', LikeCreateAPIView.as_view(), name='like_create'),
     path('shares/', ShareCreateAPIView.as_view(), name='share_create'),
     path('search_blog/<int:pk>/', views.search_blog, name='search_blog'),
