@@ -3,7 +3,7 @@ import Nav from '../../Nav/Navbar';
 import { Link } from 'react-router-dom';
 
 function Detail() {
-    const [selectedSection, setSelectedSection] = useState("technology")
+    const [selectedSection, setSelectedSection] = useState("technologyFarming")
   return (
     <div className="AllPageContent">
         <Nav /> {/*The Upper NavBar */}
