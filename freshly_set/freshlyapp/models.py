@@ -1,4 +1,4 @@
-#from argon2 import hash_password
+# from argon2 import hash_password
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
@@ -115,7 +115,7 @@ class Service(models.Model):
 
 class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True,  # Allow null temporarily
-        blank=True)  # Allow blank temporarily
+                             blank=True)  # Allow blank temporarily
     title = models.CharField(max_length=200)
     content = models.TextField()
     comments = models.IntegerField(default=0)
@@ -142,7 +142,8 @@ class Blog(models.Model):
 
 
 class Comment(models.Model):
-    blog = models.ForeignKey(Blog, related_name='blog_comments', on_delete=models.CASCADE)
+    blog = models.ForeignKey(
+        Blog, related_name='blog_comments', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -153,7 +154,8 @@ class Comment(models.Model):
 
 
 class Like(models.Model):
-    blog = models.ForeignKey(Blog, related_name='blog_likes', on_delete=models.CASCADE)
+    blog = models.ForeignKey(
+        Blog, related_name='blog_likes', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
@@ -161,6 +163,7 @@ class Like(models.Model):
 
 
 class Share(models.Model):
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_shares')
+    blog = models.ForeignKey(
+        Blog, on_delete=models.CASCADE, related_name='blog_shares')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     shared_at = models.DateTimeField(auto_now_add=True)

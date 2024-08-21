@@ -3,8 +3,8 @@ from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 from django.urls import re_path
 from rest_framework.routers import DefaultRouter
-from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog 
-from .forms import  MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
+from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog
+from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
 
 from rest_framework_simplejwt.views import (
@@ -13,11 +13,9 @@ from rest_framework_simplejwt.views import (
 )
 
 
-
-
 from .views import (
-     BlogRetrieveUpdateDestroyAPIView, 
-    CommentListCreateAPIView, CommentRetrieveUpdateDestroyAPIView, 
+    BlogRetrieveUpdateDestroyAPIView,
+    CommentListCreateAPIView, CommentRetrieveUpdateDestroyAPIView,
     LikeCreateAPIView, ShareCreateAPIView
 )
 
@@ -26,36 +24,45 @@ urlpatterns = [
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
-    #path('blogs/', views.blogs, name='blogs'),
+    # path('blogs/', views.blogs, name='blogs'),
     path('freshlyapp/blogs/', BlogListView.as_view(), name='blog-list'),
-     path('freshlyapp/create/', BlogListCreateView.as_view(), name='blog-list-create'),
-    #path('create-blogs/', views.blog_create, name='blogs_create'),
-    #path('freshlyapp/blogs/', views.blog_create, name='blog_create'),
+    path('freshlyapp/create/', BlogListCreateView.as_view(),
+         name='blog-list-create'),
+    # path('create-blogs/', views.blog_create, name='blogs_create'),
+    # path('freshlyapp/blogs/', views.blog_create, name='blog_create'),
     path('freshlyapp/search/', views.search_blog, name='search_blog'),
-    
+
 
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    #path('signup/', views.signup, name='signup'),
+    # path('signup/', views.signup, name='signup'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
-    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='password_change.html'), name='password_change'),
-    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),
+    path('password_change/', auth_views.PasswordChangeView.as_view(
+        template_name='password_change.html'), name='password_change'),
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(
+        template_name='password_change_done.html'), name='password_change_done'),
     path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
-    path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),name='password_reset_done'),
-    path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'), 
-    name='password_reset_confirm'),
-    path('reset/done/',auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), 
-    name='password_reset_complete'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(
+        template_name='password_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'),
+         name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'),
+         name='password_reset_complete'),
     path('products/', views.products, name='products'),
     path('services/', views.services, name='services'),
     path('profile/', views.profile, name='profile'),
-    #path('blogs/', BlogListCreateAPIView.as_view(), name='blog_list_create'),
-    path('blogs/<int:pk>/', BlogRetrieveUpdateDestroyAPIView.as_view(), name='blog_detail'),
-    path('comments/', CommentListCreateAPIView.as_view(), name='comment_list_create'),
-    path('comments/<int:pk>/', CommentRetrieveUpdateDestroyAPIView.as_view(), name='comment_detail'),
+    # path('blogs/', BlogListCreateAPIView.as_view(), name='blog_list_create'),
+    path('blogs/<int:pk>/', BlogRetrieveUpdateDestroyAPIView.as_view(),
+         name='blog_detail'),
+    path('comments/', CommentListCreateAPIView.as_view(),
+         name='comment_list_create'),
+    path('comments/<int:pk>/',
+         CommentRetrieveUpdateDestroyAPIView.as_view(), name='comment_detail'),
     path('likes/', LikeCreateAPIView.as_view(), name='like_create'),
     path('shares/', ShareCreateAPIView.as_view(), name='share_create'),
     path('search_blog/<int:pk>/', views.search_blog, name='search_blog'),
-    path('freshlyapp/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('freshlyapp/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('freshlyapp/token/', TokenObtainPairView.as_view(),
+         name='token_obtain_pair'),
+    path('freshlyapp/token/refresh/',
+         TokenRefreshView.as_view(), name='token_refresh'),
 
 ]
