@@ -322,33 +322,53 @@ def search_blog(request):
     return Response(serializer.data)
 
 # Polls 
-class PollViewSet(viewsets.ModelViewSet):
+class PollListView(generics.ListCreateAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
 
-    @action(detail=True, methods=['post'])
-    def add_vote(self, request, pk=None):
-        poll = self.get_object()
-        choice = request.data.get('choice')
-        if choice:
-            # Create a new vote node
-            new_vote = VoteNode.objects.create(poll=poll, choice=choice)
+class PollDetailView(generics.RetrieveAPIView):
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
 
-            # If the poll has no votes, set the new vote as the head
-            if poll.head is None:
-                poll.head = new_vote
-                poll.save()
-            else:
-                # Otherwise, traverse to the end of the list and add the new vote
-                node = poll.head
-                while node.next_vote is not None:
-                    node = node.next_vote
-                node.next_vote = new_vote
-                node.save()
+class PollCreateView(generics.CreateAPIView):
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
 
-            return Response({'status': 'vote added'}, status=201)
-        return Response({'error': 'Invalid vote data'}, status=400)
+class PollUpdateView(generics.UpdateAPIView):
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
 
-class VoteNodeViewSet(viewsets.ReadOnlyModelViewSet):
+class PollDeleteView(generics.DestroyAPIView):
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
+
+# VoteNode Views
+class VoteNodeListView(generics.ListAPIView):
     queryset = VoteNode.objects.all()
     serializer_class = VoteNodeSerializer
+
+class VoteNodeDetailView(generics.RetrieveAPIView):
+    queryset = VoteNode.objects.all()
+    serializer_class = VoteNodeSerializer
+
+# Custom vote adding view (function-based)
+def add_vote(request, pk):
+    poll = get_object_or_404(Poll, pk=pk)
+    choice = request.data.get('choice')
+    if choice:
+        new_vote = VoteNode.objects.create(poll=poll, choice=choice)
+        
+        # If poll has no votes, set the new vote as the head
+        if poll.head is None:
+            poll.head = new_vote
+            poll.save()
+        else:
+            # Traverse to the end of the list and add the new vote
+            node = poll.head
+            while node.next_vote is not None:
+                node = node.next_vote
+            node.next_vote = new_vote
+            node.save()
+
+        return JsonResponse({'status': 'vote added'}, status=status.HTTP_201_CREATED)
+    return JsonResponse({'error': 'Invalid vote data'}, status=status.HTTP_400_BAD_REQUEST)

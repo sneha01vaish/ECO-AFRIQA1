@@ -3,7 +3,10 @@ from django.urls import path, re_path, include
 from django.contrib.auth import views as auth_views
 from django.urls import re_path
 from rest_framework.routers import DefaultRouter
-from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog , PollViewSet, VoteNodeViewSet
+from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog
+from .views import PollListView, PollDetailView, PollCreateView, PollUpdateView, PollDeleteView
+from .views import VoteNodeListView, VoteNodeDetailView, add_vote
+
 from .forms import  MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
 
@@ -20,12 +23,9 @@ from .views import (
     CommentListCreateAPIView, CommentRetrieveUpdateDestroyAPIView, 
     LikeCreateAPIView, ShareCreateAPIView
 )
-router = DefaultRouter()
-router.register(r'polls', PollViewSet)
-router.register(r'votes', VoteNodeViewSet)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
@@ -61,4 +61,15 @@ urlpatterns = [
     path('freshlyapp/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('freshlyapp/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
+     # Poll URLs
+    path('polls/', PollListView.as_view(), name='poll-list'),
+    path('polls/create/', PollCreateView.as_view(), name='poll-create'),
+    path('polls/<int:pk>/', PollDetailView.as_view(), name='poll-detail'),
+    path('polls/<int:pk>/update/', PollUpdateView.as_view(), name='poll-update'),
+    path('polls/<int:pk>/delete/', PollDeleteView.as_view(), name='poll-delete'),
+    path('polls/<int:pk>/add_vote/', add_vote, name='poll-add-vote'),
+
+    # VoteNode URLs
+    path('votes/', VoteNodeListView.as_view(), name='vote-list'),
+    path('votes/<int:pk>/', VoteNodeDetailView.as_view(), name='vote-detail'),
 ]

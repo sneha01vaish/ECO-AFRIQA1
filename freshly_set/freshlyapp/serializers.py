@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Blog, Product, Garden, Comment, Like, Share, Poll, VoteNode
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
+from django.contrib.auth.models import User
 
 UserModel = get_user_model()
 
@@ -30,7 +31,7 @@ class UserLoginSerializer(serializers.Serializer):
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserModel
+        model = User
         fields = ['email', 'username']
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
