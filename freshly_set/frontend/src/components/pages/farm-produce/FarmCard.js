@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaCaretDown, FaLongArrowAltRight, FaStar } from 'react-icons/fa'
+import { ModalContentsContext, ModalContext } from '../../context/PageContext';
 
 function FarmCard({  img, title, body, rating, number}) {
     const [clicked, setClicked] = useState({
@@ -8,7 +9,15 @@ function FarmCard({  img, title, body, rating, number}) {
         3: true,
         4: true
       });
-    
+      const [modalOpen, setModalOpen] = useContext(ModalContext);
+      const [modalContents, setModalContents] = useContext(ModalContentsContext);
+
+    const passInfo = () => {
+      setModalOpen(true)
+      setModalContents({
+        img, title, body
+      })
+    }
       const toggleCard = (id) => {
         setClicked((prevState) => ({
           ...prevState,
@@ -53,7 +62,7 @@ function FarmCard({  img, title, body, rating, number}) {
           </div>
           <div className="flex justify-between items-center ml-[6.71px] lg:mx-[30px]">
               <div className="flex space-x-[15px] items-center">
-                <p className="text-[7.625px] lg:text-[20px] freshlyGreenText cursor-pointer">Read More</p>
+                <p onClick={passInfo} className="text-[7.625px] lg:text-[20px] freshlyGreenText cursor-pointer">Read More</p>
                   <FaLongArrowAltRight className="freshlyGreenText cursor-pointer mt-[12px] lg:mt-[0px]" />
               </div>
 

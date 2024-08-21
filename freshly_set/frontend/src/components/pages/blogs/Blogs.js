@@ -12,13 +12,18 @@ import { PageContext } from '../../context/PageContext';
 import BlogWidgetsNew from './BlogWidgetsNew';
 import BlogWidgets from './BlogWidgets';
 import { useNavigate } from 'react-router-dom';
-
+import api from "../../../api/blogs"
+import axios from 'axios';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [visible, setVisible] = useState(3);
   const [activeTab, setActiveTab] = useContext(PageContext);
 
+  const [csrfToken, setCsrfToken] = useState('');
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null)
   const showMore = () => {
     setVisible((prevCount) => Math.min(prevCount + 3, blogs.length));
   };
@@ -31,28 +36,52 @@ const Blogs = () => {
     setActiveTab("products")
 },[activeTab])
 
- useEffect(() => {
+//  useEffect(() => {
 
-  const fetchBlogs = async () => {
-    try {
-      const response = await api.get('freshlyapp/blogs');
-      setBlogs(response.data);
+//   const fetchBlogs = async () => {
+//     try {
+//       const response = await api.get('freshlyapp/blogs');
+//       setBlogs(response.data);
+//       console.log("Blogs set", blogs)
 
-    } catch (error) {
-      if (error) {
-        // Catch errors out of 200 range
-        console.log(error.response.data)
-        console.log(error.response.headers)
-        console.log(error.response.status)
-      } else {
-        // any other errors within 200
-        console.log(error.response.message)
-      }
-    };
-    fetchBlogs();
-    console.log("Blogs fetched", blogs)
+//     } catch (error) {
+//       if (error) {
+//         // Catch errors out of 200 range
+//         console.log(error.response.data)
+//         console.log(error.response.headers)
+//         console.log(error.response.status)
+//       } else {
+//         // any other errors within 200
+//         console.log(error.response.message)
+//       }
+//     };
+//     console.log("Blogs fetched", blogs)
+//   }
+//   fetchBlogs();
+
+// }, [])
+useEffect(() => {
+  // Fetch CSRF token from meta tag
+  const token = document.querySelector('meta[name="csrf-token"]');
+  if (token) {
+    setCsrfToken(token.getAttribute('content'));
   }
-}, [])
+
+  axios.get('http://localhost:8000/freshlyapp/blogs/', {
+    headers: {
+      'X-CSRFToken': csrfToken
+    },
+    withCredentials: true
+  })
+  .then(response => {
+    setBlogs(response.data);
+  })
+  .catch(error => {
+    console.error('Error fetching blogs:', error);
+  });
+
+  console.log("Blogs", blogs)
+}, [csrfToken]);
 
 const navigate = useNavigate()
 const handleNavigateToAllBlogs = () => navigate('all-blogs-update')
