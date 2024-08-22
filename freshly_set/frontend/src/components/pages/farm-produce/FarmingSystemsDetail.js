@@ -2,10 +2,12 @@ import React, { useContext } from 'react'
 import NavAuthenticated from '../../Nav/NavAuthenticated'
 import ProductsSearchBar from './ProductsSearchBar'
 import FarmCard from './FarmCard'
-import { ModalContext } from '../../context/PageContext'
+import { ModalContext, ModalToggleContentsContext } from '../../context/PageContext'
 
 function FarmingSystemsDetail() {
-  const [modalOpen, setModalOpen] = useContext(ModalContext)
+  const [modalOpen, setModalOpen] = useContext(ModalContext);
+  const [modalToggleContents, setModalToggleContents]  = useContext(ModalToggleContentsContext)
+
   return (
     <div>
         <NavAuthenticated />

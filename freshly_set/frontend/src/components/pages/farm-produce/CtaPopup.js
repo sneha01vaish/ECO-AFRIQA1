@@ -1,16 +1,34 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { ModalContentsContext, ModalContext } from '../../context/PageContext';
+import { CurrentIndexContext, ModalContentsContext, ModalContext, ModalToggleContentsContext } from '../../context/PageContext';
 import { FaStar } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 function CtaPopup() {
     const [modalOpen, setModalOpen] = useContext(ModalContext);
     const [modalContents, setModalContents] = useContext(ModalContentsContext);
-    
+    const [modalToggleContents, setModalToggleContents]  = useContext(ModalToggleContentsContext)
+
+    const [currentIndex, setCurrentIndex] = useContext(CurrentIndexContext);
+
+
+
+    const handleNext = () => {
+        if (currentIndex < modalToggleContents.length - 1) {
+            setCurrentIndex(currentIndex + 1);
+        }
+
+    };
+
+    const handleBack = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
+        }
+    };
 
     useEffect(() => {
-        console.log("Modal Contents", modalContents)
-    },[])
+        console.log("Changing Index", currentIndex)
+    },[currentIndex])
   return (
     <div className="">
         {modalOpen && (
@@ -21,11 +39,23 @@ function CtaPopup() {
 
                 <IoMdClose onClick={() => setModalOpen(false)} className="absolute top-0 right-[30px] text-black h-[38px] w-[38px] z-[101] cursor-pointer"/>      
 
+
+                {/* Back and Forward Icons */}
+
+                <MdNavigateNext                                 
+                onClick={handleNext}
+                className="absolute top-[50%] right-[30px] z-[102] text-black text-[38px] cursor-pointer"/>
+                
+                <MdNavigateBefore
+                onClick={handleBack}
+
+                className="absolute top-[50%] left-[30px] z-[102] text-black text-[38px] cursor-pointer"/>
+
                 <div className="fixed inset-0 z-[100] rounded-[14.021px] border border-gray-700 shadow-lg  flex  justify-center bg-white items-center mx-[15px] mt-[47px] mb-[47px] lg:mt-[0px] lg:mb-[20px]">
                     <div className="block lg:flex">
                         {/* Left side */}
                         <div className="block">
-                            <img className="w-[336.937px] h-[175px] lg:h-[400px] lg:w-[580px] object-cover" src={modalContents.img} alt="CTACarousel1"/>
+                            <img className="w-[336.937px] h-[175px] lg:h-[400px] lg:w-[580px] object-cover" src={modalToggleContents[currentIndex]?.img} alt="CTACarousel1"/>
 
                             <div className="flex justify-between space-x-[6.38px] mt-[20px]">
                                 <img className="w-auto h-[79.744px] lg:h-[145px]" src="/static/media/gardens3.png" alt="CTACarousel2"/>
@@ -40,7 +70,7 @@ function CtaPopup() {
                         {/* Right side */}
 
                         <div className="lg:ml-[33px] block">
-                            <h3 className="text-[20px] lg:text-[45px] font-[900] font-inter text-black">{modalContents.title}</h3>
+                            <h3 className="text-[20px] lg:text-[45px] font-[900] font-inter text-black">{modalToggleContents[currentIndex].title}</h3>
                             <div className="flex justify-center items-center lg:hidden">
                                 <p className="freshlyGreenText font-[900] text-[15px]">In Stock</p>
 
