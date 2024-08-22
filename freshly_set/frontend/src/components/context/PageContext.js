@@ -6,13 +6,20 @@ export const ModalContext = createContext();
 export const ModalContentsContext = createContext();
 export const CurrentIndexContext = createContext();
 export const ModalToggleContentsContext = createContext();
+
+export const SelectedSectionContext = createContext();
+
+
 export  const PageContextProvider = ({ children }) => {
     const [activeTab, setActiveTab] = useState("home");
     const [popUpOpen, setPopUpOpen] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // <FarmCard number={2} img="/static/media/gardens2.png" title="Container Gardens" body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."/>
+    // Selected Sections Context
 
+    const [selectedSection, setSelectedSection] = useState("blogs")
+
+    // Modal Context
     const [modalOpen, setModalOpen] = useState(false);
     const [modalContents, setModalContents] = useState({});
     const [modalToggleContents, setModalToggleContents]  = useState([
@@ -50,7 +57,10 @@ export  const PageContextProvider = ({ children }) => {
                     <ModalContentsContext.Provider value={[modalContents, setModalContents]}>
                         <CurrentIndexContext.Provider value={[currentIndex, setCurrentIndex]}>
                             <ModalToggleContentsContext.Provider value={[modalToggleContents, setModalToggleContents]}>
-                                {children}
+                                <SelectedSectionContext.Provider value={[selectedSection, setSelectedSection]}>
+                                    {children}
+
+                                </SelectedSectionContext.Provider>
 
                             </ModalToggleContentsContext.Provider>
 
