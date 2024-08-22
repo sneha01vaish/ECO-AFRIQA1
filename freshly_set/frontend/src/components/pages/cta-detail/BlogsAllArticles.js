@@ -1,8 +1,13 @@
 import React from 'react'
+import SearchBlogsUpdate from "./SearchBlogsUpdate"
 
 function BlogsAllArticles() {
   return (
-    <div>All Articles CTA</div>
+    <>
+      <main className='sm:max-w-[90%] max-w-[96%] my-8 mx-auto'>
+        <SearchBlogsUpdate />
+      </main>
+    </>
   )
 }
 

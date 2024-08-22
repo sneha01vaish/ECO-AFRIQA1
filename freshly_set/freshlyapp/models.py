@@ -1,4 +1,4 @@
-#from argon2 import hash_password
+# from argon2 import hash_password
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
@@ -7,8 +7,9 @@ from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.conf import settings
+from django.contrib.auth.models import User
 
-
+"""
 class AppUserManager(BaseUserManager):
 
     use_in_migrations = True
@@ -72,11 +73,11 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+"""
 
 
 class Product(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -113,8 +114,13 @@ class Service(models.Model):
 
 
 class Blog(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True,  # Allow null temporarily
+                             blank=True)  # Allow blank temporarily
+    title = models.CharField(max_length=200)
     content = models.TextField()
+    comments = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
+    shares = models.IntegerField(default=0)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -137,9 +143,8 @@ class Blog(models.Model):
 
 class Comment(models.Model):
     blog = models.ForeignKey(
-        Blog, related_name='comments', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+        Blog, related_name='blog_comments', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -149,8 +154,9 @@ class Comment(models.Model):
 
 
 class Like(models.Model):
-    blog = models.ForeignKey(Blog, related_name='likes', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    blog = models.ForeignKey(
+        Blog, related_name='blog_likes', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('blog', 'user')
@@ -158,7 +164,6 @@ class Like(models.Model):
 
 class Share(models.Model):
     blog = models.ForeignKey(
-        Blog, related_name='shares', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+        Blog, on_delete=models.CASCADE, related_name='blog_shares')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     shared_at = models.DateTimeField(auto_now_add=True)

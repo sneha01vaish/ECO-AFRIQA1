@@ -80,13 +80,21 @@ function BlogWidgets() {
                         <textarea className="h-[101px] w-[179px] lg:h-[244px] lg:w-[472px] rounded-[19px] border-solid border-[#00000040]/[25%]"/>
 
                     </div>
-                    <div className="flex justify-center items-center space-x-[32px] mt-[61px]">
-                        <MdMessage className="h-[23.127px] w-[21px] lg:h-[58.367px] lg:w-[53px]"/>
-                        <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[58.367px] lg:w-[53px]"/>
-                    </div>
+                   
+                    <div className="absolute  flex justify-center w-[100%]  bottom-[42px]">
+                <div className=" items-center space-x-[32px]  mt-[26px]">
+                    <MdMessage className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
+                    <FaShareAlt className="h-[23.127px] w-[21px] lg:h-[31.427px] lg:w-[27.617px]"/>
+                </div>
 
-                    {/* Date and author...can be made dynamic later*/}
-                    <p className="text-center text-[10px] lg:text-[30px] font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+              
+            </div>
+
+              {/* Date and author...can be made dynamic later*/}
+              <div className="flex justify-center">
+                 <p className="absolute bottom-[0px]  text-[10px] lg:text-[11.719px] text-center font-[400]">By Freshly Farms, on 04 Sept, 2024</p>
+
+              </div>
                 </div>
 
                 {/* Card 2 */}

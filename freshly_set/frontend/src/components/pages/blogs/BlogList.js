@@ -1,4 +1,4 @@
-import { useState, memo } from 'react'
+import { useState, memo, useEffect } from 'react'
 import { IoCaretDownSharp, IoCaretUpSharp } from "react-icons/io5";
 import { FaThumbsUp } from "react-icons/fa6";
 import { MdMessage } from "react-icons/md";
@@ -12,6 +12,9 @@ const BlogPosts = ({ post }) => {
 
     const toggleTab = (index) => setToggle(index)
 
+    useEffect(() => {
+        console.log("post", post)
+    },[])
     const haveImage = (
         <div className={`${toggle ? " h-[240px] sm:h-[400px]" : "h-[0]" } transition-all delay-150 duration-150 flex items-start justify-between overflow-hidden gap-3`}>
             <div className="flex max-w-[50%] flex-col h-[240px] sm:h-full overflow-hidden">

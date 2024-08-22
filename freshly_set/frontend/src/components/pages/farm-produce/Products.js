@@ -6,25 +6,43 @@ import FarmGardenSetups from './FarmGardenSetups'
 import HamburgerMenu from './HamburgerMenu'
 import NavAuthenticated from '../../Nav/NavAuthenticated'
 import FreshlyFooter from "../../footer/FreshlyFooter";
-import { PageContext } from '../../context/PageContext'
+import { ModalContext, PageContext, PopupContext } from '../../context/PageContext'
 import ProduceBanner from './ProduceBanner'
-
+import CtaPopup from "./CtaPopup";
+import Categories from './Categories'
 function Products() {
   const [activeTab, setActiveTab] = useContext(PageContext);
 
+  const [modalOpen, setModalOpen] = useContext(ModalContext)
   useEffect(() => {
       setActiveTab("products")
   },[activeTab])
   return (
     <div>
-        <NavAuthenticated />
-        <ProductsHero />
-        {/* <HamburgerMenu />  */}
-        <FarmingSystems />
-        <FarmGardenSetups />
-        <ProduceCenter />
-        <ProduceBanner />
-        <FreshlyFooter />
+       {
+          modalOpen && (
+            <CtaPopup />
+
+          )
+        }
+
+            {
+              !modalOpen && (
+                <>
+                  <NavAuthenticated />
+                  <ProductsHero />
+                </>
+              )
+            }
+         
+          
+            {/* <HamburgerMenu />  */}
+            <FarmingSystems />
+            <FarmGardenSetups />
+            <ProduceCenter />
+            <ProduceBanner />
+            <FreshlyFooter />
+         
     </div>
   )
 }

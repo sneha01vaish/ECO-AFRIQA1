@@ -1,14 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaCaretDown, FaLongArrowAltRight, FaStar } from 'react-icons/fa'
+import { CurrentIndexContext, ModalContentsContext, ModalContext } from '../../context/PageContext';
 
-function FarmCard({  img, title, body, rating, number}) {
+function FarmCard({  index, img, title, body, rating, number}) {
     const [clicked, setClicked] = useState({
         1: true,  // Question 1 is open by default
         2: true, // Question 2 is closed by default
         3: true,
         4: true
       });
-    
+      const [modalOpen, setModalOpen] = useContext(ModalContext);
+      const [modalContents, setModalContents] = useContext(ModalContentsContext);
+      const [currentIndex, setCurrentIndex] = useContext(CurrentIndexContext);
+
+    const passInfo = () => {
+      setModalOpen(true)
+      setCurrentIndex(index)
+      // setModalContents({
+      //   img, title, body
+      // })
+    }
       const toggleCard = (id) => {
         setClicked((prevState) => ({
           ...prevState,
@@ -53,7 +64,7 @@ function FarmCard({  img, title, body, rating, number}) {
           </div>
           <div className="flex justify-between items-center ml-[6.71px] lg:mx-[30px]">
               <div className="flex space-x-[15px] items-center">
-                <p className="text-[7.625px] lg:text-[20px] freshlyGreenText cursor-pointer">Read More</p>
+                <p onClick={passInfo} className="text-[7.625px] lg:text-[20px] freshlyGreenText cursor-pointer">Read More</p>
                   <FaLongArrowAltRight className="freshlyGreenText cursor-pointer mt-[12px] lg:mt-[0px]" />
               </div>
 
