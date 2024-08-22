@@ -8,12 +8,15 @@ import blogItems from './blogItems.json'
 
 // import BlogForm from './BlogForm';
 import Contact from './Contact';
-import { PageContext } from '../../context/PageContext';
+import { PageContext, SelectedSectionContext } from '../../context/PageContext';
 import BlogWidgetsNew from './BlogWidgetsNew';
 import BlogWidgets from './BlogWidgets';
 import { useNavigate } from 'react-router-dom';
 import api from "../../../api/blogs"
 import axios from 'axios';
+import BlogMain from './BlogMain';
+import BlogsAllArticles from './BlogsAllArticles';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -24,6 +27,8 @@ const Blogs = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null)
+  const [selectedSection, setSelectedSection] = useContext(SelectedSectionContext);
+
   const showMore = () => {
     setVisible((prevCount) => Math.min(prevCount + 3, blogs.length));
   };
@@ -36,30 +41,7 @@ const Blogs = () => {
     setActiveTab("products")
 },[activeTab])
 
-//  useEffect(() => {
 
-//   const fetchBlogs = async () => {
-//     try {
-//       const response = await api.get('freshlyapp/blogs');
-//       setBlogs(response.data);
-//       console.log("Blogs set", blogs)
-
-//     } catch (error) {
-//       if (error) {
-//         // Catch errors out of 200 range
-//         console.log(error.response.data)
-//         console.log(error.response.headers)
-//         console.log(error.response.status)
-//       } else {
-//         // any other errors within 200
-//         console.log(error.response.message)
-//       }
-//     };
-//     console.log("Blogs fetched", blogs)
-//   }
-//   fetchBlogs();
-
-// }, [])
 useEffect(() => {
   // Fetch CSRF token from meta tag
   const token = document.querySelector('meta[name="csrf-token"]');
@@ -92,41 +74,25 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
 
       <div className=" min-h-[100vh] py-16 bg-[#F5FAF9]">
         <Nav />
+        {
+          selectedSection!=="blogs" && (
+            <FaArrowLeft onClick={() => setSelectedSection("blogs")} className="absolute h-[61px] w-[61px] text-[#008000] lg:top-[240px] left-[38px] cursor-pointer z-[50]"/>
+
+          )
+        }
         <BlogSearch />
-        <BlogHero />
-        <h1 className="text-center text-nowrap text-[48px] my-2 sm:text-[64px] lg:text-[140px] text-[#008000] font-inter font-[900]">What's new?</h1>
+        
+        { selectedSection === "blogs" && (
+          <BlogMain />
+       )}       
 
-        <div className='flex justify-end items-center pr-3 sm:pr-16'>
-          <button onClick={handleNavigateToAllBlogs}            className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
-          >View All Updates</button>
+        { selectedSection === "all-updates" && (
+       <div>
+          <BlogsAllArticles />
         </div>
+       )}
 
-        <div className="flex flex-col gap-8 pb-8 max-w-[96%] sm:w-full mx-auto">
-          {blogs ? blogs.slice(0, visible).map((blog) => (
-            <BlogPosts key={blog.id} post={blog} />
-          )) : <h4>Loading ... </h4>}
-        </div>
-
-        <div className="flex flex-wrap justify-center mx-auto gap-3 z-10">
-          <button
-            className="standardBtn"
-            disabled={visible >= blogs.length}
-            onClick={showMore}
-          >
-            View All Updates
-          </button>
-          <button
-            className="standardBtn"
-            disabled={visible <= 3}
-            onClick={showLess}
-          >
-            View less Updates
-          </button>
-        </div>
-
-          <BlogWidgetsNew />  
-          {/* <BlogWidgets /> */}
-        <Contact />
+       
         <FreshlyFooter />
       </div>
     </div>
