@@ -16,6 +16,8 @@ import Categories from './components/pages/farm-produce/Categories';
 import FaqDetails from './components/pages/cta-detail/FaqDetails';
 import Detailed from './components/pages/homepage/Detailed';
 import Detail from './components/pages/about-us/Detail';
+import BlogsAllArticles from './components/pages/blogs/BlogsAllArticles';
+import TestimonialsDetails from './components/pages/cta-detail/TestimonialsDetails';
 import BlogsAllUpdates from "./components/pages/cta-detail/BlogsAllUpdates"
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
         <Route path="/farmingSystems" element={<FarmingSystemsDetail />}/>
         <Route path="/gardenSetups" element={<GardenSetupsDetail />} />
         <Route path="/cta-detail/" element={<FaqDetails />} />
+        <Route path="/testimonials-detailed" element={<TestimonialsDetails />} />
         
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}
 
