@@ -85,7 +85,7 @@ function BlogSearch() {
       <ul>
         {filteredBlogs.map(blog => (
           <li key={blog.id}>
-            <h2>{blog.title}</h2>
+            <h2>title{blog.title}</h2>
             <p>{blog.content}</p>
           </li>
         ))}
