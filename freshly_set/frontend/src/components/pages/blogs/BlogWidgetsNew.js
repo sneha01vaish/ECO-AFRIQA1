@@ -1,13 +1,32 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { FaChevronDown, FaShareAlt, FaVolumeUp } from 'react-icons/fa'
 import { MdMessage } from 'react-icons/md'
 import PollCard from './PollCard';
+import { SelectedSectionContext } from '../../context/PageContext';
 
 function BlogWidgetsNew() {
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
-  
+    const [selectedSection, setSelectedSection] = useContext(SelectedSectionContext);
+
+
+    // Added this for animations later
+
+    const [isVisible, setIsVisible] = useState(false); 
+
+    const showDetail = () => {
+        window.scrollTo({ top: 0 }); 
+        setSelectedSection("all-updates");
+
+        setIsVisible(false); 
+        setTimeout(() => {
+            setSelectedSection("all-updates")
+            setIsVisible(true); // Show the new content with animation
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top smoothly
+        }, 300); // Delay for the slide-out animation before changing content
+    }
+    
     const handlePlayPause = () => {
       if (videoRef.current) {
         if (isPlaying) {
@@ -27,17 +46,8 @@ function BlogWidgetsNew() {
     };
   return (
     <div className="block">
- <div className="flex justify-center w-[100%]">
-            <h3 className="font-[900] text-[35px] lg:text-[45px] text-[#008000] font-inter text-center whitespace-nowrap">ARTICLE CENTER</h3>
-        </div>
-
-        <div className="flex justify-center space-x-[19px] lg:space-x-[78px]">
-            <img className="h-[132px] w-[132px] lg:h-[512px] lg:w-[512px]" src="/static/media/bulbWidget.png" alt="Article light bulb"/>
-
-            <p className="text-[27.5px] lg:text-[55px] font-[900] lg:w-[478px] font-inter">Vertical Farms Can Be Implemented In Slums ?</p>
-        </div>
-
-
+  
+     
         <div className="grid grid-cols-2 gap-x-[26px] lg:grid lg:grid-cols-3 gap-y-[28px] mx-[7px] lg:mx-[68px] mt-[70px] ">
 
         {/* Cards Start */}
