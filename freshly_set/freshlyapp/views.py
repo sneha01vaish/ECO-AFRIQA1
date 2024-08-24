@@ -215,16 +215,8 @@ class BlogListCreateView(generics.ListCreateAPIView):
     serializer_class = BlogSerializer
     permission_classes = [AllowAny]  # This allows unauthenticated access
 
-    def blog_create(request):
-        if request.method == 'POST':
-            form = BlogForm(request.POST, request.FILES)
-            if form.is_valid():
-                form.save()
-                return redirect('blogs/BlogForm.jsx')
-        else:
-            form = BlogForm()
-        return render(request, 'blogs/BlogForm.jsx', {'form': form})
-
+    def perform_create(self, serializer):
+        serializer.save()
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -235,6 +227,19 @@ class BlogListCreateView(generics.ListCreateAPIView):
                 Q(content__icontains=search_query)
             )
         return queryset
+"""
+    def blog_create(request):
+        if request.method == 'POST':
+            form = BlogForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('blogs/BlogForm.jsx')
+        else:
+            form = BlogForm()
+        return render(request, 'blogs/BlogForm.jsx', {'form': form})
+"""
+
+    
 
 class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Blog.objects.all()

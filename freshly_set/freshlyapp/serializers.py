@@ -50,7 +50,7 @@ class BlogSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Blog
-        fields = ['id', 'user', 'title', 'content', 'comments', 'likes', 'shares']
+        fields = ['id', 'user', 'title', 'content','image' ,'comments', 'likes', 'shares']
         read_only_fields = ['id', 'comments', 'likes', 'shares']  # These fields are typically read-only
 
 # Created serializers for Blog, Comment, Like, and Share.
