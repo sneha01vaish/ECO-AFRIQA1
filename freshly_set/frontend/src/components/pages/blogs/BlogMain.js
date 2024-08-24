@@ -80,7 +80,7 @@ function BlogMain() {
         <div className="flex justify-center space-x-[19px] lg:space-x-[78px]">
             <img className="h-[132px] w-[132px] lg:h-[512px] lg:w-[512px]" src="/static/media/bulbWidget.png" alt="Article light bulb"/>
 
-            <p className="text-[27.5px] lg:text-[55px] font-[900] lg:w-[478px] font-inter justify-start">Vertical Farms Can Be Implemented In Slums ?</p>
+            <p className="text-[27.5px] lg:text-[55px] font-[900] lg:w-[478px] font-inter text-start">Vertical Farms Can Be Implemented In Slums ?</p>
         </div>
 
         <div className="flex  justify-end mr-[27px] lg:mr-[65px] gap-3 z-10">
