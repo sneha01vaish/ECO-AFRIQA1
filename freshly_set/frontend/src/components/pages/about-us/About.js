@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Nav from '../../Nav/Navbar'
 import Hero from './Hero'
 import MissionVision from './MissionVision'
@@ -8,8 +8,14 @@ import StriveFor from './StriveFor'
 import FreshlyFooter from "../../footer/FreshlyFooter";
 import Team from './Team'
 import Testimonials from './Testimonials'
+import { PageContext } from '../../context/PageContext'
 
 function About() {
+  const [activeTab, setActiveTab] = useContext(PageContext);
+
+  useEffect(() => {
+    setActiveTab("about")
+},[activeTab])
   return (
     <div className="overflow-x-hidden">
       <Nav />

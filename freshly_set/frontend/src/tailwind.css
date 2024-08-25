@@ -8,4 +8,16 @@
     .footerLinks {
         @apply text-gray-200 font-inter text-[15px] font-[500];
     }
+
+    .freshlyGreenText{
+        @apply text-[#008000]
+    }
+
+    .freshlyGreen{
+        @apply bg-[#008000]
+    }
+
+    .cardHeading{
+        @apply text-[#008000] ml-[18px] lg:ml-[38px] text-[8.779px] lg:text-[18.238px] w-[149.701px] lg:w-[269.553px]
+    }
   }

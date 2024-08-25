@@ -1,139 +1,332 @@
-import React from 'react'
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React, { useState } from 'react'
+import { Link } from "react-router-dom";
 
 function Testimonials() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: false,
-  };
+    // State to manage color changes
+    const [isHovered, setIsHovered] = useState({
+        1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false
+    });
 
-  return (
-    <div className="flex justify-center relative h-[920px] bg-white/[50%]">
+    // Function to toggle the color on mouse enter
+    const toggleColor = (id) => {
+        setIsHovered((prevState) => ({
+          ...prevState,
+          [id]: !prevState[id],
+        }));
+      };
 
-      {/* Large Screen */}
-      <div className="hidden lg:flex absolute h-[200px] w-[300px] bg-[#48E3C7] -top-[150px] left-0  blur-[400px]"/>
-      {/* Top Elipse */}
-      <div className="hidden lg:flex  absolute top-[260px]   ">
-        <img className="" src="/static/media/elipse_reviews.png" alt="Elipse"/>
-      </div>
-      {/* Bottom elipse */}
-      <div className=" hidden lg:flex absolute bottom-[130px] z-[25] ">
-        <img className="" src="/static/media/elipse2.png" alt="Elipse"/>
-      </div>
+    // Function to toggle the color on mouse leave
+    const returnColor = (id) => {
+        setIsHovered((!isHovered));
+      }; 
 
-      <div className="hidden lg:block ">
-        <h4 className="text-[#008000] text-[45px] text-center font-inter">Our Testimonials</h4>
-        <h5 className='text-black text-[22px] text-center w-[829px] font-[600] mb-[100px] font-inter'>
-          These are some of the testimonials we got from our clients’ side on how Freshly Farms helped them grow both economically and knowledgewise in farming
-        </h5>
+    return (   
+      <div className="Testimonials relative  lg:mx-[40px] lg:mt-[100px]">
           
-        <div className="flex space-x-[20px] ">
-          <div className="block space-y-[12px]">
-            <img className="h-[400px] w-[200px] object-cover" src="/static/media/image4.jpg" alt="image4" />
-            <p className='text-black text-[24px] font-[700] z-30 absolute font-inter'>Charles Kisika</p>
-            <p className='text-black text-[16px] font-[250] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
-            <img className="h-[36px] w-[196px]  flex-shrink-[0] absolute bottom-[-50px] leading-[20.8px]  " src="/static/media/image 17.png" alt="image17" />
-            "Freshly Farm's expertise has empowered our local farmers, improving the quality and quantity of our community garden's harvests."</p>
-            
+          <div className="MainTitle text-[20px]  flex justify-center">
+              <h1 className="font-inter block font[700] text-[#008000] text-[28px] lg:text-[45px] ">Our Testimonials</h1>
           </div>
-          <div className="block space-y-[12px]">
-            <img className="h-[400px] w-[200px] object-cover" src="/static/media/image3.jpg" alt="image4" />
-            <p className='text-black text-[24px] font-[700] z-30 absolute'>Brian Ouma</p>
-            <p className='text-black text-[16px] font-[250] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
-            <img className="h-[36px] w-[196px]  flex-shrink-[0] absolute bottom-[-50px] leading-[20.8px]  " src="/static/media/image 17.png" alt="image17" />
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
-            </p>
-          </div>
-          <div className="block space-y-[12px]">
-            <img className="h-[400px] w-[200px] object-cover" src="/static/media/image2.jpg" alt="image4" />
-            <p className='text-black text-[24px] font-[700] z-30 absolute'>Stacey Gathoni</p>
-            <p className='text-black text-[16px] font-[250] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px]'>
-            <img className="h-[36px] w-[196px]  flex-shrink-[0] absolute bottom-[-50px] leading-[20.8px]  " src="/static/media/image 17.png" alt="image17" />
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
-            </p>
-          </div>
-          <div className="block space-y-[12px] ">
-            <img className="h-[400px] w-[200px] object-cover" src="/static/media/image5.png" alt="image4" />
-            <p className='text-black text-[24px] font-[700] z-30 absolute'>Sheila Mueni</p>
-            <p className='text-black text-[16px] font-[250] w-[199px] z-30 font-josefin absolute bottom-[5px] leading-[20.8px] '>
-            <img className="h-[36px] w-[196px]  flex-shrink-[0] absolute bottom-[-50px] leading-[20.8px]  " src="/static/media/image 17.png" alt="image17" />
-
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
-            </p>
-          </div>
-        </div>
           
-        <div className='flex justify-center mt-[180px]'> 
-          <button className='w-[272px] h-[70px] bg-[#008000] rounded-[15px] mt-[62px] text-white text-[25px] border-none'>Read More</button>
-        </div>
-          
-        { <div className="flex justify-center mt-[25px]">
-          <svg xmlns="http://www.w3.org/2000/svg" width="145" height="32" viewBox="0 0 145 32" fill="none">
-            <ellipse cx="12.9464" cy="12" rx="12.9464" ry="12" fill="#D9D9D9"/>
-            <ellipse cx="68.1849" cy="12" rx="12.9464" ry="12" fill="#D9D9D9"/>
-            <ellipse cx="127.738" cy="16" rx="17.2619" ry="16" fill="#008000"/> 
-          </svg>
-        </div>  }
-      </div> 
+          {/* View All Button */}
+          <Link to= "/testimonials-detailed" className='flex justify-end mt-[20px] lg:mt-[30px]'>
+              <button className=' block  mr-[20px] lg:mr-[100px] cursor-pointer rounded-[10px] border-none active:scale-90 transition-all duration-100 ease-out font-inter text-white bg-[#008000] text-[12px] lg:text-[20px] font-[700] py-[10px] px-[28px] lg:px-[35px] '> View All </button>
+          </Link>
 
-      {/* Mobile  */}
-      <div className="block lg:hidden relative w-full">
-        <div className="absolute top-[210px] z-[30] right-[100px] ">
-          <img src="/static/media/elipse1_sm.png" alt="Elipse1_sm"/>
-        </div>
-        <div className="block mb-[80px]">
-          <p className="text-[35px] font-[700] text-[#008000] font-inter text-center">Our Testimonials</p>
-          <p className="text-[12px] text-black w-[308px] text-center font-inter -mt-[20px]">
-            These are some of the reviews we got from our clients’ side on how Freshly Farms helped them grow both economically and knowledgewise in farming
-          </p>
-        </div>
 
-        <Slider {...settings} className="mt-[150px]">
-          <div className="block px-[10px]">
-            <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image2.jpg" alt="image2" />
-            <p className="text-black text-[20px] font-[700] font-inter">Stacey Gathoni</p>
-            <p className="text-black font-sans font-[400] leading-[19.5px] text-[15px] w-[199px]">
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
-            </p>
-          </div>
-          <div className="block px-[10px]">
-            <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image1.png" alt="image1" />
-            <p className="text-black text-[20px] font-[700] font-inter">Charles Kisika</p>
-            <p className="text-black font-sans font-[400] leading-[19.5px] text-[15px] w-[199px]">
-             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
-            </p>
-          </div>
-          <div className="block px-[10px]">
-            <img className="h-[400px] w-[270px] object-cover z-[10]" src="/static/media/image3.jpg" alt="image3" />
-            <p className="text-black text-[20px] font-[700] font-inter">Stacey Gathoni</p>
-            <p className="text-black font-sans font-[400] leading-[19.5px] text-[15px] w-[199px]">
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru"
-            </p>
-          </div>
-        </Slider>
+          {/*Cards */}
+          <div className="AllCards mx-[6px] lg:mx-[80px] mt-[10px] lg:mt-[50px]">
+              {/*First 6 Cards (Visible On Mobile Version*/}
+              <div className="FirstSixs grid grid-cols-2 sm:grid-cols-3 gap-0 mx-0 ">
+              
+                  {/*Single Card 1*/}
+                  <div className="CardWrapper ">
+                      <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700 ${isHovered[1]?  "bg-[#008000]" : "bg-white"}`}
+                          onMouseEnter={() => toggleColor(1)}
+                          onMouseLeave={() => returnColor(1)}
+                          >
+                          {/*UserName and Image */}
+                          <div className="InnerContent m-0">
+                              <div className="ImageAndName flex justify-start">
+                                  <div className="UserImage block w-[30px] lg:w-[60px] h-[30px] lg:h-[60px] rounded-[500px] overflow-hidden">
+                                      <img src="/static/media/image4.jpg" alt="User"  className="object-cover w-full h-full"/>
+                                  </div>
+                                  <div className="UserName block ml-0.5">
+                                      <p className={`font-inter font-[900] text-[10px] lg:text-[18px]  my-0 ${isHovered[1] ? "text-white" : "text-black"}`} >Charles Kisika</p>
+                                  </div> 
+                              </div>   {/*User Image and Name Ends Here */}
 
-        <div className="flex justify-center mt-[50px]">
-          <button className="h-[48px] w-[236px] bg-[#008000] text-white rounded-[15px] text-[25px] border-none">Read More</button>
-        </div>
-        <div className="flex justify-center mt-[38px]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="145" height="32" viewBox="0 0 145 32" fill="none">
-          <ellipse cx="12.9464" cy="12" rx="12.9464" ry="12" fill="#D9D9D9"/>
-          <ellipse cx="68.1849" cy="12" rx="12.9464" ry="12" fill="#D9D9D9"/>
-          <ellipse cx="127.738" cy="16" rx="17.2619" ry="16" fill="#008000"/> 
-        </svg>
-      </div>
-      </div>
+                              {/*Card Title */}
+                              <div className="CardTitle block my-1">
+                                      <h3 className={ `font-inter font-[700] text-[12px] m-0 lg:text-[22px] ${isHovered[1] ? "text-white":"text-[#008000]" }`}>Great Technology!</h3>
+                              </div> {/*card title Ends Here */}
+
+                              {/*Card Details */}
+                              <div className="">
+                                      <p className={`font-inter font-[500]  text-[6px] lg:text-[12px] mt-1 text-start mb-0   ${isHovered[1] ?"text-white":"text-black" }`}>To lead the global shift towards sustainable food production, where every meal nourishes both people and the planet, fostering a world of abundance, equality, and ecological harmony.</p>
+                              </div>
+                          </div> {/*Inner Contents Ends Here */}
+                      </div> {/*Single card Ends Here */}
+                  </div>    {/*Card Wrapper Ends */}
+              
+                  {/*Single Card 2*/}
+                  <div className="CardWrapper ">
+                      <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px]  lg:ml-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[2]?  "bg-[#008000]" : ""}`}
+                          onMouseEnter={() => toggleColor(2)}
+                          onMouseLeave={() => returnColor(2)}
+                          >
+                          {/*UserName and Image */}
+                          <div className="InnerContent m-0">
+                              <div className="ImageAndName flex justify-start">
+                                  <div className="UserImage block w-[30px] lg:w-[60px] h-[30px] lg:h-[60px] rounded-[500px] overflow-hidden">
+                                      <img src="/static/media/image4.jpg" alt="User"  className="object-cover w-full h-full"/>
+                                  </div>
+                                  <div className="UserName block ml-0.5">
+                                      <p className={`font-inter font-[900] text-[10px] lg:text-[18px]  my-0 ${isHovered[2] ? "text-white" : "text-black"}`} >Charles Kisika</p>
+                                  </div> 
+                              </div>   {/*User Image and Name Ends Here */}
+
+                              {/*Card Title */}
+                              <div className="CardTitle block my-1">
+                                      <h3 className={ `font-inter font-[700] text-[12px] m-0 lg:text-[22px] ${isHovered[2] ? "text-white":"text-[#008000]" }`}>Great Technology!</h3>
+                              </div> {/*card title Ends Here */}
+
+                              {/*Card Details */}
+                              <div className="">
+                                      <p className={`font-inter font-[500]  text-[6px] lg:text-[12px] mt-1 mb-0 text-start    ${isHovered[2] ?"text-white":"text-black" }`}>To lead the global shift towards sustainable food production, where every meal nourishes both people and the planet, fostering a world of abundance, equality, and ecological harmony.</p>
+                              </div>
+                          </div> {/*Inner Contents Ends Here */}
+                      </div> {/*Single card Ends Here */}
+                  </div>    {/*Card Wrapper Ends */}
+              
+
+                  {/*Single Card 3*/}
+                  <div className="CardWrapper ">
+                      <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto lg:ml-[90px] mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[3]?  "bg-[#008000]" : ""}`}
+                          onMouseEnter={() => toggleColor(3)}
+                          onMouseLeave={() => returnColor(3)}
+                          >
+                          {/*UserName and Image */}
+                          <div className="InnerContent m-0">
+                              <div className="ImageAndName flex justify-start">
+                                  <div className="UserImage block w-[30px] lg:w-[60px] h-[30px] lg:h-[60px] rounded-[500px] overflow-hidden">
+                                      <img src="/static/media/image4.jpg" alt="User"  className="object-cover w-full h-full"/>
+                                  </div>
+                                  <div className="UserName block ml-0.5">
+                                      <p className={`font-inter font-[900] text-[10px] lg:text-[18px]  my-0 ${isHovered[3] ? "text-white" : "text-black"}`} >Charles Kisika</p>
+                                  </div> 
+                              </div>   {/*User Image and Name Ends Here */}
+
+                              {/*Card Title */}
+                              <div className="CardTitle block my-1">
+                                      <h3 className={ `font-inter font-[700] text-[12px] m-0 lg:text-[22px] ${isHovered[3] ? "text-white":"text-[#008000]" }`}>Great Technology!</h3>
+                              </div> {/*card title Ends Here */}
+
+                              {/*Card Details */}
+                              <div className="">
+                                      <p className={`font-inter font-[500]  text-[6px] lg:text-[12px] mt-1 text-start mb-0   ${isHovered[3] ?"text-white":"text-black" }`}>To lead the global shift towards sustainable food production, where every meal nourishes both people and the planet, fostering a world of abundance, equality, and ecological harmony.</p>
+                              </div>
+                          </div> {/*Inner Contents Ends Here */}
+                      </div> {/*Single card Ends Here */}
+                  </div>    {/*Card Wrapper Ends */}
+              
+                  
+                    {/*Single Card 4*/}
+                  <div className="CardWrapper ">
+                      <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px]  lg:mt-0 lg:mb-[120px]  mx-auto  pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[4]?  "bg-[#008000]" : ""}`}
+                          onMouseEnter={() => toggleColor(4)}
+                          onMouseLeave={() => returnColor(4)}
+                          >
+                          {/*UserName and Image */}
+                          <div className="InnerContent m-0">
+                              <div className="ImageAndName flex justify-start">
+                                  <div className="UserImage block w-[30px] lg:w-[60px] h-[30px] lg:h-[60px] rounded-[500px] overflow-hidden">
+                                      <img src="/static/media/image4.jpg" alt="User"  className="object-cover w-full h-full"/>
+                                  </div>
+                                  <div className="UserName block ml-0.5">
+                                      <p className={`font-inter font-[900] text-[10px] lg:text-[18px]  my-0 ${isHovered[4] ? "text-white" : "text-black"}`} >Charles Kisika</p>
+                                  </div> 
+                              </div>   {/*User Image and Name Ends Here */}
+
+                              {/*Card Title */}
+                              <div className="CardTitle block my-1">
+                                      <h3 className={ `font-inter font-[700] text-[12px] m-0 lg:text-[22px] ${isHovered[4] ? "text-white":"text-[#008000]" }`}>Great Technology!</h3>
+                              </div> {/*card title Ends Here */}
+
+                              {/*Card Details */}
+                              <div className="">
+                                      <p className={`font-inter font-[500]  text-[6px] lg:text-[12px] mt-1 mb-0 text-start    ${isHovered[4] ?"text-white":"text-black" }`}>To lead the global shift towards sustainable food production, where every meal nourishes both people and the planet, fostering a world of abundance, equality, and ecological harmony.</p>
+                              </div>
+                          </div> {/*Inner Contents Ends Here */}
+                      </div> {/*Single card Ends Here */}
+                  </div>    {/*Card Wrapper Ends */}
+              
+                  {/*Single Card 5*/}
+                <div className="CardWrapper ">
+                      <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:mx-auto mb-[30px] lg:mb-0 lg:mt-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[5]?  "bg-[#008000]" : ""}`}
+                          onMouseEnter={() => toggleColor(5)}
+                          onMouseLeave={() => returnColor(5)}
+                          >
+                          {/*UserName and Image */}
+                          <div className="InnerContent m-0">
+                              <div className="ImageAndName flex justify-start">
+                                  <div className="UserImage block w-[30px] lg:w-[60px] h-[30px] lg:h-[60px] rounded-[500px] overflow-hidden">
+                                      <img src="/static/media/image4.jpg" alt="User"  className="object-cover w-full h-full"/>
+                                  </div>
+                                  <div className="UserName block ml-0.5">
+                                      <p className={`font-inter font-[900] text-[10px] lg:text-[18px]  my-0 ${isHovered[5] ? "text-white" : "text-black"}`} >Charles Kisika</p>
+                                  </div> 
+                              </div>   {/*User Image and Name Ends Here */}
+
+                              {/*Card Title */}
+                              <div className="CardTitle block my-1">
+                                      <h3 className={ `font-inter font-[700] text-[12px] m-0 lg:text-[22px] ${isHovered[5] ? "text-white":"text-[#008000]" }`}>Great Technology!</h3>
+                              </div> {/*card title Ends Here */}
+
+                              {/*Card Details */}
+                              <div className="">
+                                      <p className={`font-inter font-[500]  text-[6px] lg:text-[12px] mt-1 text-start mb-0   ${isHovered[5] ?"text-white":"text-black" }`}>To lead the global shift towards sustainable food production, where every meal nourishes both people and the planet, fostering a world of abundance, equality, and ecological harmony.</p>
+                              </div>
+                          </div> {/*Inner Contents Ends Here */}
+                      </div> {/*Single card Ends Here */}
+                  </div>    {/*Card Wrapper Ends */}
+              
+
+                  {/*Single Card 6*/}
+                  <div className="CardWrapper ">
+                      <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0 lg:mb-[120px]  ml-[20px]  lg:mx-auto pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[6]?  "bg-[#008000]" : ""}`}
+                          onMouseEnter={() => toggleColor(6)}
+                          onMouseLeave={() => returnColor(6)}
+                          >
+                          {/*UserName and Image */}
+                          <div className="InnerContent m-0">
+                              <div className="ImageAndName flex justify-start">
+                                  <div className="UserImage block w-[30px] lg:w-[60px] h-[30px] lg:h-[60px] rounded-[500px] overflow-hidden">
+                                      <img src="/static/media/image4.jpg" alt="User"  className="object-cover w-full h-full"/>
+                                  </div>
+                                  <div className="UserName block ml-0.5">
+                                      <p className={`font-inter font-[900] text-[10px] lg:text-[18px]  my-0 ${isHovered[6] ? "text-white" : "text-black"}`} >Charles Kisika</p>
+                                  </div> 
+                              </div>   {/*User Image and Name Ends Here */}
+
+                              {/*Card Title */}
+                              <div className="CardTitle block my-1">
+                                      <h3 className={ `font-inter font-[700] text-[12px] m-0 lg:text-[22px] ${isHovered[6] ? "text-white":"text-[#008000]" }`}>Great Technology!</h3>
+                              </div> {/*card title Ends Here */}
+
+                              {/*Card Details */}
+                              <div className="">
+                                      <p className={`font-inter font-[500]  text-[6px] lg:text-[12px] mt-1 mb-0 text-start    ${isHovered[6] ?"text-white":"text-black" }`}>To lead the global shift towards sustainable food production, where every meal nourishes both people and the planet, fostering a world of abundance, equality, and ecological harmony.</p>
+                              </div>
+                          </div> {/*Inner Contents Ends Here */}
+                      </div> {/*Single card Ends Here */}
+                  </div>    {/*Card Wrapper Ends */}    
+                  
+              </div> {/*First 6 Cards ENds Here (Only Show in Mobile Version*/}
+
+              {/* Only Show in the Desktop Version */}
+              <div className='LastThreeCards  hidden sm:grid  sm:grid-cols-3 gap-0 mx-0 '> {/*Only show in desktop Version*/}
+           
+                  {/*Single Card 7*/}
+                  <div className="CardWrapper ">
+                      <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[25]?  "bg-[#008000]" : ""}`}
+                          onMouseEnter={() => toggleColor(25)}
+                          onMouseLeave={() => returnColor(25)}
+                          >
+                          {/*UserName and Image */}
+                          <div className="InnerContent m-0">
+                              <div className="ImageAndName flex justify-start">
+                                  <div className="UserImage block w-[30px] lg:w-[60px] h-[30px] lg:h-[60px] rounded-[500px] overflow-hidden">
+                                      <img src="/static/media/image4.jpg" alt="User"  className="object-cover w-full h-full"/>
+                                  </div>
+                                  <div className="UserName block ml-0.5">
+                                      <p className={`font-inter font-[900] text-[10px] lg:text-[18px]  my-0 ${isHovered[25] ? "text-white" : "text-black"}`} >Charles Kisika</p>
+                                  </div> 
+                              </div>   {/*User Image and Name Ends Here */}
+
+                              {/*Card Title */}
+                              <div className="CardTitle block my-1">
+                                      <h3 className={ `font-inter font-[700] text-[12px] m-0 lg:text-[22px] ${isHovered[25] ? "text-white":"text-[#008000]" }`}>Great Technology!</h3>
+                              </div> {/*card title Ends Here */}
+
+                              {/*Card Details */}
+                              <div className="">
+                                      <p className={`font-inter font-[500]  text-[6px] lg:text-[12px] mt-1 text-start mb-0   ${isHovered[25] ?"text-white":"text-black" }`}>To lead the global shift towards sustainable food production, where every meal nourishes both people and the planet, fostering a world of abundance, equality, and ecological harmony.</p>
+                              </div>
+                          </div> {/*Inner Contents Ends Here */}
+                      </div> {/*Single card Ends Here */}
+                  </div>    {/*Card Wrapper Ends */}
+              
+                  {/*Single Card 8*/}
+                  <div className="CardWrapper ">
+                      <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px] lg:ml-0  lg:mr-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700 ${isHovered[26]?  "bg-[#008000]" : ""}`}
+                          onMouseEnter={() => toggleColor(26)}
+                          onMouseLeave={() => returnColor(26)}
+                          >
+                          {/*UserName and Image */}
+                          <div className="InnerContent m-0">
+                              <div className="ImageAndName flex justify-start">
+                                  <div className="UserImage block w-[30px] lg:w-[60px] h-[30px] lg:h-[60px] rounded-[500px] overflow-hidden">
+                                      <img src="/static/media/image4.jpg" alt="User"  className="object-cover w-full h-full"/>
+                                  </div>
+                                  <div className="UserName block ml-0.5">
+                                      <p className={`font-inter font-[900] text-[10px] lg:text-[18px]  my-0 ${isHovered[26] ? "text-white" : "text-black"}`} >Charles Kisika</p>
+                                  </div> 
+                              </div>   {/*User Image and Name Ends Here */}
+
+                              {/*Card Title */}
+                              <div className="CardTitle block my-1">
+                                      <h3 className={ `font-inter font-[700] text-[12px] m-0 lg:text-[22px] ${isHovered[26] ? "text-white":"text-[#008000]" }`}>Great Technology!</h3>
+                              </div> {/*card title Ends Here */}
+
+                              {/*Card Details */}
+                              <div className="">
+                                      <p className={`font-inter font-[500]  text-[6px] lg:text-[12px] mt-1 mb-0 text-start    ${isHovered[26] ?"text-white":"text-black" }`}>To lead the global shift towards sustainable food production, where every meal nourishes both people and the planet, fostering a world of abundance, equality, and ecological harmony.</p>
+                              </div>
+                          </div> {/*Inner Contents Ends Here */}
+                      </div> {/*Single card Ends Here */}
+                  </div>    {/*Card Wrapper Ends */}
+              
+
+                  {/*Single Card 9*/}
+                  <div className="CardWrapper ">
+                      <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto lg:ml-[90px] mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[9]?  "bg-[#008000]" : ""}`}
+                          onMouseEnter={() => toggleColor(9)}
+                          onMouseLeave={() => returnColor(9)}
+                          >
+                          {/*UserName and Image */}
+                          <div className="InnerContent m-0">
+                              <div className="ImageAndName flex justify-start">
+                                  <div className="UserImage block w-[30px] lg:w-[60px] h-[30px] lg:h-[60px] rounded-[500px] overflow-hidden">
+                                      <img src="/static/media/image4.jpg" alt="User"  className="object-cover w-full h-full"/>
+                                  </div>
+                                  <div className="UserName block ml-0.5">
+                                      <p className={`font-inter font-[900] text-[10px] lg:text-[18px]  my-0 ${isHovered[9] ? "text-white" : "text-black"}`} >Charles Kisika</p>
+                                  </div> 
+                              </div>   {/*User Image and Name Ends Here */}
+
+                              {/*Card Title */}
+                              <div className="CardTitle block my-1">
+                                      <h3 className={ `font-inter font-[700] text-[12px] m-0 lg:text-[22px] ${isHovered[9] ? "text-white":"text-[#008000]" }`}>Great Technology!</h3>
+                              </div> {/*card title Ends Here */}
+
+                              {/*Card Details */}
+                              <div className="">
+                                      <p className={`font-inter font-[500]  text-[6px] lg:text-[12px] mt-1 text-start mb-0   ${isHovered[9] ?"text-white":"text-black" }`}>To lead the global shift towards sustainable food production, where every meal nourishes both people and the planet, fostering a world of abundance, equality, and ecological harmony.</p>
+                              </div>
+                          </div> {/*Inner Contents Ends Here */}
+                      </div> {/*Single card Ends Here */}
+                  </div>    {/*Card Wrapper Ends */}
+              
+              </div> {/*Last 3 cards for Desktop Version Only Ends Here*/}
+
+
+          </div> {/*All Cards Ends Here */}
+
       
-    </div>
-  )
+
+  </div> //Detailed ends here
+   ); 
 }
 
-export default Testimonials
+export default Testimonials;
+  

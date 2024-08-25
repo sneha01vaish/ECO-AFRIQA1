@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react'
+import { HiOutlineSpeakerWave } from "react-icons/hi2";
 
 function BlogHero() {
     const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
 
   const handlePlayPause = () => {
@@ -23,7 +24,7 @@ function BlogHero() {
     }
   };
   return (
-    <div className="mt-[130px] relative h-[415px] lg:h-[720px] w-[100%]  grayscale bg-cover bg-no-repeat mix-blend-luminosity ">
+    <div className="mt-[100px] relative h-[434px] lg:h-[720px] lg:w-[100%]  grayscale bg-cover bg-no-repeat mix-blend-luminosity ">
         
 
         <video
@@ -43,6 +44,9 @@ function BlogHero() {
     <img            
     onClick={handleMuteUnmute}
     className="absolute bottom-[66px] right-[136px] h-[90px] w-[90px] cursor-pointer" src="/static/media/mute.png" alt="Mute button"/>
+
+    {/* <HiOutlineSpeakerWave /> */}
+
 
 </div>
   )

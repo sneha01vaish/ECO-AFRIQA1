@@ -1,16 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function Hero() {
   return (
-    <div className="mt-[130px] relative h-[415px] lg:h-[495px] w-[100%] bg-hero-about grayscale bg-cover bg-no-repeat mix-blend-luminosity ">
+    <div className='mt-0 lg:mt-[100px] relative bg-green-500'>
+       <div className='mt-[130px] lg:mt-[140px] h-[420px] lg:h-[600px]  overflow-hidden w-full'>
+          <img src='/static/media/heroGIF.gif' className='grayscale object-cover h-full w-full  mb-0'/>
+      </div>
+      <div className='flex flex-col items-center'>
         
-
-        <div className="absolute top-[161px] lg:top-[177px] z-[25] lg:left-[25%] lg:h-[106px]  lg:w:[946px] rounded-[16px] bg-black/[28%] px-[14px]  pt-[5px] lg:px-[28px] lg:pt-[20px]">
-            <h1 className="text-white text-[20px] lg:text-[30px] font-suez font-[700] whitespace-nowrap">COMMITED ENVIRONMENTALISTS</h1>
+          <div className=" rounded-[12px] lg:rounded-[16px] bg-black/[28%] mx-[18px]  lg:mx-[28px] -mt-[250px] lg:-mt-[380px] z-10">
+            <h1 className="text-white text-[16px] lg:text-[40px] font-suez font-[700] py-[8px] px-[10px] lg:px-[40px]">COMMITED ENVIRONMENTALISTS</h1>
         </div>
-
-        <button className="absolute bottom-[16px] lg:bottom-[66px] right-[95px] lg:right-[40%] mx-auto w-[227px] lg:w-[344px] h-[53px] lg:h-[74px] bg-gray-300/[0.65] rounded-[15px] border-none text-black text-[30px] font-inter font-[900]">Learn More</button>
-
+        
+       <Link to="/Hero-Detail " className='absolute block  mx-[80px] -mt-[60px] lg:-mt-[180px]'>
+          <button className=" bg-gray-300/[0.65] rounded-[8px] border-none text-black text-[22px] font-inter font-[900] py-[10px]  px-[30px] lg:px-[50px] mx-auto cursor-pointer">Learn More</button>
+        </Link>
+          
+        </div>
+        
+      
+       
+      
+      
+      
     </div>
   )
 }
