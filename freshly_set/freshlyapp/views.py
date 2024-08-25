@@ -23,12 +23,12 @@ from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from rest_framework import generics, permissions
 from rest_framework import viewsets
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.views import APIView
-from .models import Blog, Comment, Like, Share
+from .models import Blog, Comment, Like, Share, Poll, VoteNode
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer,PollSerializer, VoteNodeSerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -215,16 +215,8 @@ class BlogListCreateView(generics.ListCreateAPIView):
     serializer_class = BlogSerializer
     permission_classes = [AllowAny]  # This allows unauthenticated access
 
-    def blog_create(request):
-        if request.method == 'POST':
-            form = BlogForm(request.POST, request.FILES)
-            if form.is_valid():
-                form.save()
-                return redirect('blogs/BlogForm.jsx')
-        else:
-            form = BlogForm()
-        return render(request, 'blogs/BlogForm.jsx', {'form': form})
-
+    def perform_create(self, serializer):
+        serializer.save()
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -235,6 +227,19 @@ class BlogListCreateView(generics.ListCreateAPIView):
                 Q(content__icontains=search_query)
             )
         return queryset
+"""
+    def blog_create(request):
+        if request.method == 'POST':
+            form = BlogForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('blogs/BlogForm.jsx')
+        else:
+            form = BlogForm()
+        return render(request, 'blogs/BlogForm.jsx', {'form': form})
+"""
+
+    
 
 class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Blog.objects.all()
@@ -320,3 +325,55 @@ def search_blog(request):
     
     serializer = BlogSerializer(blogs, many=True)
     return Response(serializer.data)
+
+# Polls 
+class PollListView(generics.ListCreateAPIView):
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
+
+class PollDetailView(generics.RetrieveAPIView):
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
+
+class PollCreateView(generics.CreateAPIView):
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
+
+class PollUpdateView(generics.UpdateAPIView):
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
+
+class PollDeleteView(generics.DestroyAPIView):
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
+
+# VoteNode Views
+class VoteNodeListView(generics.ListAPIView):
+    queryset = VoteNode.objects.all()
+    serializer_class = VoteNodeSerializer
+
+class VoteNodeDetailView(generics.RetrieveAPIView):
+    queryset = VoteNode.objects.all()
+    serializer_class = VoteNodeSerializer
+
+# Custom vote adding view (function-based)
+def add_vote(request, pk):
+    poll = get_object_or_404(Poll, pk=pk)
+    choice = request.data.get('choice')
+    if choice:
+        new_vote = VoteNode.objects.create(poll=poll, choice=choice)
+        
+        # If poll has no votes, set the new vote as the head
+        if poll.head is None:
+            poll.head = new_vote
+            poll.save()
+        else:
+            # Traverse to the end of the list and add the new vote
+            node = poll.head
+            while node.next_vote is not None:
+                node = node.next_vote
+            node.next_vote = new_vote
+            node.save()
+
+        return JsonResponse({'status': 'vote added'}, status=status.HTTP_201_CREATED)
+    return JsonResponse({'error': 'Invalid vote data'}, status=status.HTTP_400_BAD_REQUEST)
