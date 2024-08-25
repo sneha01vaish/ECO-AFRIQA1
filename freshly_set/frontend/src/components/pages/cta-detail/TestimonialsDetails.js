@@ -46,7 +46,7 @@ function Testimonials() {
                     
                         {/*Single Card 1*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[1]?  "bg-[#008000]" : "bg-white"}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[1]?  "bg-[#008000]" : "bg-white"}`}
                                 onMouseEnter={() => toggleColor(1)}
                                 onMouseLeave={() => returnColor(1)}
                                 >
@@ -76,7 +76,7 @@ function Testimonials() {
                     
                         {/*Single Card 2*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px]  lg:ml-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[2]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px]  lg:ml-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[2]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(2)}
                                 onMouseLeave={() => returnColor(2)}
                                 >
@@ -107,7 +107,7 @@ function Testimonials() {
 
                         {/*Single Card 3*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto lg:ml-[90px] mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[3]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto lg:ml-[90px] mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[3]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(3)}
                                 onMouseLeave={() => returnColor(3)}
                                 >
@@ -138,7 +138,7 @@ function Testimonials() {
                         
                          {/*Single Card 4*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px]  lg:mt-0 lg:mb-[120px]  mx-auto  pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[4]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px]  lg:mt-0 lg:mb-[120px]  mx-auto  pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[4]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(4)}
                                 onMouseLeave={() => returnColor(4)}
                                 >
@@ -168,7 +168,7 @@ function Testimonials() {
                     
                         {/*Single Card 5*/}
                       <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:mx-auto mb-[30px] lg:mb-0 lg:mt-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[5]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:mx-auto mb-[30px] lg:mb-0 lg:mt-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[5]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(5)}
                                 onMouseLeave={() => returnColor(5)}
                                 >
@@ -199,7 +199,7 @@ function Testimonials() {
 
                         {/*Single Card 6*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0 lg:mb-[120px]  ml-[20px]  lg:mx-auto pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[6]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0 lg:mb-[120px]  ml-[20px]  lg:mx-auto pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[6]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(6)}
                                 onMouseLeave={() => returnColor(6)}
                                 >
@@ -230,7 +230,7 @@ function Testimonials() {
                          
                         {/*Single Card 7*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[7]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[7]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(7)}
                                 onMouseLeave={() => returnColor(7)}
                                 >
@@ -260,7 +260,7 @@ function Testimonials() {
                     
                         {/*Single Card 8*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px] lg:ml-0  lg:mr-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[8]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px] lg:ml-0  lg:mr-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[8]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(8)}
                                 onMouseLeave={() => returnColor(8)}
                                 >
@@ -291,7 +291,7 @@ function Testimonials() {
 
                         {/*Single Card 9*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto lg:ml-[90px] mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[9]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto lg:ml-[90px] mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[9]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(9)}
                                 onMouseLeave={() => returnColor(9)}
                                 >
@@ -322,7 +322,7 @@ function Testimonials() {
                         
                          {/*Single Card 10*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0 lg:mb-[120px]  mx-auto  lg:ml-0 pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[10]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0 lg:mb-[120px]  mx-auto  lg:ml-0 pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[10]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(10)}
                                 onMouseLeave={() => returnColor(10)}
                                 >
@@ -352,7 +352,7 @@ function Testimonials() {
                     
                         {/*Single Card 11*/}
                       <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-[90px] mb-[30px] lg:mb-0 lg:mt-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[11]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-[90px] mb-[30px] lg:mb-0 lg:mt-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[11]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(11)}
                                 onMouseLeave={() => returnColor(11)}
                                 >
@@ -383,7 +383,7 @@ function Testimonials() {
 
                         {/*Single Card 12*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0 lg:mb-[120px]  ml-[20px]  lg:ml-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[12]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0 lg:mb-[120px]  ml-[20px]  lg:ml-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[12]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(12)}
                                 onMouseLeave={() => returnColor(12)}
                                 >
@@ -414,7 +414,7 @@ function Testimonials() {
 
                         {/*Single Card 13*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:mx-auto mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[13]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:mx-auto mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[13]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(13)}
                                 onMouseLeave={() => returnColor(13)}
                                 >
@@ -444,7 +444,7 @@ function Testimonials() {
                     
                         {/*Single Card 14*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px]  lg:mx-auto pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[14]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px]  lg:mx-auto pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[14]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(14)}
                                 onMouseLeave={() => returnColor(14)}
                                 >
@@ -475,7 +475,7 @@ function Testimonials() {
 
                         {/*Single Card 15*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto  mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[15]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto  mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[15]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(15)}
                                 onMouseLeave={() => returnColor(15)}
                                 >
@@ -506,7 +506,7 @@ function Testimonials() {
                         
                          {/*Single Card 16*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0 lg:mb-[120px]  mx-auto lg:ml-0 pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[16]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0 lg:mb-[120px]  mx-auto lg:ml-0 pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[16]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(16)}
                                 onMouseLeave={() => returnColor(16)}
                                 >
@@ -536,7 +536,7 @@ function Testimonials() {
                     
                         {/*Single Card 17*/}
                       <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-0 lg:mt-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[17]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-0 lg:mt-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[17]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(17)}
                                 onMouseLeave={() => returnColor(17)}
                                 >
@@ -567,7 +567,7 @@ function Testimonials() {
 
                         {/*Single Card 18*/}
                         <div className="CardWrapper pb-[60px] lg:pb-0">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0  lg:mb-[120px]  ml-[20px]  lg:ml-[90px]  pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[18]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0  lg:mb-[120px]  ml-[20px]  lg:ml-[90px]  pt-[8px] py-[6px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[18]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(18)}
                                 onMouseLeave={() => returnColor(18)}
                                 >
@@ -604,7 +604,7 @@ function Testimonials() {
                     <div className='LastNineCards  hidden sm:grid  sm:grid-cols-3 gap-0 mx-0 lg:mb-[200px]'> {/*Only show in desktop Version*/}
                         {/*Single Card 19*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[19]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[19]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(19)}
                                 onMouseLeave={() => returnColor(19)}
                                 >
@@ -634,7 +634,7 @@ function Testimonials() {
                     
                         {/*Single Card 20*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px]  lg:ml-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[20]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px]  lg:ml-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[20]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(20)}
                                 onMouseLeave={() => returnColor(20)}
                                 >
@@ -665,7 +665,7 @@ function Testimonials() {
 
                         {/*Single Card 21*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto lg:ml-[90px] mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[21]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto lg:ml-[90px] mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[21]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(21)}
                                 onMouseLeave={() => returnColor(21)}
                                 >
@@ -696,7 +696,7 @@ function Testimonials() {
                         
                          {/*Single Card 22*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px]  lg:mt-0 lg:mb-[120px]  mx-auto  pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[22]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px]  lg:mt-0 lg:mb-[120px]  mx-auto  pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[22]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(22)}
                                 onMouseLeave={() => returnColor(22)}
                                 >
@@ -726,7 +726,7 @@ function Testimonials() {
                     
                         {/*Single Card 23*/}
                       <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:mx-auto mb-[30px] lg:mb-0 lg:mt-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[23]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:mx-auto mb-[30px] lg:mb-0 lg:mt-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[23]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(23)}
                                 onMouseLeave={() => returnColor(23)}
                                 >
@@ -757,7 +757,7 @@ function Testimonials() {
                         
                         {/*Single Card 24*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0 lg:mb-[120px]  ml-[20px]  lg:mx-auto pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[24]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-0 lg:mb-[120px]  ml-[20px]  lg:mx-auto pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[24]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(24)}
                                 onMouseLeave={() => returnColor(24)}
                                 >
@@ -788,7 +788,7 @@ function Testimonials() {
                          
                         {/*Single Card 25*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[25]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid lg:ml-0 mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[25]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(25)}
                                 onMouseLeave={() => returnColor(25)}
                                 >
@@ -818,7 +818,7 @@ function Testimonials() {
                     
                         {/*Single Card 26*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px] lg:ml-0  lg:mr-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[26]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px]   border-[0.35px] border-solid mt-[30px] lg:mt-[120px]  ml-[20px] lg:ml-0  lg:mr-[90px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[26]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(26)}
                                 onMouseLeave={() => returnColor(26)}
                                 >
@@ -849,7 +849,7 @@ function Testimonials() {
 
                         {/*Single Card 27*/}
                         <div className="CardWrapper ">
-                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto lg:ml-[90px] mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-black shadow-md  ${isHovered[27]?  "bg-[#008000]" : ""}`}
+                            <div className={ `SingleCard w-[80%] lg:w-[70%] h-fit rounded-[8px] lg:rounded-[10.5px] border-[0.35px] border-solid mx-auto lg:ml-[90px] mb-[30px] lg:mb-[120px] pb-[6px] pt-[8px] lg:py-[14.83px] px-[6px] lg:px-[11.4px] shadow-gray-500 shadow-md  border-gray-700  ${isHovered[27]?  "bg-[#008000]" : ""}`}
                                 onMouseEnter={() => toggleColor(27)}
                                 onMouseLeave={() => returnColor(27)}
                                 >
