@@ -75,14 +75,14 @@ function Team() {
   );
 
   return (
-    <div className="block">
-      <h5 className="text-[#008000] text-[45px] text-center font-inter pt-[150px]">
+    <div className="block mt-[60px] lg:mt-[100px]">
+      <h5 className="text-[#008000] text-[45px] text-center font-inter my-0">
         Meet Our Team
       </h5>
 
       {/* Display first 3 CEOs without testimonials initially */}
       {!showAll && (
-        <div className="block space-y-[100px]">
+        <div className="block space-y-[100px] mt-[40px] lg:mt-[60px]">
               <div className="block lg:flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]">
           {groupedMembers['Chief Executive Officer']?.slice(0, 3).map((member, index) => (
             <Link to="/team-detail" key={index} className="block cursor-pointer mx-auto w-[204px] space-y-[12px] relative">

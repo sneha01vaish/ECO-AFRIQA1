@@ -3,7 +3,7 @@ import React from "react";
 function JoinUs() {
   return (
 
-    <div className="JoinUS-section mx-10 mt-[62px] rounded-[40px] bg-[#ECECEC] ">
+    <div className="JoinUS-section mx-10 mt-[62px] rounded-[40px] shadow-md shadow-gray-700">
       <div className="Allignment-Div block lg:flex w-[100%] justify-between "> {/* The Allignment stylings class */}
 
             {/*Left Side - Farmers Stacked */}
@@ -25,13 +25,13 @@ function JoinUs() {
             </div> {/*Farmers Stacked Ends */}
         
             {/* Right Side - Join Us Subsection */}
-            <div className="JoinUs-Title block mt-[25px] pb-[29px] lg:mb-[34px] mx-[10vw] lg:ml-[114px]  lg:mr-[400px] ">
+            <div className="JoinUsTitle block mt-[40px] lg:mt-[25px] pb-[29px] lg:mb-[34px] mx-6 lg:ml-[114px]  lg:mr-[400px] ">
 
                 {/* Join Us*/}
-                <p className="font-inter font-[900] text-[#008000] text-[30px] lg:text-[40px] lg:mt-0 lg:mb-[15px]">Join Us Today</p>
+                <p className="font-inter text-center lg:text-start font-[900] text-[#008000] text-[30px] lg:text-[40px]  my-0 lg:mb-[15px]">Join Us Today</p>
                 
                 {/* Descriptions */}
-                <p  className="font-[600] font-inter  rounded-[8px] text-[12px] lg:text-[17px]  " > We invite you to join us on our journey to transform the food industry. Whether you're a consumer seeking sustainable and nutritious food options or a partner interested in collaborating with us, we welcome you.</p>
+                <p  className="font-[600] font-inter text-start rounded-[8px] text-[12px] lg:text-[17px]  " > We invite you to join us on our journey to transform the food industry. Whether you're a consumer seeking sustainable and nutritious food options or a partner interested in collaborating with us, we welcome you.</p>
                 
                 {/* Button - Talk to Us */}
                 <div className='flex justify-center  lg:w-[242px] rounded-[15px] lg:rounded-[20px] bg-[#008000] '>
