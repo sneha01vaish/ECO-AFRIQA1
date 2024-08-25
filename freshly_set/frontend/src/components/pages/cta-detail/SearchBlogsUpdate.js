@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { BsFillShareFill } from "react-icons/bs";
 import { MdArrowBackIosNew, MdOutlineSearch } from "react-icons/md";
 import { IoWarningOutline } from "react-icons/io5";
 import blogItems from "../blogs/blogItems.json"
 import { Link } from 'react-router-dom'
+import { BlogsClickedContext } from '../../context/PageContext';
 
 export default function SearchBlogsUpdate() {
   const [query, setQuery] = useState("")
   const [updateBlogs, setUpdateBlogs] = useState(blogItems)
+  const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext);
 
   const limitCharacters = (paragraph) => {
     if (paragraph.length > 100) {
@@ -27,6 +29,9 @@ export default function SearchBlogsUpdate() {
     setUpdateBlogs(filteredResults)
   }
 
+  useEffect(() => {
+    console.log("Modal Open", blogModalOpen)
+  },[blogModalOpen])
   return (
     <section className=''>
       <div className="block sm:flex gap-2 justify-center items-center w-full">
@@ -99,6 +104,7 @@ export default function SearchBlogsUpdate() {
         (updateBlogs?.map(({ id, title, date, image, description }) => (
           <div
             key={id}
+            onClick={() => setBlogModalOpen(true)}
             className='sm:w-[300.00px] w-[160px] h-[250px] sm:h-[312.00px] shadow-slate-600 shadow-sm rounded-lg cursor-pointer'>
           <div className="sm:p-2 p-1 font-inter flex flex-col justify-between">
             <img

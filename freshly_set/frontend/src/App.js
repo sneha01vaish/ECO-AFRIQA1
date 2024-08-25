@@ -16,9 +16,8 @@ import FaqDetails from './components/pages/cta-detail/FaqDetails';
 import HeroDetail from './components/pages/cta-detail/HeroDetail';
 import Detailed from './components/pages/homepage/Detailed';
 import Detail from './components/pages/about-us/Detail';
-import BlogsAllArticles from './components/pages/blogs/BlogsAllArticles';
 import TestimonialsDetails from './components/pages/cta-detail/TestimonialsDetails';
-import BlogsAllUpdates from "./components/pages/cta-detail/BlogsAllUpdates"
+import BlogsAllArticles from './components/pages/cta-detail/BlogsAllArticles';
 
 function App() {
   return (
@@ -27,7 +26,7 @@ function App() {
         <Route path="/SignUp" element={<LoginSignUp />} />
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
-        <Route path="/blogs/allUpdates" element={<BlogsAllUpdates />}/>
+        <Route path="/blogs/allarticles" element={<BlogsAllArticles />}/>
         <Route path="/products" element={<Products />} />
         <Route path="/products/categories" element={<Categories />} />
         <Route path="/about-us" element={<About />} />
