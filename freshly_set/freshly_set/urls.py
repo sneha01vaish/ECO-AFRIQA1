@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("freshlyapp.urls")),
     path('freshlyapp/', include("freshlyapp.urls")),
+    
 ]
 
 if settings.DEBUG:
