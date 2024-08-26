@@ -4,7 +4,7 @@ import { FaShareAlt, FaStar, FaThumbsUp } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
 import { MdMessage, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { FaMessage } from 'react-icons/fa6';
-import { SelectedBlogContext } from '../../context/BlogsContext';
+import { SelectedBlogContext, UpdateBlogsContext } from '../../context/BlogsContext';
 
 function CtaPopup() {
     const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext)
@@ -15,6 +15,7 @@ function CtaPopup() {
 
     const [selectedBlog, setSelectedBlog] = useContext(SelectedBlogContext);
 
+    const [updateBlog, setUpdateBlog] = useContext(UpdateBlogsContext);
 
     const handleNext = () => {
         if (currentIndex < modalToggleContents.length - 1) {
@@ -37,7 +38,7 @@ function CtaPopup() {
         {blogModalOpen && (
 
                 <div 
-                    className="fixed inset-0 z-[100] border border-gray-700 shadow-lg  flex  justify-center bg-black/50  transition-opacity duration-300 ease-in-out"
+                    className="fixed inset-0 z-[100] border border-gray-700 shadow-lg  flex  justify-center bg-[#F5FAF9]  transition-opacity duration-300 ease-in-out"
                 >   
 
                 <IoMdClose onClick={() => setBlogModalOpen(false)} className="absolute top-0 right-[30px] text-black h-[38px] w-[38px] z-[101] cursor-pointer"/>      
@@ -59,15 +60,14 @@ function CtaPopup() {
                     <div className="block lg:flex">
                         <div className="flex justify-center">
                             {/* Left/Top Side */}
-                            <img className="h-[207px] w-[276px] lg:h-[500px] lg:w-[386px]  rounded-[9.67px] object-cover" src={selectedBlog.image} alt="ClickableBlogPostImage"/>
+                            <img className="h-[207px] w-[276px] lg:h-[500px] lg:w-[386px]  rounded-[9.67px] object-cover" src={selectedBlog?.image} alt="ClickableBlogPostImage"/>
 
                         </div>
                         
                         <div className="flex justify-center">
                             <div className="block">
                               
-                                <h3 className="w-[312px] text-center lg:text-start font-inter lg:ml-[29.67px] ml-[0px] lg:w-[666.33px] freshlyGreenText text-[15px] lg:text-[30.77px]">Benefits Of Vertical Farms both 
-                                economically and socially</h3>
+                                <h3 className="w-[312px] text-center lg:text-start font-inter lg:ml-[29.67px] ml-[0px] lg:w-[666.33px] freshlyGreenText text-[15px] lg:text-[30.77px]">{selectedBlog?.title}</h3>
 
                                 <div className="block max-h-[300px] oveflow-hidden overflow-y-scroll">
                                     <p className="text-[10.79px] lg:ml-[29.26px] lg:text-[17.58px]  font-josefin text-start font-[700] text-black/[0.70] leading-[14.03px] lg:leading-[22.86px] w-[278px] lg:w-[587.21px]"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru</p>
