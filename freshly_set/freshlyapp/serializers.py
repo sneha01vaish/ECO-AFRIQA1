@@ -1,7 +1,8 @@
 from rest_framework import serializers
-from .models import Blog, Product, Garden, Comment, Like, Share
+from .models import Blog, Product, Garden, Comment, Like, Share, Poll, VoteNode
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
+from django.contrib.auth.models import User
 
 UserModel = get_user_model()
 
@@ -30,7 +31,7 @@ class UserLoginSerializer(serializers.Serializer):
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserModel
+        model = User
         fields = ['email', 'username']
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -49,7 +50,7 @@ class BlogSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Blog
-        fields = ['id', 'user', 'title', 'content', 'comments', 'likes', 'shares']
+        fields = ['id', 'user', 'title', 'content','image' ,'comments', 'likes', 'shares']
         read_only_fields = ['id', 'comments', 'likes', 'shares']  # These fields are typically read-only
 
 # Created serializers for Blog, Comment, Like, and Share.
@@ -67,3 +68,16 @@ class ShareSerializer(serializers.ModelSerializer):
     class Meta:
         model = Share
         fields = ['id', 'blog', 'user', 'shared_at']
+
+# Polls serializer
+class VoteNodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VoteNode
+        fields = ['id', 'choice', 'next_vote']
+
+class PollSerializer(serializers.ModelSerializer):
+    votes = VoteNodeSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Poll
+        fields = ['id', 'title', 'description', 'votes']

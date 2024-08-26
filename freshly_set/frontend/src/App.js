@@ -17,7 +17,9 @@ import HeroDetail from './components/pages/cta-detail/HeroDetail';
 import Detailed from './components/pages/homepage/Detailed';
 import Detail from './components/pages/about-us/Detail';
 import TestimonialsDetails from './components/pages/cta-detail/TestimonialsDetails';
-import BlogsAllArticles from './components/pages/cta-detail/BlogsAllArticles';
+import BlogsAllUpdates from "./components/pages/cta-detail/BlogsAllUpdates"
+import Transporters from './components/pages/cta-detail/Transporters';
+import TransporterSuccess from './components/pages/cta-detail/TransporterSuccess';
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
         <Route path="/cta-detail/" element={<FaqDetails />} />
         <Route path="/Hero-Detail/" element={<HeroDetail />} />
         <Route path="/testimonials-detailed" element={<TestimonialsDetails />} />
+        <Route path="/transporters" element={<Transporters />} />
+        <Route path="/transporter-success" element={<TransporterSuccess />} />
         
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}
 
