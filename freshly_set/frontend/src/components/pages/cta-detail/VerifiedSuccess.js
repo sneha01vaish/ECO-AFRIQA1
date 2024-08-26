@@ -29,7 +29,7 @@ function VerifiedSuccess() {
             </div> {/*Inner Background Ends Here */}
 
 
-        </div> //TransporterSuccess
+        </div> //VerifiedSuccess
     );
 };
 

@@ -20,13 +20,9 @@ import Detailed from './components/pages/homepage/Detailed';
 import Detail from './components/pages/about-us/Detail';
 import BlogsAllArticles from './components/pages/blogs/BlogsAllArticles';
 import TestimonialsDetails from './components/pages/cta-detail/TestimonialsDetails';
-<<<<<<< HEAD
-import BlogsAllUpdates from "./components/pages/cta-detail/BlogsAllUpdates";
-=======
 import BlogsAllUpdates from "./components/pages/cta-detail/BlogsAllUpdates"
 import Transporters from './components/pages/cta-detail/Transporters';
 import TransporterSuccess from './components/pages/cta-detail/TransporterSuccess';
->>>>>>> bba49ea80cf8f90b3e892a508fff098f68f33866
 
 function App() {
   return (
@@ -49,14 +45,11 @@ function App() {
         <Route path="/cta-detail" element={<FaqDetails />} />
         <Route path="/Hero-Detail" element={<HeroDetail />} />
         <Route path="/testimonials-detailed" element={<TestimonialsDetails />} />
-<<<<<<< HEAD
-=======
         <Route path="/transporters" element={<Transporters />} />
         <Route path="/transporter-success" element={<TransporterSuccess />} />
         
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}
 
->>>>>>> bba49ea80cf8f90b3e892a508fff098f68f33866
       </Routes>
     </Router>
   );
