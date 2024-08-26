@@ -167,3 +167,33 @@ class Share(models.Model):
         Blog, on_delete=models.CASCADE, related_name='blog_shares')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     shared_at = models.DateTimeField(auto_now_add=True)
+
+
+# Poll for voting best products
+class Poll(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    head = models.ForeignKey('VoteNode', null=True, blank=True,
+                             on_delete=models.SET_NULL, related_name='head_of_poll')
+
+    def __str__(self):
+        return self.title
+
+    def count_votes(self):
+        count = 0
+        node = self.head
+        while node is not None:
+            count += 1
+            node = node.next_vote
+        return count
+
+
+class VoteNode(models.Model):
+    poll = models.ForeignKey(Poll, related_name='votes',
+                             on_delete=models.CASCADE)
+    choice = models.CharField(max_length=200)
+    next_vote = models.OneToOneField(
+        'self', null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return f"Vote for {self.choice} in poll {self.poll.title}"

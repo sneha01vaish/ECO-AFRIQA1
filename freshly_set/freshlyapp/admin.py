@@ -21,3 +21,6 @@ admin.site.register(Blog)
 class BlogModelAdmin(admin.ModelAdmin):
     fields = ['id', 'title', 'content', 'slug', 'image', 'created_at', 'updated_at']
 
+admin.site.register(Poll)
+class PollModelAdmin(admin.ModelAdmin):
+    fields = ['id', 'title', 'description', 'votes']

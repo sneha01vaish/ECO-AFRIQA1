@@ -18,6 +18,7 @@ function BlogSearch() {
         withCredentials: true
       });
       setBlogs(response.data);
+      console.log("fetched blogs:", blogs)
       setError(null);
     } catch (error) {
       console.error('Error fetching blogs:', error);
