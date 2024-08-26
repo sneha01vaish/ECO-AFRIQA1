@@ -59,13 +59,9 @@ export  const PageContextProvider = ({ children }) => {
                             <ModalToggleContentsContext.Provider value={[modalToggleContents, setModalToggleContents]}>
                                 <SelectedSectionContext.Provider value={[selectedSection, setSelectedSection]}>
                                     {children}
-
                                 </SelectedSectionContext.Provider>
-
                             </ModalToggleContentsContext.Provider>
-
                         </CurrentIndexContext.Provider>
-
                     </ModalContentsContext.Provider>
                 </ModalContext.Provider>
             </PopupContext.Provider>

@@ -92,7 +92,6 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
         </div>
        )}
 
-       
         <FreshlyFooter />
       </div>
     </div>
