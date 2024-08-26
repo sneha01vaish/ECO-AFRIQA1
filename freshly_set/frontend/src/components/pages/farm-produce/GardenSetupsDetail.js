@@ -2,11 +2,13 @@ import React from 'react'
 import NavAuthenticated from '../../Nav/NavAuthenticated'
 import ProductsSearchBar from './ProductsSearchBar'
 import FarmCard from './FarmCard'
+import GardenSetupsHero from './GardenSetupsHero'
 
 function GardenSetupsDetail() {
     <div>
     <NavAuthenticated />
 
+    <GardenSetupsHero />
     <div className="mt-[88px]">
      <ProductsSearchBar />
 

@@ -13,7 +13,8 @@ module.exports = {
       backgroundImage: theme => ({
         'hero-about': "url('/public/static/media/aboutHero.png')",
         'hero-products':"url('/public/static/media/productsHero.png')",
-        'hero-gif':"url('/public/static/media/heroGIF.gif')"
+        'hero-gif':"url('/public/static/media/heroGIF.gif')",
+        "hero-gardenSetup":"url('/public/static/media/gardenSetups.png')",
       }),
       keyframes: {
         slideIn: {

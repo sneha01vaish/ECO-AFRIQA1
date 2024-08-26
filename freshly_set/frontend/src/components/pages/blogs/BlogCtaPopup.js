@@ -48,12 +48,12 @@ function CtaPopup() {
 
                 <MdNavigateNext                                 
                 onClick={handleNext}
-                className="absolute top-[50%] right-[30px] z-[110] freshlyGreenText text-[38px] cursor-pointer"/>
+                className="hidden lg:flex absolute top-[50%] right-[30px] z-[110] freshlyGreenText text-[38px] cursor-pointer"/>
                 
                 <MdNavigateBefore
                 onClick={handleBack}
 
-                className="absolute top-[50%] left-[30px] z-[110] freshlyGreenText text-[38px] cursor-pointer "/>
+                className="hidden lg:flex absolute top-[50%] left-[30px] z-[110] freshlyGreenText text-[38px] cursor-pointer "/>
 
                 <div className="fixed inset-0 z-[30] rounded-[14.021px] border border-gray-700 shadow-lg  flex  justify-center lg:justify-between bg-white items-center lg:items-start  mx-[15px] lg:mx-[126px] mt-[37px] mb-[47px] lg:mt-[96px]  lg:mb-[40px]">
                                      
@@ -100,7 +100,7 @@ function CtaPopup() {
 
                 {/* Right Side */}
 
-                <div className="flex space-x-[32px]">
+                <div className="hidden lg:flex space-x-[32px]">
                     <p className="text-[#FF0C1A] text-[12px] lg:text-[17.58px] font-[900] ml-[55.92px] font-inter"> 11 Likes</p>
                     <p className="text-[#FF0C1A] text-[12px] lg:text-[17.58px] font-[900] ml-[55.92px] font-inter"> 4 Comments</p>
 
