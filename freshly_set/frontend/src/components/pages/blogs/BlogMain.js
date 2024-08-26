@@ -68,7 +68,7 @@ function BlogMain() {
           </button> */}
         </div>
 
-        <div className="max-w-[96%] sm:max-w-[88%] font-inter mx-auto flex flex-wrap gap-3 justify-between pt-3">
+        <div className="max-w-[96%] sm:max-w-[88%] font-inter mx-auto flex flex-wrap gap-3 justify-center sm:justify-between pt-3">
 
           {blogs ? blogs.slice(0, visible).map((blog) => (
             <BlogList key={blog.id} post={blog} />

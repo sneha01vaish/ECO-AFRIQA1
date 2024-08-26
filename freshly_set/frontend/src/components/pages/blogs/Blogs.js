@@ -73,10 +73,11 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
     <div>
 
       <div className=" min-h-[100vh] py-16 bg-[#F5FAF9]">
-        {/* <Nav /> */}
+        <Nav />
         {
           selectedSection!=="blogs" && (
             <FaArrowLeft onClick={() => setSelectedSection("blogs")} className="absolute h-[61px] w-[61px] text-[#008000] lg:top-[240px] left-[38px] cursor-pointer z-[50]"/>
+
           )
         }
         <BlogSearch />
@@ -91,6 +92,7 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
         </div>
        )}
 
+       
         <FreshlyFooter />
       </div>
     </div>

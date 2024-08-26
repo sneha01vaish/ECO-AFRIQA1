@@ -9,13 +9,13 @@ const BlogList = ({ post }) => {
     return (
         <section>
             <div>
-                <div className='w-[400px] h-[300px] shadow-slate-600 shadow-sm rounded-[10px] bg-white/90'>
+                <div className='sm:w-[400px] sm:h-[300px] h-auto w-[320px] shadow-slate-600 shadow-sm rounded-[10px] bg-white/90'>
                     <div className='p-2'>
                         <p className='flex justify-between items-center m-0 pb-1'>
-                            <span className='capitalize font-bold max-w-[50%] flex-wrap text-start text-sm'>{title}</span>
+                            <span className='capitalize font-bold sm:max-w-[50%] w-[60%] flex-wrap text-start text-sm'>{title}</span>
                             <span className='cursor-pointer'><IoCaretDownSharp /></span>
                         </p>
-                        <div className="flex gap-[3px]">
+                        <div className="flex gap-[3px] justify-between">
                             <div className='flex flex-col justify-between items-start w-[52%]'>
                                 <p className='text-[10px] font-medium capitalize text-start mt-0'>by freshly farms, {date}</p>
                                 <p className='text-start text-[10px] text-slate-900 mt-0'>{description}</p>
@@ -35,7 +35,7 @@ const BlogList = ({ post }) => {
                                 <img
                                     src={image}
                                     alt={title}
-                                    className="w-[200px] h-[240px] object-cover overflow-hidden rounded-md"
+                                    className="sm:w-[200px] w-[132px] sm:h-[240px] h-[150px] object-cover overflow-hidden rounded-md"
                                 />
                             </div>
                         </div>
