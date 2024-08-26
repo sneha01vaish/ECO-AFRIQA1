@@ -13,11 +13,10 @@ import blogItems from "./blogItems.json"
 import { PageContext, SelectedSectionContext } from '../../context/PageContext';
 import BlogWidgetsNew from './BlogWidgetsNew';
 import BlogWidgets from './BlogWidgets';
-import { Link } from 'react-router-dom';
 
 function BlogMain() {
     const [blogs, setBlogs] = useState(blogItems);
-    const [visible, setVisible] = useState(3);
+    const [visible, setVisible] = useState(4);
     const [selectedSection, setSelectedSection] = useContext(SelectedSectionContext);
     const [isVisible, setIsVisible] = useState(false); 
 
@@ -50,15 +49,7 @@ function BlogMain() {
   return (
     <div>
         <BlogHero />
-        <h1  className="text-center  text-[54px] lg:text-[140px] text-[#008000] font-inter font-[900]">What's new?</h1>
-
-        <div className="max-w-[96%] font-inter mx-auto">
-
-          {blogs ? blogs.slice(0, visible).map((blog) => (
-            <BlogList key={blog.id} post={blog} />
-          )) : <h4>Loading ... </h4>}
-
-        </div>
+        <h1  className="text-center my-4 text-[54px] lg:text-[140px] text-[#008000] font-inter font-[900]">What's new?</h1>
 
         <div className="flex  justify-end mr-[27px] lg:mr-[65px] gap-3 z-10">
           
@@ -66,8 +57,7 @@ function BlogMain() {
             className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
             onClick={() => showDetail()}
           >
-              View All Updates
-
+            View All Updates
           </button>
           {/* <button
             className="standardBtn"
@@ -77,6 +67,15 @@ function BlogMain() {
             View less Updates
           </button> */}
         </div>
+
+        <div className="max-w-[96%] sm:max-w-[88%] font-inter mx-auto flex flex-wrap gap-3 justify-between pt-3">
+
+          {blogs ? blogs.slice(0, visible).map((blog) => (
+            <BlogList key={blog.id} post={blog} />
+          )) : <h4>Loading ... </h4>}
+
+        </div>
+
         <div className="flex justify-center w-[100%]">
             <h3 className="font-[900] text-[35px] lg:text-[45px] text-[#008000] font-inter text-center whitespace-nowrap">ARTICLE CENTER</h3>
         </div>
@@ -93,7 +92,7 @@ function BlogMain() {
 
                 className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
             >
-                View All Articles
+              View All Articles
 
             </button>
         </div>
