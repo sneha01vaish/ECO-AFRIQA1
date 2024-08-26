@@ -5,12 +5,13 @@ import { IoWarningOutline } from "react-icons/io5";
 import blogItems from "../blogs/blogItems.json"
 import { Link } from 'react-router-dom'
 import { BlogsClickedContext } from '../../context/PageContext';
+import { SelectedBlogContext } from '../../context/BlogsContext';
 
 export default function SearchBlogsUpdate() {
   const [query, setQuery] = useState("")
   const [updateBlogs, setUpdateBlogs] = useState(blogItems)
-  const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext);
-
+  const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext)
+  const [selectedBlog, setSelectedBlog] = useContext(SelectedBlogContext)
   const limitCharacters = (paragraph) => {
     if (paragraph.length > 100) {
       return paragraph.slice(0, 100) + '...'
@@ -29,9 +30,16 @@ export default function SearchBlogsUpdate() {
     setUpdateBlogs(filteredResults)
   }
 
+  const blogClicked = (id, image, title, date, description) => {
+    
+    setBlogModalOpen(true);
+    setSelectedBlog({id, image, title, date, description})
+
+  }
+
   useEffect(() => {
-    console.log("Modal Open", blogModalOpen)
-  },[blogModalOpen])
+    console.log("SelectedBlog", selectedBlog)
+  },[selectedBlog, blogModalOpen])
   return (
     <section className=''>
       <div className="block sm:flex gap-2 justify-center items-center w-full">
@@ -76,7 +84,8 @@ export default function SearchBlogsUpdate() {
               ? (updateBlogs.slice(0, 4).map(({id, title, image}) => (
               <div
                 key={id}
-                className='flex gap-3 items-center'>
+                className='flex gap-3 items-center'
+                >
                 <img
                   src={image}
                   alt={title}
@@ -104,7 +113,7 @@ export default function SearchBlogsUpdate() {
         (updateBlogs?.map(({ id, title, date, image, description }) => (
           <div
             key={id}
-            onClick={() => setBlogModalOpen(true)}
+            onClick={() => blogClicked(id, image, title, date, description)}
             className='sm:w-[300.00px] w-[160px] h-[250px] sm:h-[312.00px] shadow-slate-600 shadow-sm rounded-lg cursor-pointer'>
           <div className="sm:p-2 p-1 font-inter flex flex-col justify-between">
             <img

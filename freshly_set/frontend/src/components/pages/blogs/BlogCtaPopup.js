@@ -4,6 +4,7 @@ import { FaShareAlt, FaStar, FaThumbsUp } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
 import { MdMessage, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { FaMessage } from 'react-icons/fa6';
+import { SelectedBlogContext } from '../../context/BlogsContext';
 
 function CtaPopup() {
     const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext)
@@ -12,6 +13,7 @@ function CtaPopup() {
 
     const [currentIndex, setCurrentIndex] = useContext(CurrentIndexContext);
 
+    const [selectedBlog, setSelectedBlog] = useContext(SelectedBlogContext);
 
 
     const handleNext = () => {
@@ -45,19 +47,19 @@ function CtaPopup() {
 
                 <MdNavigateNext                                 
                 onClick={handleNext}
-                className="absolute top-[50%] right-[30px] z-[102] text-black text-[38px] cursor-pointer"/>
+                className="absolute top-[50%] right-[30px] z-[110] freshlyGreenText text-[38px] cursor-pointer"/>
                 
                 <MdNavigateBefore
                 onClick={handleBack}
 
-                className="absolute top-[50%] left-[30px] z-[102] text-black text-[38px] cursor-pointer"/>
+                className="absolute top-[50%] left-[30px] z-[110] freshlyGreenText text-[38px] cursor-pointer "/>
 
                 <div className="fixed inset-0 z-[30] rounded-[14.021px] border border-gray-700 shadow-lg  flex  justify-center lg:justify-between bg-white items-center lg:items-start  mx-[15px] lg:mx-[126px] mt-[37px] mb-[47px] lg:mt-[96px]  lg:mb-[40px]">
                                      
                     <div className="block lg:flex">
                         <div className="flex justify-center">
                             {/* Left/Top Side */}
-                            <img className="h-[207px] w-[276px] lg:h-[500px] lg:w-[386px]  rounded-[9.67px] object-cover" src="/static/media/clickableUpdates.png" alt="ClickableBlogPostImage"/>
+                            <img className="h-[207px] w-[276px] lg:h-[500px] lg:w-[386px]  rounded-[9.67px] object-cover" src={selectedBlog.image} alt="ClickableBlogPostImage"/>
 
                         </div>
                         
@@ -88,9 +90,9 @@ function CtaPopup() {
                 </div>
 
                   
-            <div className="flex justify-between">
+            <div className="absolute flex justify-between space-x-[] lg:bottom-[60px] z-[40] right-[290px]">
                 {/* Social Icons */}
-                <div className="flex absolute lg:bottom-[60px] z-[40] space-x-[27.69px] lg:space-x-[33.4px] items-center">
+                <div className="flex space-x-[27.69px] lg:space-x-[33.4px] items-center lg:ml-[55.92px]">
                     <FaThumbsUp className="text-black h-[21.21px] w-[17.68px] lg:h-[34.28px] lg:w-[35.16px]" />
                     <MdMessage className="text-black h-[21.21px] w-[17.68px] lg:h-[34.28px] lg:w-[35.16px]" />
                     <FaShareAlt className="text-black h-[21.21px] w-[17.68px] lg:h-[34.28px] lg:w-[35.16px]" />
@@ -98,8 +100,10 @@ function CtaPopup() {
 
                 {/* Right Side */}
 
-                <div className="flex space-x-[]">
-                    <p className="text-[#FF0C1A] text-[12px] lg:text-[17.58px]"> 11 Likes</p>
+                <div className="flex space-x-[32px]">
+                    <p className="text-[#FF0C1A] text-[12px] lg:text-[17.58px] font-[900] ml-[55.92px] font-inter"> 11 Likes</p>
+                    <p className="text-[#FF0C1A] text-[12px] lg:text-[17.58px] font-[900] ml-[55.92px] font-inter"> 4 Comments</p>
+
                 </div>
 
                 
