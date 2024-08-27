@@ -1,4 +1,4 @@
-#from argon2 import hash_password
+# from argon2 import hash_password
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
@@ -75,6 +75,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 """
 
+
 class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
@@ -85,6 +86,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class Garden(models.Model):
     name = models.CharField(max_length=100, default='DEFAULT VALUE')
     location = models.CharField(max_length=255)
@@ -94,6 +96,7 @@ class Garden(models.Model):
 
     def __str__(self):
         return self.location
+
 
 class Service(models.Model):
     SERVICE_TYPES = (
@@ -112,7 +115,7 @@ class Service(models.Model):
 
 class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True,  # Allow null temporarily
-        blank=True)  # Allow blank temporarily
+                             blank=True)  # Allow blank temporarily
     title = models.CharField(max_length=200)
     content = models.TextField()
     comments = models.IntegerField(default=0)
@@ -134,10 +137,13 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
-    
+
 # Added models for Comment, Like, and Share.
+
+
 class Comment(models.Model):
-    blog = models.ForeignKey(Blog, related_name='blog_comments', on_delete=models.CASCADE)
+    blog = models.ForeignKey(
+        Blog, related_name='blog_comments', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -146,15 +152,19 @@ class Comment(models.Model):
     def __str__(self):
         return self.content
 
+
 class Like(models.Model):
-    blog = models.ForeignKey(Blog, related_name='blog_likes', on_delete=models.CASCADE)
+    blog = models.ForeignKey(
+        Blog, related_name='blog_likes', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('blog', 'user')
 
+
 class Share(models.Model):
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_shares')
+    blog = models.ForeignKey(
+        Blog, on_delete=models.CASCADE, related_name='blog_shares')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     shared_at = models.DateTimeField(auto_now_add=True)
 

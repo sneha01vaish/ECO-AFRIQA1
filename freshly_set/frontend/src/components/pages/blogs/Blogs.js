@@ -1,15 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Nav from '../../Nav/Navbar';
 import BlogSearch from './BlogSearch';
 import BlogHero from './BlogHero';
 import FreshlyFooter from '../../footer/FreshlyFooter';
+import BlogPosts from './BlogList'
+import blogItems from './blogItems.json'
+
+// import BlogForm from './BlogForm';
+import Contact from './Contact';
+import { PageContext, SelectedSectionContext } from '../../context/PageContext';
+import BlogWidgetsNew from './BlogWidgetsNew';
 import BlogWidgets from './BlogWidgets';
-import api from '../../../api/blogs';
-import BlogForm from './BlogForm';
+import { useNavigate } from 'react-router-dom';
+import api from "../../../api/blogs"
+import axios from 'axios';
+import BlogMain from './BlogMain';
+import BlogsAllArticles from './BlogsAllArticles';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [visible, setVisible] = useState(3);
+  const [activeTab, setActiveTab] = useContext(PageContext);
+
+  const [csrfToken, setCsrfToken] = useState('');
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null)
+  const [selectedSection, setSelectedSection] = useContext(SelectedSectionContext);
 
   const showMore = () => {
     setVisible((prevCount) => Math.min(prevCount + 3, blogs.length));
@@ -19,62 +37,64 @@ const Blogs = () => {
     setVisible((prevCount) => Math.max(prevCount - 3, 3));
   };
 
-  const fetchBlogs = async () => {
-    try {
-      const response = await api.get('freshlyapp/blogs/');
-      setBlogs(response.data);
-    } catch (error) {
-      if (error.response) {
-        console.log('Error data:', error.response.data);
-        console.log('Error status:', error.response.status);
-        console.log('Error headers:', error.response.headers);
-      } else if (error.request) {
-        console.log('Error request:', error.request);
-      } else {
-        console.log('Error message:', error.message);
-      }
-      console.log('Error config:', error.config);
-    }
-  };
-
   useEffect(() => {
-    fetchBlogs();
-  }, []);
+    setActiveTab("products")
+},[activeTab])
 
-  // Function to handle when a new blog is created
-  const handleBlogCreated = (newBlog) => {
-    setBlogs([newBlog, ...blogs]);
-  };
+
+useEffect(() => {
+  // Fetch CSRF token from meta tag
+  const token = document.querySelector('meta[name="csrf-token"]');
+  if (token) {
+    setCsrfToken(token.getAttribute('content'));
+  }
+
+  axios.get('http://localhost:8000/freshlyapp/blogs/', {
+    headers: {
+      'X-CSRFToken': csrfToken
+    },
+    withCredentials: true
+  })
+  .then(response => {
+    setBlogs(response.data);
+  })
+  .catch(error => {
+    console.error('Error fetching blogs:', error);
+  });
+
+  console.log("Blogs", blogs)
+}, [csrfToken]);
+
+const navigate = useNavigate()
+const handleNavigateToAllBlogs = () => navigate('all-blogs-update')
+const handleNavigateToAllUpdates = () => navigate('allUpdates')
 
   return (
     <div>
-      <Nav />
-      <BlogSearch />
-      <BlogHero />
-      <BlogForm onBlogCreated={handleBlogCreated} />
-      <BlogWidgets />
-      <ul>
-        {blogs.length === 0 ? (
-          <p>No blogs available.</p>
-        ) : (
-          blogs.map((blog, index) => (
-            index < visible && (
-              <li key={blog.id}>
-                <h2>{blog.title}</h2>
-                <p>{blog.content}</p>
-                <p>Author: {blog.author}</p>
-              </li>
-            )
-          ))
-        )}
-      </ul>
-      {visible < blogs.length && (
-        <button onClick={showMore}>Show More</button>
-      )}
-      {visible > 3 && (
-        <button onClick={showLess}>Show Less</button>
-      )}
-      <FreshlyFooter />
+
+      <div className=" min-h-[100vh] py-16 bg-[#F5FAF9]">
+        <Nav />
+        {
+          selectedSection!=="blogs" && (
+            <FaArrowLeft onClick={() => setSelectedSection("blogs")} className="absolute h-[61px] w-[61px] text-[#008000] lg:top-[240px] left-[38px] cursor-pointer z-[50]"/>
+
+          )
+        }
+        <BlogSearch />
+        
+        { selectedSection === "blogs" && (
+          <BlogMain />
+       )}       
+
+        { selectedSection === "all-updates" && (
+       <div>
+          <BlogsAllArticles />
+        </div>
+       )}
+
+       
+        <FreshlyFooter />
+      </div>
     </div>
   );
 };

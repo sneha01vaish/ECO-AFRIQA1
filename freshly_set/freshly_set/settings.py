@@ -22,7 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY  = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
+# HASH_KEY = config('HASH_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'freshlyapp', # our app 
+    'freshlyapp',  # our app
 ]
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -50,9 +51,9 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-       'rest_framework.authentication.SessionAuthentication',
-       'rest_framework.authentication.TokenAuthentication',
-       'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -68,7 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
 ]
 
 ROOT_URLCONF = 'freshly_set.urls'
@@ -106,11 +107,11 @@ DATABASES = {
     }
 }
 
-#AUTH_USER_MODEL = 'freshlyapp.AppUser'
-REST_FRAMEWORK= {
+# AUTH_USER_MODEL = 'freshlyapp.AppUser'
+REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
-    'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.SessionAuthentication',
-                                      'rest_framework.authentication.TokenAuthentication',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.SessionAuthentication',
+                                       'rest_framework.authentication.TokenAuthentication',),
 }
 CACHES = {
     'default': {
@@ -138,7 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#SMTP Configuration
+# SMTP Configuration
 
 # Load environment variables from .env file
 load_dotenv()
@@ -189,25 +190,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings
 # Allow all origins (not recommended for production)
-CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    'http://127.0.0.1:3000',
+    "http://localhost:3000",  # React frontend origin
+    "http://127.0.0.1:3000",
 ]
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = ( 'localhost:3000', )
-CORS_ALLOWED_CREDENTIALS = True
-#X_FRAME_OPTIONS = 'ALLOW-FROM http://74.207.232.194'
-# CSRF settings
+
+# Allow credentials like cookies in cross-origin requests
+CORS_ALLOW_CREDENTIALS = True
+
+
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
+    "http://127.0.0.1:3000",
     "http://localhost:8000",
     # Add other trusted origins here
 ]
+
 # React build directory
 REACT_APP_DIR = BASE_DIR / 'frontend/build'
 
 # Including React build static files in STATICFILES_DIRS
 STATICFILES_DIRS.append(REACT_APP_DIR / 'static/media')
-
-

@@ -1,0 +1,44 @@
+[
+    {
+        "id":1,
+        "title":"Benefits of vertical farming",
+        "date":"07 sep 2024",
+        "image": "/static/media/blogsUpdate3.png",
+        "description": "Vertical farming offers a compelling solution to the social and economic challenges faced by traditional agriculture"
+    },
+    {
+        "id":2,
+        "title":"Reliable year-round crop production",
+        "date":"04 jan 2024",
+        "image": "/static/media/blogsUpdate1.png",
+        "description": "It goes without saying that traditional farms need fertile arable land. But vertical farms can be designed and built in any climate or location - irrespective of weather conditions or temperature extremes."
+    },
+    {
+        "id":3,
+        "title":"Unaffected by adverse weather conditions",
+        "date":"09 feb 2024",
+        "image": "/static/media/blogsUpdate2.png",
+        "description": "Depending on which crop is grown, one acre of vertical farm could consistently grow the equivalent to between 10 or 20 soil-based acres."
+    },
+    {
+        "id":4,
+        "title":"Better use of space",
+        "date":"13 aug 2024",
+        "image": "/static/media/blogsUpdate3.png",
+        "description": "One of the main vertical farming benefits is that the Hydroponic growing process only uses about 10% of the amount of water, and as a result the nutrients and fertilisers"
+    },
+    {
+        "id":5,
+        "title":"Minimise water usage",
+        "date":"30 may 2024",
+        "image": "/static/media/blogsUpdate4.png",
+        "description": "Vertical farming also helps to improve biodiversity because it does not cause land surface disturbance, which helps the natural animal population which lives in and around farms to thrive."
+    },
+    {
+        "id":6,
+        "title":"No chemicals or pesticides",
+        "date":"19 july 2024",
+        "image": "/static/media/blogsUpdate5.png",
+        "description": "Growing food in a vertical farm, when managed correctly offers the opportunity to completely eliminates the need for pesticides - as pests cannot enter the controlled environment to cause crop damage "
+    }
+]
