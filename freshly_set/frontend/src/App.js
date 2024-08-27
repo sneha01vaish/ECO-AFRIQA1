@@ -36,9 +36,10 @@ function App() {
         <Route path="/whychoose-detail" element={<Detail />} />
         <Route path="/reviews2-detailed" element={<Detailed />} />
         <Route path="/team-detail" element={<Detailed />} />
-        <Route path="/products/gardenSetups" element={<GardenSetupsDetail />} />
 
         <Route path="/products/farmingSystems" element={<FarmingSystemsDetail />}/>
+        <Route path="/products/gardenSetups" element={<GardenSetupsDetail />} />
+
         <Route path="/cta-detail/" element={<FaqDetails />} />
         <Route path="/Hero-Detail/" element={<HeroDetail />} />
         <Route path="/testimonials-detailed" element={<TestimonialsDetails />} />

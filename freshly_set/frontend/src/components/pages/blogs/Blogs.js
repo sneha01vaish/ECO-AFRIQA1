@@ -18,9 +18,10 @@ import BlogMain from './BlogMain';
 import { FaArrowLeft } from 'react-icons/fa';
 import BlogCtaPopup from './BlogCtaPopup';
 import BlogsAllUpdates from '../cta-detail/BlogsAllUpdates';
+import { BlogsContext } from '../../context/BlogsContext';
 
 const Blogs = () => {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useContext(BlogsContext);
   const [visible, setVisible] = useState(3);
   const [activeTab, setActiveTab] = useContext(PageContext);
 
