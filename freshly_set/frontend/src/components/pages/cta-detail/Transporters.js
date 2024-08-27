@@ -48,7 +48,7 @@ function Transporters() {
                         <div className="Firstname mt-[12px]">
                             <p className="text-start font-inter font-[700] text-[18px] my-0 text-[#008000] ">First Name</p>
                             <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[2px]">
-                                <input className="border-none outline-none font-inter font-[700] text-[16px]" value={'Christopher'} />
+                                <input type='name' name='name' className="border-none outline-none font-inter font-[700] text-[14px] lg:text-[16px]" />
                                 <img src="/static/media/edit.png" alt="" className=""/>
                             </div>
                         </div>
@@ -56,7 +56,7 @@ function Transporters() {
                         <div className="Lastname mt-[12px]">
                             <p className="text-start font-inter font-[700] text-[18px] my-0 text-[#008000]">Last Name</p>
                             <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[2px]">
-                                <input className="border-none outline-none font-inter font-[700] text-[16px]" value={'Joseph'}/>
+                                <input type='name' name='name' className="border-none outline-none font-inter font-[700] text-[14px] lg:text-[16px]" />
                                 <img src="/static/media/edit.png" alt="" className="mx-[4px]"/>
                             </div>
                         </div>
@@ -67,7 +67,7 @@ function Transporters() {
                         <div className="PhoneNumber mt-[12px]">
                             <p className="text-start font-inter font-[700] text-[18px] my-0 text-[#008000] ">Phone</p>
                             <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[2px]">
-                                <input className="border-none outline-none font-inter font-[700] text-[16px]" value={'Christopher'} />
+                                <input name='phone' className="border-none outline-none font-inter font-[700] text-[14px] lg:text-[16px]" />
                                 <img src="/static/media/edit.png" alt="" className=""/>
                             </div>
                         </div>
@@ -75,7 +75,7 @@ function Transporters() {
                         <div className="EmailAddress mt-[12px]">
                             <p className="text-start font-inter font-[700] text-[18px] my-0 text-[#008000]">Email</p>
                             <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[2px] ">
-                                <input className="border-none outline-none font-inter font-[700] text-[16px]" value={'Joseph'}/>
+                                <input type='name' name='email' className="border-none outline-none font-inter font-[700] text-[14px] lg:text-[16px] " />
                                 <img src="/static/media/edit.png" alt="" className="mx-[4px]"/>
                             </div>
                         </div>
@@ -84,7 +84,7 @@ function Transporters() {
                     <div className="PhysicalAddress mt-[12px]">
                             <p className="text-start font-inter font-[700] text-[18px] my-0 text-[#008000] ">Address</p>
                             <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[2px]">
-                                <input className="border-none outline-none font-inter font-[700] text-[12px] lg:text-[16px] w-[92%]  h-[40px]" value={"Loridge Apartments, Karen, Nairobi, Kenya"} />
+                                <input name='address' className="border-none outline-none font-inter font-[700] text-[14px] lg:text-[16px] w-[92%]  h-[40px]" />
                                 <img src="/static/media/edit.png" alt="" className="mx-[4px] my-auto"/>
                             </div>
                     </div>
@@ -143,17 +143,38 @@ function Transporters() {
                     {/*National ID */}
                     <div className="PhysicalAddress mt-[28px]">
                             <p className="text-start font-inter font-[700] text-16 lg:text-[23px] my-0 text-[#008000] ">For Verification Purpose Kindly Attach Your National ID - Front And Back</p>
-                            <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[12px]">
-                                <input className="border-none outline-none font-inter font-[500] text-[22px] w-full h-[200px]"  />
+                            <div className="InputBox block border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[12px] h-[200px]">
+                            <p className='text-start text-[18px] mb-[2px] mt-0 font-inter text-gray-700'>Accept .docx, jpeg, png, svg and pdf</p>
+                             <div className='w-fit lg:max-w-[60%]'>
+                                <p className='text-start font-[700] text-[18px] mb-[2px] font-inter text-[#008000]'>Front Side</p>
+                                <input type='file'  className="border-none outline-none font-inter font-[500] text-[18px] lg:text-[22px] w-full cursor-pointer " />
                             </div>
+                            
+                             <div className='w-fit lg:max-w-[60%]'>
+                                <p className='text-start font-[700] text-[18px] mb-[2px] font-inter text-[#008000]'>Back Side</p>
+                                <input type='file' accept='.doc, .docx, .jpeg, .jpg, .png, .svg, .pdf'  className="border-none outline-none font-inter font-[500] text-[18px] lg:text-[22px] w-full cursor-pointer " />
+                            </div>
+                        </div>
                     </div>
                     
                     {/*Driving Licence */}
                     <div className="PhysicalAddress mt-[28px] mb-[50px] ">
                         <p className="text-start font-inter font-[700] text-[16px] lg:text-[23px] my-0 text-[#008000] ">For Verification Purpose Kindly Attach Your License - Front And Back</p>
-                        <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[12px]">
-                            <input className="border-none outline-none font-inter font-[500] text-[22px] w-full h-[200px]"  />
+                        <div className="InputBox block border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[12px] h-[200px]">
+                            <p className='text-start text-[18px] mb-[2px] mt-0 font-inter text-gray-700'>Accept .docx, jpeg, png, svg and pdf</p>
+                             <div className='w-fit lg:max-w-[60%]'>
+                                <p className='text-start font-[700] text-[18px] mb-[2px] font-inter text-[#008000]'>Front Side</p>
+                                <input type='file'  className="border-none outline-none font-inter font-[500] text-[18px] lg:text-[22px] w-full cursor-pointer " />
+                            </div>
+                            
+                            <div className='w-fit lg:max-w-[60%]'>
+                                <p className='text-start font-[700] text-[18px] mb-[2px] font-inter text-[#008000]'>Back Side</p>
+                                <input type='file' accept='.doc, .docx, .jpeg, .jpg, .png, .svg, .pdf'  className="border-none outline-none font-inter font-[500] text-[18px] lg:text-[22px] w-full cursor-pointer " />
+                            </div>
                         </div>
+                        
+
+
                     </div>
 
                     {/*Button */}
