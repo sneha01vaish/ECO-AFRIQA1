@@ -31,7 +31,7 @@ function FarmCard({  index, img, title, body, rating, number}) {
         console.log("clicked", clicked)
     },[clicked])
   return (
-    <div className="flex justify-center items-center w-[168px] lg:w-[373px] shadow-2xl rounded-[24px]"> 
+    <div className="flex justify-center items-center w-[168px] lg:w-[373px]  shadow-lg hover:shadow-2xl transition-all duration-500 ease-out  rounded-[24px]"> 
        
        <div className="block">
           <div className="flex justify-center">

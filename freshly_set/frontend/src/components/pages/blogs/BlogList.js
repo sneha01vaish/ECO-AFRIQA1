@@ -1,20 +1,22 @@
-import { useState, memo, useEffect } from 'react'
+import { useState, memo, useEffect, useContext } from 'react'
 import { IoCaretDownSharp, IoCaretUpSharp } from "react-icons/io5";
 import { FaThumbsUp } from "react-icons/fa6";
 import { MdMessage } from "react-icons/md";
 import { BsShareFill } from "react-icons/bs";
+import { BlogsClickedContext } from '../../context/PageContext';
 
 const BlogPosts = ({ post }) => {
 
     // const { id } = post
     // console.log(id)
     const [toggle, setToggle] = useState(3);
+    const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext);
 
     const toggleTab = (index) => setToggle(index)
 
     useEffect(() => {
-        console.log("post", post)
-    },[])
+        console.log("blogModalOpen", blogModalOpen)
+    },[blogModalOpen])
     const haveImage = (
         <div className={`${toggle ? " h-[240px] sm:h-[400px]" : "h-[0]" } transition-all delay-150 duration-150 flex items-start justify-between overflow-hidden gap-3`}>
             <div className="flex max-w-[50%] flex-col h-[240px] sm:h-full overflow-hidden">

@@ -9,17 +9,18 @@ import BlogPosts from './BlogList'
 import api from '../../../api/blogs'
 // import BlogForm from './BlogForm';
 import Contact from './Contact';
-import { PageContext, SelectedSectionContext } from '../../context/PageContext';
+import { BlogsClickedContext, PageContext, SelectedSectionContext } from '../../context/PageContext';
 import BlogWidgetsNew from './BlogWidgetsNew';
 import BlogWidgets from './BlogWidgets';
 import { Link } from 'react-router-dom';
 
-function BlogMain() {
-    const [blogs, setBlogs] = useState([]);
+function BlogMain({ blogs }) {
+    // const [blogs, setBlogs] = useState([]);
     const [visible, setVisible] = useState(3);
     const [selectedSection, setSelectedSection] = useContext(SelectedSectionContext);
     const [isVisible, setIsVisible] = useState(false); 
 
+    const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext);
 
     const showDetail = () => {
         window.scrollTo({ top: 0 }); 
@@ -47,20 +48,24 @@ function BlogMain() {
     console.log("selected section", selectedSection)
   },[selectedSection])
 
+  useEffect(() => {
+    console.log("Blog posts", blogs)
+  },[])
+
   return (
     <div>
         <BlogHero />
         <h1  className="text-center  text-[54px] lg:text-[140px] text-[#008000] font-inter font-[900]">What's new?</h1>
         <div className="flex flex-col gap-8 py-8 max-w-[96%] sm:w-full mx-auto">
           {blogs ? blogs.slice(0, visible).map((blog) => (
-            <BlogPosts key={blog.id} post={blog} />
+            <BlogPosts  key={blog.id} post={blog} />
           )) : <h4>Loading ... </h4>}
         </div>
         <div className="flex  justify-end mr-[27px] lg:mr-[65px] gap-3 z-10">
           
           <button
             className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
-            onClick={() => showDetail()}
+            // onClick={() => showDetail()}
           >
               View All Updates
 
@@ -80,7 +85,7 @@ function BlogMain() {
         <div className="flex justify-center space-x-[19px] lg:space-x-[78px]">
             <img className="h-[132px] w-[132px] lg:h-[512px] lg:w-[512px]" src="/static/media/bulbWidget.png" alt="Article light bulb"/>
 
-            <p className="text-[27.5px] lg:text-[55px] font-[900] lg:w-[478px] font-inter justify-start">Vertical Farms Can Be Implemented In Slums ?</p>
+            <p className="text-[27.5px] lg:text-[55px] font-[900] lg:w-[478px] font-inter text-start">Vertical Farms Can Be Implemented In Slums ?</p>
         </div>
 
         <div className="flex  justify-end mr-[27px] lg:mr-[65px] gap-3 z-10">
