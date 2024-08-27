@@ -5,11 +5,13 @@ import { IoWarningOutline } from "react-icons/io5";
 import blogItems from "../blogs/blogItems.json"
 import { Link } from 'react-router-dom'
 import { BlogsClickedContext } from '../../context/PageContext';
-import { SelectedBlogContext } from '../../context/BlogsContext';
+import { BlogsContext, SelectedBlogContext } from '../../context/BlogsContext';
 
 export default function SearchBlogsUpdate() {
   const [query, setQuery] = useState("")
-  const [updateBlogs, setUpdateBlogs] = useState(blogItems)
+  const [updateBlogs, setUpdateBlogs] = useState(blogItems);
+  const [blogs, setBlogs] = useContext(BlogsContext);
+
   const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext)
   const [selectedBlog, setSelectedBlog] = useContext(SelectedBlogContext)
   const limitCharacters = (paragraph) => {
@@ -38,8 +40,8 @@ export default function SearchBlogsUpdate() {
   }
 
   useEffect(() => {
-    console.log("SelectedBlog", selectedBlog)
-  },[selectedBlog, blogModalOpen])
+    console.log("All Blogs", blogs)
+  },[])
   return (
     <section className=''>
       <div className="block sm:flex gap-2 justify-center items-center w-full">

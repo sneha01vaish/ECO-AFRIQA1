@@ -6,10 +6,10 @@ export const ModalContext = createContext();
 export const ModalContentsContext = createContext();
 export const CurrentIndexContext = createContext();
 export const ModalToggleContentsContext = createContext();
-
+export const GardensContext = createContext();
 export const SelectedSectionContext = createContext();
 export const BlogsClickedContext = createContext();
-
+export const SectionTypeContext = createContext();
 
 export  const PageContextProvider = ({ children }) => {
     const [activeTab, setActiveTab] = useState("home");
@@ -23,6 +23,9 @@ export  const PageContextProvider = ({ children }) => {
     // Modal Context for Products Page
     const [modalOpen, setModalOpen] = useState(false);
     const [modalContents, setModalContents] = useState({});
+    const [sectionType, setSectionType] = useState("")
+
+    //  Mock Data while backend is being connected
     const [modalToggleContents, setModalToggleContents]  = useState([
         {
             number:1,
@@ -46,9 +49,90 @@ export  const PageContextProvider = ({ children }) => {
             title:"Container Gardens",
             body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
 
+        },
+
+        {
+            number:4,
+            img:"/static/media/veggieFish.png",
+            title:"Container Gardens",
+            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
+
+        },
+
+
+        {
+            number:5,
+            img:"/static/media/veggieFish.png",
+            title:"Container Gardens",
+            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
+
+        },
+
+        {
+            number:6,
+            img:"/static/media/veggieFish.png",
+            title:"Container Gardens",
+            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
+
         }
     ])
 
+    const [modalToggleContentsGardens, setModalToggleContentsGardens]  = useState([
+
+        // <FarmCard number={1} img="/static/media/gardens1.png" title="Raised Bed Gardens" body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."/>
+        // <FarmCard number={2} img="/static/media/gardens2.png" title="Container Gardens" body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."/>
+        // <FarmCard number={3} img="/static/media/gardens3.png" title="Square Root Gardens" body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."/>
+        {
+            number:1,
+            img:"/static/media/gardens1.png",
+            title:"Raised Bed Gardens",
+            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
+
+        },
+
+        {
+            number:2,
+            img:"/static/media/gardens2.png",
+            title:"Container Gardens",
+            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
+
+        },
+
+        {
+            number:3,
+            img:"/static/media/gardens3.png",
+            title:"Square Root Gardens",
+            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
+
+        },
+
+        {
+            number:1,
+            img:"/static/media/gardens1.png",
+            title:"Raised Bed Gardens",
+            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
+
+        },
+
+        {
+            number:2,
+            img:"/static/media/gardens2.png",
+            title:"Container Gardens",
+            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
+
+        },
+
+        {
+            number:3,
+            img:"/static/media/gardens3.png",
+            title:"Square Root Gardens",
+            body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
+
+        },
+        
+
+
+])
 
     // Modal context for Blog Modals
    const [blogModalOpen, setBlogModalOpen] = useState(false)
@@ -62,8 +146,12 @@ export  const PageContextProvider = ({ children }) => {
                                 <SelectedSectionContext.Provider value={[selectedSection, setSelectedSection]}>
 
                                     <BlogsClickedContext.Provider value={[blogModalOpen, setBlogModalOpen]}>
-                                        {children}
+                                        <GardensContext.Provider value={[modalToggleContentsGardens, setModalToggleContentsGardens]}>
+                                            <SectionTypeContext.Provider value={[sectionType, setSectionType]}>
+                                                {children}
 
+                                            </SectionTypeContext.Provider>
+                                        </GardensContext.Provider>
                                     </BlogsClickedContext.Provider>
                                 </SelectedSectionContext.Provider>
                             </ModalToggleContentsContext.Provider>

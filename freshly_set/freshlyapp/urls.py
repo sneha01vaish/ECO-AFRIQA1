@@ -28,7 +28,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     # path('blogs/', views.blogs, name='blogs'),
-    # path('freshlyapp/blogs/', BlogListView.as_view(), name='blog-list'),
+    path('freshlyapp/blogs/', BlogListView.as_view(), name='blog-list'),
     path('freshlyapp/create/', BlogListCreateView.as_view(),
          name='blog-list-create'),
     # path('create-blogs/', views.blog_create, name='blogs_create'),

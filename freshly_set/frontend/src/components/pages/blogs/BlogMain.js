@@ -13,9 +13,10 @@ import blogItems from "./blogItems.json"
 import { BlogsClickedContext, PageContext, SelectedSectionContext } from '../../context/PageContext';
 import BlogWidgetsNew from './BlogWidgetsNew';
 import BlogWidgets from './BlogWidgets';
+import { Link } from 'react-router-dom';
 
-function BlogMain() {
-    const [blogs, setBlogs] = useState(blogItems);
+function BlogMain({ blogs }) {
+    // const [blogs, setBlogs] = useState(blogItems);
     const [visible, setVisible] = useState(4);
 
     const [selectedSection, setSelectedSection] = useContext(SelectedSectionContext);
@@ -60,12 +61,14 @@ function BlogMain() {
 
         <div className="flex  justify-end mr-[27px] lg:mr-[65px] gap-3 z-10">
           
-          <button
-            className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
-            // onClick={() => showDetail()}
-          >
-            View All Updates
-          </button>
+          <Link to="/blogs/allarticles">
+            <button
+                className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
+            >
+                View All Updates
+            </button>
+          </Link>
+       
           {/* <button
             className="standardBtn"
             disabled={visible <= 3}
