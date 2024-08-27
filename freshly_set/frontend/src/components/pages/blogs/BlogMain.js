@@ -14,8 +14,8 @@ import { BlogsClickedContext, PageContext, SelectedSectionContext } from '../../
 import BlogWidgetsNew from './BlogWidgetsNew';
 import BlogWidgets from './BlogWidgets';
 
-function BlogMain() {
-    const [blogs, setBlogs] = useState(blogItems);
+function BlogMain({ blogs }) {
+    // const [blogs, setBlogs] = useState(blogItems);
     const [visible, setVisible] = useState(4);
 
     const [selectedSection, setSelectedSection] = useContext(SelectedSectionContext);

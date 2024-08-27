@@ -20,6 +20,7 @@ import TestimonialsDetails from './components/pages/cta-detail/TestimonialsDetai
 import BlogsAllUpdates from "./components/pages/cta-detail/BlogsAllUpdates"
 import Transporters from './components/pages/cta-detail/Transporters';
 import TransporterSuccess from './components/pages/cta-detail/TransporterSuccess';
+import BlogsAllArticles from './components/pages/cta-detail/BlogsAllArticles';
 
 function App() {
   return (
