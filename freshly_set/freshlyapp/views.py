@@ -327,10 +327,11 @@ def search_blog(request):
     return Response(serializer.data)
 
 # Polls 
+
 class PollListCreateView(generics.ListCreateAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (AllowAny,)
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
@@ -341,7 +342,7 @@ class PollDetailView(generics.RetrieveAPIView):
 
 class VoteCreateView(generics.CreateAPIView):
     serializer_class = VoteSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (AllowAny,)
 
     def post(self, request, *args, **kwargs):
         poll = get_object_or_404(Poll, pk=kwargs['pk'])

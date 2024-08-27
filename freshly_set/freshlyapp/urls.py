@@ -68,7 +68,7 @@ urlpatterns = [
          TokenRefreshView.as_view(), name='token_refresh'),
 
      # Poll URLs
-    path('polls/create/', PollListCreateView.as_view(), name='poll-list-create'),
+    path('freshlyapp/polls/', PollListCreateView.as_view(), name='poll-list-create'),
     path('polls/<int:pk>/', PollDetailView.as_view(), name='poll-detail'),
     path('polls/<int:pk>/vote/', VoteCreateView.as_view(), name='vote-create'),
     
