@@ -1,12 +1,15 @@
-import { useState, memo, useEffect } from 'react'
-import { IoCaretDownSharp } from "react-icons/io5";
+
+import { useState, memo, useEffect, useContext } from 'react'
+import { IoCaretDownSharp, IoCaretUpSharp } from "react-icons/io5";
 import { FaThumbsUp } from "react-icons/fa6";
 import { MdMessage } from "react-icons/md";
 import { BsShareFill } from "react-icons/bs";
+import { BlogsClickedContext } from '../../context/PageContext';
 
 const BlogList = ({ post }) => {
     const [clicked, setClicked] = useState(null)
     const {id, title, date, image, description } = post
+
 
     const toggleBlog =(postId) => {
         setClicked((prev) => (prev === postId ? null : postId))

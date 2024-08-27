@@ -8,6 +8,7 @@ export const CurrentIndexContext = createContext();
 export const ModalToggleContentsContext = createContext();
 
 export const SelectedSectionContext = createContext();
+export const BlogsClickedContext = createContext();
 
 
 export  const PageContextProvider = ({ children }) => {
@@ -19,7 +20,7 @@ export  const PageContextProvider = ({ children }) => {
 
     const [selectedSection, setSelectedSection] = useState("blogs")
 
-    // Modal Context
+    // Modal Context for Products Page
     const [modalOpen, setModalOpen] = useState(false);
     const [modalContents, setModalContents] = useState({});
     const [modalToggleContents, setModalToggleContents]  = useState([
@@ -48,8 +49,9 @@ export  const PageContextProvider = ({ children }) => {
         }
     ])
 
-    const openModal = () => setModalOpen(true);
-    const closeModal = () => setModalOpen(false);
+
+    // Modal context for Blog Modals
+   const [blogModalOpen, setBlogModalOpen] = useState(false)
     return(
         <PageContext.Provider value={[activeTab, setActiveTab]}>
             <PopupContext.Provider value={[popUpOpen, setPopUpOpen]}>
@@ -58,7 +60,11 @@ export  const PageContextProvider = ({ children }) => {
                         <CurrentIndexContext.Provider value={[currentIndex, setCurrentIndex]}>
                             <ModalToggleContentsContext.Provider value={[modalToggleContents, setModalToggleContents]}>
                                 <SelectedSectionContext.Provider value={[selectedSection, setSelectedSection]}>
-                                    {children}
+
+                                    <BlogsClickedContext.Provider value={[blogModalOpen, setBlogModalOpen]}>
+                                        {children}
+
+                                    </BlogsClickedContext.Provider>
                                 </SelectedSectionContext.Provider>
                             </ModalToggleContentsContext.Provider>
                         </CurrentIndexContext.Provider>
