@@ -159,27 +159,45 @@ class Share(models.Model):
     shared_at = models.DateTimeField(auto_now_add=True)
 
 
-# Poll for voting best products 
+# Poll for voting yes / no maybe and others 
 class Poll(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    head = models.ForeignKey('VoteNode', null=True, blank=True, on_delete=models.SET_NULL, related_name='head_of_poll')
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, related_name='polls', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
-    def count_votes(self):
-        count = 0
-        node = self.head
-        while node is not None:
-            count += 1
-            node = node.next_vote
-        return count
+    def total_votes(self):
+        return self.votes.count()
 
-class VoteNode(models.Model):
+    def vote_counts(self):
+        return {
+            'yes': self.votes.filter(choice='YES').count(),
+            'no': self.votes.filter(choice='NO').count(),
+            'maybe': self.votes.filter(choice='MAYBE').count(),
+            'other': self.votes.filter(choice='OTHER').count(),
+        }
+
+class Vote(models.Model):
+    YES = 'YES'
+    NO = 'NO'
+    MAYBE = 'MAYBE'
+    OTHER = 'OTHER'
+
+    CHOICES = [
+        (YES, 'Yes'),
+        (NO, 'No'),
+        (MAYBE, 'Maybe'),
+        (OTHER, 'Other'),
+    ]
+
     poll = models.ForeignKey(Poll, related_name='votes', on_delete=models.CASCADE)
-    choice = models.CharField(max_length=200)
-    next_vote = models.OneToOneField('self', null=True, blank=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, related_name='votes', on_delete=models.CASCADE)
+    choice = models.CharField(max_length=10, choices=CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Vote for {self.choice} in poll {self.poll.title}"
+        return f"{self.user.username} voted {self.choice} on {self.poll.title}"
+

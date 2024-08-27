@@ -25,10 +25,10 @@ from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.views import APIView
-from .models import Blog, Comment, Like, Share, Poll, VoteNode
+from .models import Blog, Comment, Like, Share, Poll, Vote
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer,PollSerializer, VoteNodeSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer,LikeSerializer, ShareSerializer,PollSerializer, VoteSerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -327,53 +327,35 @@ def search_blog(request):
     return Response(serializer.data)
 
 # Polls 
-class PollListView(generics.ListCreateAPIView):
+class PollListCreateView(generics.ListCreateAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
 
 class PollDetailView(generics.RetrieveAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
 
-class PollCreateView(generics.CreateAPIView):
-    queryset = Poll.objects.all()
-    serializer_class = PollSerializer
+class VoteCreateView(generics.CreateAPIView):
+    serializer_class = VoteSerializer
+    permission_classes = [IsAuthenticated]
 
-class PollUpdateView(generics.UpdateAPIView):
-    queryset = Poll.objects.all()
-    serializer_class = PollSerializer
-
-class PollDeleteView(generics.DestroyAPIView):
-    queryset = Poll.objects.all()
-    serializer_class = PollSerializer
-
-# VoteNode Views
-class VoteNodeListView(generics.ListAPIView):
-    queryset = VoteNode.objects.all()
-    serializer_class = VoteNodeSerializer
-
-class VoteNodeDetailView(generics.RetrieveAPIView):
-    queryset = VoteNode.objects.all()
-    serializer_class = VoteNodeSerializer
-
-# Custom vote adding view (function-based)
-def add_vote(request, pk):
-    poll = get_object_or_404(Poll, pk=pk)
-    choice = request.data.get('choice')
-    if choice:
-        new_vote = VoteNode.objects.create(poll=poll, choice=choice)
+    def post(self, request, *args, **kwargs):
+        poll = get_object_or_404(Poll, pk=kwargs['pk'])
+        choice = request.data.get('choice')
         
-        # If poll has no votes, set the new vote as the head
-        if poll.head is None:
-            poll.head = new_vote
-            poll.save()
-        else:
-            # Traverse to the end of the list and add the new vote
-            node = poll.head
-            while node.next_vote is not None:
-                node = node.next_vote
-            node.next_vote = new_vote
-            node.save()
+        if choice not in dict(Vote.CHOICES).keys():
+            return Response({'error': 'Invalid choice'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        vote, created = Vote.objects.update_or_create(
+            poll=poll, user=request.user,
+            defaults={'choice': choice}
+        )
 
-        return JsonResponse({'status': 'vote added'}, status=status.HTTP_201_CREATED)
-    return JsonResponse({'error': 'Invalid vote data'}, status=status.HTTP_400_BAD_REQUEST)
+        if created:
+            return Response({'status': 'Vote added'}, status=status.HTTP_201_CREATED)
+        else:
+            return Response({'status': 'Vote updated'}, status=status.HTTP_200_OK)

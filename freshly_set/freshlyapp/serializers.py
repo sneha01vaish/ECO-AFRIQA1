@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Blog, Product, Garden, Comment, Like, Share, Poll, VoteNode
+from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
 from django.contrib.auth.models import User
@@ -70,14 +70,18 @@ class ShareSerializer(serializers.ModelSerializer):
         fields = ['id', 'blog', 'user', 'shared_at']
 
 # Polls serializer
-class VoteNodeSerializer(serializers.ModelSerializer):
+class VoteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = VoteNode
-        fields = ['id', 'choice', 'next_vote']
+        model = Vote
+        fields = ['id', 'user', 'choice', 'created_at']
 
 class PollSerializer(serializers.ModelSerializer):
-    votes = VoteNodeSerializer(many=True, read_only=True)
+    votes = VoteSerializer(many=True, read_only=True)
+    vote_counts = serializers.SerializerMethodField()
 
     class Meta:
         model = Poll
-        fields = ['id', 'title', 'description', 'votes']
+        fields = ['id', 'title', 'description', 'created_at', 'created_by', 'votes', 'vote_counts']
+
+    def get_vote_counts(self, obj):
+        return obj.vote_counts()
