@@ -18,9 +18,8 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import AllowAny
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
-
-from .forms import SignUpForm
-from django.contrib.auth.forms import AuthenticationForm
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import authenticate
 from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes, action
@@ -87,6 +86,9 @@ class UserLogout(APIView):
         logout(request)
         return Response(status=status.HTTP_200_OK)
 """
+
+
+
 def index(request):
     get_token(request)
     return render(request, 'index.html')
@@ -240,7 +242,33 @@ class BlogListCreateView(generics.ListCreateAPIView):
 """
 
     
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def Register(request):
+    # Validate the input data
+    serializer = UserRegisterSerializer(data=request.data)
+    
+    if serializer.is_valid():
+        # Check if the user already exists
+        username = serializer.validated_data.get('username')
+        email = serializer.validated_data.get('email')
+        if User.objects.filter(username=username).exists():
+            return Response({"error": "This username already exists."}, status=status.HTTP_400_BAD_REQUEST)
+        if User.objects.filter(email=email).exists():
+            return Response({"error": "An account with this email already exists."}, status=status.HTTP_400_BAD_REQUEST)
 
+        # Save the user if validation passes
+        user = serializer.save()
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            "message": "Signup successful!",
+            "refresh": str(refresh),
+            "access": str(refresh.access_token),
+        }, status=status.HTTP_201_CREATED)
+    
+    # Return errors if validation fails
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
