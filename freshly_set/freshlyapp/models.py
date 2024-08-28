@@ -74,7 +74,14 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 """
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    remember_me = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.user.username
 
 class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
