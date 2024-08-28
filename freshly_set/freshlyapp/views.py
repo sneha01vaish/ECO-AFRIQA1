@@ -30,6 +30,8 @@ from django.db.models import Q
 from rest_framework.generics import get_object_or_404
 from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer,PollSerializer, VoteNodeSerializer
 from django.shortcuts import render
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import authenticate
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -87,6 +89,50 @@ class UserLogout(APIView):
         logout(request)
         return Response(status=status.HTTP_200_OK)
 """
+
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def Register(request):
+    # Validate the input data
+    serializer = UserRegisterSerializer(data=request.data)
+    
+    if serializer.is_valid():
+        # Check if the user already exists
+        username = serializer.validated_data.get('username')
+        email = serializer.validated_data.get('email')
+        if User.objects.filter(username=username).exists():
+            return Response({"error": "This username already exists."}, status=status.HTTP_400_BAD_REQUEST)
+        if User.objects.filter(email=email).exists():
+            return Response({"error": "An account with this email already exists."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Save the user if validation passes
+        user = serializer.save()
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            "message": "Signup successful!",
+            "refresh": str(refresh),
+            "access": str(refresh.access_token),
+        }, status=status.HTTP_201_CREATED)
+    
+    # Return errors if validation fails
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def login(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+
+    user = authenticate(username=username, password=password)
+
+    if user is not None:
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        })
+    else:
+        return Response({"error": "Invalid Credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 def index(request):
     get_token(request)
     return render(request, 'index.html')

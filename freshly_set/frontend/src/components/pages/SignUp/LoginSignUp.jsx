@@ -3,6 +3,7 @@ import './LoginSignUp.css';
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { BiShow } from "react-icons/bi";
 import Nav from '../../Nav/Navbar';
+import axios from 'axios';
 
 const LoginSignUp = () => {
   const [showForm, setShowForm] = useState(true);
@@ -34,37 +35,64 @@ const LoginSignUp = () => {
     setConfirmPasswordToggle(!confirmPasswordToggle);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    validateForm();
-    if (Object.keys(errors).length === 0) {
-      // Form submission logic (e.g., send data to backend)
-      console.log('Form submitted:', formData);
-    }
-  };  
-
   const validateForm = () => {
-    const errors = {};
-    if (!formData.firstName) errors.firstName = 'Required';
-    if (!formData.lastName) errors.lastName = 'Required';
-    if (!formData.email) errors.email = 'Required';
-    if (!formData.phone) errors.phone = 'Required';
-    if (!formData.location) errors.location = 'Required';
-    if (!formData.password) errors.password = 'Required';
-    if (!formData.confirmPassword) errors.confirmPassword = 'Required';
-    if (formData.password !== formData.confirmPassword) errors.confirmPassword = 'Passwords do not match';
-    setErrors(errors);
+    const newErrors = {};
+
+    if (!formData.firstName) newErrors.firstName = 'First name is required';
+    if (!formData.lastName) newErrors.lastName = 'Last name is required';
+    if (!formData.email) newErrors.email = 'Email is required';
+    if (!formData.phone) newErrors.phone = 'Phone is required';
+    if (!formData.location) newErrors.location = 'Location is required';
+    if (!formData.password) newErrors.password = 'Password is required';
+    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // returns true if no errors
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+        const payload = {
+            username: formData.email, // Assuming you want to use email as the username
+            email: formData.email,
+            password: formData.password,
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            profile: {
+                phone: formData.phone,
+                location: formData.location,
+                remember_me: formData.rememberMe, // Add rememberMe to profile
+            },
+        };
+
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/freshlyapp/register/', payload, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const data = response.data;
+
+            if (response.status === 200) {
+                alert('Signup successful!');
+            } else {
+                alert(data.error || 'Signup failed. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred during signup. Please try again later.');
+        }
+    }
+};
 
   return (
     <div className="signup-form ">
       <Nav />
       <div className="flex justify-center mt-[100px]">
-        
-        
-        
         <div className="flex flex-col lg:flex-row justify-between lg:px-[77px] lg:py-[88px] lg:w-[1197px] mx-[40px] my-[100px] bg-white  rounded-[132px]">
-        {/* <div className="close-btn">×</div> */}
         
         {/* Left side */}
         <div className="block w-[] order-2 lg:order-1">
@@ -78,8 +106,6 @@ const LoginSignUp = () => {
                 <p className=" mt-[28px] lg:w-[552px] font-josefin leading-[26px] text-[15px] text-start text-[#525560]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
                 <p className=" mt-[28px] lg:w-[552px] font-josefin leading-[26px] text-[15px] text-start text-[#525560]">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,</p>
               </div>
-             
-
             </div>
         </div>
         {/* Right side */}
@@ -169,31 +195,27 @@ const LoginSignUp = () => {
                 onChange={handleChange}
                 required
               />
-              <span
-                className="toggle-password hidden lg:flex"
-                onClick={handleConfirmPasswordToggle}
-              >
+              <span className="toggle-password hidden lg:flex" onClick={handleConfirmPasswordToggle}>
                 {confirmPasswordToggle ? (<AiFillEyeInvisible className="text-black h-[33px] w-[45px]" />) : <BiShow className="text-black h-[33px] w-[45px]"/>}
-
               </span>
             </div>
             {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-            <label className="remember-me">
-              <input
+            <input
                 type="checkbox"
-                name="remember"
+                name="rememberMe"
                 checked={formData.rememberMe}
-                onChange={(e) =>
-                  setFormData({ ...formData, rememberMe: e.target.checked })
-                }
-              />
-              Remember me
-            </label>
-            <button  className="standardBtnLong" type="submit">Sign Up</button>
+                onChange={(e) => setFormData({ ...formData, rememberMe: e.target.checked })}
+             />
+
+
+            <button
+              type="submit"
+              className="h-[58px] w-[300px] lg:w-[389px] lg: rounded-[13px] text-center text-[18px] font-[700] text-white  bg-[#408f30]  mt-[10px]"
+            >
+              Create Account
+            </button>
           </form>
-
-
-         <div className="block space-y-[17px] lg:space-y-[0px] lg:flex lg:space-x-[32px] items-center">
+          <div className="block space-y-[17px] lg:space-y-[0px] lg:flex lg:space-x-[32px] items-center">
           <div className="flex justify-center space-x-[30px] lg:space-x-[23px] items-center">
               <p className="text-black text-[15px] font-[700] whitespace-nowrap">Sign in With Google</p>
               <img className="h-[44px] w-[43px]" src="/static/media/googleIcon.png" alt="Google Image"/>
@@ -211,10 +233,9 @@ const LoginSignUp = () => {
         </div>
         
         </div>
-      </div>
         </div>
-          
-      
+        
+        </div>
   );
 };
 
