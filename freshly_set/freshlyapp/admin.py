@@ -1,5 +1,7 @@
+from datetime import timezone
 from django.contrib import admin
 from .models import *
+from .models import IDVerification
 
 # Register your models here.
 
@@ -24,3 +26,15 @@ class BlogModelAdmin(admin.ModelAdmin):
 admin.site.register(Poll)
 class PollModelAdmin(admin.ModelAdmin):
     fields = ['id', 'title', 'description', 'votes']
+
+
+
+@admin.register(IDVerification)
+class IDVerificationAdmin(admin.ModelAdmin):
+    list_display = ('user', 'id_document_type', 'id_document_number', 'is_verified', 'submitted_at', 'verified_at')
+    actions = ['mark_as_verified']
+
+    def mark_as_verified(self, request, queryset):
+        queryset.update(is_verified=True, verified_at=timezone.now())
+        self.message_user(request, "Selected verifications have been marked as verified.")
+    mark_as_verified.short_description = "Mark selected as verified"
