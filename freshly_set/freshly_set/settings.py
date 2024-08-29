@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'corsheaders',
     'freshlyapp',  # our app
 ]
@@ -107,12 +108,19 @@ DATABASES = {
     }
 }
 
-# AUTH_USER_MODEL = 'freshlyapp.AppUser'
+# AUTH_USER_MODEL = 'freshlyapp.AppUser'/throttling
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.SessionAuthentication',
                                        'rest_framework.authentication.TokenAuthentication',),
+    'DEFAULT_THROTTLE_CLASSES': [
+        'freshlyapp.throttling.APIKeyRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'api_key': '100/minute',
+    },
 }
+
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -138,6 +146,20 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+#PASSWORD HASHING BCRYPT
+
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
+
+
+
 
 # SMTP Configuration
 

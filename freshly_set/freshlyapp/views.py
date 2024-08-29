@@ -52,6 +52,8 @@ logger = logging.getLogger(__name__)
 """
 class UserRegister(APIView):
     permission_classes =(permissions.AllowAny,)
+    throttle_classes = []
+
     def post(self, request):
         clean_data = custom_validation(request.data)
         serializer = UserRegisterSerializer(data=clean_data)
@@ -64,6 +66,8 @@ class UserRegister(APIView):
 class UserLogin(APIView):
      permission_classes =(permissions.AllowAny,)
      authentication_classes=(SessionAuthentication,)
+     throttle_classes = []
+
      def post(self, request):
          data = request.data
          assert validate_email(data)
@@ -77,12 +81,16 @@ class UserLogin(APIView):
 class UserView(APIView):
     permission_classes = (permissions,IsAuthenticated, )
     authentication_classes = (SessionAuthentication,)
+    throttle_classes = []
+
 
     def get(self, request):
         serializer = UserSerializer(request.user)
         return Response({'user':serializer.data}, status=status.HTTP_200_OK)
 
 class UserLogout(APIView):
+ throttle_classes = []
+
     def post(self, request):
         logout(request)
         return Response(status=status.HTTP_200_OK)
