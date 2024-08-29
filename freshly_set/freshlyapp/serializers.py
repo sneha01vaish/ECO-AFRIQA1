@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification
+from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification, Review, Farmer
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
 from django.contrib.auth.models import User
+from better_profanity import profanity
 
 UserModel = get_user_model()
 
@@ -35,10 +36,73 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'username']
+
+
+
+
 class ProductSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Product
         fields = '__all__'
+
+    def validate(self, data):
+        if data.get('price', 0) < 0:
+            raise serializers.ValidationError({'price': 'Price cannot be negative.'})
+
+        if not (0.01 <= data.get('price', 0) <= 99999.99):
+            raise serializers.ValidationError({'price': 'Price must be between 0.01 and 99999.99.'})
+
+        if len(str(data.get('price', 0)).split('.')[-1]) > 2:
+            raise serializers.ValidationError({'price': 'Price cannot have more than two decimal places.'})
+
+        if data.get('qtty', 0) < 0:
+            raise serializers.ValidationError({'qtty': 'Quantity cannot be negative.'})
+
+        if data.get('qtty', 0) > 10000:
+            raise serializers.ValidationError({'qtty': 'Quantity cannot exceed 10,000.'})
+
+        if len(data.get('name', '').strip()) == 0:
+            raise serializers.ValidationError({'name': 'Name cannot be empty.'})
+
+        if len(data.get('name', '')) > 255:
+            raise serializers.ValidationError({'name': 'Name cannot exceed 255 characters.'})
+
+        if len(data.get('desc', '')) < 10:
+            raise serializers.ValidationError({'desc': 'Description is too short. It should be at least 10 characters long.'})
+
+        if profanity.contains_profanity(data.get('desc', '')):
+            raise serializers.ValidationError({'desc': 'Description contains prohibited or inappropriate content.'})
+
+        return data
+
+
+
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    product = ProductSerializer(read_only=True)  # Nested serializer to display product details
+    product_id = serializers.PrimaryKeyRelatedField(
+        queryset=Product.objects.all(), source='product', write_only=True
+    )  # To allow assignment of product by ID
+
+    class Meta:
+        model = Review
+        fields = ['id', 'product', 'product_id', 'rating', 'comment', 'created_at']
+
+
+class FarmerSerializer(serializers.ModelSerializer):
+    product = ProductSerializer(read_only=True)  # Nested serializer to display product details
+    product_id = serializers.PrimaryKeyRelatedField(
+        queryset=Product.objects.all(), source='product', write_only=True
+    )  # To allow assignment of product by ID
+
+    class Meta:
+        model = Farmer
+        fields = ['id', 'product', 'product_id', 'name', 'email', 'phone']
+
+
+
 
 class GardenSerializer(serializers.ModelSerializer):
     class Meta:

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'freshlyapp',  # our app
 ]
 
+# Consolidated REST Framework settings
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
@@ -52,8 +53,18 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'freshlyapp.throttling.APIKeyRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'api_key': '100/minute',
+    },
 }
+
+
+
+
 # Security and session management
 SECURE_SSL_REDIRECT = True 
 SESSION_COOKIE_SECURE = True  
@@ -126,18 +137,7 @@ DATABASES = {
     }
 }
 
-# AUTH_USER_MODEL = 'freshlyapp.AppUser'/throttling
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
-    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.SessionAuthentication',
-                                       'rest_framework.authentication.TokenAuthentication',),
-    'DEFAULT_THROTTLE_CLASSES': [
-        'freshlyapp.throttling.APIKeyRateThrottle',
-    ],
-    'DEFAULT_THROTTLE_RATES': {
-        'api_key': '100/minute',
-    },
-}
+
 
 CACHES = {
     'default': {
@@ -251,3 +251,5 @@ REACT_APP_DIR = BASE_DIR / 'frontend/build'
 
 # Including React build static files in STATICFILES_DIRS
 STATICFILES_DIRS.append(REACT_APP_DIR / 'static/media')
+
+
