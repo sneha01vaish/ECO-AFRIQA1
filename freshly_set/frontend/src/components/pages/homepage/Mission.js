@@ -2,7 +2,7 @@ import React from 'react'
 import "./Mission.css"
 function Mission() {
   return (
-    <div className="missionBg pb-[14px]">
+    <section id="mission" className="missionBg pb-[14px]">
         {/* Left side */}
 
         <div className="missionLeft">
@@ -33,7 +33,7 @@ function Mission() {
                 <img  className="missionImg2" src="/static/media/hero4.png" alt="heroBottomImage"/>
             </div>
         </div>
-    </div>
+    </section>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Metrics = () => {
   return (
-    <section className="w-[100%] flex justify-center mt-[89px] lg:mt-[203px]">
+    <section id="metric" className="w-[100%] flex justify-center mt-[89px] lg:mt-[203px]">
         <div className="block lg:flex flex-wrap justify-between items-center lg:space-x-[140px] space-y-[38px] p-6">
 
             <div className="flex justify-start items-center">

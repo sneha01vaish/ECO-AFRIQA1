@@ -3,7 +3,7 @@ import "./Nav.css"
 import { IoMdMenu } from "react-icons/io";
 import { Link, NavLink } from 'react-router-dom';
 import { IoMdClose } from "react-icons/io";
-import { FaUser, FaUsers } from "react-icons/fa";
+import { FaChevronUp, FaUser, FaUsers } from "react-icons/fa";
 import { CiSettings, CiGlobe } from "react-icons/ci";
 import { PageContext } from '../context/PageContext';
 
@@ -17,7 +17,7 @@ function Nav() {
 
     const [authenticated, setAuthenticated] = useState(false);
 
-    const showStar = () =>{
+    const scrollNow = () =>{
         if(window.scrollY>60){
             setScrolled(true)
         }
@@ -29,10 +29,10 @@ function Nav() {
 
     useEffect(function mount() {
        
-        window.addEventListener('scroll', showStar);
+        window.addEventListener('scroll', scrollNow);
     
         return function unMount() {
-          window.removeEventListener("scroll", showStar);
+          window.removeEventListener("scroll", scrollNow);
         };
       });
 
@@ -44,7 +44,7 @@ function Nav() {
     <div>
         {/* Large screen navbar */}
 
-        <nav className={authenticated ? "flex justify-between  w-[100%]   pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-white pb-[20.1px] pt-[20.42px]": "flex  justify-between w-[90%]  pl-[67.48px] pr-[177.14px] fixed top-0 z-50 bg-white  pb-[20.1px] pt-[20.42px]"}>
+        <nav className={authenticated ? "flex justify-between  w-[100%]   pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-white pb-[20.1px] pt-[20.42px]": "flex  justify-between w-[90%]  pl-[67.48px] pr-[177.14px] fixed top-0 z-50 bg-white  pb-[20.1px] pt-[20.42px] border-b-[3px] border-t-[0px] border-r-0 border-l-0 border-solid border-[#008000]"}>
             {/* Logo */}
             <div className="">
                 <img className={scrolled ? "navbarLogoScroll" : "navbarLogo"} src="/static/media/logo2.png" alt="NavLogo"/>
@@ -107,7 +107,10 @@ function Nav() {
                 </Link>
 
                 <Link onClick={() => setActiveTab("products")}  to="/products" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Products</p>
+                <div className="flex items-center">
+                    <li className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Products</li>
+                    <FaChevronUp className="text-black text-[28px]"/>
+                </div>
 
                 <div className={activeTab === "products" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
                 

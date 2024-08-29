@@ -2,7 +2,7 @@ import React from 'react'
 
 function Services() {
   return (
-    <div className="block lg:mt-[100px]">
+    <section id="services" className="block lg:mt-[100px]">
         <div className="lg:flex lg:justify-center">
             <h3 className="text-[#008000] text-[30px] font-[700] lg:text-[45px] text-center font-inter">Our Services</h3>
         </div>
@@ -43,7 +43,7 @@ function Services() {
 
             
         </div>
-    </div>
+    </section>
   )
 }
 
