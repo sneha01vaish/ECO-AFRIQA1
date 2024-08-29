@@ -80,16 +80,19 @@ function BlogSearch() {
           />
         </button>
       </div>
+     
       {isLoading && <p>Loading...</p>} {/* Show loading text while searching */}
       {error && <p className="text-red-500">{error}</p>} {/* Show error message if any */}
-      <ul>
+      
+      {/* Need to style properly */}
+      {/* <ul>
         {filteredBlogs.map(blog => (
           <li key={blog.id}>
-            <h2>title{blog.title}</h2>
+            <h2>{blog.title}</h2>
             <p>{blog.content}</p>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }

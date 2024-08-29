@@ -3,7 +3,7 @@ from django.urls import path, re_path, include
 from django.contrib.auth import views as auth_views
 from django.urls import re_path
 from rest_framework.routers import DefaultRouter
-from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog
+from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog, Register
 from .views import PollListView, PollDetailView, PollCreateView, PollUpdateView, PollDeleteView
 from .views import VoteNodeListView, VoteNodeDetailView, add_vote
 
@@ -23,12 +23,13 @@ from .views import (
 )
 
 urlpatterns = [
+    path('register/', Register, name='register'),
     path('admin/', admin.site.urls),
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     # path('blogs/', views.blogs, name='blogs'),
-    # path('freshlyapp/blogs/', BlogListView.as_view(), name='blog-list'),
+    path('freshlyapp/blogs/', BlogListView.as_view(), name='blog-list'),
     path('freshlyapp/create/', BlogListCreateView.as_view(),
          name='blog-list-create'),
     # path('create-blogs/', views.blog_create, name='blogs_create'),

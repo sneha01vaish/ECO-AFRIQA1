@@ -3,8 +3,9 @@ import { MdMessage } from 'react-icons/md'
 import { FaShareAlt } from 'react-icons/fa'
 import NavAuthenticated from '../../Nav/NavAuthenticated';
 import BlogWidgetsNew from '../blogs/BlogWidgetsNew';
+import BlogCtaPopup from '../blogs/BlogCtaPopup';
 
-function BlogsAllArticles() {
+function BlogsAllUpdates() {
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
@@ -28,6 +29,8 @@ function BlogsAllArticles() {
       };
   return (
     <div className="">
+      <BlogCtaPopup />
+      
         {/* Top Card */}
         <NavAuthenticated />
 
@@ -90,4 +93,4 @@ function BlogsAllArticles() {
   )
 }
 
-export default BlogsAllArticles
+export default BlogsAllUpdates

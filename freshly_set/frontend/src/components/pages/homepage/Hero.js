@@ -13,7 +13,7 @@ function Hero() {
 
             <p className="font-inter text-[#FFF3E5] lg:w-[806px] text-center font-[400]">Freshly Farms is known for urbanizing the food farming industry especially on horticulture. It helps farmers understand their crops and how to manage them to grow better</p>
                 <div className="heroBtn">
-                    <button className="h-[66px] w-[242px] rounded-[45px] text-black text-[15px] border-none hover:shadow-lg cursor-pointer active:scale-90 transition-all duration-500 ease-out">GET STARTED</button>
+                    <button className="h-[66px] w-[242px] rounded-[15px] text-black text-[15px] border-none hover:shadow-lg cursor-pointer active:scale-90 transition-all duration-500 ease-out">GET STARTED</button>
 
                 </div>
             <div className="">
