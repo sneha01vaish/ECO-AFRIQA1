@@ -3,9 +3,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import About from './components/pages/about-us/About';
-import Home from "./components/pages/homepage/Home"
+import Home from "./components/pages/homepage/Home";
 import LoginSignUp from "./components/pages/SignUp/LoginSignUp";
 import Blogs from "./components/pages/blogs/Blogs";
+import Verified from "./components/pages/cta-detail/Verified";
+import VerifiedSuccess from "./components/pages/cta-detail/VerifiedSuccess";
 
 import Products from './components/pages/farm-produce/Products';
 import FarmingSystemsDetail from './components/pages/farm-produce/FarmingSystemsDetail';
@@ -29,7 +31,11 @@ function App() {
         <Route path="/SignUp" element={<LoginSignUp />} />
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
-        <Route path="/blogs/allarticles" element={<BlogsAllArticles />}/>
+          
+        <Route path="/verified" element={<Verified />} />
+        <Route path="/verified-success" element={<VerifiedSuccess />} />
+        <Route path="/blogs/allUpdates" element={<BlogsAllUpdates />} />
+
         <Route path="/products" element={<Products />} />
         <Route path="/products/categories" element={<Categories />} />
         <Route path="/about-us" element={<About />} />
@@ -39,9 +45,9 @@ function App() {
 
         <Route path="/products/farmingSystems" element={<FarmingSystemsDetail />}/>
         <Route path="/products/gardenSetups" element={<GardenSetupsDetail />} />
-
         <Route path="/cta-detail/" element={<FaqDetails />} />
         <Route path="/Hero-Detail/" element={<HeroDetail />} />
+
         <Route path="/testimonials-detailed" element={<TestimonialsDetails />} />
         <Route path="/transporters" element={<Transporters />} />
         <Route path="/transporter-success" element={<TransporterSuccess />} />
