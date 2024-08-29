@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import re_path
 from rest_framework.routers import DefaultRouter
 from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog
-from .views import  PollDetailView, PollListCreateView, VoteCreateView
+from .views import  PollDetailView, PollListCreateView, VoteCreateView, IDVerificationView
 
 from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
@@ -72,6 +72,8 @@ urlpatterns = [
     path('polls/<int:pk>/', PollDetailView.as_view(), name='poll-detail'),
     path('polls/<int:pk>/vote/', VoteCreateView.as_view(), name='vote-create'),
     
+    # Verifications 
+    path('freshlyapp/verify-id/', IDVerificationView.as_view(), name='verify-id'),
 
     
 ]

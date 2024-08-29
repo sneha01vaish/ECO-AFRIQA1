@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote
+from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
 from django.contrib.auth.models import User
@@ -85,3 +85,10 @@ class PollSerializer(serializers.ModelSerializer):
 
     def get_vote_counts(self, obj):
         return obj.vote_counts()
+    
+# IDverification 
+
+class IDVerificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IDVerification
+        fields = ['id_document_type', 'id_document_number', 'document_image', 'photo_image']

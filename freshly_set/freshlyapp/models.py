@@ -8,6 +8,9 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.conf import settings
 from django.contrib.auth.models import User
+import boto3
+import re
+
 
 """
 class AppUserManager(BaseUserManager):
@@ -210,4 +213,70 @@ class Vote(models.Model):
 
     def __str__(self):
         return f"{self.user.username} voted {self.choice} on {self.poll.title}"
+    
 
+
+# Transporter verification 
+class IDVerification(models.Model):
+    ID_DOCUMENT_TYPES = [
+        ('passport', 'Passport'),
+        ('national_id', 'National ID'),
+        ('driver_license', 'Driver License'),
+    ]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='id_verification')
+    id_document_type = models.CharField(max_length=50, choices=ID_DOCUMENT_TYPES)
+    id_document_number = models.CharField(max_length=100, unique=True)
+    document_image = models.ImageField(upload_to='id_documents/')
+    photo_image = models.ImageField(upload_to='id_photos/')
+    is_verified = models.BooleanField(default=False)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+    verified_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.user.username} - {self.id_document_type}'
+
+    def verify_id_number(self):
+        """
+        Verifies the ID number format based on the document type.
+        """
+        id_number = self.id_document_number
+
+        if self.id_document_type == 'passport':
+            # Example: Validate passport number format (alphanumeric, 8-9 characters)
+            return bool(re.match(r'^[A-Z0-9]{8,9}$', id_number))
+        elif self.id_document_type == 'national_id':
+            # Example: Validate national ID number (numeric, 9-12 digits)
+            return bool(re.match(r'^\d{9,12}$', id_number))
+        elif self.id_document_type == 'driver_license':
+            # Example: Validate driver license number (alphanumeric, 6-9 characters)
+            return bool(re.match(r'^[A-Z0-9]{6,9}$', id_number))
+        return False
+
+    def verify_photo(self):
+        """
+        Verifies that the photo matches the face in the document using Amazon Rekognition.
+        """
+        client = boto3.client(
+            'rekognition',
+            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+            region_name=settings.AWS_REGION_NAME
+        )
+
+        with open(self.document_image.path, 'rb') as source_image_file:
+            source_bytes = source_image_file.read()
+
+        with open(self.photo_image.path, 'rb') as target_image_file:
+            target_bytes = target_image_file.read()
+
+        response = client.compare_faces(
+            SourceImage={'Bytes': source_bytes},
+            TargetImage={'Bytes': target_bytes},
+            SimilarityThreshold=80  # Set similarity threshold
+        )
+
+        if response['FaceMatches']:
+            # Return True if similarity is above the threshold
+            return response['FaceMatches'][0]['Similarity'] > 80
+        return False

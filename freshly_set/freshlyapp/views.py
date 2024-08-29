@@ -25,10 +25,10 @@ from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.views import APIView
-from .models import Blog, Comment, Like, Share, Poll, Vote
+from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer,LikeSerializer, ShareSerializer,PollSerializer, VoteSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer,LikeSerializer, ShareSerializer,PollSerializer, VoteSerializer, IDVerificationSerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -40,6 +40,7 @@ from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerial
 from rest_framework.validators import UniqueValidator
 from .validators import custom_validation , validate_email, validate_password # Import your custom validation here
 #csrf_protect_method = method_decorator(csrf_protect)
+from django.utils import timezone
 
 
 # This is for typical django frontend html
@@ -360,3 +361,42 @@ class VoteCreateView(generics.CreateAPIView):
             return Response({'status': 'Vote added'}, status=status.HTTP_201_CREATED)
         else:
             return Response({'status': 'Vote updated'}, status=status.HTTP_200_OK)
+        
+
+# Verification photo and Id views
+# install bot03
+# to configure aws cli for face recogniotn.
+class IDVerificationView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = IDVerificationSerializer(data=request.data)
+        if serializer.is_valid():
+            id_verification = serializer.save(user=request.user)
+
+            # Add logic for verifying the ID number and photo
+            if id_verification.verify_id_number(id_verification.id_document_number) and \
+               id_verification.verify_photo(id_verification.photo_image):
+                id_verification.is_verified = True
+                id_verification.verified_at = timezone.now()
+                id_verification.save()
+                return Response({"message": "ID verification successful."}, status=status.HTTP_200_OK)
+            else:
+                return Response({"message": "ID verification failed."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request):
+        try:
+            verification = IDVerification.objects.get(user=request.user)
+            return Response({
+                "id_document_type": verification.id_document_type,
+                "id_document_number": verification.id_document_number,
+                "is_verified": verification.is_verified,
+                "submitted_at": verification.submitted_at,
+                "verified_at": verification.verified_at,
+                "document_image_url": verification.document_image.url,
+                "photo_image_url": verification.photo_image.url,
+            })
+        except IDVerification.DoesNotExist:
+            return Response({"error": "No ID verification found."}, status=status.HTTP_404_NOT_FOUND)
