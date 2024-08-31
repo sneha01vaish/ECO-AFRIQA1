@@ -34,14 +34,47 @@ const LoginSignUp = () => {
     setConfirmPasswordToggle(!confirmPasswordToggle);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    validateForm();
-    if (Object.keys(errors).length === 0) {
-      // Form submission logic (e.g., send data to backend)
-      console.log('Form submitted:', formData);
+
+    if (validateForm()) {
+      const payload = {
+        username: formData.email, // Assuming you want to use email as the username
+        email: formData.email,
+        password: formData.password,
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        profile: {
+          phone: formData.phone,
+          location: formData.location,
+          remember_me: formData.rememberMe, // Add rememberMe to profile
+        },
+      };
+
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/freshlyapp/register/', payload, {
+          headers: {
+            'Content-Type': 'application/json',
+            // 'X-CSRFToken': getCSRFToken(),
+          },
+        });
+
+        if (response.status === 200) {
+          alert('Signup successful!');
+        } else {
+          // Handle the error message returned from the backend
+          setBackendErrors(response.data.error || 'Signup failed. Please try again.');
+        }
+      } catch (error) {
+        // Handle errors such as network issues or server errors
+        if (error.response && error.response.data) {
+          setBackendErrors(error.response.data.error || 'An error occurred during signup. Please try again later.');
+        } else {
+          setBackendErrors('An error occurred during signup. Please try again later.');
+        }
+      }
     }
-  };  
+  }; 
 
   const validateForm = () => {
     const errors = {};

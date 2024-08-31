@@ -1,4 +1,5 @@
 # from argon2 import hash_password
+from datetime import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
@@ -7,7 +8,6 @@ from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.conf import settings
-from django.contrib.auth.models import User
 import boto3
 import re
 
@@ -77,7 +77,14 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 """
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    remember_me = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.user.username
 
 class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -217,6 +224,7 @@ class Vote(models.Model):
 
 
 # Transporter verification 
+
 class IDVerification(models.Model):
     ID_DOCUMENT_TYPES = [
         ('passport', 'Passport'),
@@ -246,8 +254,8 @@ class IDVerification(models.Model):
             # Example: Validate passport number format (alphanumeric, 8-9 characters)
             return bool(re.match(r'^[A-Z0-9]{8,9}$', id_number))
         elif self.id_document_type == 'national_id':
-            # Example: Validate national ID number (numeric, 9-12 digits)
-            return bool(re.match(r'^\d{9,12}$', id_number))
+            # Example: Validate national ID number (numeric, 9-13 digits)
+            return bool(re.match(r'^\d{9,13}$', id_number))
         elif self.id_document_type == 'driver_license':
             # Example: Validate driver license number (alphanumeric, 6-9 characters)
             return bool(re.match(r'^[A-Z0-9]{6,9}$', id_number))
@@ -279,4 +287,19 @@ class IDVerification(models.Model):
         if response['FaceMatches']:
             # Return True if similarity is above the threshold
             return response['FaceMatches'][0]['Similarity'] > 80
+        return False
+
+    def verify_user(self):
+        """
+        Verifies the user's ID number and photo, and updates the is_verified status.
+        """
+        id_verified = self.verify_id_number()
+        photo_verified = self.verify_photo()
+
+        if id_verified and photo_verified:
+            self.is_verified = True
+            self.verified_at = timezone.now()
+            self.save()
+            return True
+        
         return False

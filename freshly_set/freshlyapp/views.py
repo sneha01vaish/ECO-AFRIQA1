@@ -18,9 +18,8 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import AllowAny
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
-
-from .forms import SignUpForm
-from django.contrib.auth.forms import AuthenticationForm
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import authenticate
 from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes, action
@@ -88,6 +87,9 @@ class UserLogout(APIView):
         logout(request)
         return Response(status=status.HTTP_200_OK)
 """
+
+
+
 def index(request):
     get_token(request)
     return render(request, 'index.html')
@@ -241,7 +243,33 @@ class BlogListCreateView(generics.ListCreateAPIView):
 """
 
     
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def Register(request):
+    # Validate the input data
+    serializer = UserRegisterSerializer(data=request.data)
+    
+    if serializer.is_valid():
+        # Check if the user already exists
+        username = serializer.validated_data.get('username')
+        email = serializer.validated_data.get('email')
+        if User.objects.filter(username=username).exists():
+            return Response({"error": "This username already exists."}, status=status.HTTP_400_BAD_REQUEST)
+        if User.objects.filter(email=email).exists():
+            return Response({"error": "An account with this email already exists."}, status=status.HTTP_400_BAD_REQUEST)
 
+        # Save the user if validation passes
+        user = serializer.save()
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            "message": "Signup successful!",
+            "refresh": str(refresh),
+            "access": str(refresh.access_token),
+        }, status=status.HTTP_201_CREATED)
+    
+    # Return errors if validation fails
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
@@ -366,37 +394,39 @@ class VoteCreateView(generics.CreateAPIView):
 # Verification photo and Id views
 # install bot03
 # to configure aws cli for face recogniotn.
-class IDVerificationView(APIView):
+class VerifyIDView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        serializer = IDVerificationSerializer(data=request.data)
-        if serializer.is_valid():
-            id_verification = serializer.save(user=request.user)
-
-            # Add logic for verifying the ID number and photo
-            if id_verification.verify_id_number(id_verification.id_document_number) and \
-               id_verification.verify_photo(id_verification.photo_image):
-                id_verification.is_verified = True
-                id_verification.verified_at = timezone.now()
-                id_verification.save()
-                return Response({"message": "ID verification successful."}, status=status.HTTP_200_OK)
-            else:
-                return Response({"message": "ID verification failed."}, status=status.HTTP_400_BAD_REQUEST)
-        
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def get(self, request):
         try:
-            verification = IDVerification.objects.get(user=request.user)
-            return Response({
-                "id_document_type": verification.id_document_type,
-                "id_document_number": verification.id_document_number,
-                "is_verified": verification.is_verified,
-                "submitted_at": verification.submitted_at,
-                "verified_at": verification.verified_at,
-                "document_image_url": verification.document_image.url,
-                "photo_image_url": verification.photo_image.url,
-            })
+            verification = request.user.id_verification
+            if verification.verify_user():
+                return Response({"message": "User successfully verified."}, status=status.HTTP_200_OK)
+            else:
+                return Response({"message": "Verification failed. ID or photo did not match."}, status=status.HTTP_400_BAD_REQUEST)
         except IDVerification.DoesNotExist:
-            return Response({"error": "No ID verification found."}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"error": "ID verification record not found."}, status=status.HTTP_404_NOT_FOUND)
+        
+
+class IDVerificationUpdateView(generics.UpdateAPIView):
+    queryset = IDVerification.objects.all()
+    serializer_class = IDVerificationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user.id_verification
+
+    def put(self, request, *args, **kwargs):
+        verification_instance = self.get_object()
+        serializer = self.get_serializer(verification_instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": "User successfully verified."}, status=status.HTTP_200_OK)
+    
+class IDVerificationDetailView(generics.RetrieveAPIView):
+    queryset = IDVerification.objects.all()
+    serializer_class = IDVerificationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user.id_verification

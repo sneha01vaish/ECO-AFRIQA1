@@ -1,83 +1,62 @@
-import { useState, memo, useEffect } from 'react'
+
+import { useState, memo, useEffect, useContext } from 'react'
 import { IoCaretDownSharp, IoCaretUpSharp } from "react-icons/io5";
 import { FaThumbsUp } from "react-icons/fa6";
 import { MdMessage } from "react-icons/md";
 import { BsShareFill } from "react-icons/bs";
+import { BlogsClickedContext } from '../../context/PageContext';
 
-const BlogPosts = ({ post }) => {
+const BlogList = ({ post }) => {
+    const [clicked, setClicked] = useState(null)
+    const {id, title, date, image, description } = post
 
-    // const { id } = post
-    // console.log(id)
-    const [toggle, setToggle] = useState(3);
 
-    const toggleTab = (index) => setToggle(index)
-
-    useEffect(() => {
-        console.log("post", post)
-    },[])
-    const haveImage = (
-        <div className={`${toggle ? " h-[240px] sm:h-[400px]" : "h-[0]" } transition-all delay-150 duration-150 flex items-start justify-between overflow-hidden gap-3`}>
-            <div className="flex max-w-[50%] flex-col h-[240px] sm:h-full overflow-hidden">
-                <div>
-                    <h6 className="text-sm my-0 font-thin tracking-wider">{post.date}</h6>
-                </div>
-
-                <div className="w-full sm:h-full overflow-hidden overflow-y-auto scrollbar scrollbar-track-gray-100">
-                    <p className="">
-                    {post.body}
-                    </p>
-                </div>
-                <div className="sm:w-[48%] flex justify-between text-2xl w-full">
-                    <p><FaThumbsUp className="cursor-pointer hover:text-blue-700 transition duration-300" /></p>
-                    <p><MdMessage className="cursor-pointer hover:text-blue-700 transition duration-300" /></p>
-                    <p><BsShareFill className="cursor-pointer hover:text-blue-700 transition duration-300" /></p>
-                </div>
-            </div>
-            <div className="max-h-[360px] rounded-3xl overflow-hidden border border-solid border-gray-300 shadow-sm">
-                <img className=" w-full rounded-2xl" src={post.image} alt={post.title} />
-            </div>
-        </div>
-    )
-
-    const haveNoImage = (
-        <section className={`${toggle ? "h-[320px] sm:h-[240px]" : "h-0"} transition-all delay-150 duration-300 overflow-hidden`}>
-            <div className="max-h-[240px] overflow-hidden overflow-y-auto scrollbar scrollbar-track-gray-100">
-            <h6 className="text-sm my-0 font-thin tracking-wider">{post.date}</h6>
-                <p>{post.body}</p>
-            </div>
-            <div className="flex items-start gap-[10%] text-2xl w-full">
-                <p><FaThumbsUp className="cursor-pointer hover:text-blue-700 transition duration-300" /></p>
-                <p><MdMessage className="cursor-pointer hover:text-blue-700 transition duration-300" /></p>
-                <p><BsShareFill className="cursor-pointer hover:text-blue-700 transition duration-300" /></p>
-            </div>
-        </section>
-    )
-
+    const toggleBlog =(postId) => {
+        setClicked((prev) => (prev === postId ? null : postId))
+    }
     return (
-        <>
-            <section className="text-base sm:text-xl text-gray-900">
-                <div className="w-full border-solid border-[1px] bg-gray-100 border-gray-200 mx-auto rounded-xl hover:shadow-lg shadow-md">
-                    <div className="p-6">
-                        <div className={post.image ? "flex justify-between items-center py-4" : "flex justify-between items-center py-4"}>
-                            <h4 onClick={() => toggleTab(!toggle)} className="text-wrap font-bold m-0 cursor-pointer">{post.title}</h4>
-                            {
-                                toggle
-                                 ? <IoCaretUpSharp className="cursor-pointer hover:text-gray-700" onClick={() => toggleTab(!toggle)} />
-                                 : <IoCaretDownSharp onClick={() => toggleTab(!toggle)} className="cursor-pointer hover:text-gray-700" />
-                            }
-                        </div>
-                        <div>
-                        { post.image
-                        ? (
-                            haveImage
-                        )
-                        : haveNoImage }
+        <section>
+            <div>
+                <div className={`${ clicked ? "sm:h-[300px] h-auto shadow-slate-600 shadow-sm rounded-[10px] bg-white/90": "h-[40px] py-2 " } sm:w-[400px] w-[320px] h-auto shadow-slate-600 shadow-sm rounded-[10px] bg-white/90 transition-all duration-300 ease-in-out`}>
+                    <div className='p-2'>
+                        <p className='flex justify-between items-center m-0 pb-1'>
+                            <span className='capitalize font-bold w-[80%] text-start text-sm'>{title}</span>
+                            <span
+                                onClick={() => toggleBlog(id)}
+                                className={`${clicked ? "rotate-180 text-black/80": ""} cursor-pointer transition-all duration-300 ease-in-out`}
+                            >
+                                <IoCaretDownSharp />
+                            </span>
+                        </p>
+                        <div className={`${clicked ? "flex gap-[3px] justify-between": "hidden"} `}>
+                            <div className='flex flex-col justify-between items-start w-[52%]'>
+                                <p className='text-[10px] font-medium capitalize text-start mt-0'>{`by freshly farms, ${date}`}</p>
+                                <p className='text-start text-[10px] text-slate-900 mt-0'>{description}</p>
+                                <p className='flex justify-between gap-5 text-[14px]'>
+                                    <span className='cursor-pointer'>
+                                        <FaThumbsUp />
+                                    </span>
+                                    <span className='cursor-pointer'>
+                                        <MdMessage />
+                                    </span>
+                                    <span className='cursor-pointer'>
+                                        <BsShareFill />
+                                    </span>
+                                </p>
+                            </div>
+                            <div>
+                                <img
+                                    src={image}
+                                    alt={title}
+                                    className="sm:w-[200px] w-[132px] sm:h-[240px] h-[150px] object-cover overflow-hidden rounded-md"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </>
+            </div>
+        </section>
     )
 }
 
-export default memo(BlogPosts)
+export default memo(BlogList)
