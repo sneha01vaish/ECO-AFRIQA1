@@ -36,7 +36,7 @@ function Checkout() {
 
             {/* Mpesa Button */}
             <div className="MpesaButton mt-[-100px]">
-              <Link to='/Mpesa'>
+              <Link to='/Mpesa2'>
               <img src="/static/media/tag.png" alt="Mpesa" className="w-[80px] mb-4" />
               </Link>
             </div>
