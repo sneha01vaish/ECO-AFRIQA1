@@ -13,7 +13,8 @@ module.exports = {
       backgroundImage: theme => ({
         'hero-about': "url('/public/static/media/aboutHero.png')",
         'hero-products':"url('/public/static/media/productsHero.png')",
-        'hero-gif':"url('/public/static/media/heroGIF.gif')"
+        'hero-gif':"url('/public/static/media/heroGIF.gif')",
+        "hero-gardenSetup":"url('/public/static/media/gardenSetups.png')",
       }),
       keyframes: {
         slideIn: {
@@ -31,6 +32,10 @@ module.exports = {
         slideOut: 'slideOut 0.3s ease-in forwards',
       },
 
+      textShadow: {
+        'custom': '2px 2px 2px rgba(0, 0, 0, 0.5)',
+      },
+
 
       },
   },
@@ -41,6 +46,7 @@ module.exports = {
   },
   plugins: [
     require('tailwind-scrollbar'),
+    require('tailwindcss-textshadow'),
   ],
   corePlugins: {
     preflight: false, // Disable Tailwind's preflight reset

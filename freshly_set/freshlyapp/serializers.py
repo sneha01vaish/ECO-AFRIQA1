@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Blog, Product, Garden, Comment, Like, Share, Poll, VoteNode
+from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
 from django.contrib.auth.models import User
@@ -8,15 +8,17 @@ UserModel = get_user_model()
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserModel
-        fields = ['email', 'username', 'password']
+        model = UserModel  # This is still the built-in User model
+        fields = ['username', 'email', 'password', 'first_name', 'last_name']
 
     def create(self, validated_data):
         user = UserModel.objects.create_user(
-            email=validated_data['email'],
             username=validated_data['username'],
-            password=validated_data['password']
-        )
+            email=validated_data['email'],
+            password=validated_data['password'],
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', '')
+            )
         return user
 
 class UserLoginSerializer(serializers.Serializer):
@@ -70,14 +72,61 @@ class ShareSerializer(serializers.ModelSerializer):
         fields = ['id', 'blog', 'user', 'shared_at']
 
 # Polls serializer
-class VoteNodeSerializer(serializers.ModelSerializer):
+class VoteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = VoteNode
-        fields = ['id', 'choice', 'next_vote']
+        model = Vote
+        fields = ['id', 'user', 'choice', 'created_at']
 
 class PollSerializer(serializers.ModelSerializer):
-    votes = VoteNodeSerializer(many=True, read_only=True)
+    votes = VoteSerializer(many=True, read_only=True)
+    vote_counts = serializers.SerializerMethodField()
 
     class Meta:
         model = Poll
-        fields = ['id', 'title', 'description', 'votes']
+        fields = ['id', 'title', 'description', 'created_at', 'created_by', 'votes', 'vote_counts']
+
+    def get_vote_counts(self, obj):
+        return obj.vote_counts()
+    
+# IDverification 
+class IDVerificationSerializer(serializers.ModelSerializer):
+    id_document_number = serializers.CharField(required=True)
+    document_image = serializers.ImageField(required=True)
+    photo_image = serializers.ImageField(required=True)
+
+    class Meta:
+        model = IDVerification
+        fields = ['id_document_type', 'id_document_number', 'document_image', 'photo_image', 'is_verified']
+
+    def validate(self, data):
+        """
+        Validate and verify the ID number and photo.
+        """
+        instance = self.instance if self.instance else IDVerification(**data)
+        
+        # Validate ID number format
+        if not instance.verify_id_number():
+            raise serializers.ValidationError({"id_document_number": "Invalid ID number format for the selected document type."})
+
+        # Validate and verify photo
+        if not instance.verify_photo():
+            raise serializers.ValidationError({"photo_image": "Photo verification failed. The photo does not match the ID document."})
+
+        return data
+
+    def update(self, instance, validated_data):
+        """
+        Update the instance after verification and mark it as verified if successful.
+        """
+        instance.id_document_type = validated_data.get('id_document_type', instance.id_document_type)
+        instance.id_document_number = validated_data.get('id_document_number', instance.id_document_number)
+        instance.document_image = validated_data.get('document_image', instance.document_image)
+        instance.photo_image = validated_data.get('photo_image', instance.photo_image)
+
+        # Perform verification
+        if instance.verify_user():
+            instance.is_verified = True
+            instance.save()
+            return instance
+        else:
+            raise serializers.ValidationError("Verification failed. ID number or photo is not correct.")

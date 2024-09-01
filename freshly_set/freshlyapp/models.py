@@ -1,4 +1,5 @@
 # from argon2 import hash_password
+from datetime import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
@@ -7,7 +8,9 @@ from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.conf import settings
-from django.contrib.auth.models import User
+import boto3
+import re
+
 
 """
 class AppUserManager(BaseUserManager):
@@ -74,7 +77,14 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 """
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    remember_me = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.user.username
 
 class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -169,31 +179,127 @@ class Share(models.Model):
     shared_at = models.DateTimeField(auto_now_add=True)
 
 
-# Poll for voting best products
+# Poll for voting yes / no maybe and others 
 class Poll(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    head = models.ForeignKey('VoteNode', null=True, blank=True,
-                             on_delete=models.SET_NULL, related_name='head_of_poll')
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, related_name='polls', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
-    def count_votes(self):
-        count = 0
-        node = self.head
-        while node is not None:
-            count += 1
-            node = node.next_vote
-        return count
+    def total_votes(self):
+        return self.votes.count()
 
+    def vote_counts(self):
+        return {
+            'yes': self.votes.filter(choice='YES').count(),
+            'no': self.votes.filter(choice='NO').count(),
+            'maybe': self.votes.filter(choice='MAYBE').count(),
+            'other': self.votes.filter(choice='OTHER').count(),
+        }
 
-class VoteNode(models.Model):
-    poll = models.ForeignKey(Poll, related_name='votes',
-                             on_delete=models.CASCADE)
-    choice = models.CharField(max_length=200)
-    next_vote = models.OneToOneField(
-        'self', null=True, blank=True, on_delete=models.SET_NULL)
+class Vote(models.Model):
+    YES = 'YES'
+    NO = 'NO'
+    MAYBE = 'MAYBE'
+    OTHER = 'OTHER'
+
+    CHOICES = [
+        (YES, 'Yes'),
+        (NO, 'No'),
+        (MAYBE, 'Maybe'),
+        (OTHER, 'Other'),
+    ]
+
+    poll = models.ForeignKey(Poll, related_name='votes', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='votes', on_delete=models.CASCADE)
+    choice = models.CharField(max_length=10, choices=CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Vote for {self.choice} in poll {self.poll.title}"
+        return f"{self.user.username} voted {self.choice} on {self.poll.title}"
+    
+
+
+# Transporter verification 
+
+class IDVerification(models.Model):
+    ID_DOCUMENT_TYPES = [
+        ('passport', 'Passport'),
+        ('national_id', 'National ID'),
+        ('driver_license', 'Driver License'),
+    ]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='id_verification')
+    id_document_type = models.CharField(max_length=50, choices=ID_DOCUMENT_TYPES)
+    id_document_number = models.CharField(max_length=100, unique=True)
+    document_image = models.ImageField(upload_to='id_documents/')
+    photo_image = models.ImageField(upload_to='id_photos/')
+    is_verified = models.BooleanField(default=False)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+    verified_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.user.username} - {self.id_document_type}'
+
+    def verify_id_number(self):
+        """
+        Verifies the ID number format based on the document type.
+        """
+        id_number = self.id_document_number
+
+        if self.id_document_type == 'passport':
+            # Example: Validate passport number format (alphanumeric, 8-9 characters)
+            return bool(re.match(r'^[A-Z0-9]{8,9}$', id_number))
+        elif self.id_document_type == 'national_id':
+            # Example: Validate national ID number (numeric, 9-13 digits)
+            return bool(re.match(r'^\d{9,13}$', id_number))
+        elif self.id_document_type == 'driver_license':
+            # Example: Validate driver license number (alphanumeric, 6-9 characters)
+            return bool(re.match(r'^[A-Z0-9]{6,9}$', id_number))
+        return False
+
+    def verify_photo(self):
+        """
+        Verifies that the photo matches the face in the document using Amazon Rekognition.
+        """
+        client = boto3.client(
+            'rekognition',
+            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+            region_name=settings.AWS_REGION_NAME
+        )
+
+        with open(self.document_image.path, 'rb') as source_image_file:
+            source_bytes = source_image_file.read()
+
+        with open(self.photo_image.path, 'rb') as target_image_file:
+            target_bytes = target_image_file.read()
+
+        response = client.compare_faces(
+            SourceImage={'Bytes': source_bytes},
+            TargetImage={'Bytes': target_bytes},
+            SimilarityThreshold=80  # Set similarity threshold
+        )
+
+        if response['FaceMatches']:
+            # Return True if similarity is above the threshold
+            return response['FaceMatches'][0]['Similarity'] > 80
+        return False
+
+    def verify_user(self):
+        """
+        Verifies the user's ID number and photo, and updates the is_verified status.
+        """
+        id_verified = self.verify_id_number()
+        photo_verified = self.verify_photo()
+
+        if id_verified and photo_verified:
+            self.is_verified = True
+            self.verified_at = timezone.now()
+            self.save()
+            return True
+        
+        return False

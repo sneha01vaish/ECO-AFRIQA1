@@ -3,9 +3,8 @@ from django.urls import path, re_path, include
 from django.contrib.auth import views as auth_views
 from django.urls import re_path
 from rest_framework.routers import DefaultRouter
-from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog
-from .views import PollListView, PollDetailView, PollCreateView, PollUpdateView, PollDeleteView
-from .views import VoteNodeListView, VoteNodeDetailView, add_vote
+from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, Register, search_blog
+from .views import  PollDetailView, PollListCreateView, VoteCreateView,VerifyIDView, IDVerificationUpdateView, IDVerificationDetailView
 
 from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
@@ -23,12 +22,13 @@ from .views import (
 )
 
 urlpatterns = [
+    path('register/', Register, name='register'),
     path('admin/', admin.site.urls),
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     # path('blogs/', views.blogs, name='blogs'),
-    # path('freshlyapp/blogs/', BlogListView.as_view(), name='blog-list'),
+    path('freshlyapp/blogs/', BlogListView.as_view(), name='blog-list'),
     path('freshlyapp/create/', BlogListCreateView.as_view(),
          name='blog-list-create'),
     # path('create-blogs/', views.blog_create, name='blogs_create'),
@@ -68,15 +68,15 @@ urlpatterns = [
     path('freshlyapp/token/refresh/',
          TokenRefreshView.as_view(), name='token_refresh'),
 
-    # Poll URLs
-    path('polls/', PollListView.as_view(), name='poll-list'),
-    path('polls/create/', PollCreateView.as_view(), name='poll-create'),
+     # Poll URLs
+    path('freshlyapp/polls/', PollListCreateView.as_view(), name='poll-list-create'),
     path('polls/<int:pk>/', PollDetailView.as_view(), name='poll-detail'),
-    path('polls/<int:pk>/update/', PollUpdateView.as_view(), name='poll-update'),
-    path('polls/<int:pk>/delete/', PollDeleteView.as_view(), name='poll-delete'),
-    path('polls/<int:pk>/add_vote/', add_vote, name='poll-add-vote'),
+    path('polls/<int:pk>/vote/', VoteCreateView.as_view(), name='vote-create'),
+    
+    # Verifications 
+    path('freshlyapp/verification/verify/', VerifyIDView.as_view(), name='verify-id'), 
+    path('freshlyapp/verification/', IDVerificationUpdateView.as_view(), name='id-verification-update'),
+    path('freshlyapp/verification/detail/', IDVerificationDetailView.as_view(), name='id-verification-detail'),
 
-    # VoteNode URLs
-    path('votes/', VoteNodeListView.as_view(), name='vote-list'),
-    path('votes/<int:pk>/', VoteNodeDetailView.as_view(), name='vote-detail'),
+    
 ]
