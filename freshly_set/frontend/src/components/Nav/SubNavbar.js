@@ -46,7 +46,7 @@ function SubNavbar() {
       <nav className="pr-[170px] bg-white pt-[45px] pb-[30px] px-[30px]">
         <ul className="flex justify-between max-w-7xl space-x-[80px] w-[100%]">
         <li className="text-[#008000] my-auto text-[18px] font-inter font-[700] block h-[35px] w-[84px] cursor-pointer">
-            <a className="freshlyGreenText" href="#metric" onClick={(e) => smoothScroll(e, '#metric')}>Metric</a>
+            <a className="freshlyGreenText" href="#metric" onClick={(e) => smoothScroll(e, '#metric')}>Mission</a>
           </li>
           <li className="text-[#008000] my-auto text-[18px] font-inter font-[700] block h-[35px] w-[84px] cursor-pointer">
             <a className="freshlyGreenText" href="#metric" onClick={(e) => smoothScroll(e, '#metric')}>Metric</a>
