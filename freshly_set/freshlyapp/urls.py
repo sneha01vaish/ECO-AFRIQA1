@@ -12,6 +12,7 @@ from . import views
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
+    TokenVerifyView,
 )
 
 
@@ -24,6 +25,10 @@ from .views import (
 urlpatterns = [
     path('register/', Register, name='register'),
     path('admin/', admin.site.urls),
+    path('freshlyapp/token/', TokenObtainPairView.as_view(),name='token_obtain_pair'), 
+    path('freshlyapp/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),

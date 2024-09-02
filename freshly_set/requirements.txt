@@ -315,3 +315,4 @@ widgetsnbextension==4.0.10
 xgboost==2.0.3
 xlrd==2.0.1
 zipp==3.18.1
+bcrypt==4.2.0
