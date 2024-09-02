@@ -7,7 +7,7 @@ function Verified() {
     //State to manage opening of options
     const [clicked, setClicked] = useState();
     const [query, setQuery] = useState('');
-    const [blogs, setBlogs] = useState([]);
+    // const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -45,11 +45,11 @@ function Verified() {
         withCredentials: true
       })
       .then(response => {
-        setFilteredBlogs(response.data);
+        setFilteredProducts(response.data);
         setError(null); // Clear error if the request was successful
       })
       .catch(error => {
-        console.error('Error searching blogs:', error);
+        console.error('Error searching products :', error);
         setError('An error occurred while searching.'); // Set error message
       })
       .finally(() => {
