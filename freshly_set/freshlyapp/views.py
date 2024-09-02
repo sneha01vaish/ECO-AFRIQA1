@@ -438,3 +438,75 @@ class IDVerificationDetailView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user.id_verification
+    
+
+
+from .serializers import ProductSerializer
+
+
+class CreateProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class RetrieveProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)
+
+
+
+
+
+class UpdateProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        serializer = ProductSerializer(product, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+class DeleteProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        product.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+from rest_framework.pagination import PageNumberPagination
+
+
+@permission_classes([AllowAny])
+class ProductListView(APIView):
+    def get(self, request, *args, **kwargs):
+        # Filter products based on the search query parameter
+        search_query = request.query_params.get('name')
+        if search_query is not None:
+            filtered_products = Product.objects.filter(name__icontains=search_query)
+        else:
+            filtered_products = Product.objects.all()
+
+        paginator = PageNumberPagination()
+        paginator.page_size = 10  # Set the number of items per page
+        result_page = paginator.paginate_queryset(filtered_products, request)
+
+        serializer = ProductSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
+

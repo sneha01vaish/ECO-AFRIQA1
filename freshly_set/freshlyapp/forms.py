@@ -21,7 +21,7 @@ class GardenForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price', 'image']
+        fields = ['name', 'desc', 'price', 'image']
 
 class ServiceRequestForm(forms.ModelForm):
     class Meta:
