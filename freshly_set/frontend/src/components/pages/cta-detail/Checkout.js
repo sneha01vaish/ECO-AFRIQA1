@@ -10,7 +10,7 @@ function Checkout() {
       {/* Container for payment mode */}
       <div className="flex items-center justify-center mt-[200px] px-6">
         {/* Image and Content Container with Border */}
-        <div className="flex flex-row items-start space-x-4 p-6 rounded-[26px] border border-[rgba(0,0,0,0.20)] bg-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] w-[822px] h-[262px] flex-shrink-0">
+        <div className="flex flex-row items-start space-x-4 p-6 rounded-[26px] border border-[rgba(0,0,0,0.20)] bg-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] lg:w-[822px] w-[352px] h-[250px] lg:h-[262px] flex-shrink-0">
           
           {/* Success Header */}
           <div className="SuccessHeader flex flex-col items-start mt-10">
@@ -42,7 +42,9 @@ function Checkout() {
             </div>
              {/* Mpesa Button */}
              <div className="MpesaButton mt-[10px]">
+             <Link to='/Credit'>
               <img src="/static/media/debit.png" alt="Mpesa" className="w-[80px] mb-4" />
+              </Link>
             </div>
           </div>
           
