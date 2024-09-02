@@ -3,7 +3,7 @@ import "./Nav.css"
 import { IoMdMenu } from "react-icons/io";
 import { Link, NavLink } from 'react-router-dom';
 import { IoMdCloseCircleOutline } from "react-icons/io";
-import { FaRegUserCircle, FaShoppingBasket, FaUser, FaUsers } from "react-icons/fa";
+import { FaChevronUp, FaRegUserCircle, FaShoppingBasket, FaUser, FaUsers } from "react-icons/fa";
 import { CiSettings, CiGlobe } from "react-icons/ci";
 import { PageContext } from '../context/PageContext';
 import { motion } from "framer-motion";
@@ -17,6 +17,8 @@ function NavAuthenticated() {
 
     const [authenticated, setAuthenticated] = useState(false);
 
+
+    const [productsToggled, setProductsToggled] = useState(false);
     const showStar = () =>{
         if(window.scrollY>60){
             setScrolled(true)
@@ -108,9 +110,42 @@ function NavAuthenticated() {
 
                 </Link>
 
+                <Link onClick={() => setActiveTab("market")}  to="/market" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Market</p>
 
-                <Link onClick={() => setActiveTab("products")}  to="/products" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Products</p>
+                    <div className={activeTab === "market" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
+                  
+                        {
+                            activeTab && (
+                                <div className= {` ${activeTab === "market"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+
+                            )
+                        }
+
+
+                </Link>
+
+
+                <Link onClick={() => setActiveTab("products")}  to="/products" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px]  cursor-pointer">
+                <div className="flex items-center space-x-[10px] relative">
+
+                    <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] cursor-pointer">Products</p>
+                    <FaChevronUp onClick={() => setProductsToggled(!productsToggled)} className={productsToggled ? "text-black text-[30px] ml-[10px] cursor-pointer rotate-180":"text-black text-[30px] ml-[10px] cursor-pointer" }/>
+
+                    <div className={productsToggled ? "block absolute bg-white  rounded-[14px] top-[50px] left-0 border border-solid shadow-lg border-gray-500 w-[285px] transition-all duration-500 ease-in-out":"hidden"}>
+                            <Link to="/products/farmingSystems">
+                                <p className="hover:bg-[#008000] cursor-pointer text-start bg-white px-[20px] py-[12px] rounded-[6px] transition-all duration-400 ease-in-out text-[#008000]   text-[22px] hover:text-white">Farming Systems</p>
+
+                            </Link>
+
+                            <Link to="/products/gardenSetups">
+                                <p className="hover:bg-[#008000] cursor-pointer text-start bg-white px-[20px] py-[12px] rounded-[6px] transition-all duration-400 ease-in-out text-[#008000]   text-[22px] hover:text-white">Garden Setups</p>
+
+                            </Link>
+
+                    </div>
+
+                </div>
 
                     <div className={activeTab === "products" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
                   
