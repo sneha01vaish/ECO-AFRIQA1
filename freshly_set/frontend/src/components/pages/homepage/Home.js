@@ -23,16 +23,16 @@ function Home() {
     <div className="">
       <Nav />
       <SubNavbar />
-     <Hero  />
-     <Mission />
-     <Metrics />
-     <Banner />
-     <Services />
-     <ProductSection />
-     <Reviews2 />
-     <Faq />
+     <Hero id="hero" />
+     <Mission id="mission"/>
+     <Metrics id="metrics"/>
+     <Banner id="promotion"/>
+     <Services id="services" />
+     <ProductSection id="product" />
+     <Reviews2 id="reviews"/>
+     <Faq id="faqs"/>
 
-     <Contact />  
+     <Contact id="contact"/>  
     <FreshlyFooter />
      </div>
   )
