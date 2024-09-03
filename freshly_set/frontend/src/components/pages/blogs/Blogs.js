@@ -19,6 +19,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import BlogCtaPopup from './BlogCtaPopup';
 import BlogsAllUpdates from '../cta-detail/BlogsAllUpdates';
 import { BlogsContext } from '../../context/BlogsContext';
+import BlogsSubNavbar from '../../Nav/BlogsSubNavbar';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useContext(BlogsContext);
@@ -78,6 +79,7 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
       <BlogCtaPopup />
       <div className=" min-h-[100vh] py-16 bg-[#F5FAF9]">
         <Nav />
+        <BlogsSubNavbar />
 
 
         {

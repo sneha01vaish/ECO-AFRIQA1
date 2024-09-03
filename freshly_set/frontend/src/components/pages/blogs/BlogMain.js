@@ -63,6 +63,7 @@ function BlogMain({ blogs }) {
           
           <Link to="/blogs/allarticles">
             <button
+                onClick={() => showDetail("all-articles")}
                 className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
             >
                 View All Updates
@@ -78,7 +79,7 @@ function BlogMain({ blogs }) {
           </button> */}
         </div>
 
-        <div className="max-w-[96%] sm:max-w-[88%] font-inter mx-auto flex flex-wrap gap-3 justify-center sm:justify-between pt-3">
+        <div id="articles" className="max-w-[96%] sm:max-w-[88%] font-inter mx-auto flex flex-wrap gap-3 justify-center sm:justify-between pt-3">
 
           {blogs ? blogs.slice(0, visible).map((blog) => (
             <BlogList key={blog.id} post={blog} />
@@ -98,7 +99,7 @@ function BlogMain({ blogs }) {
 
         <div className="flex  justify-end mr-[27px] lg:mr-[65px] gap-3 z-10">
             <button
-                onClick={() => showDetail()}
+                onClick={() => showDetail("all-updates")}
 
                 className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
             >
