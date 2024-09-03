@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "boto3": "^0.0.1",
     "tailwindcss-textshadow": "^2.1.3"
   }
 }

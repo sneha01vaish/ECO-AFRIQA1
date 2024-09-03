@@ -24,7 +24,7 @@ function Products() {
       setActiveTab("products")
   },[activeTab])
   return (
-    <div>
+    <div className='overflow-x-hidden transition-all duration-500 ease-in-out'>
        {
           modalOpen && (
             <CtaPopup />
@@ -54,7 +54,7 @@ function Products() {
                 {/* Right side start */}
 
                 {/* Make margins auto so that it stays centered on larger screens */}
-                <div className={productsSidebarOpen ? "lg:ml-[190px]":"lg:ml-[0px]"}>
+                <div className={productsSidebarOpen ? "lg:ml-[]":"lg:ml-[0px]"}>
                     <div className="flex space-x-[80px] mt-[100px]">
                       <IoMdMenu onClick={() => setProductsSidebarOpen(true)} className={productsSidebarOpen ? "hidden": "text-[58px] text-black ml-[36px] lg:mt-[100px] cursor-pointer"}/>
                       <ProductsSearchBar placeholder="Search for Farm Produce" />
