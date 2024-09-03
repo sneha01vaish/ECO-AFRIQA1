@@ -36,7 +36,7 @@ function App() {
         <Route path="/verified-success" element={<VerifiedSuccess />} />
         <Route path="/blogs/allUpdates" element={<BlogsAllUpdates />} />
 
-        <Route path="/products" element={<Products />} />
+        <Route path="/marketplace" element={<Products />} />
         <Route path="/products/categories" element={<Categories />} />
         <Route path="/about-us" element={<About />} />
         <Route path="/whychoose-detail" element={<Detail />} />

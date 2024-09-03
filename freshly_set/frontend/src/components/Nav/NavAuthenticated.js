@@ -110,7 +110,7 @@ function NavAuthenticated() {
 
                 </Link>
 
-                <Link onClick={() => setActiveTab("market")}  to="/market" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
+                <Link onClick={() => setActiveTab("market")}  to="/marketplace" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
                 <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Market</p>
 
                     <div className={activeTab === "market" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
@@ -126,7 +126,7 @@ function NavAuthenticated() {
                 </Link>
 
 
-                <Link onClick={() => setActiveTab("products")}  to="/products" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px]  cursor-pointer">
+                <div onClick={() => setActiveTab("products")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px]  cursor-pointer">
                     <div className="flex items-center space-x-[10px] relative">
 
                         <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] cursor-pointer">Products</p>
@@ -157,7 +157,7 @@ function NavAuthenticated() {
                         }
 
 
-                </Link>
+                </div>
 
                 <Link onClick={() => setActiveTab("services")}  to="/#" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
                 <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Services</p>

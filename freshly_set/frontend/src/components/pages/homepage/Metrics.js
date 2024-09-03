@@ -2,8 +2,8 @@ import React from 'react'
 
 const Metrics = () => {
   return (
-    <section id="metric" className="w-[100%] flex justify-center mt-[89px] lg:mt-[203px]">
-        <div className="block lg:flex flex-wrap justify-between items-center lg:space-x-[140px] space-y-[38px] p-6">
+    <section id="metric" className="w-[100%] flex justify-center mt-[89px] lg:mt-[97px]">
+        <div className="block lg:flex flex-wrap justify-between items-center lg:space-x-[140px] space-y-[38px] lg:space-y-[0px] p-6">
 
             <div className="flex justify-start items-center">
                 <img src="/static/media/harvest.png" className="w-[63px] h-[69px] mx-1" alt="harvested quantities" />

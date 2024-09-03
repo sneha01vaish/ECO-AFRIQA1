@@ -57,7 +57,7 @@ const ProductsCategories = () => {
     <>
     <section className='bg-white/80  w-full mx-auto py-8 mt-[112px] relative' >
       <div className="" >
-      <h2 className='freshlyGreenText text-[35px] text-start font-bold my-0'>Categories</h2>     
+      <h2 className='freshlyGreenText text-[35px] text-center font-bold my-0'>Categories</h2>     
         <div className='text-green-700 font-bold flex justify-end'>
           <button onClick={scrollLeft} className='border-none text-green-600 text-[40.00px] font-extrabold bg-transparent cursor-pointer p-0 m-0 flex items-center'><RiArrowLeftSLine /></button>
           <button onClick={scrollRight} className='border-none text-green-600 text-[40.00px] font-extrabold bg-transparent cursor-pointer p-0 m-0 flex items-center'><RiArrowRightSLine /></button>
