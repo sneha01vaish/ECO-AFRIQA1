@@ -3,21 +3,16 @@ from django.urls import path, re_path, include
 from django.contrib.auth import views as auth_views
 from django.urls import re_path
 from rest_framework.routers import DefaultRouter
-<<<<<<< HEAD
-from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog, Register
-from .views import PollListView, PollDetailView, PollCreateView, PollUpdateView, PollDeleteView
-from .views import VoteNodeListView, VoteNodeDetailView, add_vote
-=======
-from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, search_blog
-from .views import  PollDetailView, PollListCreateView, VoteCreateView, IDVerificationView
->>>>>>> Simanga-dev
-
+from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, Register, search_blog
+from .views import  PollDetailView, PollListCreateView, VoteCreateView,VerifyIDView, IDVerificationUpdateView, IDVerificationDetailView
+from .views import *
 from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
+    TokenVerifyView,
 )
 
 
@@ -30,6 +25,10 @@ from .views import (
 urlpatterns = [
     path('register/', Register, name='register'),
     path('admin/', admin.site.urls),
+    path('freshlyapp/token/', TokenObtainPairView.as_view(),name='token_obtain_pair'), 
+    path('freshlyapp/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+
 
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
@@ -56,7 +55,7 @@ urlpatterns = [
          name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'),
          name='password_reset_complete'),
-    path('products/', views.products, name='products'),
+#     path('products/', views.products, name='products'),
     path('services/', views.services, name='services'),
     path('profile/', views.profile, name='profile'),
     # path('blogs/', BlogListCreateAPIView.as_view(), name='blog_list_create'),
@@ -80,7 +79,18 @@ urlpatterns = [
     path('polls/<int:pk>/vote/', VoteCreateView.as_view(), name='vote-create'),
     
     # Verifications 
-    path('freshlyapp/verify-id/', IDVerificationView.as_view(), name='verify-id'),
+    path('freshlyapp/verification/verify/', VerifyIDView.as_view(), name='verify-id'), 
+    path('freshlyapp/verification/', IDVerificationUpdateView.as_view(), name='id-verification-update'),
+    path('freshlyapp/verification/detail/', IDVerificationDetailView.as_view(), name='id-verification-detail'),
+
+
+    #product urls
+    path('products/', ProductListView.as_view(), name='list-products'),
+    path('products/create/', CreateProduct.as_view(), name='create-product'),
+    path('products/<int:pk>/', RetrieveProduct.as_view(), name='retrieve-product'),
+    path('products/<int:pk>/update/', UpdateProduct.as_view(), name='update-product'),
+    path('products/<int:pk>/delete/', DeleteProduct.as_view(), name='delete-product'),
+
 
     
 ]

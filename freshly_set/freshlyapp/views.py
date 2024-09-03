@@ -52,6 +52,8 @@ logger = logging.getLogger(__name__)
 """
 class UserRegister(APIView):
     permission_classes =(permissions.AllowAny,)
+    throttle_classes = []
+
     def post(self, request):
         clean_data = custom_validation(request.data)
         serializer = UserRegisterSerializer(data=clean_data)
@@ -64,6 +66,8 @@ class UserRegister(APIView):
 class UserLogin(APIView):
      permission_classes =(permissions.AllowAny,)
      authentication_classes=(SessionAuthentication,)
+     throttle_classes = []
+
      def post(self, request):
          data = request.data
          assert validate_email(data)
@@ -77,12 +81,16 @@ class UserLogin(APIView):
 class UserView(APIView):
     permission_classes = (permissions,IsAuthenticated, )
     authentication_classes = (SessionAuthentication,)
+    throttle_classes = []
+
 
     def get(self, request):
         serializer = UserSerializer(request.user)
         return Response({'user':serializer.data}, status=status.HTTP_200_OK)
 
 class UserLogout(APIView):
+ throttle_classes = []
+
     def post(self, request):
         logout(request)
         return Response(status=status.HTTP_200_OK)
@@ -394,37 +402,111 @@ class VoteCreateView(generics.CreateAPIView):
 # Verification photo and Id views
 # install bot03
 # to configure aws cli for face recogniotn.
-class IDVerificationView(APIView):
+class VerifyIDView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        serializer = IDVerificationSerializer(data=request.data)
-        if serializer.is_valid():
-            id_verification = serializer.save(user=request.user)
-
-            # Add logic for verifying the ID number and photo
-            if id_verification.verify_id_number(id_verification.id_document_number) and \
-               id_verification.verify_photo(id_verification.photo_image):
-                id_verification.is_verified = True
-                id_verification.verified_at = timezone.now()
-                id_verification.save()
-                return Response({"message": "ID verification successful."}, status=status.HTTP_200_OK)
+        try:
+            verification = request.user.id_verification
+            if verification.verify_user():
+                return Response({"message": "User successfully verified."}, status=status.HTTP_200_OK)
             else:
-                return Response({"message": "ID verification failed."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message": "Verification failed. ID or photo did not match."}, status=status.HTTP_400_BAD_REQUEST)
+        except IDVerification.DoesNotExist:
+            return Response({"error": "ID verification record not found."}, status=status.HTTP_404_NOT_FOUND)
         
+
+class IDVerificationUpdateView(generics.UpdateAPIView):
+    queryset = IDVerification.objects.all()
+    serializer_class = IDVerificationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user.id_verification
+
+    def put(self, request, *args, **kwargs):
+        verification_instance = self.get_object()
+        serializer = self.get_serializer(verification_instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": "User successfully verified."}, status=status.HTTP_200_OK)
+    
+class IDVerificationDetailView(generics.RetrieveAPIView):
+    queryset = IDVerification.objects.all()
+    serializer_class = IDVerificationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user.id_verification
+    
+
+
+from .serializers import ProductSerializer
+
+
+class CreateProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request):
-        try:
-            verification = IDVerification.objects.get(user=request.user)
-            return Response({
-                "id_document_type": verification.id_document_type,
-                "id_document_number": verification.id_document_number,
-                "is_verified": verification.is_verified,
-                "submitted_at": verification.submitted_at,
-                "verified_at": verification.verified_at,
-                "document_image_url": verification.document_image.url,
-                "photo_image_url": verification.photo_image.url,
-            })
-        except IDVerification.DoesNotExist:
-            return Response({"error": "No ID verification found."}, status=status.HTTP_404_NOT_FOUND)
+
+
+class RetrieveProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)
+
+
+
+
+
+class UpdateProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        serializer = ProductSerializer(product, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+class DeleteProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        product.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+from rest_framework.pagination import PageNumberPagination
+
+
+@permission_classes([AllowAny])
+class ProductListView(APIView):
+    def get(self, request, *args, **kwargs):
+        # Filter products based on the search query parameter
+        search_query = request.query_params.get('name')
+        if search_query is not None:
+            filtered_products = Product.objects.filter(name__icontains=search_query)
+        else:
+            filtered_products = Product.objects.all()
+
+        paginator = PageNumberPagination()
+        paginator.page_size = 10  # Set the number of items per page
+        result_page = paginator.paginate_queryset(filtered_products, request)
+
+        serializer = ProductSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
+
