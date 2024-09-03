@@ -12,6 +12,7 @@ import FreshlyFooter from '../../footer/FreshlyFooter'
 import { PageContext } from '../../context/PageContext'
 import Banner from './Banner'
 import SubNavbar from "../../Nav/SubNavbar";
+import NavAuthenticated from '../../Nav/NavAuthenticated'
 function Home() {
 
   const [activeTab, setActiveTab] = useContext(PageContext);
@@ -21,7 +22,7 @@ function Home() {
 },[activeTab])
   return (
     <div className="">
-      <Nav />
+      <NavAuthenticated />
       <SubNavbar />
      <Hero id="hero" />
      <Mission id="mission"/>
