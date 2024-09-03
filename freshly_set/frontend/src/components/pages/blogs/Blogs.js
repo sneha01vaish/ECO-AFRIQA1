@@ -20,6 +20,7 @@ import BlogCtaPopup from './BlogCtaPopup';
 import BlogsAllUpdates from '../cta-detail/BlogsAllUpdates';
 import { BlogsContext } from '../../context/BlogsContext';
 import BlogsSubNavbar from '../../Nav/BlogsSubNavbar';
+import BlogsAllArticles from '../cta-detail/BlogsAllArticles';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useContext(BlogsContext);
@@ -79,26 +80,43 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
       <BlogCtaPopup />
       <div className=" min-h-[100vh] py-16 bg-[#F5FAF9]">
         <Nav />
-        <BlogsSubNavbar />
 
 
         {
-          selectedSection!=="blogs" && (
-            <FaArrowLeft onClick={() => setSelectedSection("blogs")} className="absolute h-[61px] w-[61px] text-[#008000] lg:top-[240px] left-[38px] cursor-pointer z-[50]"/>
+
+          selectedSection!=="blogs" && selectedSection!=="all-articles" && (
+            <>
+              <FaArrowLeft onClick={() => setSelectedSection("blogs")} className="absolute h-[61px] w-[61px] text-[#008000] lg:top-[240px] left-[38px] cursor-pointer z-[50]"/>
+
+            </>
 
           )
         }
-        <BlogSearch />
         
         { selectedSection === "blogs" && (
-          <BlogMain blogs={blogs}/>
+          <>
+            <BlogsSubNavbar />
+            <BlogMain blogs={blogs}/>
+            <BlogSearch />
+
+          </>
        )}       
 
         { selectedSection === "all-updates" && (
        <div>
+          <BlogSearch />
+
           <BlogsAllUpdates />
         </div>
        )}
+
+       {
+        selectedSection === "all-articles" && (
+          <div>
+            <BlogsAllArticles />
+          </div>
+        )
+       }
 
        
         <FreshlyFooter />
