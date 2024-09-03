@@ -17,11 +17,11 @@ function Product({img, title, name, price, quantity}) {
     </p>
     <button className='uppercase border-3 border-[#008000] px-6 py-3 text-[#00B207] font-inter rounded-xl bg-white/60 shadow cursor-pointer hover:bg-[#008000] hover:text-white transition-all hover:border-green-400'>add to cart</button>
     <p className='my-3 flex'>
-      <IoStarSharp className='text-green-600 font-medium' />
-      <IoStarSharp className='text-green-600 font-medium' />
-      <IoStarSharp className='text-green-600 font-medium' />
-      <IoStarSharp className='text-green-600 font-medium' />
-      <IoStarSharp className='text-green-600 font-medium' />
+      <IoStarSharp className='freshltGreenText font-medium' />
+      <IoStarSharp className='freshltGreenText font-medium' />
+      <IoStarSharp className='freshltGreenText font-medium' />
+      <IoStarSharp className='freshltGreenText font-medium' />
+      <IoStarSharp className='freshltGreenText font-medium' />
     </p>
 </div>
   )
