@@ -6,13 +6,8 @@ import Nav from '../../Nav/Navbar';
 const Login = () => {
   const [showForm, setShowForm] = useState(true);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    location: '',
+    email: '',   
     password: '',
-    confirmPassword: '',
     rememberMe: false,
   });
 
@@ -29,62 +24,17 @@ const Login = () => {
     setPasswordToggle(!passwordToggle);
   };
 
-  const handleConfirmPasswordToggle = () => {
-    setConfirmPasswordToggle(!confirmPasswordToggle);
-  };
-
+  
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (validateForm()) {
-      const payload = {
-        username: formData.email, // Assuming you want to use email as the username
-        email: formData.email,
-        password: formData.password,
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        profile: {
-          phone: formData.phone,
-          location: formData.location,
-          remember_me: formData.rememberMe, // Add rememberMe to profile
-        },
-      };
-
-      try {
-        const response = await axios.post('http://127.0.0.1:8000/freshlyapp/register/', payload, {
-          headers: {
-            'Content-Type': 'application/json',
-            // 'X-CSRFToken': getCSRFToken(),
-          },
-        });
-
-        if (response.status === 200) {
-          alert('Signup successful!');
-        } else {
-          // Handle the error message returned from the backend
-          setBackendErrors(response.data.error || 'Signup failed. Please try again.');
-        }
-      } catch (error) {
-        // Handle errors such as network issues or server errors
-        if (error.response && error.response.data) {
-          setBackendErrors(error.response.data.error || 'An error occurred during signup. Please try again later.');
-        } else {
-          setBackendErrors('An error occurred during signup. Please try again later.');
-        }
-      }
-    }
+   
   }; 
 
   const validateForm = () => {
     const errors = {};
-    if (!formData.firstName) errors.firstName = 'Required';
-    if (!formData.lastName) errors.lastName = 'Required';
+  
     if (!formData.email) errors.email = 'Required';
-    if (!formData.phone) errors.phone = 'Required';
-    if (!formData.location) errors.location = 'Required';
+    
     if (!formData.password) errors.password = 'Required';
-    if (!formData.confirmPassword) errors.confirmPassword = 'Required';
-    if (formData.password !== formData.confirmPassword) errors.confirmPassword = 'Passwords do not match';
     setErrors(errors);
   };
 
@@ -96,7 +46,7 @@ const Login = () => {
         
         
         <div className="flex justify-center lg:px-[77px] lg:py-[88px] lg:w-[1197px] mx-[40px] my-[100px] bg-white  rounded-[132px]">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="block space-y-[30.08px]">
             <h1>Login to Your Account</h1>
 
