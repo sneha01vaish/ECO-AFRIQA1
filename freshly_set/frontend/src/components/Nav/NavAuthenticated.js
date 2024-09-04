@@ -7,6 +7,7 @@ import { FaChevronUp, FaRegUserCircle, FaShoppingBasket, FaUser, FaUsers } from 
 import { CiSettings, CiGlobe } from "react-icons/ci";
 import { PageContext } from '../context/PageContext';
 import { motion } from "framer-motion";
+import { CartContext } from '../context/CartContext';
 function NavAuthenticated() {
 
     const [scrolled, setScrolled ] = useState(false);
@@ -19,6 +20,8 @@ function NavAuthenticated() {
 
 
     const [productsToggled, setProductsToggled] = useState(false);
+
+    const { cartItems } = useContext(CartContext)
     const showStar = () =>{
         if(window.scrollY>60){
             setScrolled(true)
@@ -193,7 +196,7 @@ function NavAuthenticated() {
                 <div className="-mt-[20px]">
                     <FaShoppingBasket className="absolute freshlyGreenText text-[40px]"/>
 
-                    <div className="bg-[#f30024] h-[25px] w-[25px] rounded-[100%] relative -top-[12px] left-[30px] text-center font-inter mt-[5px]">{1}</div>
+                    <div className="bg-[#f30024] h-[25px] w-[25px] rounded-[100%] relative -top-[12px] left-[30px] text-center font-inter mt-[5px]">{cartItems.length}</div>
                 </div>
                 
                 <FaRegUserCircle className="text-[40px] freshlyGreenText"/>
