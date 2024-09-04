@@ -4,19 +4,20 @@ import Products from './json/Products.json';
 
 function PopularProducts() {
   return (
-    <div className="flex justify-center">
-        <div className="block">
-            <h2 className="text-[32px] freshlyGreenText font-[600] text-start">Popular Products</h2>
+    <div className="PopularProducts ">
+      <div className="PopularWrapper mx-[12px] lg:mx-auto   block">
+        {/*Section Title */}
+        <h2 className="PopularTitle text-center lg:text-start text-[32px] text-[#008000] font-inter font-[700]  lg:m-[40px]">Popular Products</h2>
+        {/*Cards */}
+        <div className="CardsGrid grid grid-cols-2 lg:grid-cols-4 gap-[20px] lg:gap-[60px] lg:mx-[40px]">
 
-            <div className="lg:grid lg:grid-cols-4 gap-x-[52px]">
+            {Products.slice(0,8).map((product) => (
+                <Product img={product.img} title={product.title} name={product.name} price={product.price} quantity={product.quantity}/>
 
-                {Products.slice(0,8).map((product) => (
-                    <Product img={product.img} title={product.title} price={product.price} quantity={product.quantity}/>
-
-                ))}
-            </div>
-        </div>
-    </div>
+            ))}
+        </div> {/*Cards Ends Here */}
+      </div> {/*Popular Products Wrapper */}
+    </div> // Popular Products Ends here
     
   )
 }
