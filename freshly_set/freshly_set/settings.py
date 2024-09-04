@@ -52,7 +52,11 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'freshlyapp.throttling.APIKeyRateThrottle',
+    ],
+    
 }
 # Security and session management
 SECURE_SSL_REDIRECT = True 
@@ -126,18 +130,6 @@ DATABASES = {
     }
 }
 
-# AUTH_USER_MODEL = 'freshlyapp.AppUser'/throttling
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
-    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.SessionAuthentication',
-                                       'rest_framework.authentication.TokenAuthentication',),
-    'DEFAULT_THROTTLE_CLASSES': [
-        'freshlyapp.throttling.APIKeyRateThrottle',
-    ],
-    'DEFAULT_THROTTLE_RATES': {
-        'api_key': '100/minute',
-    },
-}
 
 CACHES = {
     'default': {
