@@ -52,6 +52,8 @@ logger = logging.getLogger(__name__)
 """
 class UserRegister(APIView):
     permission_classes =(permissions.AllowAny,)
+    throttle_classes = []
+
     def post(self, request):
         clean_data = custom_validation(request.data)
         serializer = UserRegisterSerializer(data=clean_data)
@@ -64,6 +66,8 @@ class UserRegister(APIView):
 class UserLogin(APIView):
      permission_classes =(permissions.AllowAny,)
      authentication_classes=(SessionAuthentication,)
+     throttle_classes = []
+
      def post(self, request):
          data = request.data
          assert validate_email(data)
@@ -77,12 +81,16 @@ class UserLogin(APIView):
 class UserView(APIView):
     permission_classes = (permissions,IsAuthenticated, )
     authentication_classes = (SessionAuthentication,)
+    throttle_classes = []
+
 
     def get(self, request):
         serializer = UserSerializer(request.user)
         return Response({'user':serializer.data}, status=status.HTTP_200_OK)
 
 class UserLogout(APIView):
+ throttle_classes = []
+
     def post(self, request):
         logout(request)
         return Response(status=status.HTTP_200_OK)
@@ -244,7 +252,7 @@ class BlogListCreateView(generics.ListCreateAPIView):
 
     
 @csrf_exempt
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 @permission_classes([AllowAny])
 def Register(request):
     # Validate the input data
@@ -430,3 +438,75 @@ class IDVerificationDetailView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user.id_verification
+    
+
+
+from .serializers import ProductSerializer
+
+
+class CreateProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class RetrieveProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)
+
+
+
+
+
+class UpdateProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        serializer = ProductSerializer(product, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+class DeleteProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        product.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+from rest_framework.pagination import PageNumberPagination
+
+
+@permission_classes([AllowAny])
+class ProductListView(APIView):
+    def get(self, request, *args, **kwargs):
+        # Filter products based on the search query parameter
+        search_query = request.query_params.get('name')
+        if search_query is not None:
+            filtered_products = Product.objects.filter(name__icontains=search_query)
+        else:
+            filtered_products = Product.objects.all()
+
+        paginator = PageNumberPagination()
+        paginator.page_size = 10  # Set the number of items per page
+        result_page = paginator.paginate_queryset(filtered_products, request)
+
+        serializer = ProductSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
+

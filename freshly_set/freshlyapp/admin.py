@@ -9,7 +9,11 @@ from .models import Product, Garden, Service, Blog
 #admin.site.register(AppUser)
 admin.site.register(Product)
 class ProductModelAdmin(admin.ModelAdmin):
-    fields = ['name', 'description', 'price', 'image']
+    fields = ['name', 'desc', 'price', 'image', 'category', 'created_at']
+
+admin.site.register(Category)
+admin.site.register(Review)
+admin.site.register(Farmer)
 
 admin.site.register(Garden)
 class GardenModelAdmin(admin.ModelAdmin):
