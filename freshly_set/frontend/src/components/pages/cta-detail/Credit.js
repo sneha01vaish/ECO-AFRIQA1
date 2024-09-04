@@ -8,14 +8,14 @@ function Credit() {
       <Nav /> {/* The Upper NavBar */}
 
       {/* Back Button */}
-      <div className="block lg:flex justify-start lg:mt-[180px] ml-12">
+      <div className="block lg:flex justify-start lg:mt-[180px] mt-[150px] ml-12">
         <Link to="/checkout">
           <img src="/static/media/image10.png" alt="Back" className="lg:my-[6px] h-full" />
         </Link>
       </div>
 
       {/* Heading */}
-      <h1 className="lg:text-center text-start mt-6 text-[35px] font-bold">Checkout</h1>
+      <h1 className="lg:text-center text-center mt-6 text-[35px] font-bold">Checkout</h1>
 
       <div className="InnerContents px-[4px] lg:px-[40px] mx-[6px] lg:mx-[50px] lg:my-[20px] rounded-[20px] border-gray-400 border-[2px] shadow-lg shadow-white lg:shadow-gray-700 mb-[40px]">
         
@@ -30,8 +30,8 @@ function Credit() {
                 </div>
                 <div className="block lg:mr-[10px]">
                   <div className="BrandLogos flex justify-between lg:py-[10px]">
-                    <img src="/static/media/mpesa.png" alt="" className="h-[20px] lg:h-[39px] mr-[2px] lg:mr-[10px]" />
-                    <img src="/static/media/pesapal.png" alt="" className="h-[10px] lg:h-[19px] pt-[5px] ml-[6px] lg:ml-[10px]" />
+                    <img src="/static/media/image 156.png" alt="" className="h-[20px] lg:h-[39px] mr-[2px] lg:mr-[10px]" />
+                    <img src="/static/media/image 155.png" alt="" className="h-[10px] lg:h-[19px] pt-[5px] ml-[6px] lg:ml-[10px]" />
                   </div>
                 </div>
               </div> {/* Upper part Ends Here */}
@@ -111,7 +111,10 @@ function Credit() {
 
                 <div className="RememberMpesa flex justify-start mt-[40px] pb-[30px]">
                   <input type="checkbox" className="block mr-[10px] lg:mr-[30px] w-[25px] h-[25px]" />
-                  <p className="block text-start font-inter font-[800] my-0 text-[14px] lg:text-[18px] pt-[4px]">Securely save this card for my later purchase</p>
+                  <p className="text-start font-inter font-[800] my-0 text-[14px] lg:text-[18px] pt-[4px]">
+    Securely save this card for my later purchase
+  </p>
+  <button className="ml-4 bg-green-700 text-white px-8 py-2 rounded">OK</button>
                 </div>
               </div> {/* Inner Contents Ends Here */}
             </div> {/* Payment Ends Here */}
@@ -123,7 +126,7 @@ function Credit() {
               <div className="SummaryTittle">
                  {/* New Section: Order Summary */}
 <div className="flex flex-col rounded-[24px] border-[4px] lg:w-[495px] lg:h-[500px] w-295 h-250 bg-white p-8">
-    <h2 className="text-[30px] font-bold text-green-800 text-center mb-0  font-inter">ORDER SUMMARY</h2> {/* No margin-bottom */}
+    <h2 className="text-[30px] font-bold text-green-700 text-center mb-0  font-inter">ORDER SUMMARY</h2> {/* No margin-bottom */}
 
     {/* Container for Input Boxes */}
     <div className="flex flex-col space-y-0 mt-2">
@@ -173,11 +176,11 @@ function Credit() {
               </div>
 
              {/* Terms and Complete Payment Button */}
-            <div className="mt-0">
+            <div className="mt-0 mt-30">
               <p className="text-[16px] text-gray-600 mb-4  font-inter">
                 By completing purchase, you have accepted our Terms and Conditions.
               </p>
-              <button className="  font-inter w-full text-[18px] font-bold text-white bg-green-700 py-3 rounded-[12px] cursor-pointer active:scale-90 transition-all duration-100 ease-out">
+              <button className="  font-inter w-full text-[18px] font-bold text-white bg-green-700 py-3 mb-32 rounded-[12px] cursor-pointer active:scale-90 transition-all duration-100 ease-out">
                 Complete Payment
               </button>
             </div>
