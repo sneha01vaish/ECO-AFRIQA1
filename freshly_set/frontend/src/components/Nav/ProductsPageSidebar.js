@@ -6,7 +6,7 @@ function ProductsPageSidebar() {
     const [active, setActive] = useState(false);
     const [productsSidebarOpen, setProductsSidebarOpen] = useContext(ProductsSideBarContext);
   return (
-    <div className="mt-[130px] h-[100%]  w-[19vw] bg-[#008000] rounded-[12px] pt-[13px]">
+    <div className="hidden lg:flex mt-[130px] h-[100%]  w-[19vw] bg-[#008000] rounded-[12px] pt-[13px]">
 
         <ul className="fixed block space-y-[51.48px]">
             <IoMdMenu onClick={() => setProductsSidebarOpen(false)} className="absolute -right-[50px] top-[40px] text-[58.54px] text-white cursor-pointer"/>
