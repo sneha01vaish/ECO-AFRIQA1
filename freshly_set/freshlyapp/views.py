@@ -252,7 +252,7 @@ class BlogListCreateView(generics.ListCreateAPIView):
 
     
 @csrf_exempt
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 @permission_classes([AllowAny])
 def Register(request):
     # Validate the input data

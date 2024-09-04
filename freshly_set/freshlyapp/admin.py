@@ -32,7 +32,7 @@ class PollModelAdmin(admin.ModelAdmin):
     fields = ['id', 'title', 'description', 'votes']
 
 
-
+admin.site.register(IDVerification)
 class IDVerificationAdmin(admin.ModelAdmin):
     list_display = ('user', 'id_document_type', 'id_document_number', 'is_verified', 'submitted_at', 'verified_at')
     list_filter = ('is_verified', 'id_document_type')
@@ -55,4 +55,4 @@ class IDVerificationAdmin(admin.ModelAdmin):
         # Prevents deletion of verification records through the admin interface
         return False
 
-admin.site.register(IDVerification, IDVerificationAdmin)
+
