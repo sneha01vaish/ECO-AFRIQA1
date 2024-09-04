@@ -7,7 +7,7 @@ export default function Deals() {
     const [productsSidebarOpen, setProductsSidebarOpen] = useContext(ProductsSideBarContext);
 
     function calculateTimeLeft() {
-        const difference = +new Date('2024-09-01T00:00:00Z') - +new Date()
+        const difference = +new Date('2024-11-01T00:00:00Z') - +new Date()
         let timeLeft = {}
 
         if (difference >= 0) {
