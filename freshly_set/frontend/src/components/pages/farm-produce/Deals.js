@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GoArrowRight } from "react-icons/go";
+import { ProductsSideBarContext } from '../../context/PageContext';
 
 export default function Deals() {
+
+    const [productsSidebarOpen, setProductsSidebarOpen] = useContext(ProductsSideBarContext);
 
     function calculateTimeLeft() {
         const difference = +new Date('2024-09-01T00:00:00Z') - +new Date()
@@ -43,10 +46,10 @@ export default function Deals() {
     
     return (
         <main className="w-full">
-            <h1 className="text-3xl sm:text-5xl text-green-700 text-center">Farm Produce Center</h1>
+            {/* <h1 className="text-3xl sm:text-5xl text-green-700 text-center">Farm Produce Center</h1> */}
             <div className="w-full block lg:flex  justify-center space-y-[38px] lg:space-y-[0px] lg:gap-y-[0px] lg:gap-8 lg:py-8 lg:ml-[36px]">
 
-                <div className='lg:w-[358px] h-[340.00px] border border-solid bg-[#00AA5B] rounded-xl border-slate-200 text-white/80 shadow-sm flex flex-col justify-start items-center p-3 py-8'>
+                <div className={productsSidebarOpen ? 'lg:w-[250.09px] lg:h-[286.42px]  border border-solid bg-[#00AA5B] rounded-xl border-slate-200 text-white/80 shadow-sm flex flex-col justify-start items-center p-3 py-8':'lg:w-[335.4px] lg:h-[384.12px]  border border-solid bg-[#00AA5B] rounded-xl border-slate-200 text-white/80 shadow-sm flex flex-col justify-start items-center p-3 py-8'}>
                     <p className='text-xl font-bold capitalize my-1'>Deal of the week</p>
                     <p className="flex gap-2">
                         <span className='flex flex-col justify-start items-start'>
@@ -71,14 +74,14 @@ export default function Deals() {
                     </p>
                     <div className='h-[180px] flex justify-center'>
                         <img
-                            className='max-w-full h-full overflow-hidden px-1 py-2'
+                            className='max-w-full h-full overflow-hidden px-1 py-2 object-cover'
                             src='/static/media/image117.png'
                             alt='farm produce sales'
                         />
                     </div>
                 </div>
 
-                <div className='w-[358px] h-[340.00px]border border-solid bg-zinc-900 rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8'>
+                <div className={productsSidebarOpen ? 'lg:w-[250.09px] lg:h-[286.42px]  border border-solid bg-zinc-900 rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8':'lg:w-[335.4px] lg:h-[384.12px]  border border-solid bg-zinc-900 rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8'}>
 
                     <p className='text-xl font-bold capitalize my-1 text-green-600'>Fruits sale !!!</p>
                     <p className="font-thin my-2">
@@ -96,7 +99,7 @@ export default function Deals() {
                     </div>
                 </div>
             
-                <div className='w-[358px] h-[340.00px] border border-solid bg-[#FF0C1A] rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8'>
+                <div className={productsSidebarOpen ? 'lg:w-[250.09px] lg:h-[286.42px]  border border-solid bg-[#FF0C1A] rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8':'lg:w-[335.4px] lg:h-[384.12px]  border border-solid bg-[#FF0C1A] rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8'}>
 
                     <p className='text-xl font-bold capitalize my-1 text-white'>Fresh Vegetables</p>
                     <p className="font-thin my-1">

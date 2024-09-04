@@ -56,7 +56,7 @@ const Categories = () => {
   return (
     <>
     <Navbar />
-    <section className='bg-white/80 sm:max-w-[74%] w-full mx-auto py-8 mt-[112px] relative' >
+    <section className='flex justify-center mx-auto py-8 mt-[112px] relative' >
       <div className="" >
       <h2 className='text-green-700 text-xl text-center font-bold my-0'>Category</h2>     
         <div className='text-green-700 font-bold flex justify-end'>
@@ -64,7 +64,7 @@ const Categories = () => {
           <button onClick={scrollRight} className='border-none text-green-600 text-[40.00px] font-extrabold bg-transparent cursor-pointer p-0 m-0 flex items-center'><RiArrowRightSLine /></button>
         </div>
 
-        <div className='flex flex-nowrap justify-between items-center gap-6 overflow-x-auto scrollbar scrollbar-thumb-green-400 pl-3 sm:pl-0 pb-4'
+        <div className='flex flex-nowrap justify-between items-center overflow-x-auto scrollbar scrollbar-thumb-green-400 pl-3 sm:pl-0 pb-4'
         ref={scrollContainer}>
           {
             categories?.map(category => (

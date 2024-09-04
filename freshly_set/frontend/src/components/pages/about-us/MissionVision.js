@@ -2,7 +2,7 @@ import React from 'react'
 
 function MissionVision() {
   return (
-    <div className="block lg:flex lg:justify-center lg:w-[100%]">
+    <section id="objectives" className="block lg:flex lg:justify-center lg:w-[100%]">
         {/* Left Side */}
 
         {/* Mission */}
@@ -67,7 +67,7 @@ function MissionVision() {
             
         </div>
        
-    </div>
+    </section>
   )
 }
 

@@ -10,6 +10,7 @@ export const GardensContext = createContext();
 export const SelectedSectionContext = createContext();
 export const BlogsClickedContext = createContext();
 export const SectionTypeContext = createContext();
+export const ProductsSideBarContext = createContext();
 
 export  const PageContextProvider = ({ children }) => {
     const [activeTab, setActiveTab] = useState("home");
@@ -24,6 +25,10 @@ export  const PageContextProvider = ({ children }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalContents, setModalContents] = useState({});
     const [sectionType, setSectionType] = useState("")
+
+    // Sidebar Context
+
+    const [productsSidebarOpen, setProductsSidebarOpen] = useState(false)
 
     //  Mock Data while backend is being connected
     const [modalToggleContents, setModalToggleContents]  = useState([
@@ -148,8 +153,9 @@ export  const PageContextProvider = ({ children }) => {
                                     <BlogsClickedContext.Provider value={[blogModalOpen, setBlogModalOpen]}>
                                         <GardensContext.Provider value={[modalToggleContentsGardens, setModalToggleContentsGardens]}>
                                             <SectionTypeContext.Provider value={[sectionType, setSectionType]}>
-                                                {children}
-
+                                                <ProductsSideBarContext.Provider value={[productsSidebarOpen, setProductsSidebarOpen]}>
+                                                    {children}
+                                                </ProductsSideBarContext.Provider>
                                             </SectionTypeContext.Provider>
                                         </GardensContext.Provider>
                                     </BlogsClickedContext.Provider>
