@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification, Review, Farmer
+from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification, Review, Farmer, Cart, CartItem
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
 from django.contrib.auth.models import User
@@ -194,3 +194,53 @@ class IDVerificationSerializer(serializers.ModelSerializer):
             return instance
         else:
             raise serializers.ValidationError("Verification failed. ID number or photo is not correct.")
+
+
+
+
+
+
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartItem
+        fields = '__all__'
+
+    def validate(self, data):
+        # Quantity validation
+        if data.get('quantity', 0) <= 0:
+            raise serializers.ValidationError({'quantity': 'Quantity must be at least 1.'})
+
+        # Max quantity validation
+        if data.get('quantity', 0) > CartItem.MAX_QUANTITY:
+            raise serializers.ValidationError({'quantity': f'Quantity cannot exceed {CartItem.MAX_QUANTITY} per product.'})
+
+        # Stock availability validation
+        if data['quantity'] > data['product'].qtty:
+            raise serializers.ValidationError({'quantity': f'Not enough stock. Available stock is {data["product"].qtty}.'})
+
+        # Ensure product exists
+        if not data.get('product'):
+            raise serializers.ValidationError({'product': 'Product must exist for the cart item.'})
+
+        return data
+
+
+class CartSerializer(serializers.ModelSerializer):
+    cart_items = CartItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Cart
+        fields = '__all__'
+
+    def validate(self, data):
+        # Ensure user or session is present
+        if not data.get('user') and not data.get('session_id'):
+            raise serializers.ValidationError({'user': 'A user or session must be associated with the cart.'})
+
+        # Discount code validation (if used)
+        if data.get('discount_code') and len(data['discount_code']) > 50:
+            raise serializers.ValidationError({'discount_code': 'Discount code cannot exceed 50 characters.'})
+
+        return data
