@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Blog, Product, Garden, Comment, Like, Share, Poll, VoteNode
+from .models import Blog, Product, Garden, Comment, Like, Share, Poll, VoteNode,Cart
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
 from django.contrib.auth.models import User
@@ -81,3 +81,11 @@ class PollSerializer(serializers.ModelSerializer):
     class Meta:
         model = Poll
         fields = ['id', 'title', 'description', 'votes']
+
+#Cart serializer
+class CartSerializer(serializers.ModelSerializer):
+    total_cost = serializers.ReadOnlyField()  
+
+    class Meta:
+        model = Cart
+        fields = ['user', 'session_id', 'product', 'quantity', 'discount_code', 'special_instructions', 'total_cost']

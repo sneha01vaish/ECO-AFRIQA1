@@ -197,3 +197,16 @@ class VoteNode(models.Model):
 
     def __str__(self):
         return f"Vote for {self.choice} in poll {self.poll.title}"
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    session_id = models.CharField(max_length=100, null=True, blank=True) 
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    discount_code = models.CharField(max_length=50, null=True, blank=True)
+
+
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.price

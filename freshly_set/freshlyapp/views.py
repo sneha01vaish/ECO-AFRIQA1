@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotAllowed, JsonResponse
-from .models import Product, Garden, Service, Blog
+from .models import Product, Garden, Service, Blog,Cart
 from .forms import ProductForm, ServiceRequestForm
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
@@ -28,7 +28,7 @@ from rest_framework.views import APIView
 from .models import Blog, Comment, Like, Share, Poll, VoteNode
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer,PollSerializer, VoteNodeSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer,PollSerializer, VoteNodeSerializer,CartSerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -385,3 +385,70 @@ def add_vote(request, pk):
 
         return JsonResponse({'status': 'vote added'}, status=status.HTTP_201_CREATED)
     return JsonResponse({'error': 'Invalid vote data'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(['GET']) #we are seeing the cart state
+def get_cart_instance(request):
+    if request.user.is_authenticated:
+        cart, created = Cart.objects.get_or_create(user=request.user)
+    else:
+        session_id = request.session.session_key
+        if not session_id:
+            request.session.create()
+            session_id = request.session.session_key
+        cart, created = Cart.objects.get_or_create(session_id=session_id)
+    return cart
+
+@api_view(['POST'])
+def add_to_cart(request):
+    cart = get_cart_instance(request)
+    product_id = request.data.get("product_id")
+    quantity = request.data.get("quantity", 1)
+    price = request.data.get("price")
+
+    if product_id and price and quantity:
+        cart.product_ids.append(product_id)
+        cart.quantities.append(quantity)
+        cart.prices.append(price)
+        cart.save()
+        return Response(CartSerializer(cart).data)
+    else:
+        return Response({"error": "Product ID, quantity, and price are required"}, status=400)
+ 
+
+@api_view(['POST'])
+def update_quantity(request):
+    cart=get_cart_instance(request)
+    product_id=request.data.get("product_id")
+    quantity=request.data.get("quantity",1)
+
+    if product_id in cart.product_ids:
+        index=cart.product_ids.index(product_id)
+
+        cart.quantities[index] += quantity 
+
+        cart.save()
+
+
+        return Response(CartSerializer(cart).data)
+    
+
+    return Response({"error": "Product not found in cart"}, status=400)
+
+
+@api_view(['POST'])
+def remove_from_cart(request):
+    cart=get_cart_instance(request)
+    product_id=request.data.get("product_id")
+
+    if product_id in cart.product_ids:
+        index = cart.product_ids.index(product_id)
+        
+        cart.product_ids.pop(index)
+        cart.quantities.pop(index)
+        cart.prices.pop(index)
+        cart.save()
+        return Response({"message" : "Product removed successfully"}, status=200)
+    
+    return Response({"error": "Product not found"},status=400)
