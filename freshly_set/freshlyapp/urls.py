@@ -92,5 +92,13 @@ urlpatterns = [
     path('products/<int:pk>/delete/', DeleteProduct.as_view(), name='delete-product'),
 
 
+
+    #CART URLS
+    path('cart/', views.get_cart_instance, name='get_cart'),
+    path('cart/add/', views.add_to_cart, name='add_to_cart'),
+    path('cart/update/', views.update_quantity, name='update_quantity'),
+    path('cart/remove/', views.remove_from_cart, name='remove_from_cart'),
+
+
     
 ]

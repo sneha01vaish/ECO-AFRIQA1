@@ -56,3 +56,5 @@ class IDVerificationAdmin(admin.ModelAdmin):
         return False
 
 
+admin.site.register(Cart)
+admin.site.register(CartItem)
