@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Product from './Product'
-import Products from './json/Products.json';
+// import Products from './json/Products.json';
+import { ProductsContext } from '../../context/PageContext';
 
 function PopularProducts() {
+    const [products, setProducts] = useContext(ProductsContext)
   return (
     <div className="PopularProducts ">
       <div className="PopularWrapper mx-[12px] lg:mx-auto   block">
@@ -11,7 +13,7 @@ function PopularProducts() {
         {/*Cards */}
         <div className="CardsGrid grid grid-cols-2 lg:grid-cols-4 gap-[20px] lg:gap-[60px] lg:mx-[40px]">
 
-            {Products.slice(0,8).map((product) => (
+            {products.slice(0,8).map((product) => (
                 <Product img={product.img} title={product.title} name={product.name} price={product.price} quantity={product.quantity}/>
 
             ))}

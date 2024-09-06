@@ -4,6 +4,8 @@ import { RiArrowRightSLine, RiArrowLeftSLine } from "react-icons/ri";
 import { BsArrowRight } from "react-icons/bs";
 import Products from './json/Products.json';
 import Navbar from '../../../components/Nav/Navbar'
+import axios from 'axios';
+import Product from './Product';
 
 // REPLACE **Products.json** FILE WITH FETCHED PRODUCTS FROM THE DATABASE
 const productImages = {
@@ -16,6 +18,8 @@ const productImages = {
 const ProductsCategories = () => {
   
   const [ products, setProducts ] = useState(Products);
+  const [csrfToken, setCsrfToken] = useState('');
+
   const [selectedCategory, setSelectedCategory] = useState(Object.keys(products.reduce((acc, product) => {
     const { category } = product
     if (!acc[category]) acc[category] = true
@@ -53,6 +57,7 @@ const ProductsCategories = () => {
   const scrollLeft = () => {scrollContainer.current.scrollBy({ left: -400, behavior: 'smooth' })}
   const scrollRight = () => {scrollContainer.current.scrollBy({ left: 400, behavior: 'smooth' })}
 
+  
   return (
     <>
     <div className="flex justify-center">

@@ -1,11 +1,22 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 // Create Context
 export const CartContext = createContext();
 
+// Helper function to get cart from localStorage
+const getCartFromLocalStorage = () => {
+  const savedCart = localStorage.getItem('cartItems');
+  return savedCart ? JSON.parse(savedCart) : [];
+};
+
 // Create a provider component
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(getCartFromLocalStorage);
+
+  // Save cart to localStorage whenever cartItems state changes
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   // Function to add item to cart
   const addToCart = (item) => {
@@ -17,9 +28,6 @@ export const CartProvider = ({ children }) => {
     setCartItems((prevItems) => prevItems.filter(item => item.id !== id));
   };
 
-  useEffect(() => {
-    console.log("Cart Items", cartItems)
-  },[cartItems])
   return (
     <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}

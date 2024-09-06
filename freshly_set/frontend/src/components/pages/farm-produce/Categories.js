@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import { IoStarSharp } from "react-icons/io5";
 import { RiArrowRightSLine, RiArrowLeftSLine } from "react-icons/ri";
 import { BsArrowRight } from "react-icons/bs";
-import Products from './json/Products.json';
+// import Products from './json/Products.json';
 import Navbar from '../../../components/Nav/Navbar'
+import axios from 'axios';
 
 // REPLACE **Products.json** FILE WITH FETCHED PRODUCTS FROM THE DATABASE
 const productImages = {
@@ -29,6 +30,8 @@ const Categories = () => {
     spices: 'bg-[#FF0C1A]/80 hover:bg-[#FF0C1A]'
   }
 
+
+  
   const groupedProducts = products.reduce((acc, product) => {
     const { category } = product
 
