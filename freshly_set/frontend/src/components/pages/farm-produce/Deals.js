@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GoArrowRight } from "react-icons/go";
 import { ProductsSideBarContext } from '../../context/PageContext';
+import axios from 'axios';
 
 export default function Deals() {
 
     const [productsSidebarOpen, setProductsSidebarOpen] = useContext(ProductsSideBarContext);
+    const [banners, setBanners]  = useState([]);
+    const [csrfToken, setCsrfToken] = useState("")
 
     function calculateTimeLeft() {
         const difference = +new Date('2024-11-01T00:00:00Z') - +new Date()
@@ -43,6 +46,25 @@ export default function Deals() {
     function addZero(time) {
         return time < 10 ? `0${time}` : time
     }
+
+    useEffect(() => {
+        const token = document.querySelector('meta[name="csrf-token"]');
+  if (token) {
+    setCsrfToken(token.getAttribute('content'));
+  }
+       
+        axios.get('http://localhost:8000/freshlyapp/banners')
+        .then(response => {
+          setBanners(response.data);
+          console.log("Banners Fetched", banners)
+      
+        })
+        .catch(error => {
+          console.error('Error fetching Banners:', error);
+        });
+      
+      
+    },[])
     
     return (
         <main className="w-full">
