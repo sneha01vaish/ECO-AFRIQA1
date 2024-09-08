@@ -1,3 +1,5 @@
+from rest_framework.pagination import PageNumberPagination
+from .serializers import ProductSerializer
 from django.shortcuts import render, redirect
 from django.middleware.csrf import get_token
 from django.contrib.auth.models import User
@@ -5,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotAllowed, JsonResponse
-from .models import Product, Garden, Service, Blog
+from .models import Product, Garden, Service, Blog, Banner
 from .forms import ProductForm, ServiceRequestForm
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
@@ -27,7 +29,7 @@ from rest_framework.views import APIView
 from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer,LikeSerializer, ShareSerializer,PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer,LikeSerializer, ShareSerializer,PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -37,8 +39,9 @@ from rest_framework import permissions, status
 from django.contrib.auth import get_user_model, login, logout
 from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerializer
 from rest_framework.validators import UniqueValidator
-from .validators import custom_validation , validate_email, validate_password # Import your custom validation here
-#csrf_protect_method = method_decorator(csrf_protect)
+# Import your custom validation here
+from .validators import custom_validation, validate_email, validate_password
+# csrf_protect_method = method_decorator(csrf_protect)
 from django.utils import timezone
 
 
@@ -97,28 +100,28 @@ class UserLogout(APIView):
 """
 
 
-
 def index(request):
     get_token(request)
     return render(request, 'index.html')
-   
+
+
 def home(request):
     return render(request, 'index.html')
+
 
 def about(request):
     return render(request, 'about.html')
 
 
-    
 @api_view(['GET'])
-#class Blogs(APIView):
-    #permission_classes = (AllowAny,)
-    #authentication_classes = ()
-    #@csrf_protect_method
+# class Blogs(APIView):
+# permission_classes = (AllowAny,)
+# authentication_classes = ()
+# @csrf_protect_method
 @csrf_exempt
 def blogs(request):
     if request.user.is_authenticated:
-    #renderer_classes = [JSONRenderer]
+        # renderer_classes = [JSONRenderer]
         return render(request, 'blogs/BlogForm.jsx')
 
 
@@ -136,6 +139,7 @@ def products(request):
     products = Product.objects.filter(user=request.user)
     return render(request, 'products.html', {'products': products, 'form': form})
 
+
 @login_required
 def services(request):
     if request.method == 'POST':
@@ -148,12 +152,13 @@ def services(request):
     services = Service.objects.all()
     return render(request, 'services.html', {'services': services, 'form': form})
 
+
 @login_required
 def profile(request):
     return render(request, 'profile.html')
 
 
-# The blog CRUD 
+# The blog CRUD
 @csrf_exempt
 def blog_list(request):
     if request.method == 'GET':
@@ -161,10 +166,13 @@ def blog_list(request):
         return render(request, 'blog_list.html', {'blogs': blogs})
     else:
         return HttpResponseNotAllowed(['GET'])
+
+
 @csrf_exempt
 def blog_detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     return render(request, 'blog_detail.html', {'blog': blog})
+
 
 @api_view(['GET', 'POST'])
 @csrf_exempt
@@ -189,6 +197,7 @@ def blog_create(request):
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
 
+
 @csrf_exempt
 def blog_update(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
@@ -201,6 +210,7 @@ def blog_update(request, slug):
         form = BlogForm(instance=blog)
     return render(request, 'blogs/BlogForm.jsx', {'form': form})
 
+
 def blog_delete(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     if request.method == 'POST':
@@ -209,6 +219,7 @@ def blog_delete(request, slug):
     return render(request, 'blog_confirm_delete.html', {'blog': blog})
 
 # Implemented views for CRUD operations and like/share actions
+
 
 class BlogListView(generics.ListAPIView):
     permission_classes = [AllowAny]
@@ -238,6 +249,8 @@ class BlogListCreateView(generics.ListCreateAPIView):
                 Q(content__icontains=search_query)
             )
         return queryset
+
+
 """
     def blog_create(request):
         if request.method == 'POST':
@@ -250,14 +263,14 @@ class BlogListCreateView(generics.ListCreateAPIView):
         return render(request, 'blogs/BlogForm.jsx', {'form': form})
 """
 
-    
+
 @csrf_exempt
 @api_view(['POST', 'GET'])
 @permission_classes([AllowAny])
 def Register(request):
     # Validate the input data
     serializer = UserRegisterSerializer(data=request.data)
-    
+
     if serializer.is_valid():
         # Check if the user already exists
         username = serializer.validated_data.get('username')
@@ -275,20 +288,25 @@ def Register(request):
             "refresh": str(refresh),
             "access": str(refresh.access_token),
         }, status=status.HTTP_201_CREATED)
-    
+
     # Return errors if validation fails
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
+
 
 class CommentListCreateAPIView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
+
 class CommentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
 
 class LikeCreateAPIView(generics.CreateAPIView):
     queryset = Like.objects.all()
@@ -297,12 +315,14 @@ class LikeCreateAPIView(generics.CreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
 class ShareCreateAPIView(generics.CreateAPIView):
     queryset = Share.objects.all()
     serializer_class = ShareSerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
 
 class CustomPasswordResetView(PasswordResetView):
     email_template_name = 'password_reset_email.html'
@@ -315,22 +335,26 @@ class CustomPasswordResetView(PasswordResetView):
         if User.objects.filter(email=email).exists():
             return super().form_valid(form)
         else:
-            messages.error(self.request, 'No user is associated with this email address.')
+            messages.error(
+                self.request, 'No user is associated with this email address.')
             return self.form_invalid(form)
-        
 
-# serialiser 
+
+# serialiser
 class GardenListCreateAPIView(generics.ListCreateAPIView):
     queryset = Garden.objects.all()
     serializer_class = GardenSerializer
+
 
 class GardenRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Garden.objects.all()
     serializer_class = GardenSerializer
 
+
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
 
 class BlogViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
@@ -343,8 +367,9 @@ class BlogViewSet(viewsets.ModelViewSet):
         blog = get_object_or_404(queryset, slug=slug)
         serializer = BlogSerializer(blog)
         return Response(serializer.data)
-    
-# query for blog articles 
+
+
+# query for blog articles
 """
 - The search_blog function handles HTTP GET requests to search for blog posts by title or content.
 - If a query parameter q is provided, it filters the blog posts to include those where the title or
@@ -352,18 +377,22 @@ class BlogViewSet(viewsets.ModelViewSet):
 - If no query is provided, it returns all blog posts.
 - The result is returned as a JSON response with only the id, title, and content fields.
 """
+
+
 @api_view(['GET'])
 def search_blog(request):
     query = request.query_params.get('q', '')
     if query:
-        blogs = Blog.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
+        blogs = Blog.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query))
     else:
         blogs = Blog.objects.all()
-    
+
     serializer = BlogSerializer(blogs, many=True)
     return Response(serializer.data)
 
-# Polls 
+# Polls
+
 
 class PollListCreateView(generics.ListCreateAPIView):
     queryset = Poll.objects.all()
@@ -373,9 +402,11 @@ class PollListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
 
+
 class PollDetailView(generics.RetrieveAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
+
 
 class VoteCreateView(generics.CreateAPIView):
     serializer_class = VoteSerializer
@@ -384,10 +415,10 @@ class VoteCreateView(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         poll = get_object_or_404(Poll, pk=kwargs['pk'])
         choice = request.data.get('choice')
-        
+
         if choice not in dict(Vote.CHOICES).keys():
             return Response({'error': 'Invalid choice'}, status=status.HTTP_400_BAD_REQUEST)
-        
+
         vote, created = Vote.objects.update_or_create(
             poll=poll, user=request.user,
             defaults={'choice': choice}
@@ -397,7 +428,7 @@ class VoteCreateView(generics.CreateAPIView):
             return Response({'status': 'Vote added'}, status=status.HTTP_201_CREATED)
         else:
             return Response({'status': 'Vote updated'}, status=status.HTTP_200_OK)
-        
+
 
 # Verification photo and Id views
 # install bot03
@@ -414,7 +445,7 @@ class VerifyIDView(APIView):
                 return Response({"message": "Verification failed. ID or photo did not match."}, status=status.HTTP_400_BAD_REQUEST)
         except IDVerification.DoesNotExist:
             return Response({"error": "ID verification record not found."}, status=status.HTTP_404_NOT_FOUND)
-        
+
 
 class IDVerificationUpdateView(generics.UpdateAPIView):
     queryset = IDVerification.objects.all()
@@ -426,11 +457,13 @@ class IDVerificationUpdateView(generics.UpdateAPIView):
 
     def put(self, request, *args, **kwargs):
         verification_instance = self.get_object()
-        serializer = self.get_serializer(verification_instance, data=request.data, partial=True)
+        serializer = self.get_serializer(
+            verification_instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({"message": "User successfully verified."}, status=status.HTTP_200_OK)
-    
+
+
 class IDVerificationDetailView(generics.RetrieveAPIView):
     queryset = IDVerification.objects.all()
     serializer_class = IDVerificationSerializer
@@ -438,12 +471,11 @@ class IDVerificationDetailView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user.id_verification
-    
+
 
 
 
 #PRODUCT ENDPOINTS
-from .serializers import ProductSerializer
 
 
 class CreateProduct(APIView):
@@ -457,7 +489,6 @@ class CreateProduct(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class RetrieveProduct(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -467,21 +498,17 @@ class RetrieveProduct(APIView):
         return Response(serializer.data)
 
 
-
-
-
 class UpdateProduct(APIView):
     permission_classes = [IsAuthenticated]
 
     def put(self, request, pk):
         product = get_object_or_404(Product, id=pk)
-        serializer = ProductSerializer(product, data=request.data, partial=True)
+        serializer = ProductSerializer(
+            product, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
 
 
 class DeleteProduct(APIView):
@@ -492,8 +519,6 @@ class DeleteProduct(APIView):
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-from rest_framework.pagination import PageNumberPagination
-
 
 @permission_classes([AllowAny])
 class ProductListView(APIView):
@@ -501,7 +526,8 @@ class ProductListView(APIView):
         # Filter products based on the search query parameter
         search_query = request.query_params.get('name')
         if search_query is not None:
-            filtered_products = Product.objects.filter(name__icontains=search_query)
+            filtered_products = Product.objects.filter(
+                name__icontains=search_query)
         else:
             filtered_products = Product.objects.all()
 
@@ -513,6 +539,10 @@ class ProductListView(APIView):
         return paginator.get_paginated_response(serializer.data)
 
 
+# # Banner for Marketplace Page
+class BannerListView(generics.ListAPIView):
+    queryset = Banner.objects.filter(active=True).order_by('-created_at')
+    serializer_class = BannerSerializer
 
 
 

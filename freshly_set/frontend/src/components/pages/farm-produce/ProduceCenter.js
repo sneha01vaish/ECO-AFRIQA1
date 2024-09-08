@@ -13,7 +13,6 @@ const ProduceCenter = () => {
     <main className={productsSidebarOpen ? 'bg-white/80 lg:w-[81vw] flex justify-center py-16':'bg-white/80 lg:w-[100vw] flex justify-center py-16'}>
       <div className="block">
         <Deals />
-          {/* <Popular /> */}
           <PopularProducts />
           <ProductsCategories />
           {/* <Categories /> */}

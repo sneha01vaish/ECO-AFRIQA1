@@ -4,6 +4,8 @@ import { RiArrowRightSLine, RiArrowLeftSLine } from "react-icons/ri";
 import { BsArrowRight } from "react-icons/bs";
 import Products from './json/Products.json';
 import Navbar from '../../../components/Nav/Navbar'
+import axios from 'axios';
+import Product from './Product';
 
 // REPLACE **Products.json** FILE WITH FETCHED PRODUCTS FROM THE DATABASE
 const productImages = {
@@ -16,6 +18,8 @@ const productImages = {
 const ProductsCategories = () => {
   
   const [ products, setProducts ] = useState(Products);
+  const [csrfToken, setCsrfToken] = useState('');
+
   const [selectedCategory, setSelectedCategory] = useState(Object.keys(products.reduce((acc, product) => {
     const { category } = product
     if (!acc[category]) acc[category] = true
@@ -53,6 +57,7 @@ const ProductsCategories = () => {
   const scrollLeft = () => {scrollContainer.current.scrollBy({ left: -400, behavior: 'smooth' })}
   const scrollRight = () => {scrollContainer.current.scrollBy({ left: 400, behavior: 'smooth' })}
 
+  
   return (
     <>
     <div className="flex justify-center">
@@ -64,7 +69,7 @@ const ProductsCategories = () => {
             <button onClick={scrollRight} className='border-none text-green-600 text-[40.00px] font-extrabold bg-transparent cursor-pointer p-0 m-0 flex items-center'><RiArrowRightSLine /></button>
           </div>
 
-          <div className='flex flex-nowrap justify-between items-center gap-6 overflow-x-auto scrollbar scrollbar-thumb-green-400 pl-3 sm:pl-0 pb-4'
+          <div className='grid grid-cols-2 lg:flex justify-between items-center gap-6 overflow-x-auto scrollbar scrollbar-thumb-green-400 pl-3 sm:pl-0 pb-4'
           ref={scrollContainer}>
             {
               categories?.map(category => (

@@ -1,4 +1,8 @@
 # from argon2 import hash_password
+import os
+from PIL import Image
+from django.core.exceptions import ValidationError
+from better_profanity import profanity
 from datetime import timezone
 from django.db import models
 from django.contrib.auth.models import User
@@ -10,6 +14,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.conf import settings
 import boto3
 import re
+
 
 
 """
@@ -77,6 +82,8 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 """
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=15, blank=True, null=True)
@@ -86,26 +93,24 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-import os
-from better_profanity import profanity
-from django.core.exceptions import ValidationError
-from PIL import Image
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
 
-
     def __str__(self):
         return self.name
+
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
     desc = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     qtty = models.IntegerField(default=0)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products', blank=True, null=True)
-    image = models.ImageField(upload_to='static/images/Products', null=True, blank=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, related_name='products', blank=True, null=True)
+    image = models.ImageField(
+        upload_to='static/images/Products', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
@@ -116,15 +121,18 @@ class Product(models.Model):
         if len(self.name.strip()) == 0:
             raise ValidationError({'name': 'Name cannot be empty.'})
         if len(self.name) > 255:
-            raise ValidationError({'name': 'Name cannot exceed 255 characters.'})
+            raise ValidationError(
+                {'name': 'Name cannot exceed 255 characters.'})
 
         # Price validation
         if self.price < 0:
             raise ValidationError({'price': 'Price cannot be negative.'})
         if self.price < 0.01 or self.price > 99999.99:
-            raise ValidationError({'price': 'Price must be between 0.01 and 99999.99.'})
+            raise ValidationError(
+                {'price': 'Price must be between 0.01 and 99999.99.'})
         if self.price.as_tuple().exponent < -2:
-            raise ValidationError({'price': 'Price cannot have more than two decimal places.'})
+            raise ValidationError(
+                {'price': 'Price cannot have more than two decimal places.'})
 
         # Quantity validation
         if self.qtty < 0:
@@ -134,26 +142,32 @@ class Product(models.Model):
 
         # Description validation
         if len(self.desc) < 10:
-            raise ValidationError({'desc': 'Description is too short. It should be at least 10 characters long.'})
+            raise ValidationError(
+                {'desc': 'Description is too short. It should be at least 10 characters long.'})
         if profanity.contains_profanity(self.desc):
-            raise ValidationError({'desc': 'Description contains prohibited or inappropriate content.'})
+            raise ValidationError(
+                {'desc': 'Description contains prohibited or inappropriate content.'})
 
         # Image validation
         if self.image:
             ext = os.path.splitext(self.image.name)[1].lower()
             valid_extensions = ['.jpg', '.jpeg', '.png']
             if ext not in valid_extensions:
-                raise ValidationError({'image': 'Unsupported file extension. Allowed extensions are: .jpg, .jpeg, .png'})
+                raise ValidationError(
+                    {'image': 'Unsupported file extension. Allowed extensions are: .jpg, .jpeg, .png'})
 
             if self.image.size > 5 * 1024 * 1024:
-                raise ValidationError({'image': 'Image file size cannot exceed 5MB.'})
+                raise ValidationError(
+                    {'image': 'Image file size cannot exceed 5MB.'})
 
             image = Image.open(self.image)
             width, height = image.size
             if width < 800 or height < 600:
-                raise ValidationError({'image': 'Image resolution too low. Minimum resolution is 800x600.'})
+                raise ValidationError(
+                    {'image': 'Image resolution too low. Minimum resolution is 800x600.'})
             if width > 4000 or height > 3000:
-                raise ValidationError({'image': 'Image resolution too high. Maximum resolution is 4000x3000.'})
+                raise ValidationError(
+                    {'image': 'Image resolution too high. Maximum resolution is 4000x3000.'})
 
     def save(self, *args, **kwargs):
         # Call the clean method to ensure validations are checked before saving
@@ -161,9 +175,9 @@ class Product(models.Model):
         super(Product, self).save(*args, **kwargs)
 
 
-
 class Review(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='reviews')
     rating = models.IntegerField()
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -171,14 +185,17 @@ class Review(models.Model):
     def __str__(self):
         return f'Review for {self.product.name} by {self.id}'
 
+
 class Farmer(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='farmer', blank=True, null=True)
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='farmer', blank=True, null=True)
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15)
 
     def __str__(self):
         return self.name
+
 
 class Garden(models.Model):
     name = models.CharField(max_length=100, default='DEFAULT VALUE')
@@ -262,12 +279,13 @@ class Share(models.Model):
     shared_at = models.DateTimeField(auto_now_add=True)
 
 
-# Poll for voting yes / no maybe and others 
+# Poll for voting yes / no maybe and others
 class Poll(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, related_name='polls', on_delete=models.CASCADE)
+    created_by = models.ForeignKey(
+        User, related_name='polls', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -283,6 +301,7 @@ class Poll(models.Model):
             'other': self.votes.filter(choice='OTHER').count(),
         }
 
+
 class Vote(models.Model):
     YES = 'YES'
     NO = 'NO'
@@ -296,17 +315,18 @@ class Vote(models.Model):
         (OTHER, 'Other'),
     ]
 
-    poll = models.ForeignKey(Poll, related_name='votes', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name='votes', on_delete=models.CASCADE)
+    poll = models.ForeignKey(Poll, related_name='votes',
+                             on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='votes',
+                             on_delete=models.CASCADE)
     choice = models.CharField(max_length=10, choices=CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.user.username} voted {self.choice} on {self.poll.title}"
-    
 
 
-# Transporter verification 
+# Transporter verification
 
 class IDVerification(models.Model):
     ID_DOCUMENT_TYPES = [
@@ -315,8 +335,10 @@ class IDVerification(models.Model):
         ('driver_license', 'Driver License'),
     ]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='id_verification')
-    id_document_type = models.CharField(max_length=50, choices=ID_DOCUMENT_TYPES)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name='id_verification')
+    id_document_type = models.CharField(
+        max_length=50, choices=ID_DOCUMENT_TYPES)
     id_document_number = models.CharField(max_length=100, unique=True)
     document_image = models.ImageField(upload_to='id_documents/')
     photo_image = models.ImageField(upload_to='id_photos/')
@@ -384,15 +406,31 @@ class IDVerification(models.Model):
             self.verified_at = timezone.now()
             self.save()
             return True
+
+        return False
+
+# Banners for Updated Marketplace Page
+
+
+class Banner(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='banners/')
+    description = models.CharField(max_length=1000)
+    aux_text = models.CharField(max_length=255, blank=True, null=True)
+    url = models.URLField(blank=True, null=True)
+    active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    countdown = models.DateTimeField(blank=True, null=True)
+    category = models.CharField(
+        blank=True, null=True, max_length=255, default="discount")
+
+    def __str__(self):
+        return self.title
         
         return False
     
 
 
-
-from django.core.exceptions import ValidationError
-from django.utils import timezone
-import os
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
