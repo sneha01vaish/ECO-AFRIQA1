@@ -16,6 +16,7 @@ import boto3
 import re
 
 
+
 """
 class AppUserManager(BaseUserManager):
 
@@ -425,3 +426,76 @@ class Banner(models.Model):
 
     def __str__(self):
         return self.title
+        
+        return False
+    
+
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    session_id = models.CharField(max_length=100, null=True, blank=True)
+    discount_code = models.CharField(max_length=50, null=True, blank=True)
+
+    @property
+    def total_cost(self):
+        return sum(item.total_price for item in self.cart_items.all())
+
+    def clean(self):
+        # User or session_id must be present (cannot be both empty)
+        if not self.user and not self.session_id:
+            raise ValidationError({'user': 'User or session ID must be provided for a cart.'})
+
+        # Validate discount code format (e.g., length or format)
+        if self.discount_code and len(self.discount_code) > 50:
+            raise ValidationError({'discount_code': 'Discount code cannot exceed 50 characters.'})
+
+        if self.discount_code and not self.discount_code.isalnum():
+            raise ValidationError({'discount_code': 'Discount code should only contain alphanumeric characters.'})
+
+    def save(self, *args, **kwargs):
+        # Call the clean method to ensure validations are checked before saving
+        self.clean()
+        super(Cart, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f'Cart for {self.user or self.session_id}'
+
+
+
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, related_name="cart_items", on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    MAX_QUANTITY = 100  # Define a constant for the maximum quantity allowed
+
+    @property
+    def total_price(self):
+        return self.quantity * self.product.price
+
+    def clean(self):
+        # Quantity validation
+        if self.quantity <= 0:
+            raise ValidationError({'quantity': 'Quantity must be at least 1.'})
+
+        # Max quantity validation
+        if self.quantity > CartItem.MAX_QUANTITY:
+            raise ValidationError({'quantity': f'Quantity cannot exceed {CartItem.MAX_QUANTITY} per product.'})
+
+        # Validate that quantity does not exceed available product stock
+        if self.quantity > self.product.qtty:
+            raise ValidationError({'quantity': f'Not enough stock. Available stock is {self.product.qtty}.'})
+
+        # Ensure cart is not for a non-existent product
+        if not self.product:
+            raise ValidationError({'product': 'Product must exist for the cart item.'})
+
+    def save(self, *args, **kwargs):
+        # Call the clean method to ensure validations are checked before saving
+        self.clean()
+        super(CartItem, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f'CartItem: {self.product.name} (Quantity: {self.quantity})'

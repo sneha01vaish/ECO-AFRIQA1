@@ -26,10 +26,10 @@ from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.views import APIView
-from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification
+from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer, PollSerializer, VoteSerializer, IDVerificationSerializer, BannerSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer,LikeSerializer, ShareSerializer,PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -473,6 +473,11 @@ class IDVerificationDetailView(generics.RetrieveAPIView):
         return self.request.user.id_verification
 
 
+
+
+#PRODUCT ENDPOINTS
+
+
 class CreateProduct(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -538,3 +543,125 @@ class ProductListView(APIView):
 class BannerListView(generics.ListAPIView):
     queryset = Banner.objects.filter(active=True).order_by('-created_at')
     serializer_class = BannerSerializer
+
+
+
+#Cart Endpoints
+@api_view(['GET'])
+def get_cart_instance(request):
+    # Check if user is authenticated
+    if request.user.is_authenticated:
+        cart, created = Cart.objects.get_or_create(user=request.user)
+    else:
+        # Use session for non-authenticated users
+        session_id = request.session.session_key
+        if not session_id:
+            request.session.create()
+            session_id = request.session.session_key
+        cart, created = Cart.objects.get_or_create(session_id=session_id)
+
+    # Serialize the cart data
+    cart_data = CartSerializer(cart).data
+
+    # Return the cart along with its items in the response
+    return Response(cart_data, status=status.HTTP_200_OK)
+
+
+
+
+
+
+
+
+from .serializers import CartSerializer, CartItemSerializer
+from .models import CartItem
+
+def get_cart_instance2(request):
+    # Assuming the user is logged in, get or create the user's cart.
+    user = request.user
+    cart, created = Cart.objects.get_or_create(user=user)
+    return cart
+
+@api_view(['POST'])
+def add_to_cart(request):
+    cart = get_cart_instance2(request)
+    product_id = request.data.get("product_id")
+    quantity = request.data.get("quantity", 1)
+
+    if not product_id:
+        return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        product = Product.objects.get(id=product_id)
+    except Product.DoesNotExist:
+        return Response({"error": "Invalid product ID"}, status=status.HTTP_404_NOT_FOUND)
+
+    # Check if the product already exists in the cart
+    if CartItem.objects.filter(cart=cart, product_id=product_id).exists():
+        return Response({"error": "This item already exists in the cart. Use the update quantity option instead."}, status=status.HTTP_400_BAD_REQUEST)
+
+    cart_item_data = {
+        'cart': cart.id,
+        'product': product.id,
+        'quantity': quantity
+    }
+
+    serializer = CartItemSerializer(data=cart_item_data, context={'cart_id': cart.id})
+    if serializer.is_valid():
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        cart_item.quantity += int(quantity)
+        cart_item.save()
+        return Response(CartSerializer(cart).data, status=status.HTTP_200_OK)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+@api_view(['POST'])
+def update_quantity(request):
+    cart = get_cart_instance2(request)  # Ensure this returns the cart object, not serialized data
+    product_id = request.data.get("product_id")
+    new_quantity = request.data.get("quantity")
+
+    if not product_id:
+        return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+    if new_quantity is None or int(new_quantity) <= 0:
+        return Response({"error": "A valid quantity is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+    # Check if the product exists in the cart
+    try:
+        cart_item = CartItem.objects.get(cart=cart, product_id=product_id)
+    except CartItem.DoesNotExist:
+        return Response({"error": "Product not found in cart"}, status=status.HTTP_404_NOT_FOUND)
+
+    cart_item_data = {
+        'cart': cart.id,
+        'product': product_id,
+        'quantity': new_quantity
+    }
+
+    serializer = CartItemSerializer(cart_item, data=cart_item_data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(CartSerializer(cart).data, status=status.HTTP_200_OK)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def remove_from_cart(request):
+    cart=get_cart_instance(request)
+    product_id=request.data.get("product_id")
+
+    if product_id in cart.product_ids:
+        index = cart.product_ids.index(product_id)
+        
+        cart.product_ids.pop(index)
+        cart.quantities.pop(index)
+        cart.prices.pop(index)
+        cart.save()
+        return Response({"message" : "Product removed successfully"}, status=200)
+    
+    return Response({"error": "Product not found"},status=400)

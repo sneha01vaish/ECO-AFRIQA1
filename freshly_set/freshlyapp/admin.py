@@ -74,6 +74,7 @@ class IDVerificationAdmin(admin.ModelAdmin):
         return False
 
 
+
 # Banner for Marketplace
 
 @admin.register(Banner)
@@ -81,3 +82,6 @@ class BannerAdmin(admin.ModelAdmin):
     list_display = ('title', 'active', 'created_at')
     list_filter = ('active', 'created_at')
     search_fields = ('title',)
+    
+admin.site.register(Cart)
+admin.site.register(CartItem)
