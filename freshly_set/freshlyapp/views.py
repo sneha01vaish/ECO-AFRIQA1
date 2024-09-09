@@ -1,3 +1,5 @@
+from .models import CartItem
+from .serializers import CartSerializer, CartItemSerializer
 from rest_framework.pagination import PageNumberPagination
 from .serializers import ProductSerializer
 from django.shortcuts import render, redirect
@@ -29,7 +31,7 @@ from rest_framework.views import APIView
 from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer,LikeSerializer, ShareSerializer,PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer, PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -473,9 +475,7 @@ class IDVerificationDetailView(generics.RetrieveAPIView):
         return self.request.user.id_verification
 
 
-
-
-#PRODUCT ENDPOINTS
+# PRODUCT ENDPOINTS
 
 
 class CreateProduct(APIView):
@@ -540,13 +540,13 @@ class ProductListView(APIView):
 
 
 # # Banner for Marketplace Page
+@permission_classes([AllowAny])
 class BannerListView(generics.ListAPIView):
     queryset = Banner.objects.filter(active=True).order_by('-created_at')
     serializer_class = BannerSerializer
 
 
-
-#Cart Endpoints
+# Cart Endpoints
 @api_view(['GET'])
 def get_cart_instance(request):
     # Check if user is authenticated
@@ -567,20 +567,12 @@ def get_cart_instance(request):
     return Response(cart_data, status=status.HTTP_200_OK)
 
 
-
-
-
-
-
-
-from .serializers import CartSerializer, CartItemSerializer
-from .models import CartItem
-
 def get_cart_instance2(request):
     # Assuming the user is logged in, get or create the user's cart.
     user = request.user
     cart, created = Cart.objects.get_or_create(user=user)
     return cart
+
 
 @api_view(['POST'])
 def add_to_cart(request):
@@ -606,9 +598,11 @@ def add_to_cart(request):
         'quantity': quantity
     }
 
-    serializer = CartItemSerializer(data=cart_item_data, context={'cart_id': cart.id})
+    serializer = CartItemSerializer(
+        data=cart_item_data, context={'cart_id': cart.id})
     if serializer.is_valid():
-        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        cart_item, created = CartItem.objects.get_or_create(
+            cart=cart, product=product)
         cart_item.quantity += int(quantity)
         cart_item.save()
         return Response(CartSerializer(cart).data, status=status.HTTP_200_OK)
@@ -616,12 +610,10 @@ def add_to_cart(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
-
-
 @api_view(['POST'])
 def update_quantity(request):
-    cart = get_cart_instance2(request)  # Ensure this returns the cart object, not serialized data
+    # Ensure this returns the cart object, not serialized data
+    cart = get_cart_instance2(request)
     product_id = request.data.get("product_id")
     new_quantity = request.data.get("quantity")
 
@@ -650,18 +642,19 @@ def update_quantity(request):
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['POST'])
 def remove_from_cart(request):
-    cart=get_cart_instance(request)
-    product_id=request.data.get("product_id")
+    cart = get_cart_instance(request)
+    product_id = request.data.get("product_id")
 
     if product_id in cart.product_ids:
         index = cart.product_ids.index(product_id)
-        
+
         cart.product_ids.pop(index)
         cart.quantities.pop(index)
         cart.prices.pop(index)
         cart.save()
-        return Response({"message" : "Product removed successfully"}, status=200)
-    
-    return Response({"error": "Product not found"},status=400)
+        return Response({"message": "Product removed successfully"}, status=200)
+
+    return Response({"error": "Product not found"}, status=400)
