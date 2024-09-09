@@ -28,10 +28,10 @@ from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.views import APIView
-from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart
+from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart, Category
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer, PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer, PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer, CategorySerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -544,6 +544,20 @@ class ProductListView(APIView):
 class BannerListView(generics.ListAPIView):
     queryset = Banner.objects.filter(active=True).order_by('-created_at')
     serializer_class = BannerSerializer
+
+
+# Category Views
+
+@permission_classes([AllowAny])
+class CategoryListCreateView(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+@permission_classes([AllowAny])
+class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 # Cart Endpoints

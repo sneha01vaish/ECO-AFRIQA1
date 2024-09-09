@@ -17,10 +17,10 @@ const productImages = {
 
 const ProductsCategories = () => {
   
-  const [ products, setProducts ] = useState(Products);
+  const [products, setProducts ] = useState([]);
   const [csrfToken, setCsrfToken] = useState('');
 
-  const [selectedCategory, setSelectedCategory] = useState(Object.keys(products.reduce((acc, product) => {
+  const [selectedCategory, setSelectedCategory] = useState(Object.keys(products?.reduce((acc, product) => {
     const { category } = product
     if (!acc[category]) acc[category] = true
     return acc
@@ -33,7 +33,7 @@ const ProductsCategories = () => {
     spices: 'bg-[#FF0C1A]/80 hover:bg-[#FF0C1A]'
   }
 
-  const groupedProducts = products.reduce((acc, product) => {
+  const groupedProducts = products?.reduce((acc, product) => {
     const { category } = product
 
     if (!acc[category]) {
@@ -48,6 +48,10 @@ const ProductsCategories = () => {
     return acc
   }, {})
   const categories = Object.keys(groupedProducts)
+
+  console.log("categories", groupedProducts)
+
+  // const [categories, setCategories] = useState([])
   const handleCatClick = (category) => {
     setSelectedCategory(category)
   }
@@ -57,6 +61,40 @@ const ProductsCategories = () => {
   const scrollLeft = () => {scrollContainer.current.scrollBy({ left: -400, behavior: 'smooth' })}
   const scrollRight = () => {scrollContainer.current.scrollBy({ left: 400, behavior: 'smooth' })}
 
+
+
+useEffect(() => {
+  // Fetch CSRF token from meta tag
+  const token = document.querySelector('meta[name="csrf-token"]');
+  if (token) {
+    setCsrfToken(token.getAttribute('content'));
+  }
+
+  axios.get('http://localhost:8000/freshlyapp/products', {
+    headers: {
+      'X-CSRFToken': csrfToken
+    },
+    withCredentials: true
+  })
+  .then(response => {
+    setProducts(response.data.results);
+    console.log("Products Fetched from db", products)
+
+  })
+  .catch(error => {
+    console.error('Error fetching Products:', error);
+  });
+
+}, [csrfToken]);
+
+useEffect(() => {
+  // if(!products){
+  //   setProducts(Products)
+  //   console.log("No Products in db")
+
+  // }
+  // console.log("Products fetched", products)
+},[])
   
   return (
     <>
@@ -72,7 +110,7 @@ const ProductsCategories = () => {
           <div className='grid grid-cols-2 lg:flex justify-between items-center gap-6 overflow-x-auto scrollbar scrollbar-thumb-green-400 pl-3 sm:pl-0 pb-4'
           ref={scrollContainer}>
             {
-              categories?.map(category => (
+              groupedProducts.items?.map(category => (
                 <div
                 key={category}
                 onClick={() => handleCatClick(category)} className={`transition delay-200 ease-in-out min-w-[160.00px] h-[160.00px] flex flex-col justify-end items-center rounded-lg  hover:shadow-lg cursor-pointer ${groupedProducts[category].styles} ${selectedCategory === category ? ' shadow-md shadow-slate-600' : ''}`}>

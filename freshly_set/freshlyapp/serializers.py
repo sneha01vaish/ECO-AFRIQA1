@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification, Review, Farmer, Cart, CartItem, Banner
+from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification, Review, Farmer, Cart, CartItem, Banner, Category
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
 from django.contrib.auth.models import User
@@ -234,6 +234,13 @@ class BannerSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'image', 'url',
                   'active', 'created_at', 'category']
 
+
+# Category Serializer:
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'description']  # Specify the fields you want in the API
 
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:

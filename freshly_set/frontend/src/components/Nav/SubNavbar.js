@@ -62,7 +62,7 @@ const smoothScroll = (event, targetId) => {
 
   return (
     <div
-      className={`fixed flex justify-center w-[100%] mx-auto z-40 transition-all duration-500 ease-in-out  ${visible ? 'top-[120px]' : '-top-[100px]'}`}
+      className={`fixed flex justify-center items-center w-[100%] mx-auto z-40 transition-all duration-500 ease-in-out  ${visible ? 'top-[120px]' : '-top-[100px]'}`}
       style={{ transform: visible ? 'translateY(0)' : 'translateY(-100%)' }}
     >
       <nav className="pr-[170px] bg-black/[0.40] backdrop-blur-[17px] mt-[50px]    px-[30px]">
@@ -74,7 +74,7 @@ const smoothScroll = (event, targetId) => {
               <li
             onMouseEnter={() => setActiveSection(section.id)}
             onMouseLeave={() => activeSection !== section.id && setActiveSection('')}
-            className="bg-[#D9D9D9]/[0.10] cursor-pointer py-[13px] px-[34px]"
+            className="bg-[#D9D9D9]/[0.10] cursor-pointer py-[13px] px-[34px] whitespace-nowrap"
           >
             <a
               className="text-white text-center text-[19.25px] font-inter"
@@ -102,8 +102,9 @@ const smoothScroll = (event, targetId) => {
             partnership && (
               <div className="flex items-center space-x-[10px] relative">
 
-              <p className="text-[#008000] my-auto text-[18px] font-inter  font-[700] block h-[35px] cursor-pointer">Partnership</p>
-              <FaChevronUp onClick={() => setDropdownToggled(!dropdownToggled)} className={dropdownToggled ? "text-black text-[30px] ml-[10px] cursor-pointer rotate-180":"text-black text-[30px] ml-[10px] cursor-pointer" }/>
+              <li onClick={() => setDropdownToggled(!dropdownToggled)} className="bg-[#D9D9D9]/[0.10] text-white cursor-pointer py-[13px] px-[34px] whitespace-nowrap"
+              >Partnership</li>
+              {/* <FaChevronUp onClick={() => setDropdownToggled(!dropdownToggled)} className={dropdownToggled ? "text-black text-[30px] ml-[10px] cursor-pointer rotate-180":"text-black text-[30px] ml-[10px] cursor-pointer" }/> */}
               
               <div className={dropdownToggled ? "block absolute bg-white  rounded-[14px] top-[50px] left-0 border border-solid shadow-lg border-gray-500 w-[285px] transition-all duration-500 ease-in-out":"hidden"}>
                       <Link to="/verified">
