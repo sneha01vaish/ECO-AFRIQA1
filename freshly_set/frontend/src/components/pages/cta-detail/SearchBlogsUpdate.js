@@ -4,7 +4,7 @@ import { MdArrowBackIosNew, MdOutlineSearch } from "react-icons/md";
 import { IoWarningOutline } from "react-icons/io5";
 import blogItems from "../blogs/blogItems.json"
 import { Link } from 'react-router-dom'
-import { BlogsClickedContext } from '../../context/PageContext';
+import { BlogsClickedContext, SelectedSectionContext } from '../../context/PageContext';
 import { BlogsContext, SelectedBlogContext } from '../../context/BlogsContext';
 
 export default function SearchBlogsUpdate() {
@@ -13,7 +13,9 @@ export default function SearchBlogsUpdate() {
   const [blogs, setBlogs] = useContext(BlogsContext);
 
   const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext)
-  const [selectedBlog, setSelectedBlog] = useContext(SelectedBlogContext)
+  const [selectedBlog, setSelectedBlog] = useContext(SelectedBlogContext);
+
+  const [selectedSection, setSelectedSection] = useContext(SelectedSectionContext);
   const limitCharacters = (paragraph) => {
     if (paragraph.length > 100) {
       return paragraph.slice(0, 100) + '...'
@@ -43,11 +45,11 @@ export default function SearchBlogsUpdate() {
     console.log("All Blogs", blogs)
   },[])
   return (
-    <section className=''>
+    <section className='mt-[100px]'>
       <div className="block sm:flex gap-2 justify-center items-center w-full">
 
         <div className='text-[24.00px] sm:text-[32.00px] pl-0 py-2 flex items-center text-[#67ed67]'>
-          <MdArrowBackIosNew className="cursor-pointer" />
+            <MdArrowBackIosNew onClick={() => setSelectedSection("blogs")} className="cursor-pointer" />
         </div>
 
         <div className='flex grow flex-nowrap items-center'>

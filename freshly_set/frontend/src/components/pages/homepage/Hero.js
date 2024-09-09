@@ -1,8 +1,14 @@
 import React from 'react'
 import "./Hero.css"
-function Hero() {
+import useSectionObserver from '../../UseSectionObserver';
+
+function Hero({ id }) {
+    useSectionObserver(`#${id}`);
+
+    console.log("hero id", id)
   return (
     <div className="heroBg">
+        
 
         <div className="heroComps">
             {/* <img className="bgSm" src="/images/small_bg.png"/> */}
