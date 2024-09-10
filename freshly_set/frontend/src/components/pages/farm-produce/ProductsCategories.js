@@ -159,33 +159,12 @@ useEffect(() => {
 
       <h2 className='text-green-700 text-xl text-center font-bold my-0 py-8 capitalize'>{`fresh ${selectedCategory.name}`}</h2>
       <div>
-        <div className={`flex flex-wrap justify-around sm:justify-between items-center px-2 gap-3`}>
-          {
+      <div className="CardsGrid grid grid-cols-2 lg:grid-cols-4 gap-[20px] lg:gap-[60px] lg:mx-[40px]">
+      {
           products
             .filter((product) => product.category === selectedCategory.id)
             .map((product) => (
-              <div
-                key={product.id}
-                className='max-w-[160.00px] sm:min-w-[200.00px] h-[260.00px] sm:h-[284.00px] shadow-slate-200 bg-slate-50 shadow-md hover:shadow-lg rounded-lg flex flex-col items-center my-3'>     
-                <img
-                  src={product.img}
-                  alt={product.title}
-                  className="max-w-[90%] h-[44%] mx-auto my-auto"
-                />
-                <p className='font-bold tracking-wide my-1 uppercase'>{product.name}</p>
-                <p className=' uppercase my-3 font-bold text-sm text-nowrap'>
-                  <span className='text-green-600'>{product.price}</span>
-                  <span className='text-red-600'>&nbsp;- {product.quantity}</span>
-                </p>
-                <button className='uppercase border-3 border-green-600 px-6 py-3 text-green-600 font-inter rounded-xl bg-white/60 shadow cursor-pointer hover:bg-green-600 hover:text-white transition-all hover:border-green-400'>add to cart</button>
-                <p className='my-3 flex'>
-                  <IoStarSharp className='text-green-600 font-medium' />
-                  <IoStarSharp className='text-green-600 font-medium' />
-                  <IoStarSharp className='text-green-600 font-medium' />
-                  <IoStarSharp className='text-green-600 font-medium' />
-                  <IoStarSharp className='text-green-600 font-medium' />
-                </p>
-            </div>
+           <Product img={product.image} title={product.title} name={product.name} price={product.price} quantity={product.quantity}/>
             ))
           }
         </div>

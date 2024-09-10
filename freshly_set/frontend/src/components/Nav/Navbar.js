@@ -7,7 +7,7 @@ import { FaChevronDown, FaChevronUp, FaUser, FaUsers } from "react-icons/fa";
 import { CiSettings, CiGlobe } from "react-icons/ci";
 import { PageContext } from '../context/PageContext';
 import { TiShoppingCart } from "react-icons/ti";
-import { CartContext } from '../context/CartContext';
+import { CartContext, CartOpenContext } from '../context/CartContext';
 import { FaRegCircleUser } from 'react-icons/fa6';
 
 function Nav() {
@@ -22,7 +22,10 @@ function Nav() {
 
     const [productsToggled, setProductsToggled] = useState(false);
 
-    const { cartItems } = useContext(CartContext)
+    const { cartItems } = useContext(CartContext);
+
+    const [cartOpen, setCartOpen] = useContext(CartOpenContext);
+
 
     const scrollNow = () =>{
         if(window.scrollY>60){
@@ -51,7 +54,7 @@ function Nav() {
     <div>
         {/* Large screen navbar */}
 
-        <nav className="flex   w-[100%] pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-gradient-to-r from-[#008000] to-[#001A00] via-[#001A00] via-[30%] pb-[20.1px] pt-[20.42px]">
+        <nav className="hidden lg:flex w-[100%] pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-gradient-to-r from-[#008000] to-[#001A00] via-[#001A00] via-[30%] pb-[20.1px] pt-[20.42px]">
            <div className="flex justify-between w-[100%] max-w-[1280px] items-center">
  {/* Logo */}
  <div className="">
@@ -195,7 +198,7 @@ function Nav() {
 
             <div className="flex space-x-[18px] z-100 ">
                 <div className="w-[48px]">
-                    <TiShoppingCart className="absolute text-white text-[39px]"/>
+                    <TiShoppingCart onClick={() => setCartOpen(true)} className="absolute text-white text-[39px] cursor-pointer"/>
 
                     <div className="bg-[#f30024] h-[25px] w-[25px] rounded-[100%] relative -top-[12px] left-[30px] text-center font-inter mt-[5px] text-white">{cartItems.length}</div>
                 </div>
@@ -251,17 +254,17 @@ function Nav() {
              </div>
         </nav>  */}
 
-        <nav className={open ? "flex justify-center z-[50] lg:hidden bg-[#008000]/[85%]  w-[100%] h-[100%] fixed top-0  ":"bg-white flex justify-between fixed top-0 w-[100%] lg:hidden items-center pl-[18px] z-[60]"}>
-            <img className={!open ? "flex h-[77px] w-[80px] object-cover":"hidden"} src="/static/media/logo2.png" alt="navLogo"/>
+        <nav className={open ? "flex justify-center z-[50] lg:hidden bg-[#008000]/[85%]  w-[100%] h-[100%] fixed top-0  ":"bg-gradient-to-r from-[#008000] to-[#001A00] via-[#001A00] via-[30%] flex justify-between fixed top-0 w-[100%] lg:hidden items-center pl-[18px] z-[60]"}>
+            <img className={!open ? "flex h-[77px] w-[80px] object-cover":"hidden"} src="/static/media/freshlyLogoWhite.png" alt="navLogo"/>
                         
                         <div className={!open ? "flex space-x-[33px]":"hidden"}>
                             <Link to="/" className="block group">
-                                <p className="text-[20px] font-[700] text-[#008000] font-inter">Home</p>
+                                <p className="text-[20px] font-[700] text-white font-inter">Home</p>
                                 <div className="h-[5px] w-[70px] bg-[#008000] -mt-[15px] hidden group-hover:flex"/>
                             </Link>
 
                             <div className="block group">
-                                <p className="text-[20px] font-[700] text-[#008000] font-inter">Sign Up</p>
+                                <p className="text-[20px] font-[700] text-white font-inter">Sign Up</p>
                                 <div className="h-[5px] w-[70px] bg-[#008000] -mt-[15px] hidden group-hover:flex"/>
                             </div>
                         </div>
@@ -270,7 +273,7 @@ function Nav() {
                 {!open &&(
                     <div className="">
                         
-                        <IoMdMenu onClick={() => setOpen(true)}  className="text-black h-[37px] w-[44px] my-[42px] mr-[41px] "/>
+                        <IoMdMenu onClick={() => setOpen(true)}  className="text-white h-[37px] w-[44px] my-[42px] mr-[41px] "/>
                         
                     </div>
 

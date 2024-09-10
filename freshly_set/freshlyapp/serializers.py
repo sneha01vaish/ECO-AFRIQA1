@@ -232,7 +232,7 @@ class BannerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Banner
         fields = ['id', 'title', 'image', 'url',
-                  'active', 'created_at', 'category']
+                  'active', 'created_at', 'category', "countdown"]
 
 
 # Category Serializer:
@@ -240,7 +240,9 @@ class BannerSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name', 'description']  # Specify the fields you want in the API
+        # Specify the fields you want in the API
+        fields = ['id', 'name', 'description']
+
 
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:

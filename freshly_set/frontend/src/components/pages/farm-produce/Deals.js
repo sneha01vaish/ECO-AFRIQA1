@@ -8,9 +8,12 @@ export default function Deals() {
     const [productsSidebarOpen, setProductsSidebarOpen] = useContext(ProductsSideBarContext);
     const [banners, setBanners]  = useState([]);
     const [csrfToken, setCsrfToken] = useState("")
+    const [countdownTime, setCountdownTime] = useState(new Date());
+    const [dealOfWeekBanner, setDealOfWeekBanner] = useState({});
 
     function calculateTimeLeft() {
-        const difference = +new Date('2024-11-01T00:00:00Z') - +new Date()
+        const difference = dealOfWeekBanner.countdown - new Date()
+        console.log("difference", difference)
         let timeLeft = {}
 
         if (difference >= 0) {
@@ -47,6 +50,8 @@ export default function Deals() {
         return time < 10 ? `0${time}` : time
     }
 
+   
+
     useEffect(() => {
         const token = document.querySelector('meta[name="csrf-token"]');
   if (token) {
@@ -66,6 +71,16 @@ export default function Deals() {
       
     },[])
     
+    useEffect(() => {
+        // .filter((product) => product.category === selectedCategory.id)
+
+        const filteredBanner = banners.filter((banner) => banner.id === 1)
+        console.log("FilteredBanner", filteredBanner)
+
+        setCountdownTime(filteredBanner[0].countdown)
+        setDealOfWeekBanner(filteredBanner[0])
+        console.log("Countdown", countdownTime)
+    },[productsSidebarOpen])
     return (
         <main className="w-full">
             {/* <h1 className="text-3xl sm:text-5xl text-green-700 text-center">Farm Produce Center</h1> */}
