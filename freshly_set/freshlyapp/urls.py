@@ -5,7 +5,7 @@ from django.urls import re_path
 from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, Register, search_blog
-from .views import PollDetailView, PollListCreateView, VoteCreateView, VerifyIDView, IDVerificationUpdateView, IDVerificationDetailView, BannerListView
+from .views import PollDetailView, PollListCreateView, VoteCreateView, VerifyIDView, IDVerificationUpdateView, IDVerificationDetailView, BannerListView, CategoryListCreateView, CategoryDetailView
 from .views import *
 from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
@@ -108,15 +108,21 @@ urlpatterns = [
 
 
 
+    # Category URL
+
+    path('freshlyapp/categories/', CategoryListCreateView.as_view(),
+         name='category-list-create'),
+    path('freshlyapp/categories/<int:pk>/', CategoryDetailView.as_view(),
+         name='category-detail'),
 
 
 
-    #CART URLS
+    # CART URLS
     path('cart/', views.get_cart_instance, name='get_cart'),
     path('cart/add/', views.add_to_cart, name='add_to_cart'),
     path('cart/update/', views.update_quantity, name='update_quantity'),
     path('cart/remove/', views.remove_from_cart, name='remove_from_cart'),
 
 
-    
+
 ]

@@ -95,7 +95,7 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
         
         { selectedSection === "blogs" && (
           <>
-            <BlogsSubNavbar />
+            {/* <BlogsSubNavbar /> */}
             <BlogMain blogs={blogs}/>
             <BlogSearch />
 

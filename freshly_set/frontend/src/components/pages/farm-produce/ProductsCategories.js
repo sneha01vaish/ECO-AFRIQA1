@@ -17,14 +17,11 @@ const productImages = {
 
 const ProductsCategories = () => {
   
-  const [ products, setProducts ] = useState(Products);
+  const [products, setProducts ] = useState([]);
   const [csrfToken, setCsrfToken] = useState('');
 
-  const [selectedCategory, setSelectedCategory] = useState(Object.keys(products.reduce((acc, product) => {
-    const { category } = product
-    if (!acc[category]) acc[category] = true
-    return acc
-  }, {}))[0])
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState({})
 
   const categoryStyles = {
     fruits: 'bg-[#FF9E0C]/80 hover:bg-[#FF9E0C]',
@@ -33,7 +30,7 @@ const ProductsCategories = () => {
     spices: 'bg-[#FF0C1A]/80 hover:bg-[#FF0C1A]'
   }
 
-  const groupedProducts = products.reduce((acc, product) => {
+  const groupedProducts = products?.reduce((acc, product) => {
     const { category } = product
 
     if (!acc[category]) {
@@ -47,16 +44,87 @@ const ProductsCategories = () => {
     acc[category].items.push(product)
     return acc
   }, {})
-  const categories = Object.keys(groupedProducts)
+  // const categories = Object.keys(groupedProducts)
+
+
+  // const [categories, setCategories] = useState([])
   const handleCatClick = (category) => {
     setSelectedCategory(category)
+    console.log("cat clicked", category)
   }
-  const filteredProducts = groupedProducts[selectedCategory]?.items || []
+  // const filteredProducts = groupedProducts[selectedCategory]?.items || []
+
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   const scrollContainer = useRef(null);
   const scrollLeft = () => {scrollContainer.current.scrollBy({ left: -400, behavior: 'smooth' })}
   const scrollRight = () => {scrollContainer.current.scrollBy({ left: 400, behavior: 'smooth' })}
 
+
+
+useEffect(() => {
+  // Fetch CSRF token from meta tag
+  const token = document.querySelector('meta[name="csrf-token"]');
+  if (token) {
+    setCsrfToken(token.getAttribute('content'));
+  }
+
+  axios.get('http://localhost:8000/freshlyapp/products', {
+    headers: {
+      'X-CSRFToken': csrfToken
+    },
+    withCredentials: true
+  })
+  .then(response => {
+    setProducts(response.data.results);
+    console.log("Products Fetched from db", products)
+
+  })
+  .catch(error => {
+    console.error('Error fetching Products:', error);
+  });
+
+}, [csrfToken]);
+
+useEffect(() => {
+  // Fetch CSRF token from meta tag
+  const token = document.querySelector('meta[name="csrf-token"]');
+  if (token) {
+    setCsrfToken(token.getAttribute('content'));
+  }
+
+  axios.get('http://localhost:8000/freshlyapp/categories', {
+    headers: {
+      'X-CSRFToken': csrfToken
+    },
+    withCredentials: true
+  })
+  .then(response => {
+    setCategories(response.data);
+    console.log("Categories Fetched from db", categories)
+
+  })
+  .catch(error => {
+    console.error('Error fetching Products:', error);
+  });
+
+}, [csrfToken]);
+
+
+const filteredArray = products.filter((product) =>  product.name === selectedCategory.name);
+
+console.log("Filtered Array", filteredArray)
+useEffect(() => {
+   
+},[])
+useEffect(() => {
+  // if(!products){
+  //   setProducts(Products)
+  //   console.log("No Products in db")
+
+  // }
+  // console.log("Products fetched", products)
+},[])
   
   return (
     <>
@@ -74,38 +142,40 @@ const ProductsCategories = () => {
             {
               categories?.map(category => (
                 <div
-                key={category}
-                onClick={() => handleCatClick(category)} className={`transition delay-200 ease-in-out min-w-[160.00px] h-[160.00px] flex flex-col justify-end items-center rounded-lg  hover:shadow-lg cursor-pointer ${groupedProducts[category].styles} ${selectedCategory === category ? ' shadow-md shadow-slate-600' : ''}`}>
+                key={category.id}
+                onClick={() => handleCatClick(category)} className={`transition delay-200 ease-in-out min-w-[160.00px] h-[160.00px] flex flex-col justify-end items-center rounded-lg  hover:shadow-lg cursor-pointer ${selectedCategory === category.name ? ' shadow-md shadow-slate-600' : ''}`}>
+
               <img
                 className='w-[152px]'
-                src={groupedProducts[category].img}
+                src={productImages.fruits}
                 alt="Fresh fruits"
               />
-              <p className='font-bold text-white capitalize'>{category}</p>
-            </div>
-              ))
+              <p className='font-bold text-white capitalize'>{category.name}</p>
+            </div>              ))
             }
           </div>
         </div>
       <div className='border-b border-solid border-green-600 mt-12' />
 
-      <h2 className='text-green-700 text-xl text-center font-bold my-0 py-8 capitalize'>{`fresh ${selectedCategory}`}</h2>
+      <h2 className='text-green-700 text-xl text-center font-bold my-0 py-8 capitalize'>{`fresh ${selectedCategory.name}`}</h2>
       <div>
         <div className={`flex flex-wrap justify-around sm:justify-between items-center px-2 gap-3`}>
           {
-            filteredProducts?.map(({ id, img, title, name, price, quantity }) => (
+          products
+            .filter((product) => product.category === selectedCategory.id)
+            .map((product) => (
               <div
-                key={id}
+                key={product.id}
                 className='max-w-[160.00px] sm:min-w-[200.00px] h-[260.00px] sm:h-[284.00px] shadow-slate-200 bg-slate-50 shadow-md hover:shadow-lg rounded-lg flex flex-col items-center my-3'>     
                 <img
-                  src={img}
-                  alt={title}
+                  src={product.img}
+                  alt={product.title}
                   className="max-w-[90%] h-[44%] mx-auto my-auto"
                 />
-                <p className='font-bold tracking-wide my-1 uppercase'>{name}</p>
+                <p className='font-bold tracking-wide my-1 uppercase'>{product.name}</p>
                 <p className=' uppercase my-3 font-bold text-sm text-nowrap'>
-                  <span className='text-green-600'>{price}</span>
-                  <span className='text-red-600'>&nbsp;- {quantity}</span>
+                  <span className='text-green-600'>{product.price}</span>
+                  <span className='text-red-600'>&nbsp;- {product.quantity}</span>
                 </p>
                 <button className='uppercase border-3 border-green-600 px-6 py-3 text-green-600 font-inter rounded-xl bg-white/60 shadow cursor-pointer hover:bg-green-600 hover:text-white transition-all hover:border-green-400'>add to cart</button>
                 <p className='my-3 flex'>
