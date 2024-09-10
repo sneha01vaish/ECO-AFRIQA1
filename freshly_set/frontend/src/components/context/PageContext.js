@@ -13,6 +13,7 @@ export const BlogsClickedContext = createContext();
 export const SectionTypeContext = createContext();
 export const ProductsSideBarContext = createContext();
 export const ProductsContext = createContext();
+export const SearchContext = createContext();
 
 export  const PageContextProvider = ({ children }) => {
     const [activeTab, setActiveTab] = useState("home");
@@ -145,6 +146,7 @@ export  const PageContextProvider = ({ children }) => {
    const [blogModalOpen, setBlogModalOpen] = useState(false);
    const [csrfToken, setCsrfToken] = useState('');
    const [products, setProducts] = useState([]);
+   
    useEffect(() => {
     const token = document.querySelector('meta[name="csrf-token"]');
   if (token) {
@@ -162,6 +164,19 @@ export  const PageContextProvider = ({ children }) => {
   });
 
   },[])
+
+  // Function to handle search input and update URL params
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const searchTerm = event.target.search.value;
+    if (searchTerm) {
+      // Add the search term to the URL as a query parameter
+      navigate(`?q=${searchTerm}`);
+    } else {
+      // Clear the search term from the URL
+      navigate(`/blogs`);
+    }
+  };
     return(
         <PageContext.Provider value={[activeTab, setActiveTab]}>
             <PopupContext.Provider value={[popUpOpen, setPopUpOpen]}>
@@ -176,7 +191,10 @@ export  const PageContextProvider = ({ children }) => {
                                             <SectionTypeContext.Provider value={[sectionType, setSectionType]}>
                                                 <ProductsSideBarContext.Provider value={[productsSidebarOpen, setProductsSidebarOpen]}>
                                                     <ProductsContext.Provider value={[products, setProducts]}>
-                                                        {children}
+                                                        <SearchContext.Provider value={{handleSearch}}>
+                                                            {children}
+
+                                                        </SearchContext.Provider>
 
                                                     </ProductsContext.Provider>
                                                 </ProductsSideBarContext.Provider>

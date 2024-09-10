@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GoArrowRight } from "react-icons/go";
 import { ProductsSideBarContext } from '../../context/PageContext';
 import axios from 'axios';
+import CountdownTimer from './CountdownTimer';
 
 export default function Deals() {
 
@@ -12,8 +13,7 @@ export default function Deals() {
     const [dealOfWeekBanner, setDealOfWeekBanner] = useState({});
 
     function calculateTimeLeft() {
-        const difference = dealOfWeekBanner.countdown - new Date()
-        console.log("difference", difference)
+        const difference = new Date()
         let timeLeft = {}
 
         if (difference >= 0) {
@@ -77,9 +77,9 @@ export default function Deals() {
         const filteredBanner = banners.filter((banner) => banner.id === 1)
         console.log("FilteredBanner", filteredBanner)
 
-        setCountdownTime(filteredBanner[0].countdown)
+        // setCountdownTime(filteredBanner[0].countdown?filteredBanner.countdown:new Date())
         setDealOfWeekBanner(filteredBanner[0])
-        console.log("Countdown", countdownTime)
+        console.log("dealOfWeekBanner", dealOfWeekBanner)
     },[productsSidebarOpen])
     return (
         <main className="w-full">
@@ -88,7 +88,10 @@ export default function Deals() {
 
                 <div className={productsSidebarOpen ? 'mx-auto lg:mx-[0px]  h-[258.12px] w-[225.39px] lg:w-[250.09px] lg:h-[286.42px]  border border-solid bg-[#00AA5B] rounded-xl border-slate-200 text-white/80 shadow-sm flex flex-col justify-start items-center p-3 py-8':'mx-auto lg:mx-[0px] h-[258.12px] w-[225.39px] lg:w-[335.4px] lg:h-[384.12px]  border border-solid bg-[#00AA5B] rounded-xl border-slate-200 text-white/80 shadow-sm flex flex-col justify-start items-center p-3 py-8'}>
                     <p className='text-xl font-bold capitalize my-1'>Deal of the week</p>
-                    <p className="flex gap-2">
+
+                    <CountdownTimer endTime={dealOfWeekBanner?.countdown} /> {/* Use the correct field from your banner object */}
+
+                    {/* <p className="flex gap-2">
                         <span className='flex flex-col justify-start items-start'>
                             <span className='text-3xl font-bold tracking-wide text-nowrap'>{addZero(days)} :</span>
                             <span className="text-[12px]">Days</span>
@@ -105,7 +108,7 @@ export default function Deals() {
                             <span className='text-3xl font-bold tracking-wide text-nowrap'>{addZero(seconds)}</span>
                             <span className="text-[12px]">Secs</span>
                         </span>
-                    </p>
+                    </p> */}
 
                     <p className='uppercase font-bold text-center font-josefin text-base mt-0'>Orders above <span className='text-red-600'>ksh 2000</span> <span className='block'>get free delivery</span>
                     </p>

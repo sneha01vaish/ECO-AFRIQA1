@@ -68,7 +68,7 @@ function App() {
 
         <Route path="/mpesa" element={<Mpesa />} />
          <Route path="/credit" element={<Credit />} />
-         <Route path="/resultssearch" element={<ResultsSearch />} />       
+         <Route path="/search" element={<ResultsSearch />} />       
         <Route path="/consultation" element={<Consultation />} />
         
 
