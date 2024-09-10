@@ -3,6 +3,7 @@ import axios from 'axios';
 import { SearchContext } from '../../context/PageContext';
 import { useNavigate } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { MdSearch } from 'react-icons/md';
 
 function BlogSearch() {
   const [query, setQuery] = useState('');
@@ -56,44 +57,25 @@ function BlogSearch() {
   
   return (
     
-    <div className="relative mt-[100px] h-[42.188px] lg:h-[100px] w-[853.653p] flex items-center justify-center border-[#008000] bg-white-100 pb--2">
-      <form onSubmit={handleSearch} className="flex justify-between items-center pt-[12px] pr-[32px] w-[853.653px] font-[600] h-[100px] rounded-[20px] my-[29px] border-solid border-[5px] bg-white border-[#008000] mb-[-150px] mt-[12px] shadow-lg">
+    <form onSubmit={handleSearch} className="absolute translate-x-[25%] mt-[100px] z-20 h-[42.188px] lg:h-[100px] w-[853.653p] flex items-center justify-center border-[#008000] bg-white-100 pb--2">
+      <div className="flex justify-between items-center   w-[853.653px] font-[600] h-[79px] rounded-[20px] my-[29px] border-solid border-[5px] bg-white border-[#008000] mb-[-150px] mt-[12px] shadow-lg">
         
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value) }
-          className="px-4 text-[15px] lg:text-[30px] text-black/[50%] font-inter font-semibold border-none outline-none mx-[30px] my-[20px] w-[217px] lg:w-auto"
+          className="px-4 text-[15px] lg:text-[28px] text-black/[50%] font-inter font-semibold border-none outline-none my-[20px] w-[217px] lg:w-auto"
           placeholder="Search For News, Media etc..."
           defaultValue={getSearchParams()}
         />
-        <button 
-          // onClick={}
-          type="submit"
-          className="focus:outline-none"
-          aria-label="Search"
-        >
-          <img 
-            className={`h-[88px] w-[89px] ${isLoading ? 'opacity-50' : ''}`} 
-            src="/static/media/searchIcon.png" 
-            alt="Search Icon" 
-          />
-        </button>
-      </form>
+        
+          <MdSearch onClick={() => handleSearch()} className="text-[58px] freshlyGreenText" />
+      </div>
      
       {isLoading && <p>Loading...</p>} {/* Show loading text while searching */}
       {error && <p className="text-red-500">{error}</p>} {/* Show error message if any */}
-      
-      {/* Need to style properly */}
-      {/* <ul>
-        {filteredBlogs.map(blog => (
-          <li key={blog.id}>
-            <h2>{blog.title}</h2>
-            <p>{blog.content}</p>
-          </li>
-        ))}
-      </ul> */}
-    </div>
+     
+    </form>
   );
 }
 
