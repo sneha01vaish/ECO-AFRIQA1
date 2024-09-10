@@ -382,6 +382,7 @@ class BlogViewSet(viewsets.ModelViewSet):
 
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def search_blog(request):
     query = request.query_params.get('q', '')
     if query:

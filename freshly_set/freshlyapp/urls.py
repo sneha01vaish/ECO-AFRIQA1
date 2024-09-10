@@ -72,7 +72,9 @@ urlpatterns = [
          CommentRetrieveUpdateDestroyAPIView.as_view(), name='comment_detail'),
     path('likes/', LikeCreateAPIView.as_view(), name='like_create'),
     path('shares/', ShareCreateAPIView.as_view(), name='share_create'),
-    path('search_blog/<int:pk>/', views.search_blog, name='search_blog'),
+    # path('search_blog/<int:pk>/', views.search_blog, name='search_blog'),
+    path('search_blog/', views.search_blog, name='search_blog'),
+
     path('freshlyapp/token/', TokenObtainPairView.as_view(),
          name='token_obtain_pair'),
     path('freshlyapp/token/refresh/',

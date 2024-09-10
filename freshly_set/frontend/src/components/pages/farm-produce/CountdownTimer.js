@@ -31,32 +31,32 @@ const CountdownTimer = ({ endTime }) => {
     <div>
       <div className="flex items-center">
         <div className="flex-col ">
-            <h2 className="mb-[0px]">{formatTime(timeRemaining.days)}</h2>
-            <h3 className="mt-[0px] text-center font-[400]">DAYS</h3> 
+            <h2 className="mb-[0px] text-[14px]">{formatTime(timeRemaining.days)}</h2>
+            <h3 className="mt-[0px]  text-[14px] text-center font-[400]">DAYS</h3> 
         </div>
 
         <h3 className="text-[32px] my-[0px] mx-[5px]">:</h3>
 
 
         <div className="flex-col ">
-            <h2 className="mb-[0px]">{formatTime(timeRemaining.hours)}</h2>
-            <h3 className="mt-[0px] text-center font-[400]">HOURS</h3> 
+            <h2 className="mb-[0px]  text-[14px]">{formatTime(timeRemaining.hours)}</h2>
+            <h3 className="mt-[0px] text-center font-[400] text-[14px]">HOURS</h3> 
         </div>
 
         <h3 className="text-[32px] my-[0px] mx-[5px]">:</h3>
 
 
         <div className="flex-col ">
-            <h2 className="mb-[0px]">{formatTime(timeRemaining.minutes)}</h2>
-            <h3 className="mt-[0px] text-center font-[400]">MINUTES</h3> 
+            <h2 className="mb-[0px] text-[14px]">{formatTime(timeRemaining.minutes)}</h2>
+            <h3 className="mt-[0px] text-center font-[400] text-[14px]">MINUTES</h3> 
         </div>
 
         <h3 className="text-[32px] my-[0px] mx-[5px]">:</h3>
 
 
         <div className="flex-col ">
-            <h2 className="mb-[0px]">{formatTime(timeRemaining.seconds)}</h2>
-            <h3 className="mt-[0px] text-center font-[400]">SECONDS</h3> 
+            <h2 className="mb-[0px] text-[14px]">{formatTime(timeRemaining.seconds)}</h2>
+            <h3 className="mt-[0px] text-center font-[400] text-[14px]">SECONDS</h3> 
         </div>
 
 

@@ -2,9 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { SearchContext } from '../../context/PageContext';
 import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function BlogSearch() {
   const [query, setQuery] = useState('');
+
+  
   const [blogs, setBlogs] = useState([]);
   const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [csrfToken, setCsrfToken] = useState('');
@@ -13,28 +16,28 @@ function BlogSearch() {
   const navigate = useNavigate();
 
   // const { handleSearch } = useContext(SearchContext);
-  useEffect(() => {
-    // Fetch CSRF token from meta tag
-    const token = document.querySelector('meta[name="csrf-token"]');
-    if (token) {
-      setCsrfToken(token.getAttribute('content'));
-    }
+  // useEffect(() => {
+  //   // Fetch CSRF token from meta tag
+  //   const token = document.querySelector('meta[name="csrf-token"]');
+  //   if (token) {
+  //     setCsrfToken(token.getAttribute('content'));
+  //   }
 
-    // Fetch initial blogs
-    axios.get('http://localhost:8000/freshlyapp/search/', {
-      headers: {
-        'X-CSRFToken': csrfToken
-      },
-      withCredentials: true
-    })
-    .then(response => {
-      setBlogs(response.data);
-      setFilteredBlogs(response.data);
-    })
-    .catch(error => {
-      console.error('Error fetching blogs:', error);
-    });
-  }, [csrfToken]);
+  //   // Fetch initial blogs
+  //   axios.get('http://localhost:8000/freshlyapp/search/', {
+  //     headers: {
+  //       'X-CSRFToken': csrfToken
+  //     },
+  //     withCredentials: true
+  //   })
+  //   .then(response => {
+  //     setBlogs(response.data);
+  //     setFilteredBlogs(response.data);
+  //   })
+  //   .catch(error => {
+  //     console.error('Error fetching blogs:', error);
+  //   });
+  // }, [csrfToken]);
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
@@ -45,18 +48,11 @@ function BlogSearch() {
       const params = new URLSearchParams(location.search);
       return params.get('q') || '';  // use 'q' to match the Django query param
     };
-    
-  const handleSearch = (event) => {
-    event.preventDefault();
-    const searchTerm = event.target.value;
-    if (searchTerm) {
-      // Add the search term to the URL as a query parameter
-      navigate(`?q=${searchTerm}`);
-    } else {
-      // Clear the search term from the URL
-      navigate(`/blogs`);
-    }
-  };
+
+    const handleSearch = (e) => {
+      e.preventDefault();
+      navigate(`/search?q=${query}`); 
+    };
   
   return (
     
@@ -65,6 +61,8 @@ function BlogSearch() {
         
         <input
           type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value) }
           className="px-4 text-[15px] lg:text-[30px] text-black/[50%] font-inter font-semibold border-none outline-none mx-[30px] my-[20px] w-[217px] lg:w-auto"
           placeholder="Search For News, Media etc..."
           defaultValue={getSearchParams()}
