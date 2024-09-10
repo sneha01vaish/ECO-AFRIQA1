@@ -23,7 +23,7 @@ function WhyChoose() {
   
   return (
      
-    <div className="MainContentCard lg:w-full lg:flex  justify-center mt-[59px] lg:mt-[82px] lg:px-6 mx-3 lg:mx-auto max-w-[1094px] rounded-[23px] border-solid border-[1px] border-gray-400/[0.25] shadow-gray-700 shadow-lg ">
+    <section id="functions" className="MainContentCard lg:w-full lg:flex  justify-center mt-[59px] lg:mt-[82px] lg:px-6 mx-3 lg:mx-auto max-w-[1094px] rounded-[23px] border-solid border-[1px] border-gray-400/[0.25] shadow-gray-700 shadow-lg ">
 
       {/* Left side  (Only Visible On Desktop version)*/}
       <div className="SidePicture hidden lg:flex ">
@@ -116,7 +116,7 @@ function WhyChoose() {
         
 
       </div> {/*Right Side Ends Here */}
-    </div> //Main Content Card Ends Here
+    </section> //Main Content Card Ends Here
 
   )
 }

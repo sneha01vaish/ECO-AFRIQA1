@@ -20,7 +20,7 @@ function Checkout() {
 
             {/* Back Button */}
             <div className="BackButton flex justify-start mt-[20px] ml-12">
-              <Link to="/transporters">
+              <Link to="/about-us">
                 <img src="/static/media/image10.png" alt="Back" className="lg:m-[6px] h-full" />
               </Link>
             </div>

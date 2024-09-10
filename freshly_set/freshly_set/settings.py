@@ -63,20 +63,13 @@ REST_FRAMEWORK = {
 }
 
 
-
-
 # Security and session management
 # made it False as we are still in development , it is rejecting the site without secured requet.
-SECURE_SSL_REDIRECT = False 
-SESSION_COOKIE_SECURE = False  
-CSRF_COOKIE_SECURE = False  
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = False
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
-
-
-
-
-
 
 
 SIMPLE_JWT = {
@@ -88,7 +81,6 @@ SIMPLE_JWT = {
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
-
 
 
 MIDDLEWARE = [
@@ -139,7 +131,6 @@ DATABASES = {
 }
 
 
-
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -166,7 +157,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#PASSWORD HASHING BCRYPT
+# PASSWORD HASHING BCRYPT
 
 
 PASSWORD_HASHERS = [
@@ -176,8 +167,6 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
-
-
 
 
 # SMTP Configuration
@@ -252,5 +241,3 @@ REACT_APP_DIR = BASE_DIR / 'frontend/build'
 
 # Including React build static files in STATICFILES_DIRS
 STATICFILES_DIRS.append(REACT_APP_DIR / 'static/media')
-
-

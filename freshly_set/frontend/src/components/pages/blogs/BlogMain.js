@@ -24,13 +24,13 @@ function BlogMain({ blogs }) {
 
     const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext);
 
-    const showDetail = () => {
+    const showDetail = (section) => {
         window.scrollTo({ top: 0 }); 
-        setSelectedSection("all-updates");
+        setSelectedSection(section);
 
         setIsVisible(false); 
         setTimeout(() => {
-            setSelectedSection("all-updates")
+            setSelectedSection(section)
             setIsVisible(true); // Show the new content with animation
             window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top smoothly
         }, 300); // Delay for the slide-out animation before changing content
@@ -61,13 +61,12 @@ function BlogMain({ blogs }) {
 
         <div className="flex  justify-end mr-[27px] lg:mr-[65px] gap-3 z-10">
           
-          <Link to="/blogs/allarticles">
             <button
+                onClick={() => showDetail("all-articles")}
                 className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
             >
                 View All Updates
             </button>
-          </Link>
        
           {/* <button
             className="standardBtn"
@@ -78,7 +77,7 @@ function BlogMain({ blogs }) {
           </button> */}
         </div>
 
-        <div className="max-w-[96%] sm:max-w-[88%] font-inter mx-auto flex flex-wrap gap-3 justify-center sm:justify-between pt-3">
+        <div id="articles" className="max-w-[96%] sm:max-w-[88%] font-inter mx-auto flex flex-wrap gap-3 justify-center sm:justify-between pt-3">
 
           {blogs ? blogs.slice(0, visible).map((blog) => (
             <BlogList key={blog.id} post={blog} />
@@ -98,7 +97,7 @@ function BlogMain({ blogs }) {
 
         <div className="flex  justify-end mr-[27px] lg:mr-[65px] gap-3 z-10">
             <button
-                onClick={() => showDetail()}
+                onClick={() => showDetail("all-updates")}
 
                 className="h-[27.922px] lg:h-[44.571px] w-[144px] lg:w-[229.858px] bg-[#008000] rounded-[9.551px] text-white cursor-pointer"
             >

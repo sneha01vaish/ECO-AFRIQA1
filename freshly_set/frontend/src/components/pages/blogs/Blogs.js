@@ -11,7 +11,7 @@ import Contact from './Contact';
 import { BlogsClickedContext, PageContext, SelectedSectionContext } from '../../context/PageContext';
 import BlogWidgetsNew from './BlogWidgetsNew';
 import BlogWidgets from './BlogWidgets';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import api from "../../../api/blogs"
 import axios from 'axios';
 import BlogMain from './BlogMain';
@@ -19,6 +19,8 @@ import { FaArrowLeft } from 'react-icons/fa';
 import BlogCtaPopup from './BlogCtaPopup';
 import BlogsAllUpdates from '../cta-detail/BlogsAllUpdates';
 import { BlogsContext } from '../../context/BlogsContext';
+import BlogsSubNavbar from '../../Nav/BlogsSubNavbar';
+import BlogsAllArticles from '../cta-detail/BlogsAllArticles';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useContext(BlogsContext);
@@ -32,7 +34,9 @@ const Blogs = () => {
   const [selectedSection, setSelectedSection] = useContext(SelectedSectionContext);
 
   const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext);
+  const [loading, setLoading] = useState(true);
 
+  const location = useLocation();
   const showMore = () => {
     setVisible((prevCount) => Math.min(prevCount + 3, blogs.length));
   };
@@ -69,6 +73,45 @@ useEffect(() => {
   console.log("Blogs", blogs)
 }, [csrfToken]);
 
+
+
+  // Helper function to get the query parameters from the URL
+  const getSearchParams = () => {
+    const params = new URLSearchParams(location.search);
+    return params.get('q') || '';  // use 'q' to match the Django query param
+  };
+
+  const fetchBlogs = async (searchTerm) => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`/api/search-blog?q=${searchTerm}`);
+      setBlogs(response.data); // Assuming response.data is the array of blogs
+      setLoading(false);
+    } catch (err) {
+      setError('Failed to fetch blogs');
+      setLoading(false);
+    }
+  };
+
+  // Fetch blogs on component mount and when the search term changes
+  useEffect(() => {
+    const searchTerm = getSearchParams();
+    fetchBlogs(searchTerm);
+  }, [location.search]);
+
+  // Function to handle search input and update URL params
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const searchTerm = event.target.search.value;
+    if (searchTerm) {
+      // Add the search term to the URL as a query parameter
+      navigate(`?q=${searchTerm}`);
+    } else {
+      // Clear the search term from the URL
+      navigate(`/blogs`);
+    }
+  };
+
 const navigate = useNavigate()
 const handleNavigateToAllBlogs = () => navigate('all-blogs-update')
 const handleNavigateToAllUpdates = () => navigate('allUpdates')
@@ -78,25 +121,44 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
       <BlogCtaPopup />
       <div className=" min-h-[100vh] py-16 bg-[#F5FAF9]">
         <Nav />
+        <BlogSearch />
 
 
         {
-          selectedSection!=="blogs" && (
-            <FaArrowLeft onClick={() => setSelectedSection("blogs")} className="absolute h-[61px] w-[61px] text-[#008000] lg:top-[240px] left-[38px] cursor-pointer z-[50]"/>
+
+          selectedSection!=="blogs" && selectedSection!=="all-articles" && (
+            <>
+              <FaArrowLeft onClick={() => setSelectedSection("blogs")} className="absolute h-[61px] w-[61px] text-[#008000] lg:top-[240px] left-[38px] cursor-pointer z-[50]"/>
+
+            </>
 
           )
         }
-        <BlogSearch />
         
         { selectedSection === "blogs" && (
-          <BlogMain blogs={blogs}/>
+          <>
+            {/* <BlogsSubNavbar /> */}
+            <BlogMain blogs={blogs}/>
+            <BlogSearch />
+
+          </>
        )}       
 
         { selectedSection === "all-updates" && (
        <div>
+          <BlogSearch />
+
           <BlogsAllUpdates />
         </div>
        )}
+
+       {
+        selectedSection === "all-articles" && (
+          <div>
+            <BlogsAllArticles />
+          </div>
+        )
+       }
 
        
         <FreshlyFooter />

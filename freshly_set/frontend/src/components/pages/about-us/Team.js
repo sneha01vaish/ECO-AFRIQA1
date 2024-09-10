@@ -75,7 +75,7 @@ function Team() {
   );
 
   return (
-    <div className="block mt-[60px] lg:mt-[100px]">
+    <section id="team" className="block mt-[60px] lg:mt-[100px]">
       <h5 className="text-[#008000] text-[45px] text-center font-inter my-0">
         Meet Our Team
       </h5>
@@ -143,7 +143,7 @@ function Team() {
           {renderGroupSection('Sales Team', 'Sales Team Member', 1)}
         </div>
       )}
-    </div>
+    </section>
   );
 }
 
