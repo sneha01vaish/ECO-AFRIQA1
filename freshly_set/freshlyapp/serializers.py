@@ -41,6 +41,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['email', 'username']
 
+from rest_framework import serializers
+from django.core.exceptions import ValidationError
+from PIL import Image
+import os
 
 class ProductSerializer(serializers.ModelSerializer):
 
@@ -49,6 +53,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def validate(self, data):
+        # Price validation
         if data.get('price', 0) < 0:
             raise serializers.ValidationError(
                 {'price': 'Price cannot be negative.'})
@@ -61,6 +66,7 @@ class ProductSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 {'price': 'Price cannot have more than two decimal places.'})
 
+        # Quantity validation
         if data.get('qtty', 0) < 0:
             raise serializers.ValidationError(
                 {'qtty': 'Quantity cannot be negative.'})
@@ -69,6 +75,7 @@ class ProductSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 {'qtty': 'Quantity cannot exceed 10,000.'})
 
+        # Name validation
         if len(data.get('name', '').strip()) == 0:
             raise serializers.ValidationError(
                 {'name': 'Name cannot be empty.'})
@@ -77,6 +84,7 @@ class ProductSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 {'name': 'Name cannot exceed 255 characters.'})
 
+        # Description validation
         if len(data.get('desc', '')) < 10:
             raise serializers.ValidationError(
                 {'desc': 'Description is too short. It should be at least 10 characters long.'})
@@ -85,7 +93,31 @@ class ProductSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 {'desc': 'Description contains prohibited or inappropriate content.'})
 
+        # Image validation
+        image = data.get('image')
+        if image:
+            ext = os.path.splitext(image.name)[1].lower()
+            valid_extensions = ['.jpg', '.jpeg', '.png']
+            if ext not in valid_extensions:
+                raise serializers.ValidationError(
+                    {'image': 'Unsupported file extension. Allowed extensions are: .jpg, .jpeg, .png'})
+
+            if image.size > 5 * 1024 * 1024:
+                raise serializers.ValidationError(
+                    {'image': 'Image file size cannot exceed 5MB.'})
+
+            image = Image.open(image)
+            width, height = image.size
+            if width < 800 or height < 600:
+                raise serializers.ValidationError(
+                    {'image': 'Image resolution too low. Minimum resolution is 800x600.'})
+            if width > 4000 or height > 3000:
+                raise serializers.ValidationError(
+                    {'image': 'Image resolution too high. Maximum resolution is 4000x3000.'})
+
         return data
+
+
 
 
 class ReviewSerializer(serializers.ModelSerializer):
