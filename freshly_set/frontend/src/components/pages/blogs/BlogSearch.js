@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { SearchContext } from '../../context/PageContext';
+import { useNavigate } from 'react-router-dom';
 
 function BlogSearch() {
   const [query, setQuery] = useState('');
@@ -8,7 +10,9 @@ function BlogSearch() {
   const [csrfToken, setCsrfToken] = useState('');
   const [isLoading, setIsLoading] = useState(false); // To manage loading state
   const [error, setError] = useState(null); // To manage error state
+  const navigate = useNavigate();
 
+  // const { handleSearch } = useContext(SearchContext);
   useEffect(() => {
     // Fetch CSRF token from meta tag
     const token = document.querySelector('meta[name="csrf-token"]');
@@ -36,40 +40,38 @@ function BlogSearch() {
     setQuery(event.target.value);
   };
 
-  const handleSearch = () => {
-    setIsLoading(true); // Set loading state to true
-    axios.get(`http://localhost:8000/freshlyapp/search?q=${query}`, {
-      headers: {
-        'X-CSRFToken': csrfToken
-      },
-      withCredentials: true
-    })
-    .then(response => {
-      setFilteredBlogs(response.data);
-      setError(null); // Clear error if the request was successful
-    })
-    .catch(error => {
-      console.error('Error searching blogs:', error);
-      setError('An error occurred while searching.'); // Set error message
-    })
-    .finally(() => {
-      setIsLoading(false); // Reset loading state
-    });
+    // Helper function to get the query parameters from the URL
+    const getSearchParams = () => {
+      const params = new URLSearchParams(location.search);
+      return params.get('q') || '';  // use 'q' to match the Django query param
+    };
+    
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const searchTerm = event.target.value;
+    if (searchTerm) {
+      // Add the search term to the URL as a query parameter
+      navigate(`?q=${searchTerm}`);
+    } else {
+      // Clear the search term from the URL
+      navigate(`/blogs`);
+    }
   };
-
+  
   return (
     
     <div className="relative mt-[100px] h-[42.188px] lg:h-[100px] w-[853.653p] flex items-center justify-center border-[#008000] bg-white-100 pb--2">
-      <div className="flex justify-between items-center pt-[12px] pr-[32px] w-[853.653px] font-[600] h-[100px] rounded-[20px] my-[29px] border-solid border-[5px] bg-white border-[#008000] mb-[-150px] mt-[12px] shadow-lg">
+      <form onSubmit={handleSearch} className="flex justify-between items-center pt-[12px] pr-[32px] w-[853.653px] font-[600] h-[100px] rounded-[20px] my-[29px] border-solid border-[5px] bg-white border-[#008000] mb-[-150px] mt-[12px] shadow-lg">
+        
         <input
           type="text"
           className="px-4 text-[15px] lg:text-[30px] text-black/[50%] font-inter font-semibold border-none outline-none mx-[30px] my-[20px] w-[217px] lg:w-auto"
           placeholder="Search For News, Media etc..."
-          value={query}
-          onChange={handleInputChange}
+          defaultValue={getSearchParams()}
         />
         <button 
-          onClick={handleSearch}
+          // onClick={}
+          type="submit"
           className="focus:outline-none"
           aria-label="Search"
         >
@@ -79,7 +81,7 @@ function BlogSearch() {
             alt="Search Icon" 
           />
         </button>
-      </div>
+      </form>
      
       {isLoading && <p>Loading...</p>} {/* Show loading text while searching */}
       {error && <p className="text-red-500">{error}</p>} {/* Show error message if any */}
