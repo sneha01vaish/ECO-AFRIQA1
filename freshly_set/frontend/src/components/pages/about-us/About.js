@@ -9,6 +9,7 @@ import FreshlyFooter from "../../footer/FreshlyFooter";
 import Team from './Team'
 import Testimonials from './Testimonials'
 import { PageContext } from '../../context/PageContext'
+import AboutUsSubNavbar from '../../Nav/AboutUsSubNavbar'
 
 function About() {
   const [activeTab, setActiveTab] = useContext(PageContext);
@@ -19,6 +20,7 @@ function About() {
   return (
     <div className="overflow-x-hidden">
       <Nav />
+      <AboutUsSubNavbar />
       <Hero />
       <WhyChoose />
       <MissionVision />

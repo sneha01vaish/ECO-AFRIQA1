@@ -18,17 +18,16 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import AllowAny
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
-
-from .forms import SignUpForm
-from django.contrib.auth.forms import AuthenticationForm
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import authenticate
 from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.views import APIView
-from .models import Blog, Comment, Like, Share, Poll, VoteNode
+from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer,PollSerializer, VoteNodeSerializer,CartSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer,LikeSerializer, ShareSerializer,PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -40,6 +39,7 @@ from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerial
 from rest_framework.validators import UniqueValidator
 from .validators import custom_validation , validate_email, validate_password # Import your custom validation here
 #csrf_protect_method = method_decorator(csrf_protect)
+from django.utils import timezone
 
 
 # This is for typical django frontend html
@@ -95,6 +95,9 @@ class UserLogout(APIView):
         logout(request)
         return Response(status=status.HTTP_200_OK)
 """
+
+
+
 def index(request):
     get_token(request)
     return render(request, 'index.html')
@@ -248,7 +251,33 @@ class BlogListCreateView(generics.ListCreateAPIView):
 """
 
     
+@csrf_exempt
+@api_view(['POST', 'GET'])
+@permission_classes([AllowAny])
+def Register(request):
+    # Validate the input data
+    serializer = UserRegisterSerializer(data=request.data)
+    
+    if serializer.is_valid():
+        # Check if the user already exists
+        username = serializer.validated_data.get('username')
+        email = serializer.validated_data.get('email')
+        if User.objects.filter(username=username).exists():
+            return Response({"error": "This username already exists."}, status=status.HTTP_400_BAD_REQUEST)
+        if User.objects.filter(email=email).exists():
+            return Response({"error": "An account with this email already exists."}, status=status.HTTP_400_BAD_REQUEST)
 
+        # Save the user if validation passes
+        user = serializer.save()
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            "message": "Signup successful!",
+            "refresh": str(refresh),
+            "access": str(refresh.access_token),
+        }, status=status.HTTP_201_CREATED)
+    
+    # Return errors if validation fails
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
@@ -335,120 +364,288 @@ def search_blog(request):
     return Response(serializer.data)
 
 # Polls 
-class PollListView(generics.ListCreateAPIView):
+
+class PollListCreateView(generics.ListCreateAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
+    permission_classes = (AllowAny,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
 
 class PollDetailView(generics.RetrieveAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
 
-class PollCreateView(generics.CreateAPIView):
-    queryset = Poll.objects.all()
-    serializer_class = PollSerializer
+class VoteCreateView(generics.CreateAPIView):
+    serializer_class = VoteSerializer
+    permission_classes = (AllowAny,)
 
-class PollUpdateView(generics.UpdateAPIView):
-    queryset = Poll.objects.all()
-    serializer_class = PollSerializer
-
-class PollDeleteView(generics.DestroyAPIView):
-    queryset = Poll.objects.all()
-    serializer_class = PollSerializer
-
-# VoteNode Views
-class VoteNodeListView(generics.ListAPIView):
-    queryset = VoteNode.objects.all()
-    serializer_class = VoteNodeSerializer
-
-class VoteNodeDetailView(generics.RetrieveAPIView):
-    queryset = VoteNode.objects.all()
-    serializer_class = VoteNodeSerializer
-
-# Custom vote adding view (function-based)
-def add_vote(request, pk):
-    poll = get_object_or_404(Poll, pk=pk)
-    choice = request.data.get('choice')
-    if choice:
-        new_vote = VoteNode.objects.create(poll=poll, choice=choice)
+    def post(self, request, *args, **kwargs):
+        poll = get_object_or_404(Poll, pk=kwargs['pk'])
+        choice = request.data.get('choice')
         
-        # If poll has no votes, set the new vote as the head
-        if poll.head is None:
-            poll.head = new_vote
-            poll.save()
+        if choice not in dict(Vote.CHOICES).keys():
+            return Response({'error': 'Invalid choice'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        vote, created = Vote.objects.update_or_create(
+            poll=poll, user=request.user,
+            defaults={'choice': choice}
+        )
+
+        if created:
+            return Response({'status': 'Vote added'}, status=status.HTTP_201_CREATED)
         else:
-            # Traverse to the end of the list and add the new vote
-            node = poll.head
-            while node.next_vote is not None:
-                node = node.next_vote
-            node.next_vote = new_vote
-            node.save()
+            return Response({'status': 'Vote updated'}, status=status.HTTP_200_OK)
+        
 
-        return JsonResponse({'status': 'vote added'}, status=status.HTTP_201_CREATED)
-    return JsonResponse({'error': 'Invalid vote data'}, status=status.HTTP_400_BAD_REQUEST)
+# Verification photo and Id views
+# install bot03
+# to configure aws cli for face recogniotn.
+class VerifyIDView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            verification = request.user.id_verification
+            if verification.verify_user():
+                return Response({"message": "User successfully verified."}, status=status.HTTP_200_OK)
+            else:
+                return Response({"message": "Verification failed. ID or photo did not match."}, status=status.HTTP_400_BAD_REQUEST)
+        except IDVerification.DoesNotExist:
+            return Response({"error": "ID verification record not found."}, status=status.HTTP_404_NOT_FOUND)
+        
+
+class IDVerificationUpdateView(generics.UpdateAPIView):
+    queryset = IDVerification.objects.all()
+    serializer_class = IDVerificationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user.id_verification
+
+    def put(self, request, *args, **kwargs):
+        verification_instance = self.get_object()
+        serializer = self.get_serializer(verification_instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": "User successfully verified."}, status=status.HTTP_200_OK)
+    
+class IDVerificationDetailView(generics.RetrieveAPIView):
+    queryset = IDVerification.objects.all()
+    serializer_class = IDVerificationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user.id_verification
+    
 
 
 
-@api_view(['GET']) #we are seeing the cart state
+#PRODUCT ENDPOINTS
+from .serializers import ProductSerializer
+
+
+class CreateProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class RetrieveProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)
+
+
+
+
+
+class UpdateProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        serializer = ProductSerializer(product, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+class DeleteProduct(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+        product.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+from rest_framework.pagination import PageNumberPagination
+
+
+@permission_classes([AllowAny])
+class ProductListView(APIView):
+    def get(self, request, *args, **kwargs):
+        # Filter products based on the search query parameter
+        search_query = request.query_params.get('name')
+        if search_query is not None:
+            filtered_products = Product.objects.filter(name__icontains=search_query)
+        else:
+            filtered_products = Product.objects.all()
+
+        paginator = PageNumberPagination()
+        paginator.page_size = 10  # Set the number of items per page
+        result_page = paginator.paginate_queryset(filtered_products, request)
+
+        serializer = ProductSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
+
+
+
+
+
+#Cart Endpoints
+@api_view(['GET'])
 def get_cart_instance(request):
+    # Check if user is authenticated
     if request.user.is_authenticated:
         cart, created = Cart.objects.get_or_create(user=request.user)
     else:
+        # Use session for non-authenticated users
         session_id = request.session.session_key
         if not session_id:
             request.session.create()
             session_id = request.session.session_key
         cart, created = Cart.objects.get_or_create(session_id=session_id)
+
+    # Serialize the cart data
+    cart_data = CartSerializer(cart).data
+
+    # Return the cart along with its items in the response
+    return Response(cart_data, status=status.HTTP_200_OK)
+
+
+
+
+
+
+
+
+from .serializers import CartSerializer, CartItemSerializer
+from .models import CartItem
+
+def get_cart_instance2(request):
+    # Assuming the user is logged in, get or create the user's cart.
+    user = request.user
+    cart, created = Cart.objects.get_or_create(user=user)
     return cart
 
 @api_view(['POST'])
 def add_to_cart(request):
-    cart = get_cart_instance(request)
+    cart = get_cart_instance2(request)
     product_id = request.data.get("product_id")
     quantity = request.data.get("quantity", 1)
-    price = request.data.get("price")
 
-    if product_id and price and quantity:
-        cart.product_ids.append(product_id)
-        cart.quantities.append(quantity)
-        cart.prices.append(price)
-        cart.save()
-        return Response(CartSerializer(cart).data)
+    if not product_id:
+        return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        product = Product.objects.get(id=product_id)
+    except Product.DoesNotExist:
+        return Response({"error": "Invalid product ID"}, status=status.HTTP_404_NOT_FOUND)
+
+    # Check if the product already exists in the cart
+    if CartItem.objects.filter(cart=cart, product_id=product_id).exists():
+        return Response({"error": "This item already exists in the cart. Use the update quantity option instead."}, status=status.HTTP_400_BAD_REQUEST)
+
+    cart_item_data = {
+        'cart': cart.id,
+        'product': product.id,
+        'quantity': quantity
+    }
+
+    serializer = CartItemSerializer(data=cart_item_data, context={'cart_id': cart.id})
+    if serializer.is_valid():
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        cart_item.quantity += int(quantity)
+        cart_item.save()
+        return Response(CartSerializer(cart).data, status=status.HTTP_200_OK)
     else:
-        return Response({"error": "Product ID, quantity, and price are required"}, status=400)
- 
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
 
 @api_view(['POST'])
 def update_quantity(request):
-    cart=get_cart_instance(request)
-    product_id=request.data.get("product_id")
-    quantity=request.data.get("quantity",1)
+    cart = get_cart_instance2(request)  # Ensure this returns the cart object, not serialized data
+    product_id = request.data.get("product_id")
+    new_quantity = request.data.get("quantity")
 
-    if product_id in cart.product_ids:
-        index=cart.product_ids.index(product_id)
+    if not product_id:
+        return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
 
-        cart.quantities[index] += quantity 
+    if new_quantity is None or int(new_quantity) <= 0:
+        return Response({"error": "A valid quantity is required"}, status=status.HTTP_400_BAD_REQUEST)
 
-        cart.save()
+    # Check if the product exists in the cart
+    try:
+        cart_item = CartItem.objects.get(cart=cart, product_id=product_id)
+    except CartItem.DoesNotExist:
+        return Response({"error": "Product not found in cart"}, status=status.HTTP_404_NOT_FOUND)
 
+    cart_item_data = {
+        'cart': cart.id,
+        'product': product_id,
+        'quantity': new_quantity
+    }
 
-        return Response(CartSerializer(cart).data)
-    
-
-    return Response({"error": "Product not found in cart"}, status=400)
-
+    serializer = CartItemSerializer(cart_item, data=cart_item_data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(CartSerializer(cart).data, status=status.HTTP_200_OK)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def remove_from_cart(request):
-    cart=get_cart_instance(request)
-    product_id=request.data.get("product_id")
 
-    if product_id in cart.product_ids:
-        index = cart.product_ids.index(product_id)
-        
-        cart.product_ids.pop(index)
-        cart.quantities.pop(index)
-        cart.prices.pop(index)
-        cart.save()
-        return Response({"message" : "Product removed successfully"}, status=200)
-    
-    return Response({"error": "Product not found"},status=400)
+ cart = get_cart_instance2(request)  # Ensure this returns the cart object, not serialized data
+ product_id = request.data.get("product_id")
+ quantity= request.data.get("quantity")
+
+ if not product_id:
+        return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+ try:
+        cart_item = CartItem.objects.get(cart=cart, product_id=product_id)
+ except CartItem.DoesNotExist:
+        return Response({"error": "Product not found in cart"}, status=status.HTTP_404_NOT_FOUND)
+
+ if quantity is None:
+        quantity = cart_item.quantity
+
+ if quantity < 1:
+        return Response({"error": "Quantity must be at least 1"}, status=status.HTTP_400_BAD_REQUEST)
+
+ if quantity >= cart_item.quantity:
+        # Remove item from cart if quantity to remove is greater than or equal to the existing quantity
+        cart_item.delete()
+        return Response({"success": "Item removed from cart"}, status=status.HTTP_200_OK)
+ else:
+        # Adjust the quantity of the cart item
+        cart_item.quantity -= int(quantity)
+        cart_item.save()
+        return Response({"success": "Item quantity updated in cart"}, status=status.HTTP_200_OK)

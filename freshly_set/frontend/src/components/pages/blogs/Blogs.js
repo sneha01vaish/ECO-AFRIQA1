@@ -8,18 +8,22 @@ import blogItems from './blogItems.json'
 
 // import BlogForm from './BlogForm';
 import Contact from './Contact';
-import { PageContext, SelectedSectionContext } from '../../context/PageContext';
+import { BlogsClickedContext, PageContext, SelectedSectionContext } from '../../context/PageContext';
 import BlogWidgetsNew from './BlogWidgetsNew';
 import BlogWidgets from './BlogWidgets';
 import { useNavigate } from 'react-router-dom';
 import api from "../../../api/blogs"
 import axios from 'axios';
 import BlogMain from './BlogMain';
-import BlogsAllArticles from './BlogsAllArticles';
 import { FaArrowLeft } from 'react-icons/fa';
+import BlogCtaPopup from './BlogCtaPopup';
+import BlogsAllUpdates from '../cta-detail/BlogsAllUpdates';
+import { BlogsContext } from '../../context/BlogsContext';
+import BlogsSubNavbar from '../../Nav/BlogsSubNavbar';
+import BlogsAllArticles from '../cta-detail/BlogsAllArticles';
 
 const Blogs = () => {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useContext(BlogsContext);
   const [visible, setVisible] = useState(3);
   const [activeTab, setActiveTab] = useContext(PageContext);
 
@@ -28,6 +32,8 @@ const Blogs = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null)
   const [selectedSection, setSelectedSection] = useContext(SelectedSectionContext);
+
+  const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext);
 
   const showMore = () => {
     setVisible((prevCount) => Math.min(prevCount + 3, blogs.length));
@@ -71,26 +77,46 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
 
   return (
     <div>
-
+      <BlogCtaPopup />
       <div className=" min-h-[100vh] py-16 bg-[#F5FAF9]">
         <Nav />
+
+
         {
-          selectedSection!=="blogs" && (
-            <FaArrowLeft onClick={() => setSelectedSection("blogs")} className="absolute h-[61px] w-[61px] text-[#008000] lg:top-[240px] left-[38px] cursor-pointer z-[50]"/>
+
+          selectedSection!=="blogs" && selectedSection!=="all-articles" && (
+            <>
+              <FaArrowLeft onClick={() => setSelectedSection("blogs")} className="absolute h-[61px] w-[61px] text-[#008000] lg:top-[240px] left-[38px] cursor-pointer z-[50]"/>
+
+            </>
 
           )
         }
-        <BlogSearch />
         
         { selectedSection === "blogs" && (
-          <BlogMain />
+          <>
+            <BlogsSubNavbar />
+            <BlogMain blogs={blogs}/>
+            <BlogSearch />
+
+          </>
        )}       
 
         { selectedSection === "all-updates" && (
        <div>
-          <BlogsAllArticles />
+          <BlogSearch />
+
+          <BlogsAllUpdates />
         </div>
        )}
+
+       {
+        selectedSection === "all-articles" && (
+          <div>
+            <BlogsAllArticles />
+          </div>
+        )
+       }
 
        
         <FreshlyFooter />

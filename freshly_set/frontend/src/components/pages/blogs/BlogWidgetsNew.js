@@ -45,7 +45,7 @@ function BlogWidgetsNew() {
       }
     };
   return (
-    <div className="block">
+    <div id="updates" className="block">
   
      
         <div className="grid grid-cols-2 gap-x-[26px] lg:grid lg:grid-cols-3 gap-y-[28px] mx-[7px] lg:mx-[68px] mt-[70px] ">

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { CurrentIndexContext, ModalContentsContext, ModalContext, ModalToggleContentsContext } from '../../context/PageContext';
+import { CurrentIndexContext, GardensContext, ModalContentsContext, ModalContext, ModalToggleContentsContext, SectionTypeContext } from '../../context/PageContext';
 import { FaStar } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
@@ -9,7 +9,10 @@ function CtaPopup() {
     const [modalContents, setModalContents] = useContext(ModalContentsContext);
     const [modalToggleContents, setModalToggleContents]  = useContext(ModalToggleContentsContext)
 
+    const [modalToggleContentsGardens, setModalToggleContentsGardens] = useContext(GardensContext);
     const [currentIndex, setCurrentIndex] = useContext(CurrentIndexContext);
+
+    const [sectionType, setSectionType] = useContext(SectionTypeContext)
 
 
 
@@ -55,7 +58,7 @@ function CtaPopup() {
                     <div className="block lg:flex">
                         {/* Left side */}
                         <div className="block">
-                            <img className="w-[336.937px] h-[175px] lg:h-[400px] lg:w-[580px] object-cover" src={modalToggleContents[currentIndex]?.img} alt="CTACarousel1"/>
+                            <img className="w-[336.937px] h-[175px] lg:h-[400px] lg:w-[580px] object-cover" src={sectionType === "farmingSystems" ? modalToggleContents[currentIndex]?.img : modalToggleContentsGardens[currentIndex].img} alt="CTACarousel1"/>
 
                             <div className="flex justify-between space-x-[6.38px] mt-[20px]">
                                 <img className="w-auto h-[79.744px] lg:h-[145px]" src="/static/media/gardens3.png" alt="CTACarousel2"/>
@@ -70,7 +73,7 @@ function CtaPopup() {
                         {/* Right side */}
 
                         <div className="lg:ml-[33px] block">
-                            <h3 className="text-[20px] lg:text-[45px] font-[900] font-inter text-black">{modalToggleContents[currentIndex].title}</h3>
+                            <h3 className="text-[20px] lg:text-[45px] font-[900] font-inter text-black">{sectionType === "farmingSystems" ? modalToggleContents[currentIndex]?.img : modalToggleContentsGardens[currentIndex].title}</h3>
                             <div className="flex justify-center items-center lg:hidden">
                                 <p className="freshlyGreenText font-[900] text-[15px]">In Stock</p>
 

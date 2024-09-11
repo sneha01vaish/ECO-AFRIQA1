@@ -7,10 +7,12 @@ import ProductSection from "./ProductSection"
 import Reviews2 from "./Reviews2";
 import Faq from "./Faq";
 import Contact from "./Contact";
-import Metrics from "../../metrics/Metrics"
+import Metrics from "./Metrics"
 import FreshlyFooter from '../../footer/FreshlyFooter'
 import { PageContext } from '../../context/PageContext'
 import Banner from './Banner'
+import SubNavbar from "../../Nav/SubNavbar";
+import NavAuthenticated from '../../Nav/NavAuthenticated'
 function Home() {
 
   const [activeTab, setActiveTab] = useContext(PageContext);
@@ -20,17 +22,18 @@ function Home() {
 },[activeTab])
   return (
     <div className="">
-      <Nav />
-     <Hero  />
-     <Mission />
-     <Metrics />
-     <Banner />
-     <Services />
-     <ProductSection />
-     <Reviews2 />
-     <Faq />
+      <NavAuthenticated />
+      <SubNavbar />
+     <Hero id="hero" />
+     <Mission id="mission"/>
+     <Metrics id="metrics"/>
+     <Banner id="promotion"/>
+     <Services id="services" />
+     <ProductSection id="product" />
+     <Reviews2 id="reviews"/>
+     <Faq id="faqs"/>
 
-     <Contact />  
+     <Contact id="contact"/>  
     <FreshlyFooter />
      </div>
   )

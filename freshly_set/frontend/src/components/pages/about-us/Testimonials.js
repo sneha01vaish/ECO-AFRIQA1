@@ -21,7 +21,7 @@ function Testimonials() {
       }; 
 
     return (   
-      <div className="Testimonials relative  lg:mx-[40px] lg:mt-[100px]">
+      <section id="testimonials" className="Testimonials relative  lg:mx-[40px] lg:mt-[100px]">
           
           <div className="MainTitle text-[20px]  flex justify-center">
               <h1 className="font-inter block font[700] text-[#008000] text-[28px] lg:text-[45px] ">Our Testimonials</h1>
@@ -324,7 +324,7 @@ function Testimonials() {
 
       
 
-  </div> //Detailed ends here
+  </section> //Detailed ends here
    ); 
 }
 

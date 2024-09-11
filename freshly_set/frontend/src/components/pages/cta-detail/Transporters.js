@@ -42,13 +42,13 @@ function Transporters() {
                 <div className="MainTitle">
                     <p className="text-center text-[16px] lg:text-[40px] font-inter font-[700] text-[#008000]">Welcome To Freshly Transporters Centre!</p>
                 </div>
-                <div className="SetOfCards mx-[10px] lg:mx-[240px]  mb-[20px] lg:mb-[100px] "  >
+                <div className="SetOfCards mx-[10px] lg:mx-[240px]  mb-[20px] lg:mb-[100px]"  >
                     <div className="DriverNames block lg:flex justify-between">
                         {/*First and Last name */}
                         <div className="Firstname mt-[12px]">
                             <p className="text-start font-inter font-[700] text-[18px] my-0 text-[#008000] ">First Name</p>
                             <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[2px]">
-                                <input className="border-none outline-none font-inter font-[700] text-[16px]" value={'Christopher'} />
+                                <input type='name' name='name' className="border-none outline-none font-inter font-[700] text-[14px] lg:text-[16px]" />
                                 <img src="/static/media/edit.png" alt="" className=""/>
                             </div>
                         </div>
@@ -56,7 +56,7 @@ function Transporters() {
                         <div className="Lastname mt-[12px]">
                             <p className="text-start font-inter font-[700] text-[18px] my-0 text-[#008000]">Last Name</p>
                             <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[2px]">
-                                <input className="border-none outline-none font-inter font-[700] text-[16px]" value={'Joseph'}/>
+                                <input type='name' name='name' className="border-none outline-none font-inter font-[700] text-[14px] lg:text-[16px]" />
                                 <img src="/static/media/edit.png" alt="" className="mx-[4px]"/>
                             </div>
                         </div>
@@ -67,7 +67,7 @@ function Transporters() {
                         <div className="PhoneNumber mt-[12px]">
                             <p className="text-start font-inter font-[700] text-[18px] my-0 text-[#008000] ">Phone</p>
                             <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[2px]">
-                                <input className="border-none outline-none font-inter font-[700] text-[16px]" value={'Christopher'} />
+                                <input name='phone' className="border-none outline-none font-inter font-[700] text-[14px] lg:text-[16px]" />
                                 <img src="/static/media/edit.png" alt="" className=""/>
                             </div>
                         </div>
@@ -75,7 +75,7 @@ function Transporters() {
                         <div className="EmailAddress mt-[12px]">
                             <p className="text-start font-inter font-[700] text-[18px] my-0 text-[#008000]">Email</p>
                             <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[2px] ">
-                                <input className="border-none outline-none font-inter font-[700] text-[16px]" value={'Joseph'}/>
+                                <input type='name' name='email' className="border-none outline-none font-inter font-[700] text-[14px] lg:text-[16px] " />
                                 <img src="/static/media/edit.png" alt="" className="mx-[4px]"/>
                             </div>
                         </div>
@@ -84,7 +84,7 @@ function Transporters() {
                     <div className="PhysicalAddress mt-[12px]">
                             <p className="text-start font-inter font-[700] text-[18px] my-0 text-[#008000] ">Address</p>
                             <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[2px]">
-                                <input className="border-none outline-none font-inter font-[700] text-[12px] lg:text-[16px] w-[92%]  h-[40px]" value={"Loridge Apartments, Karen, Nairobi, Kenya"} />
+                                <input name='address' className="border-none outline-none font-inter font-[700] text-[14px] lg:text-[16px] w-[92%]  h-[40px]" />
                                 <img src="/static/media/edit.png" alt="" className="mx-[4px] my-auto"/>
                             </div>
                     </div>
@@ -141,23 +141,55 @@ function Transporters() {
                     </div>
 
                     {/*National ID */}
-                    <div className="PhysicalAddress mt-[28px]">
-                            <p className="text-start font-inter font-[700] text-16 lg:text-[23px] my-0 text-[#008000] ">For Verification Purpose Kindly Attach Your National ID - Front And Back</p>
-                            <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[12px]">
-                                <input className="border-none outline-none font-inter font-[500] text-[22px] w-full h-[200px]"  />
-                            </div>
-                    </div>
+                    <div className="NationalID  mt-[28px]">
+                        <p className="text-start font-inter font-[700] text-16 lg:text-[23px] my-0 text-[#008000] ">For Verification Purpose Kindly Attach Your National ID - Front And Back</p>
+                        <div className='InputBoxes flex justify-between '>
+                            <div className="InputBox block mr-[15px] lg:mr-[80px]  ">
+                                <p className='text-center font-[700] text-[18px] lg:text-[22px] mb-[6px] mt-[10px] lg:mt-[20px] font-inter text-[#008000]'>Front</p>
+                               
+                                <div className='CardUpload border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] lg:mt-[12px] h-[100px] lg:h-[200px] '>
+                                     <p className='text-center text-[8px] lg:text-[16px] lg:mb-[30px] mt-[6px] font-inter text-gray-700'>Accept .docx, jpg, png and pdf</p>
+                                    <input type='file'  className="border-none outline-none font-inter font-[500] text-[10px] lg:text-[22px] w-full cursor-pointer " />
+                                </div>
+                            </div> {/*Front Side Ends Here */}
+                            {/*Back Side of National ID */}
+                            <div className="InputBox block ml-[15px] lg:ml-[80px]  ">
+                                <p className='text-center font-[700] text-[18px] lg:text-[22px] mb-[6px] mt-[10px] lg:mt-[20px] font-inter text-[#008000]'>Back</p>
+                               
+                                <div className='CardUpload border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] lg:mt-[12px] h-[100px] lg:h-[200px] '>
+                                     <p className='text-center text-[8px] lg:text-[16px] lg:mb-[30px] mt-[6px] font-inter text-gray-700'>Accept .docx, jpg, png and pdf</p>
+                                    <input type='file'  className="border-none outline-none font-inter font-[500] text-[10px] lg:text-[22px] w-full cursor-pointer " />
+                                </div>
+                            </div> {/*Back Side Ends Here */}
+                        </div> {/*Input Boxes Ends Here */}
+                    </div> {/*national ID Upload Ends Here */}
                     
                     {/*Driving Licence */}
-                    <div className="PhysicalAddress mt-[28px] mb-[50px] ">
-                        <p className="text-start font-inter font-[700] text-[16px] lg:text-[23px] my-0 text-[#008000] ">For Verification Purpose Kindly Attach Your License - Front And Back</p>
-                        <div className="InputBox flex justify-between border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] mt-[12px]">
-                            <input className="border-none outline-none font-inter font-[500] text-[22px] w-full h-[200px]"  />
-                        </div>
-                    </div>
+                     <div className="DrivingLicence  mt-[28px] mb-[60px]">
+                        <p className="text-start font-inter font-[700] text-16 lg:text-[23px] my-0 text-[#008000] ">For Verification Purpose Kindly Attach Your National ID - Front And Back</p>
+                        <div className='InputBoxes flex justify-between '>
+                            <div className="InputBox block mr-[15px] lg:mr-[80px]  ">
+                                <p className='text-center font-[700] text-[18px] lg:text-[22px] mb-[6px] mt-[10px] lg:mt-[20px] font-inter text-[#008000]'>Front</p>
+                               
+                                <div className='CardUpload border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] lg:mt-[12px] h-[100px] lg:h-[200px] '>
+                                     <p className='text-center text-[8px] lg:text-[16px] lg:mb-[30px] mt-[6px] font-inter text-gray-700'>Accept .docx, jpg, png and pdf</p>
+                                    <input type='file'  className="border-none outline-none font-inter font-[500] text-[10px] lg:text-[22px] w-full cursor-pointer " />
+                                </div>
+                            </div> {/*Front Side Ends Here */}
+                            {/*Back Side of Driving Licence*/}
+                            <div className="InputBox block ml-[15px] lg:ml-[80px]  ">
+                                <p className='text-center font-[700] text-[18px] lg:text-[22px] mb-[6px] mt-[10px] lg:mt-[20px] font-inter text-[#008000]'>Back</p>
+                               
+                                <div className='CardUpload border-gray-700 shadow-gray-500 shadow-md py-[6px] px-[8px] rounded-[8px] lg:mt-[12px] h-[100px] lg:h-[200px] '>
+                                     <p className='text-center text-[8px] lg:text-[16px] lg:mb-[30px] mt-[6px] font-inter text-gray-700'>Accept .docx, jpg, png and pdf</p>
+                                    <input type='file'  className="border-none outline-none font-inter font-[500] text-[10px] lg:text-[22px] w-full cursor-pointer " />
+                                </div>
+                            </div> {/*FrontSide Ends Here */}
+                        </div> {/*Input Boxes Ends Here */}
+                    </div> {/*national ID Upload ENds Here */}
 
                     {/*Button */}
-                    <Link to="/transporter-success" className="">
+                    <Link to="/transporter-success" className="mt-[20px]">
                         <button className="SubmitButton cursor-pointer font-inter font-[700] text-white text-[16px] lg:text-[30px] bg-[#008000] w-full py-[20px] rounded-[12px] px-[20px] my-0 border-none active:scale-90 transition-all duration-100 ease-out">SUBMIT</button>
                     </Link>
         
