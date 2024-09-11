@@ -57,15 +57,17 @@
 
 
 .navbarLogo {
-    width: 80.433px;
-    height:98.48px;
+    width: 126.1px;
+    height: 121.68px; 
+    object-fit: cover;
     transition: width 0.5s ease-out, opacity 0.5s ease-out, height 0.75s ease-out; /* Transition properties */
     opacity: 1; /* Ensures the logo is visible initially */
 }
 
 .navbarLogoScroll {
-    width: 80px;
-    height: 80px; /* Adjust height if needed */
+    width: 105.1px;
+    height: 100.68px;
+   
     opacity: 1; /* Change the opacity for fade-in effect */
     transition: width 0.5s ease-out, opacity 0.5s ease-out, height 0.75s ease-out; /* Transition properties */
 }

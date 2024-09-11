@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from '../../context/CartContext';
 
 function Product({img, title, name, price, quantity}) {
+    const { addToCart } = useContext(CartContext);
+
   return (
     <div className='SingleCard p-[6px] bg-white border-gray-400 border-[0.5px] border-solid shadow-gray-800 shadow-lg rounded-[18px] '>     
       {/*Dynamic Product Image */}
@@ -17,7 +20,7 @@ function Product({img, title, name, price, quantity}) {
       </p>
       {/*Add to cart button */}
       <div className='AddButton flex justify-center mt-[20px] mb-[30px] lg:mb-[50px]'>
-             <button className='AddtoCart uppercase p-[10px] lg:p-[12px]  border-solid border-[2px] border-[#008000] text-[#00B207] font-inter font-[600] rounded-[12px] bg-white/60 shadow cursor-pointer hover:bg-[#008000] hover:text-white transition-all hover:border-[#008000]'>add to cart</button>
+             <button onClick={() => addToCart({img, title, name, price, quantity})} className='AddtoCart uppercase p-[10px] lg:p-[12px]  border-solid border-[2px] border-[#008000] text-[#00B207] font-inter font-[600] rounded-[12px] bg-white/60 shadow cursor-pointer hover:bg-[#008000] hover:text-white transition-all hover:border-[#008000]'>add to cart</button>
       </div>
      
       

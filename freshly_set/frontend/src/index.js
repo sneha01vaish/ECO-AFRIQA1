@@ -6,6 +6,7 @@ import App from './App';
 import { PageContextProvider } from './components/context/PageContext';
 import { BlogsContextProvider } from './components/context/BlogsContext';
 import { ActiveSectionProvider } from './components/context/ActiveSectionContext';
+import { CartProvider } from './components/context/CartContext';
 // import reportWebVitals from './reportWebVitals';
 // import './styles/tailwind.css';
 
@@ -16,7 +17,9 @@ root.render(
     <PageContextProvider>
       <BlogsContextProvider>
         <ActiveSectionProvider>
-          <App />
+          <CartProvider>
+            <App />
+          </CartProvider>
         </ActiveSectionProvider>
       </BlogsContextProvider>
     </PageContextProvider>

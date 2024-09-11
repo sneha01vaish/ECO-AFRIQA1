@@ -14,6 +14,8 @@ import ProductsSearchBar from './ProductsSearchBar'
 import { IoMdMenu } from 'react-icons/io'
 import Banner from '../homepage/Banner'
 import ProductsPageSidebar from '../../Nav/ProductsPageSidebar'
+import Cart from './Cart'
+import Nav from '../../Nav/Navbar'
 function Products() {
   const [activeTab, setActiveTab] = useContext(PageContext);
 
@@ -35,11 +37,14 @@ function Products() {
             {
               !modalOpen && (
                 <>
-                  <NavAuthenticated />
+                  <Nav />
                 </>
               )
             }
          
+         {/* Cart Popup */}
+
+         <Cart />
           
             {/* <HamburgerMenu />  */}
             <div className="flex">

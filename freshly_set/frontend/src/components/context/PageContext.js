@@ -1,4 +1,5 @@
-import {  createContext, useState } from "react";
+import axios from "axios";
+import {  createContext, useEffect, useState } from "react";
 
 export const PageContext = createContext();
 export const PopupContext = createContext();
@@ -11,6 +12,8 @@ export const SelectedSectionContext = createContext();
 export const BlogsClickedContext = createContext();
 export const SectionTypeContext = createContext();
 export const ProductsSideBarContext = createContext();
+export const ProductsContext = createContext();
+export const SearchContext = createContext();
 
 export  const PageContextProvider = ({ children }) => {
     const [activeTab, setActiveTab] = useState("home");
@@ -140,7 +143,40 @@ export  const PageContextProvider = ({ children }) => {
 ])
 
     // Modal context for Blog Modals
-   const [blogModalOpen, setBlogModalOpen] = useState(false)
+   const [blogModalOpen, setBlogModalOpen] = useState(false);
+   const [csrfToken, setCsrfToken] = useState('');
+   const [products, setProducts] = useState([]);
+   
+   useEffect(() => {
+    const token = document.querySelector('meta[name="csrf-token"]');
+  if (token) {
+    setCsrfToken(token.getAttribute('content'));
+  }
+
+  axios.get('http://localhost:8000/products/')
+  .then(response => {
+    setProducts(response.data.results);
+    console.log("Products", products)
+
+  })
+  .catch(error => {
+    console.error('Error fetching Products:', error);
+  });
+
+  },[])
+
+  // Function to handle search input and update URL params
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const searchTerm = event.target.search.value;
+    if (searchTerm) {
+      // Add the search term to the URL as a query parameter
+      navigate(`?q=${searchTerm}`);
+    } else {
+      // Clear the search term from the URL
+      navigate(`/blogs`);
+    }
+  };
     return(
         <PageContext.Provider value={[activeTab, setActiveTab]}>
             <PopupContext.Provider value={[popUpOpen, setPopUpOpen]}>
@@ -154,7 +190,13 @@ export  const PageContextProvider = ({ children }) => {
                                         <GardensContext.Provider value={[modalToggleContentsGardens, setModalToggleContentsGardens]}>
                                             <SectionTypeContext.Provider value={[sectionType, setSectionType]}>
                                                 <ProductsSideBarContext.Provider value={[productsSidebarOpen, setProductsSidebarOpen]}>
-                                                    {children}
+                                                    <ProductsContext.Provider value={[products, setProducts]}>
+                                                        <SearchContext.Provider value={{handleSearch}}>
+                                                            {children}
+
+                                                        </SearchContext.Provider>
+
+                                                    </ProductsContext.Provider>
                                                 </ProductsSideBarContext.Provider>
                                             </SectionTypeContext.Provider>
                                         </GardensContext.Provider>

@@ -27,7 +27,10 @@ import Mpesa from './components/pages/cta-detail/Mpesa'
 import Credit from './components/pages/cta-detail/Credit';
 import Checkout from './components/pages/cta-detail/Checkout';
 import Mpesa2 from './components/pages/cta-detail/Mpesa2';
+import ResultsSearch from './components/pages/cta-detail/ResultsSearch';
+
 import Login from './components/pages/login/Login';
+import Consultation from './components/pages/cta-detail/Consultation';
 
 
 
@@ -65,6 +68,8 @@ function App() {
 
         <Route path="/mpesa" element={<Mpesa />} />
          <Route path="/credit" element={<Credit />} />
+         <Route path="/search" element={<ResultsSearch />} />       
+        <Route path="/consultation" element={<Consultation />} />
         
 
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}

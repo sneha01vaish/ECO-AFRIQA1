@@ -11,15 +11,15 @@ function Banner() {
 
         </p>
 
-        <button className="absolute lg:bottom-[164px] lg:left-[433px] h-[48px] w-[236px] bg-[#008000] text-white rounded-[15px] text-[25px] font-inter font-[500] border-none cursor-pointer active:scale-90 transition-all duration-500 ease-out">Click Here</button>
+        <button className="hidden lg:flex absolute lg:bottom-[164px] lg:left-[433px] h-[48px] w-[236px] bg-[#008000] text-white rounded-[15px] text-[25px] font-inter font-[500] border-none cursor-pointer active:scale-90 transition-all duration-500 ease-out">Click Here</button>
 
 
         {/* <p className="text-[5.148px] lg:text-[15px] w-[112.888px] lg:w-[336px] text-white text-start font-josefin font-[600] leading-[6.692px] lg:leading-[19.5px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p> */}
 
         <div>
-            <img className="absolute -bottom-[22px] lg:right-[180px] h-[128.761px] w-[145.814px] lg:h-[379px] lg:w-[434px] z-[11]" src="/static/media/banner1.png"  alt="BannerImg"/>
-            <img className="absolute -bottom-[22px] lg:right-[180px] h-[59.778px] w-[85.318px] lg:h-[243.246px] lg:w-[266.767px] z-[10]" src="/static/media/banner5.png"  alt="BannerImg"/>
-            <img className="absolute -bottom-[22px] lg:right-[40px] h-[59.778px] w-[85.318px] lg:h-[243.246px] lg:w-[266.767px] z-[10]" src="/static/media/banner6.png"  alt="BannerImg"/>
+            <img className="absolute lg:-bottom-[22px] lg:right-[180px] h-[128.761px] w-[145.814px] lg:h-[379px] lg:w-[434px] z-[11]" src="/static/media/banner1.png"  alt="BannerImg"/>
+            <img className="absolute lg:-bottom-[22px] lg:right-[180px] h-[59.778px] w-[85.318px] lg:h-[243.246px] lg:w-[266.767px] z-[10]" src="/static/media/banner5.png"  alt="BannerImg"/>
+            <img className="absolute lg:-bottom-[22px] lg:right-[40px] h-[59.778px] w-[85.318px] lg:h-[243.246px] lg:w-[266.767px] z-[10]" src="/static/media/banner6.png"  alt="BannerImg"/>
 
 
 
