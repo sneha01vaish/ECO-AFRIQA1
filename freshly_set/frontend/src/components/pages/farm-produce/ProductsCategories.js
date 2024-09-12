@@ -22,6 +22,7 @@ const ProductsCategories = () => {
 
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState({})
+  const [isLoading, setIsLoading] = useState(true);
 
   const categoryStyles = {
     fruits: 'bg-[#FF9E0C]/80 hover:bg-[#FF9E0C]',
@@ -102,20 +103,22 @@ useEffect(() => {
   .then(response => {
     setCategories(response.data);
     console.log("Categories Fetched from db", categories)
-
+    setIsLoading(false);
   })
   .catch(error => {
     console.error('Error fetching Products:', error);
-  });
+  }) 
+
 
 }, [csrfToken]);
 
 
 const filteredArray = products.filter((product) =>  product.name === selectedCategory.name);
 
-console.log("Filtered Array", filteredArray)
 useEffect(() => {
-   
+   if(categories.length === 0){
+      setCategories([])
+   }
 },[])
 useEffect(() => {
   // if(!products){
@@ -137,22 +140,28 @@ useEffect(() => {
             <button onClick={scrollRight} className='border-none text-green-600 text-[40.00px] font-extrabold bg-transparent cursor-pointer p-0 m-0 flex items-center'><RiArrowRightSLine /></button>
           </div>
 
-          <div className='grid grid-cols-2 lg:flex justify-between items-center gap-6 overflow-x-auto scrollbar scrollbar-thumb-green-400 pl-3 sm:pl-0 pb-4'
+          <div 
+          className={`'grid grid-cols-2 lg:flex justify-between items-center gap-6 overflow-x-auto scrollbar scrollbar-thumb-green-400 pl-3 sm:pl-0 pb-4'`}
           ref={scrollContainer}>
-            {
+           {
+            !isLoading && (
               categories?.map(category => (
                 <div
+                style={{ backgroundColor: category.bgColor }} 
                 key={category.id}
-                onClick={() => handleCatClick(category)} className={`transition delay-200 ease-in-out min-w-[160.00px] h-[160.00px] flex flex-col justify-end items-center rounded-lg  hover:shadow-lg cursor-pointer ${selectedCategory === category.name ? ' shadow-md shadow-slate-600' : ''}`}>
+                onClick={() => handleCatClick(category)} className={`transition delay-200 ease-in-out min-w-[160.00px] h-[160.00px]  bg-[${category.bgColor}]  flex flex-col justify-end items-center rounded-lg  hover:shadow-lg cursor-pointer ${selectedCategory === category.name ? ' shadow-md shadow-slate-600' : ''}`}>
 
               <img
                 className='w-[152px]'
-                src={productImages.fruits}
+                src={category.image}
                 alt="Fresh fruits"
               />
               <p className='font-bold text-white capitalize'>{category.name}</p>
-            </div>              ))
-            }
+            </div>           
+               ))
+              )
+           }
+            
           </div>
         </div>
       <div className='border-b border-solid border-green-600 mt-12' />
