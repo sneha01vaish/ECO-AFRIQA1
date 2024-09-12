@@ -31,6 +31,7 @@ import ResultsSearch from './components/pages/cta-detail/ResultsSearch';
 
 import Login from './components/pages/login/Login';
 import Consultation from './components/pages/cta-detail/Consultation';
+import CartPage from './components/pages/cta-detail/CartPage';
 
 
 
@@ -70,6 +71,7 @@ function App() {
          <Route path="/credit" element={<Credit />} />
          <Route path="/search" element={<ResultsSearch />} />       
         <Route path="/consultation" element={<Consultation />} />
+        <Route path="/cart" element={<CartPage />}/>
         
 
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}

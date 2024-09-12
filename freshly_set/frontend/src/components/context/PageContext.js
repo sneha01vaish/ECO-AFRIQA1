@@ -156,12 +156,13 @@ export  const PageContextProvider = ({ children }) => {
   axios.get('http://localhost:8000/products/')
   .then(response => {
     setProducts(response.data.results);
-    console.log("Products", products)
 
   })
   .catch(error => {
     console.error('Error fetching Products:', error);
   });
+  console.log("Products retrieved", products)
+
 
   },[])
 

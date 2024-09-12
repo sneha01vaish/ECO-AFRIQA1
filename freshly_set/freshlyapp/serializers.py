@@ -1,3 +1,6 @@
+import os
+from PIL import Image
+from django.core.exceptions import ValidationError
 from rest_framework import serializers
 
 from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification, Review, Farmer, Cart, CartItem, Banner, Category
@@ -41,10 +44,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['email', 'username']
 
-from rest_framework import serializers
-from django.core.exceptions import ValidationError
-from PIL import Image
-import os
 
 class ProductSerializer(serializers.ModelSerializer):
 
@@ -116,8 +115,6 @@ class ProductSerializer(serializers.ModelSerializer):
                     {'image': 'Image resolution too high. Maximum resolution is 4000x3000.'})
 
         return data
-
-
 
 
 class ReviewSerializer(serializers.ModelSerializer):
@@ -272,8 +269,7 @@ class BannerSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        # Specify the fields you want in the API
-        fields = ['id', 'name', 'description']
+        fields = ['id', 'name', 'description', "image", "bgColor"]
 
 
 class CartItemSerializer(serializers.ModelSerializer):

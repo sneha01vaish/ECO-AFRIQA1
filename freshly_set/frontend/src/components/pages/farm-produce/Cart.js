@@ -39,7 +39,7 @@ function Cart() {
 
 
                     {/* CartItems */}
-                    <div className="block space-y-[36.38px]">
+                    <div className="block space-y-[36.38px] overflow-y-scroll">
                     {
                         cartItems.map((item) => (
                             <div className="relative flex justify-between items-center lg:px-[52.45px] lg:pt-[66px] lg:pb-[72px] rounded-[20px] shadow-lg">
