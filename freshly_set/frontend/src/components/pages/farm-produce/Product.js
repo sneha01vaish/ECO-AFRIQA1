@@ -16,7 +16,7 @@ function Product({img, title, name, price, quantity, unit}) {
       {/*Dynamic Product Price and Quantity */}
       <p className='PriceAndQtty text-center uppercase font-inter text-[12px] lg:text-[16px] font-[700]'>
         <span className='ProductPrice text-[#008000]'>{price}</span>
-        <span className='ProductQtty text-[#FF0C1A] '>&nbsp; - {unit}</span>
+        <span className='ProductQtty text-[#FF0C1A] '>&nbsp; - PER {unit}</span>
       </p>
       {/*Add to cart button */}
       <div className='AddButton flex justify-center mt-[20px] mb-[30px] lg:mb-[50px]'>
