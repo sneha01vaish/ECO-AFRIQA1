@@ -9,6 +9,9 @@ from .views import PollDetailView, PollListCreateView, VoteCreateView, VerifyIDV
 from .views import *
 from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -37,6 +40,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
 
     path('about-us/', TemplateView.as_view(template_name='index.html')),
+    path("marketplace/", TemplateView.as_view(template_name="index.html")),
     # path('blogs/', views.blogs, name='blogs'),
     path('freshlyapp/blogs/', BlogListView.as_view(), name='blog-list'),
     path('freshlyapp/create/', BlogListCreateView.as_view(),

@@ -8,12 +8,13 @@ function PopularProducts() {
 
     useEffect(() => {
         if(products.length>0){
-            console.log("Products pulled in succesfully")
+            console.log("Products pulled in succesfully", products)
         }else{
             // Fall back to backup Json file if no products are in the db
-            console.log("Pulled in Backup Products", products)
 
             setProducts(Products)
+            console.log("Pulled in Backup Products", products)
+
         }
     },[products])
   return (
@@ -25,7 +26,7 @@ function PopularProducts() {
         <div className="CardsGrid grid grid-cols-2 lg:grid-cols-4 gap-[20px] lg:gap-[60px] lg:mx-[40px]">
 
             {products.slice(0,8).map((product) => (
-                <Product key={product.id} img={product.img} title={product.title} name={product.name} price={product.price} quantity={product.quantity}/>
+                <Product key={product.id} img={`${process.env.REACT_APP_API_HOST}/${product.image}`} title={product.title} name={product.name} price={product.price} quantity={product.quantity} unit={product.unit}/>
 
             ))}
         </div> {/*Cards Ends Here */}
