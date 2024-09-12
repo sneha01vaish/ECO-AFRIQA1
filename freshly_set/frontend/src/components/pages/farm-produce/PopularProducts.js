@@ -18,6 +18,7 @@ function PopularProducts() {
             console.log("Pulled in Backup Products", products)
 
         }
+        console.log("Products popped", products)
     },[products, empty])
   return (
     <div className="PopularProducts ">
@@ -28,7 +29,7 @@ function PopularProducts() {
         <div className="CardsGrid grid grid-cols-2 lg:grid-cols-4 gap-[20px] lg:gap-[60px] lg:mx-[40px]">
 
             {products.slice(0,8).map((product) => (
-                <Product key={product.id} img={product.image} title={product.title} name={product.name} price={product.price} quantity={product.quantity} unit={product.unit} empty={empty}/>
+                <Product key={product.id} img={product.image} title={product.title} name={product.name} price={product.price} quantity={product.quantity} unit={product.unit}/>
 
             ))}
         </div> {/*Cards Ends Here */}
