@@ -98,7 +98,12 @@ function Nav() {
     {/* Icons */}
     <div className="flex space-x-6 items-center">
       <div className="relative">
-        <TiShoppingCart onClick={() => setCartOpen(true)} className="text-white text-[39px] cursor-pointer"/>
+        {/* <TiShoppingCart onClick={() => setCartOpen(true)} className="text-white text-[39px] cursor-pointer"/> */}
+        <Link to="/cart">
+          <TiShoppingCart onClick={() => setCartOpen(true)} className="text-white text-[39px] cursor-pointer"/>
+
+        </Link>
+
         <div className="absolute -top-[10px] left-[30px] bg-[#f30024] h-[25px] w-[25px] rounded-full text-center text-white">{cartItems.length}</div>
       </div>
       <div className="relative">
