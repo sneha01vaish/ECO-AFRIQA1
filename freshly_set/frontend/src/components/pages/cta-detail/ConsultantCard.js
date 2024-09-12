@@ -38,7 +38,7 @@ function ConsultantCard({img,name, field,description,rate}) {
 
                         {/*Consultant Booking */}
                         <div className="ConsultantBoking block">
-                            <Link to="/checkout"> 
+                            <Link to="/booking"> 
                                 <div className="BookingButton bg-[#008000] rounded-[4px] lg:rounded-[10px] cursor-pointer active:scale-90 transition-all duration-100 ease-out">
                                     <p className="text-center font-inter text-[8px] lg:text-[20px] font-[900] my-0 text-white py-[4px] lg:py-[16px] px-[14px] lg:px-[60px]">BOOK</p>
                                 </div>
