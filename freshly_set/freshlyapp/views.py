@@ -293,7 +293,28 @@ def Register(request):
 
     # Return errors if validation fails
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def login(request):
+    email = request.data.get('email')
+    password = request.data.get('password')
 
+    # Authenticate the user
+    user = authenticate(request, username=email, password=password)
+
+    if user is not None:
+        # If authentication is successful, generate a token
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+            'user_id': user.id,
+            'email': user.email,
+        }, status=status.HTTP_200_OK)
+    else:
+        # If authentication fails
+        return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Blog.objects.all()

@@ -23,11 +23,45 @@ const Login = () => {
   const handlePasswordToggle = () => {
     setPasswordToggle(!passwordToggle);
   };
-
-  
   const handleSubmit = async (e) => {
-   
-  }; 
+    e.preventDefault();  // Prevent the form from submitting
+  
+    validateForm();  // Validate the form inputs
+  
+    if (Object.keys(errors).length === 0) {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/freshlyapp/login/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+  
+        const data = await response.json();
+  
+        if (response.ok) {
+          // Store the JWT token in localStorage or cookies (for future API requests)
+          localStorage.setItem('access_token', data.access);
+          localStorage.setItem('refresh_token', data.refresh);
+  
+          // Redirect to dashboard or some other page after successful login
+          // setSuccessMessage("Login successful!");
+          console.log("Login successful")
+
+          window.location.href = '/';
+        } else {
+          // Handle authentication errors
+          setErrors({ login: 'Invalid credentials. Please try again.' });
+        }
+      } catch (error) {
+        setErrors({ login: 'Something went wrong. Please try again.' });
+      }
+    }
+  };
 
   const validateForm = () => {
     const errors = {};
