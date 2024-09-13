@@ -11,7 +11,8 @@ export default function Deals() {
     const [csrfToken, setCsrfToken] = useState("")
     const [countdownTime, setCountdownTime] = useState(new Date());
     const [dealOfWeekBanner, setDealOfWeekBanner] = useState({});
-
+    const [saleBanner, setSaleBanner] = useState({});
+    const [saleBanner2, setSaleBanner2] = useState({});
     function calculateTimeLeft() {
         const difference = new Date()
         let timeLeft = {}
@@ -79,7 +80,9 @@ export default function Deals() {
 
         // setCountdownTime(filteredBanner[0].countdown?filteredBanner.countdown:new Date())
         setDealOfWeekBanner(filteredBanner[0])
-        console.log("dealOfWeekBanner", dealOfWeekBanner)
+        setSaleBanner(filteredBanner[1]);
+        setSaleBanner2(filteredBanner[2]);
+        console.log("dealOfWeekBanner", saleBanner)
     },[productsSidebarOpen])
     return (
         <main className="w-full">
@@ -123,7 +126,7 @@ export default function Deals() {
 
                 <div className={productsSidebarOpen ? 'mx-auto lg:mx-[0px]   h-[258.12px] w-[225.39px] lg:w-[250.09px] lg:h-[286.42px]  border border-solid bg-zinc-900 rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8':'mx-auto lg:mx-[0px]  h-[258.12px] w-[225.39px] lg:w-[335.4px] lg:h-[384.12px]  border border-solid bg-zinc-900 rounded-xl border-slate-200 text-white shadow-sm flex flex-col justify-start items-center p-3 py-8'}>
 
-                    <p className='text-xl font-bold capitalize my-1 text-green-600'>Fruits sale !!!</p>
+                    <p className='text-xl font-bold capitalize my-1 text-green-600'>{saleBanner? saleBanner.title:"Fruits Sale!!!"}</p>
                     <p className="font-thin my-2">
                         Buy 3 get 2 free !!
                     </p>
