@@ -164,7 +164,7 @@ useEffect(() => {
   return (
     <>
     <div className="flex justify-center">
-      <section className='bg-white/80  mx-auto py-8 mt-[112px] relative' >
+      <section className=' mx-auto py-8 mt-[112px] relative' >
         <div className="" >
         <h2 className='freshlyGreenText text-[35px] text-center font-bold my-0'>Categories</h2>     
           <div className='text-green-700 font-bold flex justify-end'>
@@ -173,7 +173,7 @@ useEffect(() => {
           </div>
 
           <div 
-          className={`'grid grid-cols-2 lg:flex justify-between items-center gap-6 overflow-x-auto scrollbar scrollbar-thumb-green-400 pl-3 sm:pl-0 pb-4'`}
+          className={`'w-[100%] grid grid-cols-2 lg:flex justify-center lg:space-x-[68.06px] items-center lg:gap-y-[0px] gap-x-[23.75px] lg:gap-x-[0px] gap-y-[21.7px] overflow-x-auto scrollbar scrollbar-thumb-green-400 pl-3 sm:pl-0 pb-4'`}
           ref={scrollContainer}>
            {
            !empty ? (

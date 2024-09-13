@@ -7,8 +7,8 @@ function ProductsSearchBar({ placeholder }) {
 
   }
   return (
-    <form  className="absolute translate-x-[25%] mt-[100px] z-20 h-[42.188px] lg:h-[100px] w-[853.653p] flex items-center justify-center border-[#008000] bg-white-100 pb--2">
-      <div className="flex justify-between items-center   w-[853.653px] font-[600] h-[79px] rounded-[20px] my-[29px] border-solid border-[5px] bg-white border-[#008000] mb-[-150px] mt-[12px] shadow-lg">
+    <form  className="mt-[100px] h-[42.188px] lg:h-[100px]  flex items-center justify-center border-[#008000] bg-white-100 pb--2 z-[20]">
+      <div className="flex justify-between items-center   w-[100%] lg:w-[853.653px]  font-[600] h-[100%] rounded-[20px] my-[29px] border-solid border-[5px] bg-white border-[#008000] mb-[-150px] mt-[12px] shadow-lg">
         
         <input
           type="text"

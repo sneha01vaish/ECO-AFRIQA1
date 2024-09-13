@@ -87,7 +87,7 @@ export default function Deals() {
     return (
         <main className="w-full">
             {/* <h1 className="text-3xl sm:text-5xl text-green-700 text-center">Farm Produce Center</h1> */}
-            <div className="w-full block lg:flex  justify-center space-y-[38px] lg:space-y-[0px] lg:gap-y-[0px] lg:gap-8 lg:py-8 lg:ml-[36px]">
+            <div className="w-full block lg:flex  justify-center space-y-[38px] lg:space-y-[0px] lg:gap-y-[0px] lg:gap-8 lg:py-8 lg:ml-[36px] ">
 
                 <div className={productsSidebarOpen ? 'mx-auto lg:mx-[0px]  h-[258.12px] w-[225.39px] lg:w-[250.09px] lg:h-[286.42px]  border border-solid bg-[#00AA5B] rounded-xl border-slate-200 text-white/80 shadow-sm flex flex-col justify-start items-center p-3 py-8':'mx-auto lg:mx-[0px] h-[258.12px] w-[225.39px] lg:w-[335.4px] lg:h-[384.12px]  border border-solid bg-[#00AA5B] rounded-xl border-slate-200 text-white/80 shadow-sm flex flex-col justify-start items-center p-3 py-8'}>
                     <p className='text-xl font-bold capitalize my-1'>Deal of the week</p>

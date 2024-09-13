@@ -8,6 +8,7 @@ import { FaMinusCircle, FaPlusCircle, FaRegTrashAlt } from 'react-icons/fa';
 import { CartContext, CartOpenContext } from '../../context/CartContext';
 import Nav from '../../Nav/Navbar';
 import { Link } from 'react-router-dom';
+import { EmptyContext } from '../../context/PageContext';
 
 function CartPage() {
     const [cartOpen, setCartOpen] = useContext(CartOpenContext);
@@ -16,6 +17,10 @@ function CartPage() {
     const [productId, setProductId] = useState(0);
 
     const [delivery, setDelivery] = useState(200);
+    const [empty, setEmpty] = useContext(EmptyContext);
+
+    // const imgSrc = empty ? img : (img.startsWith('http') ? img : `${process.env.REACT_APP_API_HOST}/${img}`);
+
 
     // const itemInCart = cartItems.find(item => item.id === productId);
 
@@ -32,6 +37,12 @@ function CartPage() {
                 <div className="block mt-[150px]">
                     <h1 className="text-[38px] freshlyGreenText font-[700] text-center">My Cart</h1>
 
+                    <Link to="/marketplace" className="flex items-center justify-end lg:space-x-[20.3px] space-x-[9.26px] cursor-pointer">
+                        <FaPlusCircle className="freshlyGreenText text-[16px] lg:text-[38px]" />
+                        <h3 className="freshlyGreenText text-[12.35px] lg:text-[27.07px]">Add More Items</h3>
+                    </Link>
+
+
 
                     {/* CartItems */}
                     <div className="block space-y-[36.38px] overflow-y-scroll">
@@ -43,7 +54,7 @@ function CartPage() {
                                     <IoCheckmarkCircle className="freshlyGreenText text-[19.76px] lg:text-[42.3px]" />
                                     
                                     <div className="bg-[#00AA5B]/[0.10] h-[53.37px]  w-[50.2px] lg:h-[142px] lg:w-[133px]  inset-0 flex justify-center items-center">
-                                        <img className="h-[31.45px] w-[31.45px] lg:h-[83.75px] lg:w-[102px] object-cover" src={`${process.env.REACT_APP_API_HOST}/${item.img}`} alt="CartItem"/>
+                                        <img className="h-[31.45px] w-[31.45px] lg:h-[83.75px] lg:w-[102px] object-cover" src={empty ? item.img : `${process.env.REACT_APP_API_HOST}/${item.img}`} alt="CartItem"/>
 
                                     </div>
 
