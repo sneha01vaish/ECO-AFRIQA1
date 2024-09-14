@@ -62,7 +62,7 @@ const smoothScroll = (event, targetId) => {
 
   return (
     <div
-      className={`fixed flex justify-center items-center w-[100%] mx-auto z-40 transition-all duration-500 ease-in-out  ${visible ? 'top-[120px]' : '-top-[100px]'}`}
+      className={`fixed flex justify-center items-center w-[100%] mx-auto z-40 transition-all duration-500 ease-in-out rounded-[26px]  ${visible ? 'top-[120px]' : '-top-[100px]'}`}
       style={{ transform: visible ? 'translateY(0)' : 'translateY(-100%)' }}
     >
       <nav className="pr-[170px] bg-black/[0.40] backdrop-blur-[17px] mt-[50px]    px-[30px]">
