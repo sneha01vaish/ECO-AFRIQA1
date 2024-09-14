@@ -14,6 +14,7 @@ export const SectionTypeContext = createContext();
 export const ProductsSideBarContext = createContext();
 export const ProductsContext = createContext();
 export const SearchContext = createContext();
+export const EmptyContext = createContext();
 
 export  const PageContextProvider = ({ children }) => {
     const [activeTab, setActiveTab] = useState("home");
@@ -146,7 +147,7 @@ export  const PageContextProvider = ({ children }) => {
    const [blogModalOpen, setBlogModalOpen] = useState(false);
    const [csrfToken, setCsrfToken] = useState('');
    const [products, setProducts] = useState([]);
-   
+   const [empty, setEmpty] = useState(true);
    useEffect(() => {
     const token = document.querySelector('meta[name="csrf-token"]');
   if (token) {
@@ -193,10 +194,10 @@ export  const PageContextProvider = ({ children }) => {
                                                 <ProductsSideBarContext.Provider value={[productsSidebarOpen, setProductsSidebarOpen]}>
                                                     <ProductsContext.Provider value={[products, setProducts]}>
                                                         <SearchContext.Provider value={{handleSearch}}>
-                                                            {children}
-
+                                                            <EmptyContext.Provider value={[empty, setEmpty]}>
+                                                                {children}
+                                                            </EmptyContext.Provider>
                                                         </SearchContext.Provider>
-
                                                     </ProductsContext.Provider>
                                                 </ProductsSideBarContext.Provider>
                                             </SectionTypeContext.Provider>

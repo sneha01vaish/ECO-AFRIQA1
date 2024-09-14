@@ -56,12 +56,18 @@ function Products() {
                </div>
 
 
+
                 {/* Right side start */}
 
                 {/* Make margins auto so that it stays centered on larger screens */}
                 <div className={productsSidebarOpen ? "lg:ml-[]":"lg:ml-[0px]"}>
-                    <div className="flex space-x-[80px] mt-[100px]">
-                      <IoMdMenu onClick={() => setProductsSidebarOpen(true)} className={productsSidebarOpen ? "hidden": "text-[58px] text-black ml-[36px] lg:mt-[100px] cursor-pointer"}/>
+                  <div className="flex justify-center mx-[22.79px]">
+                    <ProductsSearchBar />
+
+                  </div>
+
+                    <div className="flex space-x-[80px] ">
+                      <IoMdMenu onClick={() => setProductsSidebarOpen(true)} className={productsSidebarOpen ? "hidden": "text-[58px] text-black ml-[36px]  cursor-pointer mt-[100px] lg:mt-[0px]"}/>
                       {/* <ProductsSearchBar placeholder="Search for Farm Produce" /> */}
                     </div>
                     <ProduceCenter />

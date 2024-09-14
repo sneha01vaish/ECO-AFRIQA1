@@ -109,6 +109,8 @@ class Product(models.Model):
     desc = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     qtty = models.IntegerField(default=0)
+    unit = models.CharField(max_length=250, null=True,
+                            blank=True, default="PACKET")
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name='products', blank=True, null=True)
     image = models.ImageField(

@@ -100,7 +100,7 @@ function Nav() {
       <div className="relative">
         {/* <TiShoppingCart onClick={() => setCartOpen(true)} className="text-white text-[39px] cursor-pointer"/> */}
         <Link to="/cart">
-          <TiShoppingCart onClick={() => setCartOpen(true)} className="text-white text-[39px] cursor-pointer"/>
+          <TiShoppingCart className="text-white text-[39px] cursor-pointer"/>
 
         </Link>
 
