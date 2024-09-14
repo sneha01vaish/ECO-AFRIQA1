@@ -62,18 +62,55 @@ function Nav() {
 
     {/* Nav Buttons */}
     <div className="flex space-x-6 items-center bg-[#D9D9D9]/[10%] backdrop-blur-[50%] rounded-[52px] px-8 py-2">
-      <Link onClick={() => setActiveTab("home")} to="/" className="group">
-        <p className="text-[19.25px] font-inter font-bold text-[#F5F5F5]">Home</p>
-      </Link>
-      <Link onClick={() => setActiveTab("about")} to="/about-us" className="group">
-        <p className="text-[19.25px] font-inter font-bold text-[#F5F5F5]">About</p>
-      </Link>
-      <Link onClick={() => setActiveTab("blogs")} to="/blogs" className="group">
-        <p className="text-[19.25px] font-inter font-bold text-[#F5F5F5]">Blogs</p>
-      </Link>
-      <Link onClick={() => setActiveTab("marketplace")} to="/marketplace" className="group">
-        <p className="text-[19.25px] font-inter font-bold text-[#F5F5F5]">Market</p>
-      </Link>
+    <Link 
+    onClick={() => setActiveTab("home")} 
+    to="/" 
+    className="group relative"
+  >
+    <p className="my-[0px]  text-[19.25px] font-inter font-bold text-[#F5F5F5]">
+      Home
+    </p>
+
+    {/* White line that appears on hover */}
+    <span className="absolute  left-0 -bottom-[5px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
+  </Link>
+  <Link 
+    onClick={() => setActiveTab("about")} 
+    to="/" 
+    className="group relative"
+  >
+    <p className="my-[0px]  text-[19.25px] font-inter font-bold text-[#F5F5F5]">
+      About
+    </p>
+
+    {/* White line that appears on hover */}
+    <span className="absolute  left-0 -bottom-[5px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
+  </Link>
+
+  <Link 
+    onClick={() => setActiveTab("blogs")} 
+    to="/" 
+    className="group relative"
+  >
+    <p className="my-[0px]  text-[19.25px] font-inter font-bold text-[#F5F5F5]">
+      Blogs
+    </p>
+
+    {/* White line that appears on hover */}
+    <span className="absolute  left-0 -bottom-[5px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
+  </Link>
+  <Link 
+    onClick={() => setActiveTab("marketplace")} 
+    to="/" 
+    className="group relative"
+  >
+    <p className="my-[0px]  text-[19.25px] font-inter font-bold text-[#F5F5F5]">
+      Market
+    </p>
+
+    {/* White line that appears on hover */}
+    <span className="absolute  left-0 -bottom-[5px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
+  </Link>
 
       <div className="flex items-center space-x-1 relative">
         <p className="text-[19.25px] font-inter font-bold text-[#F5F5F5]">Products</p>

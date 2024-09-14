@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { ProductsSideBarContext } from '../../context/PageContext';
 
 const CountdownTimer = ({ endTime }) => {
   const [timeRemaining, setTimeRemaining] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [productsSidebarOpen, setProductsSidebarOpen] = useContext(ProductsSideBarContext);
   const formatTime = (value) => {
     return String(value).padStart(2, '0');
   };
@@ -31,32 +33,32 @@ const CountdownTimer = ({ endTime }) => {
     <div>
       <div className="flex items-center">
         <div className="flex-col ">
-            <h2 className="mb-[0px] text-[14px]">{formatTime(timeRemaining.days)}</h2>
-            <h3 className="mt-[0px]  text-[14px] text-center font-[400]">DAYS</h3> 
+            <h2 className={productsSidebarOpen ? "mb-[0px] text-[24.45px]":"mb-[0px] text-[22.03px] lg:text-[32.79px]"}>{formatTime(timeRemaining.days)}</h2>
+            <h3 className={productsSidebarOpen ? "mt-[0px]  text-[10px] text-center font-[400]": "mt-[0px]  text-[9.44px] lg:text-[14.05px] text-center font-[400]"}>DAYS</h3> 
         </div>
 
         <h3 className="text-[32px] my-[0px] mx-[5px]">:</h3>
 
 
         <div className="flex-col ">
-            <h2 className="mb-[0px]  text-[14px]">{formatTime(timeRemaining.hours)}</h2>
-            <h3 className="mt-[0px] text-center font-[400] text-[14px]">HOURS</h3> 
+            <h2 className={productsSidebarOpen ? "mb-[0px] text-[24.45px]":"mb-[0px] text-[22.03px] lg:text-[32.79px]"}>{formatTime(timeRemaining.hours)}</h2>
+            <h3 className={productsSidebarOpen ? "mt-[0px]  text-[10px] text-center font-[400]": "mt-[0px]  text-[9.44px] lg:text-[14.05px] text-center font-[400]"}>HOURS</h3> 
         </div>
 
         <h3 className="text-[32px] my-[0px] mx-[5px]">:</h3>
 
 
         <div className="flex-col ">
-            <h2 className="mb-[0px] text-[14px]">{formatTime(timeRemaining.minutes)}</h2>
-            <h3 className="mt-[0px] text-center font-[400] text-[14px]">MINUTES</h3> 
+            <h2 className={productsSidebarOpen ? "mb-[0px] text-[24.45px]":"mb-[0px] text-[22.03px] lg:text-[32.79px]"}>{formatTime(timeRemaining.minutes)}</h2>
+            <h3 className={productsSidebarOpen ? "mt-[0px]  text-[10px] text-center font-[400]": "mt-[0px]  text-[9.44px] lg:text-[14.05px] text-center font-[400]"}>MINUTES</h3> 
         </div>
 
         <h3 className="text-[32px] my-[0px] mx-[5px]">:</h3>
 
 
         <div className="flex-col ">
-            <h2 className="mb-[0px] text-[14px]">{formatTime(timeRemaining.seconds)}</h2>
-            <h3 className="mt-[0px] text-center font-[400] text-[14px]">SECONDS</h3> 
+            <h2 className={productsSidebarOpen ? "mb-[0px] text-[24.45px]":"mb-[0px] text-[22.03px] lg:text-[32.79px]"}>{formatTime(timeRemaining.seconds)}</h2>
+            <h3 className={productsSidebarOpen ? "mt-[0px]  text-[10px] text-center font-[400]": "mt-[0px]  text-[9.44px] lg:text-[14.05px] text-center font-[400]"}>SECONDS</h3> 
         </div>
 
 
