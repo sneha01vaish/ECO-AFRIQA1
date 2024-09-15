@@ -1,19 +1,19 @@
 import React from "react";
 
-function Contact() {
+function ContactCard() {
   return (
-    <div className="ContactsCard mx-[10px] lg:mx-[60px] mt-[80px]">
+    <div className="ContactsCard mx-[24px] lg:mx-[60px] mt-[80px]">
       <div className="ContactCardWrapper block lg:flex justify-between">
         {/*Left -- Social Media Icons Section */}
-        <section className="SocialMediaIcons block w-[70%] lg:w-[50%] ">
+        <section className="SocialMediaIcons block w-[90%] lg:w-[54%] ">
           {/*Social Media Icons grid */}
-          <div className="IconsGrid grid grid-cols-2 mt-[36px]">
+          <div className="IconsGrid grid grid-cols-2 lg:mt-[50px]">
             {/*Email */}
             <div className="EmailWrapper block">
-              <div className="EmailImage h-[38px] lg:h-[38px] w-[34px] lg:w-[45px]">
+              <div className="EmailImage h-[38px] lg:h-[45px] w-[34px] lg:w-[42px]">
                 <img src="/static/media/mail.png" alt="email" className="h-full w-full"/>
               </div>
-              <div className="mt-[4px] lg:mt-[10px]">
+              <div className="mt-[4px] lg:mt-[11px]">
                 <p className="text-start font-[700] text-[18px] lg:text-[32px] my-0 font-inter ">Email</p>
               </div>
               <div className="EmailLink mt-[2px] lg:mt-[6px]">
@@ -25,7 +25,7 @@ function Contact() {
 
             {/*Phone */}
             <div className="PhoneWrapper block">
-              <div className="PhoneImage h-[34px] lg:h-[49px]  w-[34px] lg:w-[45px]">
+              <div className="PhoneImage h-[34px] lg:h-[46px]  w-[34px] lg:w-[45px]">
                 <img src="/static/media/phone.png" alt="phone" className="w-full h-full"/>
               </div>
               <div className="mt-[10px] lg:mt-[10px]">
@@ -38,7 +38,7 @@ function Contact() {
           
             {/*Office */}
             <div className="OfficeWraper block mt-[20px] lg:mt-[28px]">
-              <div className="OfficeImage h-[38px] lg:h-[49px]  w-[37px] lg:w-[45px]"> 
+              <div className="OfficeImage h-[38px] lg:h-[46px]  w-[37px] lg:w-[45px]"> 
                 <img src="/static/media/location.png" alt="Office" className="h-full w-full" />
               </div>
               <div className="mt-[4px] lg:mt-[10px]">
@@ -51,7 +51,7 @@ function Contact() {
           
             {/*Socials */}
             <div className="SocialsWrapper block mt-[20px] lg:mt-[28px]">
-              <div className="SocialsImage h-[33px] lg:h-[49px]  w-[32px] lg:w-[45px]">
+              <div className="SocialsImage h-[33px] lg:h-[46px]  w-[32px] lg:w-[45px]">
                   <img src="/static/media/globe.png" alt="Social Media" className="h-full w-full"/>
               </div>
               <div className="mt-[9px] lg:mt-[10px]">
@@ -97,8 +97,8 @@ function Contact() {
         </section> {/*Contacts Icons Ends Here */}
       
         {/*Right -- Email Input Section */}
-        <section className="EmailInput block mt-[40px] lg:mt-0 lg:w-[50%]">
-          <div className="EmailInputWrapper mx-[30px] lg:mx-[20px]">
+        <section className="EmailInput block mt-[40px] lg:mt-0 lg:w-[46%]">
+          <div className="EmailInputWrapper mx-[20px] lg:mx-[20px]">
             {/*User Email Address */}
             <div className="EmailTitle">
               <p className="text-start text-[22px] text-black font-[700] my-0 font-inter">Email</p>
@@ -127,4 +127,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default ContactCard;

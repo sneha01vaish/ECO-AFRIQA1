@@ -6,7 +6,7 @@ import Services from "./Services"
 import ProductSection from "./ProductSection"
 import Reviews2 from "./Reviews2";
 import Faq from "./Faq";
-import Contact from "./Contact";
+import ContactCard from "./ContactCard";
 import Metrics from "./Metrics"
 import FreshlyFooter from '../../footer/FreshlyFooter'
 import { PageContext } from '../../context/PageContext'
@@ -33,7 +33,7 @@ function Home() {
      <Reviews2 id="reviews"/>
      <Faq id="faqs"/>
 
-     <Contact id="contact"/>  
+     <ContactCard id="contact"/>  
     <FreshlyFooter />
      </div>
   )
