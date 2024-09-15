@@ -66,11 +66,11 @@ REST_FRAMEWORK = {
 
 
 # Security and session management
-SECURE_SSL_REDIRECT = True 
-SESSION_COOKIE_SECURE = True  
-CSRF_COOKIE_SECURE = True  
-SESSION_COOKIE_HTTPONLY = True
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+#SECURE_SSL_REDIRECT = True 
+#SESSION_COOKIE_SECURE = True  
+#CSRF_COOKIE_SECURE = True  
+#SESSION_COOKIE_HTTPONLY = True
+#SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 
@@ -253,3 +253,21 @@ REACT_APP_DIR = BASE_DIR / 'frontend/build'
 STATICFILES_DIRS.append(REACT_APP_DIR / 'static/media')
 
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'errors.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}

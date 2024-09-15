@@ -92,5 +92,15 @@ urlpatterns = [
     path('products/<int:pk>/delete/', DeleteProduct.as_view(), name='delete-product'),
 
 
+
+    #order url
+    path('orders/', views.my_orders, name='my_orders'),
+    path('order/<str:tracking_no>/', views.view_order, name='view_order'),
+    path('order/cancel/<str:tracking_no>/', views.cancel_order, name='cancel_order'),
+    path('order/create/', views.create_order, name='create_order'),
+
+
+
+
     
 ]
