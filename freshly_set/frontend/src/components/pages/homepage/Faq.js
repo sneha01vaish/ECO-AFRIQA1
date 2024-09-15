@@ -22,7 +22,7 @@ function Faq() {
         console.log("clicked", clicked)
     },[clicked])
   return (
-    <div className=" block lg:flex justify-between lg:pl-[34px] lg:pr-[29px] lg:py-[50px] mt-[75px] lg:mt-[200px]  lg:mx-[30px] rounded-[23px] border-solid border-[1px] border-gray-400/[0.25] shadow-lg">
+    <section id="faqs" className=" block lg:flex justify-between lg:pl-[34px] lg:pr-[29px] lg:py-[50px] mt-[75px] lg:mt-[200px]  lg:mx-[30px] rounded-[23px] border-solid border-[1px] border-gray-400/[0.25] shadow-lg">
 
         {/* Left side */}
         <div className="hidden lg:flex">
@@ -112,7 +112,7 @@ function Faq() {
 
        
         </div>
-    </div>
+    </section>
   )
 }
 

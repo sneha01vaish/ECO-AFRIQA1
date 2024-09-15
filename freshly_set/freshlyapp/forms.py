@@ -3,6 +3,7 @@ from .models import Product, Service, Blog, Garden
 from django.utils.text import slugify
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm,PasswordResetForm, SetPasswordForm
 from django.contrib.auth.models import User
+import bleach
 
 
 class SignUpForm(UserCreationForm):
@@ -20,7 +21,7 @@ class GardenForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price', 'image']
+        fields = ['name', 'desc', 'price', 'image']
 
 class ServiceRequestForm(forms.ModelForm):
     class Meta:
@@ -43,6 +44,15 @@ class BlogForm(forms.ModelForm):
         self.fields['slug'].widget.attrs.update({'class': 'form-control'})
         self.fields['image'].widget.attrs.update({'class': 'form-control'})
 
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+        sanitized_title = bleach.clean(title, strip=True)
+        return sanitized_title 
+    
+    def clean_content(self):
+        content = self.cleaned_data.get('content')
+        sanitized_content = bleach.clean(content, tags=['p', 'b', 'i', 'u', 'a'], attributes={'a': ['href']})
+        return sanitized_content
     def save(self, *args, **kwargs):
         instance = super().save(commit=False)
         if not instance.slug:

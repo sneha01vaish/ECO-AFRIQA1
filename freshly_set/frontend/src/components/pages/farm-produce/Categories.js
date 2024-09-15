@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import { IoStarSharp } from "react-icons/io5";
 import { RiArrowRightSLine, RiArrowLeftSLine } from "react-icons/ri";
 import { BsArrowRight } from "react-icons/bs";
-import Products from './json/Products.json';
+// import Products from './json/Products.json';
 import Navbar from '../../../components/Nav/Navbar'
+import axios from 'axios';
 
 // REPLACE **Products.json** FILE WITH FETCHED PRODUCTS FROM THE DATABASE
 const productImages = {
@@ -29,6 +30,8 @@ const Categories = () => {
     spices: 'bg-[#FF0C1A]/80 hover:bg-[#FF0C1A]'
   }
 
+
+  
   const groupedProducts = products.reduce((acc, product) => {
     const { category } = product
 
@@ -56,7 +59,7 @@ const Categories = () => {
   return (
     <>
     <Navbar />
-    <section className='bg-white/80 sm:max-w-[74%] w-full mx-auto py-8 mt-[112px] relative' >
+    <section className='flex justify-center mx-auto py-8 mt-[112px] relative' >
       <div className="" >
       <h2 className='text-green-700 text-xl text-center font-bold my-0'>Category</h2>     
         <div className='text-green-700 font-bold flex justify-end'>
@@ -64,7 +67,7 @@ const Categories = () => {
           <button onClick={scrollRight} className='border-none text-green-600 text-[40.00px] font-extrabold bg-transparent cursor-pointer p-0 m-0 flex items-center'><RiArrowRightSLine /></button>
         </div>
 
-        <div className='flex flex-nowrap justify-between items-center gap-6 overflow-x-auto scrollbar scrollbar-thumb-green-400 pl-3 sm:pl-0 pb-4'
+        <div className='flex flex-nowrap justify-between items-center overflow-x-auto scrollbar scrollbar-thumb-green-400 pl-3 sm:pl-0 pb-4'
         ref={scrollContainer}>
           {
             categories?.map(category => (
