@@ -86,7 +86,7 @@ const FreshlyFooter = () => {
         </div> {/*Links and Logo Container */}
 
         {/*White Line */}
-        <div className="hidden lg:block mt-[20px] w-full bg-white h-[px]" /> {/*Only show in Desktop Version*/}
+        <div className="hidden lg:block mt-[20px] w-full bg-white h-[5px]" /> {/*Only show in Desktop Version*/}
 
         {/*Back to Top Buttton */}
         <div className="p-1 fixed bottom-4 right-4">
