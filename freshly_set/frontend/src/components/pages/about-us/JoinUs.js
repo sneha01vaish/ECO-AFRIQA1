@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function JoinUs() {
   return (
@@ -34,9 +35,9 @@ function JoinUs() {
                 <p  className="font-[600] font-inter text-start rounded-[8px] text-[12px] lg:text-[17px]  " > We invite you to join us on our journey to transform the food industry. Whether you're a consumer seeking sustainable and nutritious food options or a partner interested in collaborating with us, we welcome you.</p>
                 
                 {/* Button - Talk to Us */}
-                <div className='flex justify-center  lg:w-[242px] rounded-[15px] lg:rounded-[20px] bg-[#008000] '>
+                <Link to="/contact" className='flex justify-center  lg:w-[242px] rounded-[15px] lg:rounded-[20px] bg-[#008000] cursor-pointer active:scale-90 transition-all duration-100 ease-out'>
                     <p className='font-inter font-[800] text-[#FFF] text-[22px] lg:text-[23px] my-[10px] lg:my-[23px] '>TALK TO US</p>
-                </div>         
+                </Link>         
             </div> {/* Join US Subsection Ends*/}
 
         </div>
