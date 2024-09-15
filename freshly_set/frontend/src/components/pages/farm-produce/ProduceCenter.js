@@ -10,7 +10,7 @@ const ProduceCenter = () => {
   const [productsSidebarOpen, setProductsSidebarOpen] = useContext(ProductsSideBarContext);
 
   return (
-    <main className={productsSidebarOpen ? 'bg-white/80 lg:w-[81vw] flex justify-center py-16':'bg-white/80 lg:w-[100vw] flex justify-center py-16'}>
+    <main className={productsSidebarOpen ? 'lg:w-[81vw] flex justify-center py-16':'lg:w-[100vw] flex justify-center py-16'}>
       <div className="block">
         <Deals />
           <PopularProducts />

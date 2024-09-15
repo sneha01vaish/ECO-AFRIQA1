@@ -660,16 +660,29 @@ def update_quantity(request):
 
 @api_view(['POST'])
 def remove_from_cart(request):
-    cart = get_cart_instance(request)
-    product_id = request.data.get("product_id")
+ cart = get_cart_instance2(request)  # Ensure this returns the cart object, not serialized data
+ product_id = request.data.get("product_id")
+ quantity= request.data.get("quantity")
 
-    if product_id in cart.product_ids:
-        index = cart.product_ids.index(product_id)
+ if not product_id:
+        return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+ try:
+        cart_item = CartItem.objects.get(cart=cart, product_id=product_id)
+ except CartItem.DoesNotExist:
+        return Response({"error": "Product not found in cart"}, status=status.HTTP_404_NOT_FOUND)
 
-        cart.product_ids.pop(index)
-        cart.quantities.pop(index)
-        cart.prices.pop(index)
-        cart.save()
-        return Response({"message": "Product removed successfully"}, status=200)
+ if quantity is None:
+        quantity = cart_item.quantity
 
-    return Response({"error": "Product not found"}, status=400)
+ if quantity < 1:
+        return Response({"error": "Quantity must be at least 1"}, status=status.HTTP_400_BAD_REQUEST)
+
+ if quantity >= cart_item.quantity:
+        # Remove item from cart if quantity to remove is greater than or equal to the existing quantity
+        cart_item.delete()
+        return Response({"success": "Item removed from cart"}, status=status.HTTP_200_OK)
+ else:
+        # Adjust the quantity of the cart item
+        cart_item.quantity -= int(quantity)
+        cart_item.save()
+        return Response({"success": "Item quantity updated in cart"}, status=status.HTTP_200_OK)

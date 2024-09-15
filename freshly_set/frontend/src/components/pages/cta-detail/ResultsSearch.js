@@ -54,7 +54,7 @@ function ResultsSearch() {
   {/* Search Result */}
 
 
-  <div className="flex items-center w-full">
+  <div className="flex items-center w-full pr-[26.04px]">
     {/* Image 83 */}
     <div className="flex-shrink-0">
     <img src="/static/media/image 83.png" alt="Image 83" className="w-[100px] h-[100px] lg:w-[100px] lg:h-[100px]" />
@@ -62,14 +62,16 @@ function ResultsSearch() {
 
     {/* Text Section */}
     <div className="flex-grow ml-6 lg:ml-12 text-center">
-      <h3 className="text-[#0a0a0a] text-[24px] lg:text-[36px] font-['Inter'] font-bold text-start">
+      <h3 className="text-[#0a0a0a] text-[24px] lg:text-[15.64px] font-['Inter'] font-bold text-start">
         {result.title}
       </h3>
     </div>
 
     {/* Group 518 Image (pushes to the end with ml-auto) */}
-    <div className="flex-shrink-0 ml-auto">
-      <img src="/static/media/group 518.png" alt="Group 518" className="w-[80px] h-[30px] lg:w-[100px] lg:h-[30px]" />
+    <div className="flex space-x-[26.27px]">
+        <h5 className="text-[#FF0C1A] text-[14.82px]">{result.likes} Likes</h5>
+        <h5 className="text-[#FF0C1A] text-[14.82px]">{result.likes} Comments</h5>
+
     </div>
   </div>
 </div>
