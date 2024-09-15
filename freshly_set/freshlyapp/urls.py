@@ -2,12 +2,16 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.contrib.auth import views as auth_views
 from django.urls import re_path
+from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, Register, search_blog
-from .views import  PollDetailView, PollListCreateView, VoteCreateView,VerifyIDView, IDVerificationUpdateView, IDVerificationDetailView
+from .views import PollDetailView, PollListCreateView, VoteCreateView, VerifyIDView, IDVerificationUpdateView, IDVerificationDetailView, BannerListView, CategoryListCreateView, CategoryDetailView
 from .views import *
 from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -25,13 +29,18 @@ from .views import (
 urlpatterns = [
     path('register/', Register, name='register'),
     path('admin/', admin.site.urls),
-    path('freshlyapp/token/', TokenObtainPairView.as_view(),name='token_obtain_pair'), 
-    path('freshlyapp/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('freshlyapp/token/', TokenObtainPairView.as_view(),
+         name='token_obtain_pair'),
+    path('freshlyapp/token/refresh/',
+         TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
 
-    path('', views.home, name='home'),
-    path('about/', views.about, name='about'),
+    # Catch-all route to serve React app for all frontend routes
+    path('', TemplateView.as_view(template_name='index.html')),
+
+    path('about-us/', TemplateView.as_view(template_name='index.html')),
+    path("marketplace/", TemplateView.as_view(template_name="index.html")),
     # path('blogs/', views.blogs, name='blogs'),
     path('freshlyapp/blogs/', BlogListView.as_view(), name='blog-list'),
     path('freshlyapp/create/', BlogListCreateView.as_view(),
@@ -55,7 +64,7 @@ urlpatterns = [
          name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'),
          name='password_reset_complete'),
-#     path('products/', views.products, name='products'),
+    #     path('products/', views.products, name='products'),
     path('services/', views.services, name='services'),
     path('profile/', views.profile, name='profile'),
     # path('blogs/', BlogListCreateAPIView.as_view(), name='blog_list_create'),
@@ -67,29 +76,59 @@ urlpatterns = [
          CommentRetrieveUpdateDestroyAPIView.as_view(), name='comment_detail'),
     path('likes/', LikeCreateAPIView.as_view(), name='like_create'),
     path('shares/', ShareCreateAPIView.as_view(), name='share_create'),
-    path('search_blog/<int:pk>/', views.search_blog, name='search_blog'),
+    # path('search_blog/<int:pk>/', views.search_blog, name='search_blog'),
+    path('search_blog/', views.search_blog, name='search_blog'),
+
     path('freshlyapp/token/', TokenObtainPairView.as_view(),
          name='token_obtain_pair'),
     path('freshlyapp/token/refresh/',
          TokenRefreshView.as_view(), name='token_refresh'),
 
-     # Poll URLs
+    # Poll URLs
     path('freshlyapp/polls/', PollListCreateView.as_view(), name='poll-list-create'),
     path('polls/<int:pk>/', PollDetailView.as_view(), name='poll-detail'),
     path('polls/<int:pk>/vote/', VoteCreateView.as_view(), name='vote-create'),
-    
-    # Verifications 
-    path('freshlyapp/verification/verify/', VerifyIDView.as_view(), name='verify-id'), 
-    path('freshlyapp/verification/', IDVerificationUpdateView.as_view(), name='id-verification-update'),
-    path('freshlyapp/verification/detail/', IDVerificationDetailView.as_view(), name='id-verification-detail'),
+
+    # Verifications
+    path('freshlyapp/verification/verify/',
+         VerifyIDView.as_view(), name='verify-id'),
+    path('freshlyapp/verification/', IDVerificationUpdateView.as_view(),
+         name='id-verification-update'),
+    path('freshlyapp/verification/detail/',
+         IDVerificationDetailView.as_view(), name='id-verification-detail'),
 
 
-    #product urls
+    # product urls
     path('products/', ProductListView.as_view(), name='list-products'),
     path('products/create/', CreateProduct.as_view(), name='create-product'),
     path('products/<int:pk>/', RetrieveProduct.as_view(), name='retrieve-product'),
-    path('products/<int:pk>/update/', UpdateProduct.as_view(), name='update-product'),
-    path('products/<int:pk>/delete/', DeleteProduct.as_view(), name='delete-product'),
+    path('products/<int:pk>/update/',
+         UpdateProduct.as_view(), name='update-product'),
+    path('products/<int:pk>/delete/',
+         DeleteProduct.as_view(), name='delete-product'),
+
+
+    # Banner URL
+
+    path('freshlyapp/banners/', BannerListView.as_view(), name='banner-list'),
+
+
+
+    # Category URL
+
+    path('freshlyapp/categories/', CategoryListCreateView.as_view(),
+         name='category-list-create'),
+    path('freshlyapp/categories/<int:pk>/', CategoryDetailView.as_view(),
+         name='category-detail'),
+
+
+
+    # CART URLS
+    path('cart/', views.get_cart_instance, name='get_cart'),
+    path('cart/add/', views.add_to_cart, name='add_to_cart'),
+    path('cart/update/', views.update_quantity, name='update_quantity'),
+    path('cart/remove/', views.remove_from_cart, name='remove_from_cart'),
+
 
 
 

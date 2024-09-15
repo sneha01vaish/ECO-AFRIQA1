@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Nav from '../../Nav/Navbar';
 
 function Checkout() {
   return (
     <div className="min-h-screen bg-[#F5FAF9] overflow-x-hidden">
-      <Nav /> {/* The Upper NavBar */}
 
       {/* Container for payment mode */}
       <div className="flex items-center justify-center mt-[200px] px-6">
@@ -20,7 +18,7 @@ function Checkout() {
 
             {/* Back Button */}
             <div className="BackButton flex justify-start mt-[20px] ml-12">
-              <Link to="/transporters">
+              <Link to="/booking">
                 <img src="/static/media/image10.png" alt="Back" className="lg:m-[6px] h-full" />
               </Link>
             </div>

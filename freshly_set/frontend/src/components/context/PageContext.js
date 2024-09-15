@@ -1,4 +1,5 @@
-import {  createContext, useState } from "react";
+import axios from "axios";
+import {  createContext, useEffect, useState } from "react";
 
 export const PageContext = createContext();
 export const PopupContext = createContext();
@@ -10,6 +11,10 @@ export const GardensContext = createContext();
 export const SelectedSectionContext = createContext();
 export const BlogsClickedContext = createContext();
 export const SectionTypeContext = createContext();
+export const ProductsSideBarContext = createContext();
+export const ProductsContext = createContext();
+export const SearchContext = createContext();
+export const EmptyContext = createContext();
 
 export  const PageContextProvider = ({ children }) => {
     const [activeTab, setActiveTab] = useState("home");
@@ -24,6 +29,10 @@ export  const PageContextProvider = ({ children }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalContents, setModalContents] = useState({});
     const [sectionType, setSectionType] = useState("")
+
+    // Sidebar Context
+
+    const [productsSidebarOpen, setProductsSidebarOpen] = useState(false)
 
     //  Mock Data while backend is being connected
     const [modalToggleContents, setModalToggleContents]  = useState([
@@ -135,7 +144,41 @@ export  const PageContextProvider = ({ children }) => {
 ])
 
     // Modal context for Blog Modals
-   const [blogModalOpen, setBlogModalOpen] = useState(false)
+   const [blogModalOpen, setBlogModalOpen] = useState(false);
+   const [csrfToken, setCsrfToken] = useState('');
+   const [products, setProducts] = useState([]);
+   const [empty, setEmpty] = useState(true);
+   useEffect(() => {
+    const token = document.querySelector('meta[name="csrf-token"]');
+  if (token) {
+    setCsrfToken(token.getAttribute('content'));
+  }
+
+  axios.get('http://localhost:8000/products/')
+  .then(response => {
+    setProducts(response.data.results);
+
+  })
+  .catch(error => {
+    console.error('Error fetching Products:', error);
+  });
+  console.log("Products retrieved", products)
+
+
+  },[])
+
+  // Function to handle search input and update URL params
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const searchTerm = event.target.search.value;
+    if (searchTerm) {
+      // Add the search term to the URL as a query parameter
+      navigate(`?q=${searchTerm}`);
+    } else {
+      // Clear the search term from the URL
+      navigate(`/blogs`);
+    }
+  };
     return(
         <PageContext.Provider value={[activeTab, setActiveTab]}>
             <PopupContext.Provider value={[popUpOpen, setPopUpOpen]}>
@@ -148,8 +191,15 @@ export  const PageContextProvider = ({ children }) => {
                                     <BlogsClickedContext.Provider value={[blogModalOpen, setBlogModalOpen]}>
                                         <GardensContext.Provider value={[modalToggleContentsGardens, setModalToggleContentsGardens]}>
                                             <SectionTypeContext.Provider value={[sectionType, setSectionType]}>
-                                                {children}
-
+                                                <ProductsSideBarContext.Provider value={[productsSidebarOpen, setProductsSidebarOpen]}>
+                                                    <ProductsContext.Provider value={[products, setProducts]}>
+                                                        <SearchContext.Provider value={{handleSearch}}>
+                                                            <EmptyContext.Provider value={[empty, setEmpty]}>
+                                                                {children}
+                                                            </EmptyContext.Provider>
+                                                        </SearchContext.Provider>
+                                                    </ProductsContext.Provider>
+                                                </ProductsSideBarContext.Provider>
                                             </SectionTypeContext.Provider>
                                         </GardensContext.Provider>
                                     </BlogsClickedContext.Provider>

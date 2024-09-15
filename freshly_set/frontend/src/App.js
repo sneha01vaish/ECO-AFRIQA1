@@ -27,6 +27,12 @@ import Mpesa from './components/pages/cta-detail/Mpesa'
 import Credit from './components/pages/cta-detail/Credit';
 import Checkout from './components/pages/cta-detail/Checkout';
 import Mpesa2 from './components/pages/cta-detail/Mpesa2';
+import ResultsSearch from './components/pages/cta-detail/ResultsSearch';
+
+import Login from './components/pages/login/Login';
+import Consultation from './components/pages/cta-detail/Consultation';
+import CartPage from './components/pages/cta-detail/CartPage';
+import Booking from './components/pages/cta-detail/Booking';
 
 
 
@@ -35,6 +41,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/SignUp" element={<LoginSignUp />} />
+        <Route path="/login" element={<Login /> }/>
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
           
@@ -42,7 +49,7 @@ function App() {
         <Route path="/verified-success" element={<VerifiedSuccess />} />
         <Route path="/blogs/allUpdates" element={<BlogsAllUpdates />} />
 
-        <Route path="/products" element={<Products />} />
+        <Route path="/marketplace" element={<Products />} />
         <Route path="/products/categories" element={<Categories />} />
         <Route path="/about-us" element={<About />} />
         <Route path="/whychoose-detail" element={<Detail />} />
@@ -63,6 +70,11 @@ function App() {
 
         <Route path="/mpesa" element={<Mpesa />} />
          <Route path="/credit" element={<Credit />} />
+         <Route path="/search" element={<ResultsSearch />} />       
+        <Route path="/consultation" element={<Consultation />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/booking" element={<Booking />}/>
+
         
 
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}

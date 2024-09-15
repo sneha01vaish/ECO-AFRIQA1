@@ -5,36 +5,54 @@ from .models import IDVerification
 
 # Register your models here.
 
-from .models import Product, Garden, Service, Blog
-#admin.site.register(AppUser)
+from .models import Product, Garden, Service, Blog, Banner
+# admin.site.register(AppUser)
 admin.site.register(Product)
+
+
 class ProductModelAdmin(admin.ModelAdmin):
     fields = ['name', 'desc', 'price', 'image', 'category', 'created_at']
+
 
 admin.site.register(Category)
 admin.site.register(Review)
 admin.site.register(Farmer)
 
 admin.site.register(Garden)
+
+
 class GardenModelAdmin(admin.ModelAdmin):
     fields = ['name', 'location', 'size', 'description']
 
+
 admin.site.register(Service)
+
+
 class ServiceModelAdmin(admin.ModelAdmin):
     fields = ['type', 'description', 'price']
 
+
 admin.site.register(Blog)
+
+
 class BlogModelAdmin(admin.ModelAdmin):
-    fields = ['id', 'title', 'content', 'slug', 'image', 'created_at', 'updated_at']
+    fields = ['id', 'title', 'content', 'slug',
+              'image', 'created_at', 'updated_at']
+
 
 admin.site.register(Poll)
+
+
 class PollModelAdmin(admin.ModelAdmin):
     fields = ['id', 'title', 'description', 'votes']
 
 
+admin.site.register(IDVerification)
+
 
 class IDVerificationAdmin(admin.ModelAdmin):
-    list_display = ('user', 'id_document_type', 'id_document_number', 'is_verified', 'submitted_at', 'verified_at')
+    list_display = ('user', 'id_document_type', 'id_document_number',
+                    'is_verified', 'submitted_at', 'verified_at')
     list_filter = ('is_verified', 'id_document_type')
     search_fields = ('user__username', 'id_document_number')
     readonly_fields = ('submitted_at', 'verified_at', 'is_verified')
@@ -55,4 +73,15 @@ class IDVerificationAdmin(admin.ModelAdmin):
         # Prevents deletion of verification records through the admin interface
         return False
 
-admin.site.register(IDVerification, IDVerificationAdmin)
+
+
+# Banner for Marketplace
+
+@admin.register(Banner)
+class BannerAdmin(admin.ModelAdmin):
+    list_display = ('title', 'active', 'created_at')
+    list_filter = ('active', 'created_at')
+    search_fields = ('title',)
+    
+admin.site.register(Cart)
+admin.site.register(CartItem)

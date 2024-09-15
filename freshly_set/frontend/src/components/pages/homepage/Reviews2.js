@@ -17,7 +17,7 @@ function Reviews2() {
   };
 
   return (
-    <div className="flex justify-center relative h-[920px] bg-white/[50%]">
+    <section id="reviews" className="flex justify-center relative h-[920px] bg-white/[50%]">
 
       {/* Large Screen */}
       <div className="hidden lg:flex absolute h-[200px] w-[300px] bg-[#48E3C7] -top-[150px] left-0  blur-[400px]"/>
@@ -122,7 +122,7 @@ function Reviews2() {
           <button className="h-[48px] w-[236px] bg-[#008000] text-white rounded-[15px] text-[25px] border-none">Read More</button>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
