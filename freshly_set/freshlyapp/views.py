@@ -1,3 +1,5 @@
+from .models import CartItem
+from .serializers import CartSerializer, CartItemSerializer
 from rest_framework.pagination import PageNumberPagination
 from .serializers import ProductSerializer
 from django.shortcuts import render, redirect
@@ -26,10 +28,10 @@ from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.views import APIView
-from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart
+from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart, Category
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer,LikeSerializer, ShareSerializer,PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer, PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer, CategorySerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -43,6 +45,20 @@ from rest_framework.validators import UniqueValidator
 from .validators import custom_validation, validate_email, validate_password
 # csrf_protect_method = method_decorator(csrf_protect)
 from django.utils import timezone
+
+#imports for checkout
+
+from django.contrib.auth.decorators import login_required
+from .models import Cart, Order, OrderItem, Product
+
+import random
+
+
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
+from .models import Order, OrderItem
+from .serializers import OrderSerializer, OrderItemSerializer
 
 
 # This is for typical django frontend html
@@ -380,6 +396,7 @@ class BlogViewSet(viewsets.ModelViewSet):
 
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def search_blog(request):
     query = request.query_params.get('q', '')
     if query:
@@ -473,9 +490,7 @@ class IDVerificationDetailView(generics.RetrieveAPIView):
         return self.request.user.id_verification
 
 
-
-
-#PRODUCT ENDPOINTS
+# PRODUCT ENDPOINTS
 
 
 class CreateProduct(APIView):
@@ -537,16 +552,185 @@ class ProductListView(APIView):
 
         serializer = ProductSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
+    
+
+#code for checkout
+# views.py
+
+
+@login_required(login_url='loginpage')
+def checkout(request):
+    # Fetch all cart items of the authenticated user
+    raw_cart = Cart.objects.filter(user=request.user)
+    
+    # Validate the cart (e.g., check product quantity)
+    for item in raw_cart:
+        if item.product_qty > item.product.quantity:
+            Cart.objects.filter(id=item.id).delete()
+            messages.warning(request, f"Some products were removed due to insufficient stock.")
+    
+    # Calculate total price
+    cart_items = Cart.objects.filter(user=request.user)
+    total_price = 0
+    for item in cart_items:
+        total_price += item.product.selling_price * item.product_qty
+
+    context = {
+        'cart_items': cart_items,
+        'total_price': total_price,
+    }
+    
+    return render(request, 'store/checkout.html', context)
+
+@login_required(login_url='loginpage')
+def place_order(request):
+    if request.method == 'POST':
+        # Create a new order for the user
+        new_order = Order(
+            user=request.user,
+            fname=request.POST.get('fname'),
+            lname=request.POST.get('lname'),
+            email=request.POST.get('email'),
+            phone=request.POST.get('phone'),
+            address=request.POST.get('address'),
+            city=request.POST.get('city'),
+            state=request.POST.get('state'),
+            country=request.POST.get('country'),
+            pincode=request.POST.get('pincode'),
+            payment_mode=request.POST.get('payment_mode'),
+        )
+        
+        # Generate a tracking number for the order
+        track_no = 'freshly' + str(random.randint(1111111, 9999999))
+        while Order.objects.filter(tracking_no=track_no).exists():
+            track_no = 'freshly' + str(random.randint(1111111, 9999999))
+
+        new_order.tracking_no = track_no
+        new_order.total_price = calculate_cart_total(request)
+        new_order.save()
+
+        # Add all items from the user's cart to the order
+        cart_items = Cart.objects.filter(user=request.user)
+        for item in cart_items:
+            OrderItem.objects.create(
+                order=new_order,
+                product=item.product,
+                price=item.product.selling_price,
+                quantity=item.product_qty
+            )
+            
+            # Update product stock quantity
+            product = Product.objects.get(id=item.product.id)
+            product.quantity -= item.product_qty
+            product.save()
+        
+        # Clear the user's cart after order placement
+        Cart.objects.filter(user=request.user).delete()
+        messages.success(request, "Your order has been placed successfully!")
+        
+        return redirect('home')
+    else:
+        return redirect('checkout')
+
+def calculate_cart_total(request):
+    """Helper function to calculate total cart price"""
+    cart = Cart.objects.filter(user=request.user)
+    total_price = 0
+    for item in cart:
+        total_price += item.product.selling_price * item.product_qty
+    return total_price
+
+    
+
+
+
+# Create a new order after checkout
+@api_view(['POST'])
+def create_order(request):
+    try:
+        # Extract cart items and other order data from request
+        data = request.data
+        serializer = OrderSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        # Log and return an error message
+        print(f"Error creating order: {str(e)}")
+        return Response({"error": "Failed to create order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# View all orders for a user
+@api_view(['GET'])
+def my_orders(request):
+    try:
+        user_orders = Order.objects.filter(user=request.user)
+        serializer = OrderSerializer(user_orders, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Exception as e:
+        print(f"Error fetching orders: {str(e)}")
+        return Response({"error": "Failed to fetch orders"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# Cancel an order (allowed only if the status is 'out for shipping')
+@api_view(['POST'])
+def cancel_order(request, tracking_no):
+    try:
+        order = Order.objects.get(tracking_no=tracking_no, user=request.user)
+        if order.status == 'out_for_shipping':
+            order.status = 'cancelled'
+            order.save()
+            return Response({"message": "Order has been cancelled"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "Cannot cancel order unless it is 'out for shipping'"}, status=status.HTTP_400_BAD_REQUEST)
+    except Order.DoesNotExist:
+        return Response({"error": "Order not found"}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        print(f"Error cancelling order: {str(e)}")
+        return Response({"error": "Failed to cancel order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# View specific order details by tracking number
+@api_view(['GET'])
+def view_order(request, tracking_no):
+    try:
+        order = Order.objects.filter(tracking_no=tracking_no, user=request.user).first()
+        if order:
+            order_items = OrderItem.objects.filter(order=order)
+            order_serializer = OrderSerializer(order)
+            items_serializer = OrderItemSerializer(order_items, many=True)
+            return Response({
+                "order": order_serializer.data,
+                "items": items_serializer.data
+            }, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "Order not found"}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        print(f"Error viewing order: {str(e)}")
+        return Response({"error": "Failed to fetch order details"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 
 # # Banner for Marketplace Page
+@permission_classes([AllowAny])
 class BannerListView(generics.ListAPIView):
     queryset = Banner.objects.filter(active=True).order_by('-created_at')
     serializer_class = BannerSerializer
 
 
+# Category Views
 
-#Cart Endpoints
+@permission_classes([AllowAny])
+class CategoryListCreateView(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+@permission_classes([AllowAny])
+class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+# Cart Endpoints
 @api_view(['GET'])
 def get_cart_instance(request):
     # Check if user is authenticated
@@ -567,20 +751,12 @@ def get_cart_instance(request):
     return Response(cart_data, status=status.HTTP_200_OK)
 
 
-
-
-
-
-
-
-from .serializers import CartSerializer, CartItemSerializer
-from .models import CartItem
-
 def get_cart_instance2(request):
     # Assuming the user is logged in, get or create the user's cart.
     user = request.user
     cart, created = Cart.objects.get_or_create(user=user)
     return cart
+
 
 @api_view(['POST'])
 def add_to_cart(request):
@@ -606,9 +782,11 @@ def add_to_cart(request):
         'quantity': quantity
     }
 
-    serializer = CartItemSerializer(data=cart_item_data, context={'cart_id': cart.id})
+    serializer = CartItemSerializer(
+        data=cart_item_data, context={'cart_id': cart.id})
     if serializer.is_valid():
-        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        cart_item, created = CartItem.objects.get_or_create(
+            cart=cart, product=product)
         cart_item.quantity += int(quantity)
         cart_item.save()
         return Response(CartSerializer(cart).data, status=status.HTTP_200_OK)
@@ -616,12 +794,10 @@ def add_to_cart(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
-
-
 @api_view(['POST'])
 def update_quantity(request):
-    cart = get_cart_instance2(request)  # Ensure this returns the cart object, not serialized data
+    # Ensure this returns the cart object, not serialized data
+    cart = get_cart_instance2(request)
     product_id = request.data.get("product_id")
     new_quantity = request.data.get("quantity")
 
@@ -650,18 +826,32 @@ def update_quantity(request):
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['POST'])
 def remove_from_cart(request):
-    cart=get_cart_instance(request)
-    product_id=request.data.get("product_id")
+ cart = get_cart_instance2(request)  # Ensure this returns the cart object, not serialized data
+ product_id = request.data.get("product_id")
+ quantity= request.data.get("quantity")
 
-    if product_id in cart.product_ids:
-        index = cart.product_ids.index(product_id)
-        
-        cart.product_ids.pop(index)
-        cart.quantities.pop(index)
-        cart.prices.pop(index)
-        cart.save()
-        return Response({"message" : "Product removed successfully"}, status=200)
-    
-    return Response({"error": "Product not found"},status=400)
+ if not product_id:
+        return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+ try:
+        cart_item = CartItem.objects.get(cart=cart, product_id=product_id)
+ except CartItem.DoesNotExist:
+        return Response({"error": "Product not found in cart"}, status=status.HTTP_404_NOT_FOUND)
+
+ if quantity is None:
+        quantity = cart_item.quantity
+
+ if quantity < 1:
+        return Response({"error": "Quantity must be at least 1"}, status=status.HTTP_400_BAD_REQUEST)
+
+ if quantity >= cart_item.quantity:
+        # Remove item from cart if quantity to remove is greater than or equal to the existing quantity
+        cart_item.delete()
+        return Response({"success": "Item removed from cart"}, status=status.HTTP_200_OK)
+ else:
+        # Adjust the quantity of the cart item
+        cart_item.quantity -= int(quantity)
+        cart_item.save()
+        return Response({"success": "Item quantity updated in cart"}, status=status.HTTP_200_OK)
