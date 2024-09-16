@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NavAuthenticated from '../../Nav/NavAuthenticated';
 import FreshlyFooter from "../../footer/FreshlyFooter";
 import Consultants from "./Consultants.json";
 import ConsultantCard from "./ConsultantCard";
+import Nav from "../../Nav/Navbar";
 
 function Consultation() {
     return (
         <div className="Consultations">
-            <NavAuthenticated /> {/*The Navbar */}
+            <Nav /> {/*The Navbar */}
             <div className="InnerContents mt-[100px] ">
                 <div className="Top Contents block lg:flex justify-end relative">
                     <div className="PageHeroPicture block lg:w-[40%]">

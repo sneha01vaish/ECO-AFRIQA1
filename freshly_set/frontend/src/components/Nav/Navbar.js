@@ -26,6 +26,7 @@ function Nav() {
 
   const [cartOpen, setCartOpen] = useContext(CartOpenContext);
 
+  const [servicesToggled, setServicesToggled] = useState(false);
 
   const scrollNow = () => {
     if (window.scrollY > 60) {
@@ -127,8 +128,20 @@ function Nav() {
 
             <div className="flex items-center space-x-1 relative">
               <p className="text-[19.25px] font-inter font-bold text-[#F5F5F5]">Services</p>
-              <FaChevronDown className="text-white text-[30px] cursor-pointer" />
-              {/* Add dropdown logic here similar to Products */}
+              <FaChevronDown onClick={() => setServicesToggled(!servicesToggled)} className="text-white text-[30px] cursor-pointer" />
+
+              <div className={`${servicesToggled ? "block" : "hidden"} absolute bg-gradient-to-r from-[#008000] to-[#001A00] rounded-[14px] top-[50px] left-0 shadow-lg w-[285px]`}>
+                <Link to="/consultation">
+                  <p className="hover:bg-[#008000] cursor-pointer text-start px-[20px] py-[12px] text-[22px] text-white hover:text-white">Consultations</p>
+                </Link>
+                <Link to="/gardenEquipment">
+                  <p className="hover:bg-[#008000] cursor-pointer text-start px-[20px] py-[12px] text-[22px] text-white hover:text-white">Garden Equipment</p>
+                </Link>
+
+                <Link to="/">
+                  <p className="hover:bg-[#008000] cursor-pointer text-start px-[20px] py-[12px] text-[22px] text-white hover:text-white">Installations</p>
+                </Link>
+              </div>
             </div>
           </div>
 

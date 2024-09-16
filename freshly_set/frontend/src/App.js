@@ -33,6 +33,7 @@ import Login from './components/pages/login/Login';
 import Consultation from './components/pages/cta-detail/Consultation';
 import CartPage from './components/pages/cta-detail/CartPage';
 import Booking from './components/pages/cta-detail/Booking';
+import GardenEquipment from './components/pages/GardenEquipment/GardenEquipment';
 
 
 
@@ -74,7 +75,7 @@ function App() {
         <Route path="/consultation" element={<Consultation />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/booking" element={<Booking />}/>
-
+        <Route path="/gardenEquipment" element={<GardenEquipment />}/>
         
 
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}

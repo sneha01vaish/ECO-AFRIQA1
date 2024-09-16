@@ -1,0 +1,30 @@
+[
+    {
+        "id": 5,
+        "name": "Hand Tools",
+        "description": "Digging tools",
+        "image": "/static/media/handTools.png",
+        "bgColor": "#990710"
+    },
+    {
+        "id": 6,
+        "name": "Digging Tools",
+        "description": "Digging tools",
+        "image": "/static/media/diggingTools.png",
+        "bgColor": "#B85209"
+    },
+    {
+        "id": 7,
+        "name": "Watering Tools",
+        "description": "Watering Tools",
+        "image": "/static/media/wateringTools.png",
+        "bgColor": "#7ec18b"
+    },
+    {
+        "id": 8,
+        "name": "Spices",
+        "description": "Cultivating Tools",
+        "image": "/static/media/cultivatingTools.png",
+        "bgColor": "#fe8991"
+    }
+]

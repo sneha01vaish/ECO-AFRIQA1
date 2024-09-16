@@ -1,0 +1,130 @@
+[
+    {
+      "id": 1,
+      "category": "Hand Tools",
+      "name": "plums",
+      "price": 120,
+      "unit": "packet",
+      "image": "/static/media/fruitSaleNew.png"
+    },
+    {
+      "id": 2,
+      "category": "Legumes",
+      "name": "peas",
+      "price": 180,
+      "unit": "kg",
+      "image": "/static/media/peas.png"
+    },
+    {
+      "id": 3,
+      "category": "Vegetables",
+      "name": "kales",
+      "price": 30,
+      "unit": "bundle",
+      "image": "/static/media/kales.png"
+    },
+    {
+      "id": 4,
+      "category": "Spices",
+      "name": "garlic",
+      "price": 15,
+      "unit": "root",
+      "image": "/static/media/garlic.png"
+    },
+    {
+      "id": 6,
+      "category": "Fresh Fruits",
+      "name": "berries",
+      "price": 170,
+      "unit": "packet",
+      "image": "/static/media/berries.png"
+    },
+    {
+      "id": 7,
+      "category": "Vegetables",
+      "name": "cloves",
+      "price": 10,
+      "unit": "stick",
+      "image": "/static/media/cloves.png"
+    },
+    {
+      "id": 8,
+      "category": "Legumes",
+      "name": "beans",
+      "price": 200,
+      "unit": "kg",
+      "image": "/static/media/beans.png"
+    },
+    {
+      "id": 9,
+      "category": "Spices",
+      "name": "massala",
+      "price": 90,
+      "unit": "500g",
+      "image": "/static/media/c-4.png"
+    },
+    {
+      "id": 10,
+      "category": "Fresh Fruits",
+      "name": "plums",
+      "price": 120,
+      "unit": "packet",
+      "image": "/static/media/plums.png"
+    },
+    {
+      "id": 12,
+      "category": "Legumes",
+      "name": "peas",
+      "price": 180,
+      "unit": "kg",
+      "image": "/static/media/peas.png"
+    },
+    {
+      "id": 13,
+      "category": "Vegetables",
+      "name": "kales",
+      "price": 30,
+      "unit": "bundle",
+      "image": "/static/media/kales.png"
+    },
+    {
+      "id": 14,
+      "category": "Spices",
+      "name": "garlic",
+      "price": 15,
+      "unit": "root",
+      "image": "/static/media/garlic.png"
+    },
+    {
+      "id": 16,
+      "category": "Fresh Fruits",
+      "name": "berries",
+      "price": 170,
+      "unit": "packet",
+      "image": "/static/media/berries.png"
+    },
+    {
+      "id": 17,
+      "category": "Vegetables",
+      "name": "cloves",
+      "price": 10,
+      "unit": "stick",
+      "image": "/static/media/cloves.png"
+    },
+    {
+      "id": 18,
+      "category": "Legumes",
+      "name": "beans",
+      "price":  200,
+      "unit": "kg",
+      "image": "/static/media/beans.png"
+    },
+    {
+      "id": 19,
+      "category": "Spices",
+      "name": "massala",
+      "price": 90,
+      "unit": "500g",
+      "image": "/static/media/c-4.png"
+    }
+  ]
