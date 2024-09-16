@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../context/CartContext';
 import { EmptyContext } from '../../context/PageContext';
 
 function Product({img, title, name, price, unit, quantity, id}) {
     const { addToCart } = useContext(CartContext);
-    const [empty, setEmpty] = useContext(EmptyContext);
+    const [empty, setEmpty] = useState(true);
 
     const imgSrc = empty ? img : (img.startsWith('http') ? img : `${process.env.REACT_APP_API_HOST}/${img}`);
 
@@ -22,8 +22,8 @@ function Product({img, title, name, price, unit, quantity, id}) {
       <h3 className='ProductName text-center uppercase mt-0 font-inter text-black text-[14px] lg:text-[20px] font-[700]'>{name}</h3>
       {/*Dynamic Product Price and Quantity */}
       <p className='PriceAndQtty text-center uppercase font-inter text-[12px] lg:text-[16px] font-[700]'>
-        <span className='ProductPrice text-[#008000]'>{price}</span>
-        <span className='ProductQtty text-[#FF0C1A] '>&nbsp; - PER {unit}</span>
+        <span className='ProductPrice text-[#008000]'>Ksh {price}</span>
+        {/* <span className='ProductQtty text-[#FF0C1A] '>&nbsp; - PER {unit}</span> */}
       </p>
       {/*Add to cart button */}
       <div className='AddButton flex justify-center mt-[20px] mb-[30px] lg:mb-[50px]'>
@@ -31,7 +31,7 @@ function Product({img, title, name, price, unit, quantity, id}) {
       </div>
      
       
-    </div> // Single Card Ends Here
+    </div> 
   )
 };
 
