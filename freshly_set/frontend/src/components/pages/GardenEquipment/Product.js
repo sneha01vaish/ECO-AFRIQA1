@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../context/CartContext';
 import { EmptyContext } from '../../context/PageContext';
 
 function Product({img, title, name, price, unit, quantity, id}) {
     const { addToCart } = useContext(CartContext);
-    const [empty, setEmpty] = useContext(EmptyContext);
+    const [empty, setEmpty] = useState(true);
 
     const imgSrc = empty ? img : (img.startsWith('http') ? img : `${process.env.REACT_APP_API_HOST}/${img}`);
 
@@ -31,7 +31,7 @@ function Product({img, title, name, price, unit, quantity, id}) {
       </div>
      
       
-    </div> // Single Card Ends Here
+    </div> 
   )
 };
 

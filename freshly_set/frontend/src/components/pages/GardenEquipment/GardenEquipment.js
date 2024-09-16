@@ -3,6 +3,7 @@ import Nav from '../../Nav/Navbar'
 import SearchBar from './SearchBar'
 import CountdownTimer from '../farm-produce/CountdownTimer'
 import Categories from './Categories'
+import Banner from './Banner'
 
 function GardenEquipment() {
   return (
@@ -74,6 +75,7 @@ function GardenEquipment() {
 
         <Categories />
 
+        <Banner />
         </div>
     </div>
   )
