@@ -109,12 +109,8 @@ const Categories = () => {
         <section className="mx-auto py-8 mt-[112px] relative">
           <h2 className="freshlyGreenText text-[35px] text-center font-bold my-0">Categories</h2>
           <div className="text-green-700 font-bold flex justify-end">
-            <button onClick={scrollLeft} className="text-green-600 text-[40.00px] font-extrabold">
-              <RiArrowLeftSLine />
-            </button>
-            <button onClick={scrollRight} className="text-green-600 text-[40.00px] font-extrabold">
-              <RiArrowRightSLine />
-            </button>
+              <RiArrowLeftSLine onClick={scrollLeft} className="text-green-600 text-[40.00px] font-extrabold"/>
+              <RiArrowRightSLine onClick={scrollRight} className="text-green-600 text-[40.00px] font-extrabold" />
           </div>
           <div className="grid grid-cols-2 gap-x-[40px] lg:flex justify-center overflow-x-auto pl-3 pb-4" ref={scrollContainer}>
             {categories.map((category) => (
