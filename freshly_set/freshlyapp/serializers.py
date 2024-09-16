@@ -9,6 +9,10 @@ from rest_framework.validators import ValidationError
 from django.contrib.auth.models import User
 from better_profanity import profanity
 
+from rest_framework import serializers
+from .models import Order, OrderItem
+
+
 UserModel = get_user_model()
 
 
@@ -267,7 +271,24 @@ class IDVerificationSerializer(serializers.ModelSerializer):
             instance.save()
             return instance
         else:
-            raise serializers.ValidationError(
+            raise serializers.ValidationError("Verification failed. ID number or photo is not correct.")
+        
+
+# Serializer for the Order model
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = ['product', 'price', 'quantity']
+
+class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Order
+        fields = ['id', 'user', 'fname', 'lname', 'email', 'phone', 'address', 'city', 'state', 'country', 'pincode', 'total_price', 'payment_mode', 'status', 'tracking_no', 'created_at', 'items']
+        raise serializers.ValidationError(
                 "Verification failed. ID number or photo is not correct.")
 
 
