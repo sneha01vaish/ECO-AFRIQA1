@@ -5,7 +5,7 @@ from .models import IDVerification
 
 # Register your models here.
 
-from .models import Product, Garden, Service, Blog, Banner
+from .models import Product, Garden, Service, Blog, Banner, Vote
 # admin.site.register(AppUser)
 admin.site.register(Product)
 
@@ -41,7 +41,7 @@ class BlogModelAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Poll)
-
+admin.site.register(Vote)
 
 class PollModelAdmin(admin.ModelAdmin):
     fields = ['id', 'title', 'description', 'votes']

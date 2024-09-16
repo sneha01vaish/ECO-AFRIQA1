@@ -5,7 +5,7 @@ from django.urls import re_path
 from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, Register, search_blog
-from .views import PollDetailView, PollListCreateView, VoteCreateView, VerifyIDView, IDVerificationUpdateView, IDVerificationDetailView, BannerListView, CategoryListCreateView, CategoryDetailView
+from .views import PollDetailView, PollListCreateView, VerifyIDView, SubmitVote, IDVerificationUpdateView, IDVerificationDetailView, BannerListView, CategoryListCreateView, CategoryDetailView, vote_poll
 from .views import *
 from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
@@ -87,7 +87,14 @@ urlpatterns = [
     # Poll URLs
     path('freshlyapp/polls/', PollListCreateView.as_view(), name='poll-list-create'),
     path('polls/<int:pk>/', PollDetailView.as_view(), name='poll-detail'),
-    path('polls/<int:pk>/vote/', VoteCreateView.as_view(), name='vote-create'),
+#     path('polls/<int:pk>/vote/', SubmitVote.as_view(), name='vote-create'),
+    path('submit-vote/', SubmitVote, name='submit_vote'),
+
+     # Testing new format
+     path('api/polls/', PollListView.as_view(), name='poll-list'),
+#     path('api/polls/<int:pk>/vote/', PollVoteView.as_view(), name='poll-vote'),
+
+        path('api/polls/<int:poll_id>/vote/', views.vote_poll, name='vote_poll'),
 
     # Verifications
     path('freshlyapp/verification/verify/',

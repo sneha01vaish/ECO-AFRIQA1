@@ -54,7 +54,7 @@ function BlogMain({ blogs }) {
   },[])
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
         <BlogHero />
         <h1  className="text-center my-4 text-[54px] lg:text-[140px] text-[#008000] font-inter font-[900]">What's new?</h1>
 
@@ -106,7 +106,7 @@ function BlogMain({ blogs }) {
             </button>
         </div>
           <BlogWidgetsNew />  
-          <BlogWidgets />
+          {/* <BlogWidgets /> */}
         <Contact />
     </div>
   )

@@ -13,6 +13,7 @@ import { PageContext } from '../../context/PageContext'
 import Banner from './Banner'
 import SubNavbar from "../../Nav/SubNavbar";
 import NavAuthenticated from '../../Nav/NavAuthenticated'
+import Cart from '../farm-produce/Cart'
 function Home() {
 
   const [activeTab, setActiveTab] = useContext(PageContext);
@@ -23,7 +24,8 @@ function Home() {
   return (
     <div className="">
       <Nav />
-      <SubNavbar partnership={true} sections={[{title:"Metric", id: "metric"},{title:"Promotion", id: "promotion"}, {title:"Reveiws", id: "reviews"}, {title:"FAQs", id: "faqs"}]}/>
+      <Cart />
+      <SubNavbar partnership={true} sections={[{title:"Metric", id: "metric"},{title:"Promotion", id: "promotion"},  {title:"FAQs", id: "faqs"}]}/>
      <Hero id="hero" />
      <Mission id="mission"/>
      <Metrics id="metrics"/>

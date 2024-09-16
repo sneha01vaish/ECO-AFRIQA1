@@ -76,7 +76,7 @@ function Nav() {
             </Link>
             <Link
               onClick={() => setActiveTab("about")}
-              to="/"
+              to="/about-us"
               className="group relative"
             >
               <p className="my-[0px]  text-[19.25px] font-inter font-bold text-[#F5F5F5]">
@@ -89,7 +89,7 @@ function Nav() {
 
             <Link
               onClick={() => setActiveTab("blogs")}
-              to="/"
+              to="/blogs"
               className="group relative"
             >
               <p className="my-[0px]  text-[19.25px] font-inter font-bold text-[#F5F5F5]">
@@ -101,7 +101,7 @@ function Nav() {
             </Link>
             <Link
               onClick={() => setActiveTab("marketplace")}
-              to="/"
+              to="/marketplace"
               className="group relative"
             >
               <p className="my-[0px]  text-[19.25px] font-inter font-bold text-[#F5F5F5]">
@@ -115,12 +115,12 @@ function Nav() {
             <div className="flex items-center space-x-1 relative">
               <p className="text-[19.25px] font-inter font-bold text-[#F5F5F5]">Products</p>
               <FaChevronDown onClick={() => setProductsToggled(!productsToggled)} className={`text-white text-[30px] cursor-pointer ${productsToggled ? "rotate-180" : ""}`} />
-              <div className={`${productsToggled ? "block" : "hidden"} absolute bg-white rounded-[14px] top-[50px] left-0 shadow-lg w-[285px]`}>
+              <div className={`${productsToggled ? "block" : "hidden"} absolute bg-gradient-to-r from-[#008000] to-[#001A00] rounded-[14px] top-[50px] left-0 shadow-lg w-[285px]`}>
                 <Link to="/products/farmingSystems">
-                  <p className="hover:bg-[#008000] cursor-pointer text-start px-[20px] py-[12px] text-[22px] text-[#008000] hover:text-white">Farming Systems</p>
+                  <p className="hover:bg-[#008000] cursor-pointer text-start px-[20px] py-[12px] text-[22px] text-white hover:text-white">Farming Systems</p>
                 </Link>
                 <Link to="/products/gardenSetups">
-                  <p className="hover:bg-[#008000] cursor-pointer text-start px-[20px] py-[12px] text-[22px] text-[#008000] hover:text-white">Garden Setups</p>
+                  <p className="hover:bg-[#008000] cursor-pointer text-start px-[20px] py-[12px] text-[22px] text-white hover:text-white">Garden Setups</p>
                 </Link>
               </div>
             </div>
@@ -195,7 +195,10 @@ function Nav() {
         {
           !open && (
             <div className="flex space-x-[50px] items-center bg-[#D9D9D9]/[10%] backdrop-blur-[50%] h-[44px] px-[45px] rounded-[15px] ]">
-            <li className="text-gray-100 font-inter text-[15px]">Home</li>
+            <Link to="/">
+             <li className="text-gray-100 font-inter text-[15px]">Home</li>
+
+            </Link>
   
             <IoMdMenu onClick={() => setOpen(true)} className="text-gray-100 font-inter text-[25px]"/>
           </div>
