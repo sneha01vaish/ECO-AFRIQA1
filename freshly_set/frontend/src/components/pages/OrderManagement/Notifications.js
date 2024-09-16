@@ -23,51 +23,51 @@ function Notifications() {
     }
 
     return (
-        <div className="Notifications mt-[200px]">
+        <div className="Notifications mt-[160px] lg:mt-[200px]">
             <div className="NotificationsWrapper">
                 {/*Nav bar */}
                 <div className="Navbar">
                     <Nav />
                 </div>
 
-                <div className="InnerWrapper mx-[200px]">
+                <div className="InnerWrapper mx-[12px] lg:mx-[200px]">
                     {/*Notifications Title */}
                 <div className="NotificationTitle">
-                    <h1 className="text-center font-[700] font-inter text-[40px] my-0 text-inter text-[#008000]  ">Your Notifications</h1>
+                    <h1 className="text-center font-[700] font-inter text-[22px] lg:text-[40px] my-0 text-inter text-[#008000]  ">Your Notifications</h1>
                 </div>
                 {/*OrderProgress and Notification Cards Wrapper */}
                 <div className="OrderAndNotifications mt-[30px]">
                     {/*Order Progress */}
-                    <div className="OrderProgressCard px-[28px] py-[24px] rounded-[18px] border-solid border-[0.6px] border-[#A6B1AD] shadow-md shadow-[#00000040] ">
+                    <div className="OrderProgressCard px-[14px] lg:px-[28px] py-[18px] lg:py-[24px] rounded-[8px] lg:rounded-[18px] border-solid border-[0.6px] border-[#A6B1AD] shadow-md shadow-[#00000040] ">
                         {/*Progress Titles */}
-                        <div className="ProgressTitles block mt-[12px]">
+                        <div className="ProgressTitles block mt-[4px] lg:mt-[12px]">
                             <div className="TitlesWrapper flex justify-between">
                                 <div className="TitlesWrapper block">
-                                    <p className="text-start font-[700] font-inter text-[20px] text-[#008000] my-0">Your Order is in processing</p>
+                                    <p className="text-start font-[700] font-inter text-[10px] lg:text-[20px] text-[#008000] my-0">Your Order is in processing</p>
                                 </div>
                                 <Link to="/order-progress" className="TitlesWrapper block w-fit cursor-pointer">
-                                    <p className="text-start font-[600] font-inter text-[17px] text-[#00000099] my-0">Click To View Your Order Status</p>
+                                    <p className="text-start font-[600] font-inter text-[10px] lg:text-[17px] text-[#00000099] my-0">Click To View Your Order Status</p>
                                 </Link>
                             </div> 
                         </div> {/*Progress Titles Ends Ends Here */}
                         {/*ProgressBars */}
-                        <div className="ProgressBars block mt-[28px]">
+                        <div className="ProgressBars block mt-[16px] lg:mt-[16px]">
                             <div className="ProgressBarsWrapper flex justify-start">
                                 {/*OrderConfirmation */}
-                                <Link to="/order-progress" className="OrderConfirmation bg-[#D9D9D9] h-[10px] w-[100px] mr-[40px] cursor-pointer">
-                                    <div className={`Progress h-full ${ProcessingColor(OrderConfirmation)}`} style={{ width: `${OrderConfirmation}%`}}></div>           {/*Dynamic Progress bar length and color*/}
+                                <Link to="/order-progress" className="OrderConfirmation bg-[#D9D9D9] h-[9px] lg:h-[10px] w-[50px] lg:w-[100px] mr-[12px] lg:mr-[40px] cursor-pointer">
+                                    <div className={`Progress h-full ${ProcessingColor(OrderConfirmation)}`} style={{ width: `${OrderConfirmation}%`}}></div>                               {/*Dynamic Progress bar length and color*/}
                                 </Link>
                                 {/*OrderPayment */}
-                                <Link to="/order-progress" className="OrderConfirmation bg-[#D9D9D9] h-[10px] w-[100px] mr-[40px] cursor-pointer">
-                                    <div className={`Progress h-full ${ProcessingColor(OrderPayment)}`} style={{ width: `${OrderPayment}%`}}></div>                     {/*Dynamic Progress bar length and color*/}
+                                <Link to="/order-progress" className="OrderPayment bg-[#D9D9D9] h-[9px] lg:h-[10px] w-[50px] lg:w-[100px] mr-[12px] lg:mr-[40px] cursor-pointer">
+                                    <div className={`Progress h-full ${ProcessingColor(OrderPayment)}`} style={{ width: `${OrderPayment}%`}}></div>                                         {/*Dynamic Progress bar length and color*/}
                                 </Link>
                                 {/*OrderProcessing */}
-                                <Link to="/order-progress" className="OrderConfirmation bg-[#D9D9D9] h-[10px] w-[100px] mr-[40px] cursor-pointer">
-                                    <div className={`Progress h-full ${ProcessingColor(OrderProcessing)}`} style={{ width: `${OrderProcessing}%` }}></div>              {/*Dynamic Progress bar length and color*/}
+                                <Link to="/order-progress" className="OrderProcessing bg-[#D9D9D9] h-[9px] lg:h-[10px] w-[50px] lg:w-[100px] mr-[12px] lg:mr-[40px] cursor-pointer">
+                                    <div className={`Progress h-full ${ProcessingColor(OrderProcessing)}`} style={{ width: `${OrderProcessing}%` }}></div>                                  {/*Dynamic Progress bar length and color*/}
                                 </Link>
                                 {/*OrderDelivery */}
-                                <Link to="/order-progress" className="OrderConfirmation bg-[#D9D9D9] h-[10px] w-[100px] mr-[40px] cursor-pointer">
-                                    <div className={`Progress h-full ${ProcessingColor(OrderDelivery)}`} style={{ width: `${OrderDelivery}%`}}></div>                    {/*Dynamic Progress bar length and color*/}
+                                <Link to="/order-progress" className="OrderDelivery bg-[#D9D9D9] h-[9px] lg:h-[10px] w-[50px] lg:w-[100px] mr-[12px] lg:mr-[40px] cursor-pointer">
+                                    <div className={`Progress h-full ${ProcessingColor(OrderDelivery)}`} style={{ width: `${OrderDelivery}%`}}></div>                                       {/*Dynamic Progress bar length and color*/}
                                 </Link>
                             </div> {/*Progress Bars Wrapper Ends Here */}
                         </div> {/*Progress Bars Ends Here */}
