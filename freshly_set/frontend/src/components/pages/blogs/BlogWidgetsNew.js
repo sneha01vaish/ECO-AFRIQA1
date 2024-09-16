@@ -11,6 +11,21 @@ function BlogWidgetsNew() {
     const [selectedSection, setSelectedSection] = useContext(SelectedSectionContext);
 
 
+    // Audio State
+
+    const audioRef = useRef(null); // Reference to the audio element
+    const [isAudioPlaying, setIsAudioPlaying] = useState(false); // State to track if audio is playing
+  
+    const togglePlayPause = () => {
+      if (isAudioPlaying) {
+        audioRef.current.pause(); // Pause the audio
+      } else {
+        audioRef.current.play(); // Play the audio
+      }
+      setIsAudioPlaying(!isAudioPlaying); // Toggle the playing state
+    };
+  
+
     // Added this for animations later
 
     const [isVisible, setIsVisible] = useState(false); 
@@ -186,7 +201,7 @@ function BlogWidgetsNew() {
 
                     <div className="flex justify-center ">
 
-                    <audio >
+                    <audio ref={audioRef}>
 
                         <source src="/static/media/audioTest.mp3" type="audio/mp3" />
                         <source src="/static/media/audioTest.mp3" type="audio/ogg" />
@@ -196,7 +211,10 @@ function BlogWidgetsNew() {
                     </div>
                 
                     <div className="flex justify-center mt-[10px] ">
-                        <button className='h-[20.257px] w-[104.469px] lg:w-[188.108px] lg:h-[36.475px]  bg-[#008000] rounded-[15px] text-white lg:text-[15.632px] font-[800] border-none text-[8.682px]'>LISTEN</button>
+                        <button 
+                    onClick={togglePlayPause}
+
+                        className='h-[20.257px] w-[104.469px] lg:w-[188.108px] lg:h-[36.475px]  bg-[#008000] rounded-[15px] text-white lg:text-[15.632px] font-[800] border-none text-[8.682px] cursor-pointer'>{isAudioPlaying ? "PAUSE" : "LISTEN"}</button>
                     </div>
 
                     <div className="hidden lg:flex mt-[22.14px] absolute top-[308px] left-[25px]">

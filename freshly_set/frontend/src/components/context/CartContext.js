@@ -3,6 +3,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 // Create Context
 export const CartContext = createContext();
 export const CartOpenContext = createContext();
+export const DeliveryContext = createContext();
 
 // Helper function to get cart from localStorage
 const getCartFromLocalStorage = () => {
@@ -13,8 +14,9 @@ const getCartFromLocalStorage = () => {
 // Create a provider component
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(getCartFromLocalStorage);
-  const [cartOpen, setCartOpen] = useState(false)
-
+  const [cartOpen, setCartOpen] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [delivery, setDelivery] = useState(200);
   // Save cart to localStorage whenever cartItems state changes
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -93,10 +95,12 @@ export const CartProvider = ({ children }) => {
       increaseQuantity,
       decreaseQuantity,
       removeFromCart,
-      clearCart // Expose total price in context
+      clearCart,
+      totalPrice, // Expose total price in context,
+      delivery
     }}>
       <CartOpenContext.Provider value={[cartOpen, setCartOpen]}>
-        {children}
+          {children}
       </CartOpenContext.Provider>
     </CartContext.Provider>
     </CartContext.Provider>

@@ -34,6 +34,8 @@ import Login from './components/pages/login/Login';
 import Consultation from './components/pages/cta-detail/Consultation';
 import CartPage from './components/pages/cta-detail/CartPage';
 import Booking from './components/pages/cta-detail/Booking';
+
+import GardenEquipment from './components/pages/GardenEquipment/GardenEquipment';
 import ContactUS from './components/pages/cta-detail/ContactUs';
 import Notifications from './components/pages/OrderManagement/Notifications';
 import OrderProgress from './components/pages/OrderManagement/OrderProgress';
@@ -80,6 +82,8 @@ function App() {
          <Route path="/search" element={<ResultsSearch />} />       
         <Route path="/consultation" element={<Consultation />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/booking" element={<Booking />}/>
+        <Route path="/gardenEquipment" element={<GardenEquipment />}/>
         <Route path="/booking" element={<Booking />} />
         <Route path="/contact" element={<ContactUS />} />
         <Route path="/notification" element={<Notifications />} />

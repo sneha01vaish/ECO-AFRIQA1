@@ -45,6 +45,8 @@ from rest_framework.validators import UniqueValidator
 from .validators import custom_validation, validate_email, validate_password
 # csrf_protect_method = method_decorator(csrf_protect)
 from django.utils import timezone
+import json
+from django.views.decorators.http import require_http_methods
 
 #imports for checkout
 
@@ -423,29 +425,56 @@ class PollListCreateView(generics.ListCreateAPIView):
 class PollDetailView(generics.RetrieveAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
+@permission_classes([AllowAny])
+class PollListView(APIView):
+    def get(self, request):
+        polls = Poll.objects.all()
+        serializer = PollSerializer(polls, many=True)
+        return Response(serializer.data)
 
-
-class VoteCreateView(generics.CreateAPIView):
-    serializer_class = VoteSerializer
-    permission_classes = (AllowAny,)
-
-    def post(self, request, *args, **kwargs):
-        poll = get_object_or_404(Poll, pk=kwargs['pk'])
+@permission_classes([AllowAny])
+class PollVoteView(APIView):
+    def put(self, request, pk):
+        poll = Poll.objects.get(pk=pk)
         choice = request.data.get('choice')
+        user = User.objects.get(id=request.user.id)  # Example of getting the logged-in user
 
-        if choice not in dict(Vote.CHOICES).keys():
-            return Response({'error': 'Invalid choice'}, status=status.HTTP_400_BAD_REQUEST)
-
+        # Create or update the vote for the poll
         vote, created = Vote.objects.update_or_create(
-            poll=poll, user=request.user,
+            poll=poll, user=user,
             defaults={'choice': choice}
         )
+        
+        return Response({'status': 'vote updated'}, status=status.HTTP_200_OK)
+@permission_classes([AllowAny])
+@api_view(['POST'])
+def SubmitVote(request):
+    serializer = VoteSerializer(data=request.data)
+    if serializer.is_valid():
+        vote = serializer.save()
+        poll = vote.poll
+        return Response({
+            'message': 'Vote submitted successfully',
+            'poll': poll.vote_counts()  # Return updated vote counts
+        })
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        if created:
-            return Response({'status': 'Vote added'}, status=status.HTTP_201_CREATED)
-        else:
-            return Response({'status': 'Vote updated'}, status=status.HTTP_200_OK)
+@require_http_methods(["PUT"])
+def vote_poll(request, poll_id):
+    poll = get_object_or_404(Poll, pk=poll_id)
 
+    try:
+        data = json.loads(request.body)
+        choice = data.get('choice')
+
+        if choice not in ['YES', 'NO', 'MAYBE', 'OTHER']:
+            return JsonResponse({'error': 'Invalid choice'}, status=400)
+
+        Vote.objects.create(poll=poll, user=request.user, choice=choice)
+        return JsonResponse({'message': 'Vote recorded successfully'})
+
+    except KeyError:
+        return JsonResponse({'error': 'Bad Request'}, status=400)
 
 # Verification photo and Id views
 # install bot03

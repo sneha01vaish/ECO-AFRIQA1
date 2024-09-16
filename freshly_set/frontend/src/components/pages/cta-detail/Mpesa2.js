@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Nav from '../../Nav/Navbar';
+import { CartContext } from "../../context/CartContext";
 
 function Mpesa2() {
+
+  const { cartItems, totalPrice, delivery } = useContext(CartContext);
+
+  useEffect(() => {
+    console.log("cart items", totalPrice)
+  },[])
   return (
     <div className="min-h-screen bg-[#F5FAF9] overflow-x-hidden">
       <Nav /> {/* The Upper NavBar */}
@@ -98,17 +105,17 @@ function Mpesa2() {
     <div className="Metrics mx-[30px] lg:mt-12 lg:mx-[40px]">
               <div className="flex justify-between mt-[14px] lg:mt-[8px]">
                 <p className="text-start font-[900] my-0 font-inter text-[#000000B2] text-[16px] lg:text-[18px] ">SUB TOTAL</p>
-                <p className="text-start font-[900] my-0 font-inter text-[#FF0C1A] text-[16px] lg:text-[18px]">KSH 500</p>
+                <p className="text-start font-[900] my-0 font-inter text-[#FF0C1A] text-[16px] lg:text-[18px]">KSH {totalPrice}</p>
               </div>
 
               <div className="flex justify-between mt-[14px] lg:mt-[20px]">
                 <p className="text-start font-[900] my-0 font-inter text-[#000000B2] text-[16px] lg:text-[18px]">DELIVERY</p>
-                <p className="text-start font-[900] my-0 font-inter text-[#FF0C1A] text-[16px] lg:text-[18px]">KSH 200</p>
+                <p className="text-start font-[900] my-0 font-inter text-[#FF0C1A] text-[16px] lg:text-[18px]">KSH {delivery}</p>
               </div>
 
               <div className="flex justify-between mt-[14px] lg:mt-[20px]">
-                <p className="text-start font-[900] my-0 font-inter text-[#000000B2] text-[16px] lg:text-[18px]">Tptal</p>
-                <p className="text-start font-[900] my-0 font-inter text-[#FF0C1A] text-[16px] lg:text-[18px]">KSH 1000</p>
+                <p className="text-start font-[900] my-0 font-inter text-[#000000B2] text-[16px] lg:text-[18px]">Total</p>
+                <p className="text-start font-[900] my-0 font-inter text-[#FF0C1A] text-[16px] lg:text-[18px]">KSH {totalPrice + delivery}</p>
               </div>
 
              {/* Terms and Complete Payment Button */}
