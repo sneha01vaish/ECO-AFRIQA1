@@ -24,7 +24,6 @@ function Nav() {
 
   const { cartItems } = useContext(CartContext);
 
-  const [cartOpen, setCartOpen] = useContext(CartOpenContext);
 
   const [servicesToggled, setServicesToggled] = useState(false);
 
