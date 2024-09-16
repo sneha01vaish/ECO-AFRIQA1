@@ -34,6 +34,7 @@ import Login from './components/pages/login/Login';
 import Consultation from './components/pages/cta-detail/Consultation';
 import CartPage from './components/pages/cta-detail/CartPage';
 import Booking from './components/pages/cta-detail/Booking';
+import ContactUS from './components/pages/cta-detail/ContactUs';
 
 
 
@@ -77,7 +78,8 @@ function App() {
          <Route path="/search" element={<ResultsSearch />} />       
         <Route path="/consultation" element={<Consultation />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/booking" element={<Booking />}/>
+        <Route path="/booking" element={<Booking />} />
+        <Route path="/contact" element={<ContactUS />}/>
 
         
 
