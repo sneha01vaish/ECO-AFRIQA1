@@ -1,18 +1,47 @@
 import React from "react";
 
-function OrderItemCard() {
+function OrderItemCard({img, category, name, quantity, status}) {
     return (
-        <div className="OrderItemCard">
+        <div className="OrderItemCard mt-[20px]">
             <div className="OrderItemWrapper grid grid-cols-2">
                 {/*Item Picture, Category and Name */}
                 <div className="ItemPictureAndName block">
-                    OrderProgress
-                </div>
+                    <div className="ItemPictureAndNameWrapper flex justify-start">
+                        {/*Item Picture Card */}
+                        <div className="ItemPictureCard rounded-[6px] bg-[#00AA5B1A] mr-[20px] ">
+                            <div className="PictureWrapper w-[70px] h-[58px] py-[20px] px-[10px] "> 
+                                <img src={img} alt={name} className="w-full h-full" />
+                            </div>
+                        </div>
+                        {/*Item category */}
+                        <div className="ItemCategory my-[45px] mr-[6px] ">
+                            <p className="text-start font-inter font-[700] text-[14px] text-[#008000] my-0 ">{category}</p>
+                        </div>
+                        {/*Period Seperator */}
+                        <div className="PeriodSeperator my-[45px] mr-[6px]">
+                            <p className="text-start font-inter font-[700] text-[14px] text-[#000000] my-0 "> . </p>
+                        </div>
+                        {/*Item Name */}
+                        <div className="ItemName my-[45px] mr-[6px] ">
+                            <p className="text-start font-inter font-[700] text-[14px] text-[#000000] my-0 ">{name}</p>
+                        </div>
+                        
+                    </div> {/*Item Picture Wrapper Ends Here */}
+                </div> {/*Item Picture and Name Ends Here */}
 
                 {/*Item Quantity And Order Status */}
-                <div className="ItemQttyAndStatus block">
-
-                </div>
+                <div className="ItemQttyAndStatus block my-[45px]">
+                    <div className="ItemQttyAndStatusWrapper grid grid-cols-2">
+                        {/*Items Quantity */}
+                        <div className="ItemQtty">
+                            <p className="text-center font-inter font-[700] text-[16px] text-[#008000] my-0">{quantity}</p>
+                        </div>
+                        {/*Items Order Status*/}
+                        <div className="ItemStatus">
+                            <p className="text-center font-inter font-[700] text-[16px] text-[#FF0C1A] my-0"> {status}</p>
+                        </div>
+                    </div> {/*Items Quantity and Status Wrapper Ends Here */}
+                </div> {/*Items Quantity And Status Ends Here */}
 
             </div> {/*Order ItemsWrapper Ends Here */}
 
