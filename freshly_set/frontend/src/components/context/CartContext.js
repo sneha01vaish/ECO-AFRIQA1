@@ -13,7 +13,7 @@ const getCartFromLocalStorage = () => {
 // Create a provider component
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(getCartFromLocalStorage);
-
+  const [cartOpen, setCartOpen] = useState(false)
 
   // Save cart to localStorage whenever cartItems state changes
   useEffect(() => {
@@ -85,7 +85,7 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, openCart, isCartOpen, closeCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}
     <CartContext.Provider value={{
       cartItems,
@@ -93,8 +93,7 @@ export const CartProvider = ({ children }) => {
       increaseQuantity,
       decreaseQuantity,
       removeFromCart,
-      clearCart,
-      totalPrice // Expose total price in context
+      clearCart // Expose total price in context
     }}>
       <CartOpenContext.Provider value={[cartOpen, setCartOpen]}>
         {children}
