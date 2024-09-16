@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 
 // Create Context
 export const CartContext = createContext();
@@ -12,6 +12,15 @@ const getCartFromLocalStorage = () => {
 // Create a provider component
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(getCartFromLocalStorage);
+  const [isCartOpen, setIsCartOpen] = useState(false)
+
+  const openCart = () => {
+    setIsCartOpen(true)
+  };
+
+  const closeCart = () => {
+    setIsCartOpen(false)
+  }
 
   // Save cart to localStorage whenever cartItems state changes
   useEffect(() => {
@@ -29,7 +38,7 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, openCart, isCartOpen, closeCart }}>
       {children}
     </CartContext.Provider>
   );
