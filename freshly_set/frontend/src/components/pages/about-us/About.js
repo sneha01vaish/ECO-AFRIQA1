@@ -10,6 +10,7 @@ import Team from './Team'
 import Testimonials from './Testimonials'
 import { PageContext } from '../../context/PageContext'
 import AboutUsSubNavbar from '../../Nav/AboutUsSubNavbar'
+import SubNavbar from '../../Nav/SubNavbar'
 
 function About() {
   const [activeTab, setActiveTab] = useContext(PageContext);
@@ -20,7 +21,8 @@ function About() {
   return (
     <div className="overflow-x-hidden">
       <Nav />
-      <AboutUsSubNavbar />
+      <SubNavbar partnership={true} sections={[{title:"Freshly Functions", id: "functions"},{title:"Freshly Objectives", id: "objectives"}, {title:"Freshly Testimonials", id: "testimonials"}, {title:"Freshly Team", id: "team"}]}/>
+
       <Hero />
       <WhyChoose />
       <MissionVision />

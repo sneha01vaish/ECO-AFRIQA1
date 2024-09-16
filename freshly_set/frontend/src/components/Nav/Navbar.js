@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import "./Nav.css"
-import { IoMdMenu } from "react-icons/io";
+import { IoIosNotifications, IoMdMenu } from "react-icons/io";
 import { Link, NavLink } from 'react-router-dom';
 import { IoMdClose } from "react-icons/io";
-import { FaChevronUp, FaUser, FaUsers } from "react-icons/fa";
+import { FaChevronDown, FaChevronUp, FaUser, FaUsers } from "react-icons/fa";
 import { CiSettings, CiGlobe } from "react-icons/ci";
 import { PageContext } from '../context/PageContext';
+import { TiShoppingCart } from "react-icons/ti";
+import { CartContext, CartOpenContext } from '../context/CartContext';
+import { FaRegCircleUser } from 'react-icons/fa6';
 
 function Nav() {
 
@@ -16,6 +19,13 @@ function Nav() {
     const [open, setOpen] = useState(false);
 
     const [authenticated, setAuthenticated] = useState(false);
+
+    const [productsToggled, setProductsToggled] = useState(false);
+
+    const { cartItems } = useContext(CartContext);
+
+    const [cartOpen, setCartOpen] = useContext(CartOpenContext);
+
 
     const scrollNow = () =>{
         if(window.scrollY>60){
@@ -43,157 +53,104 @@ function Nav() {
   return (
     <div>
         {/* Large screen navbar */}
+<nav className="hidden lg:flex w-full fixed top-0 z-50 bg-gradient-to-r from-[#008000] to-[#001A00] via-[#001A00] via-[30%] py-[20px]">
+  <div className="flex justify-between items-center w-full max-w-[1280px] px-8 mx-auto">
+    {/* Logo */}
+    <div className="">
+      <img className={scrolled ? "navbarLogoScroll" : "navbarLogo"} src="/static/media/freshlyLogoWhite.png" alt="NavLogo"/>
+    </div>
 
-        <nav className={authenticated ? "flex justify-between  w-[100%]   pl-[67.48px] pr-[77.14px] fixed top-0 z-50 bg-white pb-[20.1px] pt-[20.42px]": "flex  justify-between w-[90%]  pl-[67.48px] pr-[177.14px] fixed top-0 z-50 bg-white  pb-[20.1px] pt-[20.42px] border-b-[3px] border-t-[0px] border-r-0 border-l-0 border-solid border-[#008000]"}>
-            {/* Logo */}
-            <div className="">
-                <img className={scrolled ? "navbarLogoScroll" : "navbarLogo"} src="/static/media/logo2.png" alt="NavLogo"/>
+    {/* Nav Buttons */}
+    <div className="flex space-x-6 items-center bg-[#D9D9D9]/[10%] backdrop-blur-[50%] rounded-[52px] px-8 py-2">
+    <Link 
+    onClick={() => setActiveTab("home")} 
+    to="/" 
+    className="group relative"
+  >
+    <p className="my-[0px]  text-[19.25px] font-inter font-bold text-[#F5F5F5]">
+      Home
+    </p>
 
-            </div>
+    {/* White line that appears on hover */}
+    <span className="absolute  left-0 -bottom-[5px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
+  </Link>
+  <Link 
+    onClick={() => setActiveTab("about")} 
+    to="/" 
+    className="group relative"
+  >
+    <p className="my-[0px]  text-[19.25px] font-inter font-bold text-[#F5F5F5]">
+      About
+    </p>
 
-            {/* Nav Buttons */}
+    {/* White line that appears on hover */}
+    <span className="absolute  left-0 -bottom-[5px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
+  </Link>
 
-            {/*  font-family: Inter;
-    font-size: 29px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    display: block;
-    height: 35px;
-    width: 84px;
-    cursor: pointer; */}
+  <Link 
+    onClick={() => setActiveTab("blogs")} 
+    to="/" 
+    className="group relative"
+  >
+    <p className="my-[0px]  text-[19.25px] font-inter font-bold text-[#F5F5F5]">
+      Blogs
+    </p>
 
-            <div className={authenticated ? "flex justify-between  items-center w-[60%]":"flex  space-x-[59px] items-center mr-[100px] "}>
-                <Link onClick={() => setActiveTab("home")}  to="/" className="group text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                    
-                    <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Home</p>
-                    <div className={activeTab === "home" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-                     {
-                            activeTab && (
-                                <div className= {` ${activeTab === "home"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+    {/* White line that appears on hover */}
+    <span className="absolute  left-0 -bottom-[5px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
+  </Link>
+  <Link 
+    onClick={() => setActiveTab("marketplace")} 
+    to="/" 
+    className="group relative"
+  >
+    <p className="my-[0px]  text-[19.25px] font-inter font-bold text-[#F5F5F5]">
+      Market
+    </p>
 
-                            )
-                        }
+    {/* White line that appears on hover */}
+    <span className="absolute  left-0 -bottom-[5px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
+  </Link>
 
-                </Link>
+      <div className="flex items-center space-x-1 relative">
+        <p className="text-[19.25px] font-inter font-bold text-[#F5F5F5]">Products</p>
+        <FaChevronDown onClick={() => setProductsToggled(!productsToggled)} className={`text-white text-[30px] cursor-pointer ${productsToggled ? "rotate-180" : ""}`}/>
+        <div className={`${productsToggled ? "block" : "hidden"} absolute bg-white rounded-[14px] top-[50px] left-0 shadow-lg w-[285px]`}>
+          <Link to="/products/farmingSystems">
+            <p className="hover:bg-[#008000] cursor-pointer text-start px-[20px] py-[12px] text-[22px] text-[#008000] hover:text-white">Farming Systems</p>
+          </Link>
+          <Link to="/products/gardenSetups">
+            <p className="hover:bg-[#008000] cursor-pointer text-start px-[20px] py-[12px] text-[22px] text-[#008000] hover:text-white">Garden Setups</p>
+          </Link>
+        </div>
+      </div>
 
-                <Link to="/about-us" onClick={() => setActiveTab("about")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">About</p>
+      <div className="flex items-center space-x-1 relative">
+        <p className="text-[19.25px] font-inter font-bold text-[#F5F5F5]">Services</p>
+        <FaChevronDown className="text-white text-[30px] cursor-pointer"/>
+        {/* Add dropdown logic here similar to Products */}
+      </div>
+    </div>
 
-                    <div className={activeTab === "about" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-                  
-                        {
-                            activeTab && (
-                                <div className= {` ${activeTab === "about"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
+    {/* Icons */}
+    <div className="flex space-x-6 items-center">
+      <div className="relative">
+        {/* <TiShoppingCart onClick={() => setCartOpen(true)} className="text-white text-[39px] cursor-pointer"/> */}
+        <Link to="/cart">
+          <TiShoppingCart className="text-white text-[39px] cursor-pointer"/>
 
-                            )
-                        }
+        </Link>
 
-
-                </Link>
-
-
-                <Link onClick={() => setActiveTab("blogs")}  to="/blogs" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Blogs</p>
-
-                <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-                
-                    {
-                        activeTab && (
-                            <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
-
-                        )
-                    }
-                </Link>
-
-                <Link onClick={() => setActiveTab("products")}  to="/products" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                <div className="flex items-center">
-                    <li className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Products</li>
-                </div>
-
-                <div className={activeTab === "products" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-                
-                    {
-                        activeTab && (
-                            <div className= {` ${activeTab === "products"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
-
-                        )
-                    }
-                </Link>
-
-                {
-                    authenticated && (
-                        <div className="flex ">
-                            <Link onClick={() => setActiveTab("products")}  to="/products" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                            <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Products</p>
-
-                                <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-                            
-                                    {
-                                        activeTab && (
-                                            <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
-
-                                        )
-                                    }
-
-
-                            </Link>
-
-
-                            <Link onClick={() => setActiveTab("blogs")}  to="/blogs" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                            <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Services</p>
-
-                                <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-                            
-                                    {
-                                        activeTab && (
-                                            <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
-
-                                        )
-                                    }
-
-
-                            </Link>
-
-
-                            <Link onClick={() => setActiveTab("blogs")}  to="/blogs" className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                            <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Gardens</p>
-
-                                <div className={activeTab === "blogs" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-                            
-                                    {
-                                        activeTab && (
-                                            <div className= {` ${activeTab === "blogs"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
-
-                                        )
-                                    }
-
-
-                            </Link>
-                        </div>
-                    )
-                }
-
-                
-
-                <Link to="/SignUp" onClick={() => setActiveTab("signUp")}   className="text-[#008000] group my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">
-                <p className="text-[#008000] my-auto text-[25px] font-inter  font-[700] block h-[35px] w-[84px] cursor-pointer">Signup</p>
-
-                    <div className={activeTab === "signUp" ? "h-[7.5px] w-[109.005px] bg-[#008000] flex":"hidden"}/>
-                  
-                        {
-                            activeTab && (
-                                <div className= {` ${activeTab === "signUp"? "h-[0px]" :"h-[7.5px]" } w-[109.005px] bg-[#008000] hidden group-hover:flex`}/>
-
-                            )
-                        }
-
-
-                </Link>
-            </div>
-            
-        </nav>
-
+        <div className="absolute -top-[10px] left-[30px] bg-[#f30024] h-[25px] w-[25px] rounded-full text-center text-white">{cartItems.length}</div>
+      </div>
+      <div className="relative">
+        <IoIosNotifications className="text-white text-[39px]"/>
+        <div className="absolute -top-[10px] left-[18px] bg-[#f30024] h-[25px] w-[25px] rounded-full text-center text-white">1</div>
+      </div>
+      <FaRegCircleUser className="text-[39px] text-white/[50%]" />
+    </div>
+  </div>
+</nav>
         {/* Small screen Navbar */}
 {/* 
         <nav className="navbarSmBg">
@@ -232,17 +189,17 @@ function Nav() {
              </div>
         </nav>  */}
 
-        <nav className={open ? "flex justify-center z-[50] lg:hidden bg-[#008000]/[85%]  w-[100%] h-[100%] fixed top-0  ":"bg-white flex justify-between fixed top-0 w-[100%] lg:hidden items-center pl-[18px] z-[60]"}>
-            <img className={!open ? "flex h-[77px] w-[80px] object-cover":"hidden"} src="/static/media/logo2.png" alt="navLogo"/>
+        <nav className={open ? "flex justify-center z-[50] lg:hidden bg-[#008000]/[85%]  w-[100%] h-[100%] fixed top-0  ":"bg-gradient-to-r from-[#008000] to-[#001A00] via-[#001A00] via-[30%] flex justify-between fixed top-0 w-[100%] lg:hidden items-center pl-[18px] z-[60]"}>
+            <img className={!open ? "flex h-[77px] w-[80px] object-cover":"hidden"} src="/static/media/freshlyLogoWhite.png" alt="navLogo"/>
                         
                         <div className={!open ? "flex space-x-[33px]":"hidden"}>
                             <Link to="/" className="block group">
-                                <p className="text-[20px] font-[700] text-[#008000] font-inter">Home</p>
+                                <p className="text-[20px] font-[700] text-white font-inter">Home</p>
                                 <div className="h-[5px] w-[70px] bg-[#008000] -mt-[15px] hidden group-hover:flex"/>
                             </Link>
 
                             <div className="block group">
-                                <p className="text-[20px] font-[700] text-[#008000] font-inter">Sign Up</p>
+                                <p className="text-[20px] font-[700] text-white font-inter">Sign Up</p>
                                 <div className="h-[5px] w-[70px] bg-[#008000] -mt-[15px] hidden group-hover:flex"/>
                             </div>
                         </div>
@@ -251,7 +208,7 @@ function Nav() {
                 {!open &&(
                     <div className="">
                         
-                        <IoMdMenu onClick={() => setOpen(true)}  className="text-black h-[37px] w-[44px] my-[42px] mr-[41px] "/>
+                        <IoMdMenu onClick={() => setOpen(true)}  className="text-white h-[37px] w-[44px] my-[42px] mr-[41px] "/>
                         
                     </div>
 

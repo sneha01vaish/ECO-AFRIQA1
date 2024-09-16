@@ -1,0 +1,30 @@
+[
+    {
+        "id": 5,
+        "name": "Fresh Fruits",
+        "description": "Fresh Fruits",
+        "image": "/static/media/fruits.png",
+        "bgColor": "#ff9c39"
+    },
+    {
+        "id": 6,
+        "name": "Legumes",
+        "description": "Legumes",
+        "image": "/static/media/legumes.png",
+        "bgColor": "#d49787"
+    },
+    {
+        "id": 7,
+        "name": "Vegetables",
+        "description": "Vegetables",
+        "image": "/static/media/vegetables.png",
+        "bgColor": "#7ec18b"
+    },
+    {
+        "id": 8,
+        "name": "Spices",
+        "description": "Spices",
+        "image": "/static/media/spices.png",
+        "bgColor": "#fe8991"
+    }
+]

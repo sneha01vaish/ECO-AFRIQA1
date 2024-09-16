@@ -22,8 +22,8 @@ function Home() {
 },[activeTab])
   return (
     <div className="">
-      <NavAuthenticated />
-      <SubNavbar />
+      <Nav />
+      <SubNavbar partnership={true} sections={[{title:"Metric", id: "metric"},{title:"Promotion", id: "promotion"}, {title:"Reveiws", id: "reviews"}, {title:"FAQs", id: "faqs"}]}/>
      <Hero id="hero" />
      <Mission id="mission"/>
      <Metrics id="metrics"/>

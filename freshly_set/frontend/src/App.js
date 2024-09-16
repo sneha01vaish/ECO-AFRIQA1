@@ -32,6 +32,8 @@ import Installation from './components/pages/cta-detail/Installation';
 
 import Login from './components/pages/login/Login';
 import Consultation from './components/pages/cta-detail/Consultation';
+import CartPage from './components/pages/cta-detail/CartPage';
+import Booking from './components/pages/cta-detail/Booking';
 
 
 
@@ -69,13 +71,14 @@ function App() {
 
         <Route path="/mpesa" element={<Mpesa />} />
          <Route path="/credit" element={<Credit />} />
-<<<<<<< HEAD
+
          <Route path="/resultssearch" element={<ResultsSearch />} />
          <Route path="/installation" element={<Installation />} />
-=======
-         <Route path="/resultssearch" element={<ResultsSearch />} />       
+         <Route path="/search" element={<ResultsSearch />} />       
         <Route path="/consultation" element={<Consultation />} />
->>>>>>> e0cc58107f06b4cf8d9b8a3456fc1bffaf287b40
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/booking" element={<Booking />}/>
+
         
 
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}
