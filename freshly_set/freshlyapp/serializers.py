@@ -3,7 +3,7 @@ from PIL import Image
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 
-from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification, Review, Farmer, Cart, CartItem, Banner, Category
+from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification, Review, Farmer, Cart, CartItem, Banner, Category, Notification
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
 from django.contrib.auth.models import User
@@ -360,3 +360,13 @@ class CartSerializer(serializers.ModelSerializer):
                 {'discount_code': 'Discount code cannot exceed 50 characters.'})
 
         return data
+    
+
+
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = ['id', 'message', 'read', 'timestamp','user']
+    

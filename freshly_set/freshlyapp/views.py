@@ -28,10 +28,10 @@ from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.views import APIView
-from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart, Category
+from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart, Category, Notification
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer, PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer, CategorySerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer, PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer, CategorySerializer, NotificationSerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -886,3 +886,30 @@ def remove_from_cart(request):
         cart_item.quantity -= int(quantity)
         cart_item.save()
         return Response({"success": "Item quantity updated in cart"}, status=status.HTTP_200_OK)
+
+
+
+
+class NotificationListView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        # Get all unread notifications ordered by timestamp
+        notifications = Notification.objects.filter(user=request.user.id, read=False).order_by('-timestamp')
+
+        # Paginate the results
+        paginator = PageNumberPagination()
+        paginator.page_size = 3
+        result_page = paginator.paginate_queryset(notifications, request)
+
+        # Serialize the notifications
+        serializer = NotificationSerializer(result_page, many=True)
+
+        # Return the paginated response first
+        response = paginator.get_paginated_response(serializer.data)
+
+        # Mark all unread notifications as read after the response is prepared
+        notifications.update(read=True)
+
+        return response
+

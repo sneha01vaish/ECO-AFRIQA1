@@ -5,7 +5,7 @@ from .models import IDVerification
 
 # Register your models here.
 
-from .models import Product, Garden, Service, Blog, Banner, Vote
+from .models import Product, Garden, Service, Blog, Banner, Vote, Notification
 # admin.site.register(AppUser)
 admin.site.register(Product)
 
@@ -85,3 +85,4 @@ class BannerAdmin(admin.ModelAdmin):
     
 admin.site.register(Cart)
 admin.site.register(CartItem)
+admin.site.register(Notification)

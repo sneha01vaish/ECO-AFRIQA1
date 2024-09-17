@@ -149,6 +149,8 @@ urlpatterns = [
 
 
 
+   #notification url
+    path('notifications/', NotificationListView.as_view(), name='notification-list'),
 
     
 ]
