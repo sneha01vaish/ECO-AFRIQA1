@@ -1,11 +1,58 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Nav from '../../Nav/Navbar';
 import { CartContext } from "../../context/CartContext";
+import axios from "axios";
+import { getCsrfToken } from "../../../utils/getCsrfToken";
 
 function Mpesa2() {
 
   const { cartItems, totalPrice, delivery } = useContext(CartContext);
+
+ // Example order data to send (based on your app's structure)
+ const orderData = {
+  customer: {
+    name: 'John Doe',
+    email: 'johndoe@example.com',
+    phone: '1234567890'
+  },
+  items: cartItems.map(item => ({
+    product_id: item.id,
+    name: item.name,
+    price: item.price,
+    quantity: item.quantity
+  })),
+  total: cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+  payment_method: 'mpesa', // Example payment method
+};
+
+const handleCheckout = async () => {
+  // Fetch CSRF token from meta tag
+  const csrfToken = getCsrfToken();
+
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_API_HOST}/order/create/`, orderData, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrfToken,  // if applicable
+      },
+      withCredentials: true,  // if using CSRF protection
+    })
+    if (response.status === 201) {
+      // Order created successfully
+      console.log('Order created:', response.data);
+      alert('Order placed successfully!');
+    } else {
+      // Handle error
+      console.error('Error creating order:', response.data);
+      alert('Error creating order.');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error connecting to backend.');
+  }
+};
+
 
   useEffect(() => {
     console.log("cart items", totalPrice)
@@ -123,7 +170,7 @@ function Mpesa2() {
               <p className="text-[16px] text-gray-600 mb-24  font-inter">
                 By completing purchase, you have accepted our Terms and Conditions.
               </p>
-              <button className="  font-inter w-full text-[18px] font-bold text-white bg-green-700 py-3 rounded-[12px] mb-32 cursor-pointer active:scale-90 transition-all duration-100 ease-out">
+              <button onClick={() => handleCheckout()} className="  font-inter w-full text-[18px] font-bold text-white bg-green-700 py-3 rounded-[12px] mb-32 cursor-pointer active:scale-90 transition-all duration-100 ease-out">
                 Complete Payment
               </button>
             </div>

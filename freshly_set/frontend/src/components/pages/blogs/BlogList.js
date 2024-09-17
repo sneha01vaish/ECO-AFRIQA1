@@ -5,25 +5,34 @@ import { FaThumbsUp } from "react-icons/fa6";
 import { MdMessage } from "react-icons/md";
 import { BsShareFill } from "react-icons/bs";
 import { BlogsClickedContext } from '../../context/PageContext';
+import { SelectedBlogContext } from '../../context/BlogsContext';
 
 const BlogList = ({ post }) => {
     const [clicked, setClicked] = useState(null)
     const {id, title, date, image, description } = post
 
-
+    const [blogModalOpen, setBlogModalOpen] = useContext(BlogsClickedContext)
+  const [selectedBlog, setSelectedBlog] = useContext(SelectedBlogContext);
     const toggleBlog =(postId) => {
         setClicked((prev) => (prev === postId ? null : postId))
     }
 
     const addLike = () => {
     }
+
+    const onBlogClicked = () => {
+        setBlogModalOpen(true);
+        setSelectedBlog({id:post.id, image:post.image, title:post.title, date:post.date, description:post.description})
+
+
+    }
     return (
         <section>
             <div>
-                <div className={`${ clicked ? "sm:h-[300px] h-auto shadow-slate-600 shadow-sm rounded-[10px] bg-white/90": "h-[40px] py-2 " } sm:w-[400px] w-[320px] h-auto shadow-slate-600 shadow-sm rounded-[10px] bg-white/90 transition-all duration-300 ease-in-out`}>
+                <div className={`cursor-pointer ${ clicked ? "sm:h-[300px] h-auto shadow-slate-600 shadow-sm rounded-[10px] bg-white/90": "h-[40px] py-2 " } sm:w-[400px] w-[320px] h-auto shadow-slate-600 shadow-sm rounded-[10px] bg-white/90 transition-all duration-300 ease-in-out`}>
                     <div className='p-2'>
                         <p className='flex justify-between items-center m-0 pb-1'>
-                            <span className='capitalize font-bold w-[80%] text-start text-sm'>{title}</span>
+                            <span onClick={() => onBlogClicked()}  className='capitalize font-bold w-[80%] text-start text-sm'>{title}</span>
                             <span
                                 onClick={() => toggleBlog(id)}
                                 className={`${clicked ? "rotate-180 text-black/80": ""} cursor-pointer transition-all duration-300 ease-in-out`}

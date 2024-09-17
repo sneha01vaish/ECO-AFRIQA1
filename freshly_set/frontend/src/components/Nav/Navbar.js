@@ -248,17 +248,17 @@ function Nav() {
               <div className="block space-y-[40px] mt-[50px]">
                 <Link to="/about-us" className="flex space-x-[22px]  items-center ">
                   <FaUsers className="h-[54px] w-[64px] text-white" />
-                  <p className="text-white text-[25px] font-[700] font-inter">About Us</p>
+                  <p className="text-white text-[19px] font-[700] font-inter">About Us</p>
                 </Link>
 
                 <Link to="/blogs" className="flex space-x-[22px]  items-center">
                   <CiGlobe className="h-[54px] w-[64px] text-white" />
-                  <p className="text-white text-[25px] font-[700] font-inter">Blog</p>
+                  <p className="text-white text-[19px] font-[700] font-inter">Blog</p>
                 </Link>
 
                 <Link to="/signup" onClick={() => setActiveTab("signUp")} className="flex space-x-[22px]  items-center">
                   <FaUsers className="h-[54px] w-[64px] text-white" />
-                  <p className="text-white text-[25px] font-[700] font-inter">Sign Up</p>
+                  <p className="text-white text-[19px] font-[700] font-inter">Sign Up</p>
                 </Link>
 
                 <Link className="flex space-x-[22px]  items-center">
@@ -268,7 +268,7 @@ function Nav() {
 
                 <div className="flex space-x-[22px]  items-center">
                   <CiSettings className="h-[54px] w-[64px] text-white" />
-                  <p className="text-white text-[25px] font-[700] font-inter">Settings</p>
+                  <p className="text-white text-[19px] font-[700] font-inter">Settings</p>
                 </div>
               </div>
 

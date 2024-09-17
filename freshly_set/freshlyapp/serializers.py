@@ -288,9 +288,12 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'user', 'fname', 'lname', 'email', 'phone', 'address', 'city', 'state', 'country', 'pincode', 'total_price', 'payment_mode', 'status', 'tracking_no', 'created_at', 'items']
-        raise serializers.ValidationError(
-                "Verification failed. ID number or photo is not correct.")
-
+       
+        def validate(self, data):
+            if not self.context.get('is_verified'):  # Example of a condition
+                raise serializers.ValidationError("Verification failed. ID number or photo is not correct.")
+        
+            return data
 
 # Banner Serializer for Marketplace Page
 
