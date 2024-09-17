@@ -103,8 +103,8 @@ function CartPage() {
                             </div>
 
                             <div className="flex space-x-[56.09px] items-center  lg:space-x-[95px]">
-                                <h3 className="text-[15.14px] lg:text-[25px] text-[#000000]/[0.75] font-semibold font-inter">Total</h3>
-                                <h3 className="text-[15.14px] lg:text-[25px] text-[#FF0C1A]/[0.75] font-[700] font-inter">Ksh {totalPrice + delivery}</h3>
+                                <h3 className="text-[25px] text-[#000000]/[0.75] font-semibold font-inter">Total</h3>
+                                <h3 className="text-[25px] text-[#FF0C1A]/[0.75] font-[700] font-inter">Ksh {totalPrice + delivery}</h3>
 
                             </div>
                         </div>
