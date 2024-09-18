@@ -301,6 +301,10 @@ def Register(request):
         # Save the user if validation passes
         user = serializer.save()
         refresh = RefreshToken.for_user(user)
+        # Create notification
+        notification_message = f'Hi there {user.email}, welcome aboard you successfully created your account'
+        Notification.objects.create(user=user, message=notification_message)
+
         return Response({
             "message": "Signup successful!",
             "refresh": str(refresh),
@@ -309,6 +313,7 @@ def Register(request):
 
     # Return errors if validation fails
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -486,11 +491,16 @@ class VerifyIDView(APIView):
         try:
             verification = request.user.id_verification
             if verification.verify_user():
+                notification_message = f'Hi {request.user.email}, you have successfully verified your ID'
+                Notification.objects.create(user=request.user, message=notification_message)
+
                 return Response({"message": "User successfully verified."}, status=status.HTTP_200_OK)
             else:
                 return Response({"message": "Verification failed. ID or photo did not match."}, status=status.HTTP_400_BAD_REQUEST)
         except IDVerification.DoesNotExist:
             return Response({"error": "ID verification record not found."}, status=status.HTTP_404_NOT_FOUND)
+
+
 
 
 class IDVerificationUpdateView(generics.UpdateAPIView):
@@ -684,12 +694,18 @@ def create_order(request):
         serializer = OrderSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
+            notification_message = f'Hi {request.user.email} you placed your order successfully'
+            Notification.objects.create(user=request.user, message=notification_message)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         # Log and return an error message
         print(f"Error creating order: {str(e)}")
         return Response({"error": "Failed to create order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
 
 # View all orders for a user
 @api_view(['GET'])
@@ -702,6 +718,7 @@ def my_orders(request):
         print(f"Error fetching orders: {str(e)}")
         return Response({"error": "Failed to fetch orders"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
 # Cancel an order (allowed only if the status is 'out for shipping')
 @api_view(['POST'])
 def cancel_order(request, tracking_no):
@@ -710,6 +727,9 @@ def cancel_order(request, tracking_no):
         if order.status == 'out_for_shipping':
             order.status = 'cancelled'
             order.save()
+            notification_message = f'Hi {request.user.email}, your order of ID : {order.id} has been cancelled'
+            Notification.objects.create(user=request.user, message=notification_message)
+
             return Response({"message": "Order has been cancelled"}, status=status.HTTP_200_OK)
         else:
             return Response({"error": "Cannot cancel order unless it is 'out for shipping'"}, status=status.HTTP_400_BAD_REQUEST)
@@ -718,6 +738,8 @@ def cancel_order(request, tracking_no):
     except Exception as e:
         print(f"Error cancelling order: {str(e)}")
         return Response({"error": "Failed to cancel order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 
 # View specific order details by tracking number
 @api_view(['GET'])
