@@ -3,7 +3,7 @@ import React from 'react';
 function ProfileSidebar({ setSelectedSection }) {
   return (
     <div className="hidden lg:flex  h-[100%] pt-[13px] ">
-      <ul className="fixed block space-y-[51.48px] bg-gradient-to-r from-[#008000]  to-[#001A00] via-[#008000] w-[235.64px] pt-[34px] pb-[42.7px]">
+      <ul className="fixed flex-col h-[100%] justify-between space-y-[27.01px] bg-gradient-to-r from-[#008000]  to-[#001A00] via-[#008000] w-[235.64px] pt-[34px] pb-[42.7px]">
         <li 
           className="font-inter text-white text-[20px] font-[600] cursor-pointer"
           onClick={() => setSelectedSection('General')}
@@ -16,6 +16,14 @@ function ProfileSidebar({ setSelectedSection }) {
         >
           Account Information
         </li>
+
+        <li 
+          className="font-inter text-white/[0.50] hover:text-white transition-all duration-500 ease-in-out text-[20px] cursor-pointer"
+          onClick={() => setSelectedSection('Payment Information')}
+        >
+          Payment Information
+        </li>
+
         <li 
           className="font-inter text-white/[0.50] hover:text-white transition-all duration-500 ease-in-out text-[20px] cursor-pointer"
           onClick={() => setSelectedSection('OrderHistory')}
