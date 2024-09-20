@@ -69,13 +69,9 @@ function App() {
 
         <Route path="/mpesa" element={<Mpesa />} />
          <Route path="/credit" element={<Credit />} />
-<<<<<<< HEAD
-         <Route path="/resultssearch" element={<ResultsSearch />} />
-         <Route path="/installation" element={<Installation />} />
-=======
          <Route path="/resultssearch" element={<ResultsSearch />} />       
         <Route path="/consultation" element={<Consultation />} />
->>>>>>> e0cc58107f06b4cf8d9b8a3456fc1bffaf287b40
+        <Route path="/installation" element={<Installation />} />
         
 
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}
