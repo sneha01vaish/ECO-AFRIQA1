@@ -18,6 +18,7 @@ import FaqDetails from './components/pages/cta-detail/FaqDetails';
 import HeroDetail from './components/pages/cta-detail/HeroDetail';
 import Detailed from './components/pages/homepage/Detailed';
 import Detail from './components/pages/about-us/Detail';
+import Details from './components/pages/about-us/Details';
 import TestimonialsDetails from './components/pages/cta-detail/TestimonialsDetails';
 import BlogsAllUpdates from "./components/pages/cta-detail/BlogsAllUpdates"
 import Transporters from './components/pages/cta-detail/Transporters';
@@ -56,6 +57,7 @@ function App() {
         <Route path="/whychoose-detail" element={<Detail />} />
         <Route path="/reviews2-detailed" element={<Detailed />} />
         <Route path="/team-detail" element={<Detailed />} />
+        <Route path="/details" element={<Details />} />
 
         <Route path="/products/farmingSystems" element={<FarmingSystemsDetail />}/>
         <Route path="/products/gardenSetups" element={<GardenSetupsDetail />} />
