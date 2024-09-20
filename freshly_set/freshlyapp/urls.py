@@ -5,10 +5,13 @@ from django.urls import re_path
 from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, Register, search_blog
-from .views import PollDetailView, PollListCreateView, VoteCreateView, VerifyIDView, IDVerificationUpdateView, IDVerificationDetailView, BannerListView
+from .views import PollDetailView, PollListCreateView, VoteCreateView, VerifyIDView, IDVerificationUpdateView, IDVerificationDetailView, BannerListView, CategoryListCreateView, CategoryDetailView
 from .views import *
 from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -37,6 +40,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
 
     path('about-us/', TemplateView.as_view(template_name='index.html')),
+    path("marketplace/", TemplateView.as_view(template_name="index.html")),
     # path('blogs/', views.blogs, name='blogs'),
     path('freshlyapp/blogs/', BlogListView.as_view(), name='blog-list'),
     path('freshlyapp/create/', BlogListCreateView.as_view(),
@@ -72,7 +76,9 @@ urlpatterns = [
          CommentRetrieveUpdateDestroyAPIView.as_view(), name='comment_detail'),
     path('likes/', LikeCreateAPIView.as_view(), name='like_create'),
     path('shares/', ShareCreateAPIView.as_view(), name='share_create'),
-    path('search_blog/<int:pk>/', views.search_blog, name='search_blog'),
+    # path('search_blog/<int:pk>/', views.search_blog, name='search_blog'),
+    path('search_blog/', views.search_blog, name='search_blog'),
+
     path('freshlyapp/token/', TokenObtainPairView.as_view(),
          name='token_obtain_pair'),
     path('freshlyapp/token/refresh/',
@@ -108,14 +114,31 @@ urlpatterns = [
 
 
 
+    # Category URL
+
+    path('freshlyapp/categories/', CategoryListCreateView.as_view(),
+         name='category-list-create'),
+    path('freshlyapp/categories/<int:pk>/', CategoryDetailView.as_view(),
+         name='category-detail'),
 
 
 
-    #CART URLS
+    # CART URLS
     path('cart/', views.get_cart_instance, name='get_cart'),
     path('cart/add/', views.add_to_cart, name='add_to_cart'),
     path('cart/update/', views.update_quantity, name='update_quantity'),
     path('cart/remove/', views.remove_from_cart, name='remove_from_cart'),
+
+
+
+
+    #order url
+    path('orders/', views.my_orders, name='my_orders'),
+    path('order/<str:tracking_no>/', views.view_order, name='view_order'),
+    path('order/cancel/<str:tracking_no>/', views.cancel_order, name='cancel_order'),
+    path('order/create/', views.create_order, name='create_order'),
+
+
 
 
     

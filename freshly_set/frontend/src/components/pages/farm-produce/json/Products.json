@@ -1,130 +1,130 @@
 [
   {
     "id": 1,
-    "category": "fruits",
+    "category": "Fresh Fruits",
     "name": "plums",
-    "price": "ksh 120",
-    "quantity": "per packet",
-    "img": "/static/media/plums.png"
+    "price": 120,
+    "unit": "packet",
+    "image": "/static/media/fruitSaleNew.png"
   },
   {
     "id": 2,
-    "category": "legumes",
+    "category": "Legumes",
     "name": "peas",
-    "price": "ksh 180",
-    "quantity": "per kg",
-    "img": "/static/media/peas.png"
+    "price": 180,
+    "unit": "kg",
+    "image": "/static/media/peas.png"
   },
   {
     "id": 3,
-    "category": "vegetables",
+    "category": "Vegetables",
     "name": "kales",
-    "price": "ksh 30",
-    "quantity": "per bundle",
-    "img": "/static/media/kales.png"
+    "price": 30,
+    "unit": "bundle",
+    "image": "/static/media/kales.png"
   },
   {
     "id": 4,
-    "category": "spices",
+    "category": "Spices",
     "name": "garlic",
-    "price": "ksh 15",
-    "quantity": "per root",
-    "img": "/static/media/garlic.png"
+    "price": 15,
+    "unit": "root",
+    "image": "/static/media/garlic.png"
   },
   {
     "id": 6,
-    "category": "fruits",
+    "category": "Fresh Fruits",
     "name": "berries",
-    "price": "ksh 170",
-    "quantity": "per packet",
-    "img": "/static/media/berries.png"
+    "price": 170,
+    "unit": "packet",
+    "image": "/static/media/berries.png"
   },
   {
     "id": 7,
-    "category": "vegetables",
+    "category": "Vegetables",
     "name": "cloves",
-    "price": "ksh 10",
-    "quantity": "per stick",
-    "img": "/static/media/cloves.png"
+    "price": 10,
+    "unit": "stick",
+    "image": "/static/media/cloves.png"
   },
   {
     "id": 8,
-    "category": "legumes",
+    "category": "Legumes",
     "name": "beans",
-    "price": "ksh 200",
-    "quantity": "per kg",
-    "img": "/static/media/beans.png"
+    "price": 200,
+    "unit": "kg",
+    "image": "/static/media/beans.png"
   },
   {
     "id": 9,
-    "category": "spices",
+    "category": "Spices",
     "name": "massala",
-    "price": "ksh 90",
-    "quantity": "per 500g",
-    "img": "/static/media/c-4.png"
+    "price": 90,
+    "unit": "500g",
+    "image": "/static/media/c-4.png"
   },
   {
     "id": 10,
-    "category": "fruits",
+    "category": "Fresh Fruits",
     "name": "plums",
-    "price": "ksh 120",
-    "quantity": "per packet",
-    "img": "/static/media/plums.png"
+    "price": 120,
+    "unit": "packet",
+    "image": "/static/media/plums.png"
   },
   {
     "id": 12,
-    "category": "legumes",
+    "category": "Legumes",
     "name": "peas",
-    "price": "ksh 180",
-    "quantity": "per kg",
-    "img": "/static/media/peas.png"
+    "price": 180,
+    "unit": "kg",
+    "image": "/static/media/peas.png"
   },
   {
     "id": 13,
-    "category": "vegetables",
+    "category": "Vegetables",
     "name": "kales",
-    "price": "ksh 30",
-    "quantity": "per bundle",
-    "img": "/static/media/kales.png"
+    "price": 30,
+    "unit": "bundle",
+    "image": "/static/media/kales.png"
   },
   {
     "id": 14,
-    "category": "spices",
+    "category": "Spices",
     "name": "garlic",
-    "price": "ksh 15",
-    "quantity": "per root",
-    "img": "/static/media/garlic.png"
+    "price": 15,
+    "unit": "root",
+    "image": "/static/media/garlic.png"
   },
   {
     "id": 16,
-    "category": "fruits",
+    "category": "Fresh Fruits",
     "name": "berries",
-    "price": "ksh 170",
-    "quantity": "per packet",
-    "img": "/static/media/berries.png"
+    "price": 170,
+    "unit": "packet",
+    "image": "/static/media/berries.png"
   },
   {
     "id": 17,
-    "category": "vegetables",
+    "category": "Vegetables",
     "name": "cloves",
-    "price": "ksh 10",
-    "quantity": "per stick",
-    "img": "/static/media/cloves.png"
+    "price": 10,
+    "unit": "stick",
+    "image": "/static/media/cloves.png"
   },
   {
     "id": 18,
-    "category": "legumes",
+    "category": "Legumes",
     "name": "beans",
-    "price": "ksh 200",
-    "quantity": "per kg",
-    "img": "/static/media/beans.png"
+    "price":  200,
+    "unit": "kg",
+    "image": "/static/media/beans.png"
   },
   {
     "id": 19,
-    "category": "spices",
+    "category": "Spices",
     "name": "massala",
-    "price": "ksh 90",
-    "quantity": "per 500g",
-    "img": "/static/media/c-4.png"
+    "price": 90,
+    "unit": "500g",
+    "image": "/static/media/c-4.png"
   }
 ]

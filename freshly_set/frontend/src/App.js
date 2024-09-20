@@ -32,6 +32,8 @@ import Installation from './components/pages/cta-detail/Installation';
 
 import Login from './components/pages/login/Login';
 import Consultation from './components/pages/cta-detail/Consultation';
+import CartPage from './components/pages/cta-detail/CartPage';
+import Booking from './components/pages/cta-detail/Booking';
 
 
 

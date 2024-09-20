@@ -84,6 +84,14 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 """
 
 
+# models.py (additional models)
+from django.db import models
+from django.contrib.auth.models import User
+
+# Cart Model
+
+
+    
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=15, blank=True, null=True)
@@ -97,6 +105,9 @@ class Profile(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    image = models.ImageField(
+        upload_to='static/images/Categories', null=True, blank=True)
+    bgColor = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -107,6 +118,8 @@ class Product(models.Model):
     desc = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     qtty = models.IntegerField(default=0)
+    unit = models.CharField(max_length=250, null=True,
+                            blank=True, default="PACKET")
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name='products', blank=True, null=True)
     image = models.ImageField(
@@ -406,6 +419,62 @@ class IDVerification(models.Model):
             self.verified_at = timezone.now()
             self.save()
             return True
+        
+        return False
+    
+from django.db import models
+from django.contrib.auth.models import User
+from .models import Product  # Ensure Product model is already defined
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_qty = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.user.username}'s Cart"
+
+    
+
+
+# Order model to store user and order details
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fname = models.CharField(max_length=150, null=False)
+    lname = models.CharField(max_length=150, null=False)
+    email = models.CharField(max_length=150, null=False)
+    phone = models.CharField(max_length=150, null=False)
+    address = models.TextField(null=False)
+    city = models.CharField(max_length=150, null=False)
+    state = models.CharField(max_length=150, null=False)
+    country = models.CharField(max_length=150, null=False)
+    pincode = models.CharField(max_length=150, null=False)
+    total_price = models.CharField(max_length=150, null=False)
+    payment_id = models.CharField(max_length=150, null=False)
+    
+    ORDER_STATUS = (
+        ('pending', 'Pending'),
+        ('out_for_shipping', 'Out for Shipping'),
+        ('completed', 'Completed'),
+    )
+    
+    status = models.CharField(max_length=150, choices=ORDER_STATUS, default='pending')
+    message = models.TextField(null=True)
+    tracking_no = models.CharField(max_length=150, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '{} - {}'.format(self.tracking_no, self.status)
+
+# OrderItem model to track items in each order
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)  # Assuming Product model exists
+    price = models.IntegerField(null=False)
+
+    def __str__(self):
+        return '{} {}'.format(self.order.id, self.product.name)
 
         return False
 
@@ -426,14 +495,13 @@ class Banner(models.Model):
 
     def __str__(self):
         return self.title
-        
-        return False
-    
 
+        return False
 
 
 class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
     session_id = models.CharField(max_length=100, null=True, blank=True)
     discount_code = models.CharField(max_length=50, null=True, blank=True)
 
@@ -444,14 +512,17 @@ class Cart(models.Model):
     def clean(self):
         # User or session_id must be present (cannot be both empty)
         if not self.user and not self.session_id:
-            raise ValidationError({'user': 'User or session ID must be provided for a cart.'})
+            raise ValidationError(
+                {'user': 'User or session ID must be provided for a cart.'})
 
         # Validate discount code format (e.g., length or format)
         if self.discount_code and len(self.discount_code) > 50:
-            raise ValidationError({'discount_code': 'Discount code cannot exceed 50 characters.'})
+            raise ValidationError(
+                {'discount_code': 'Discount code cannot exceed 50 characters.'})
 
         if self.discount_code and not self.discount_code.isalnum():
-            raise ValidationError({'discount_code': 'Discount code should only contain alphanumeric characters.'})
+            raise ValidationError(
+                {'discount_code': 'Discount code should only contain alphanumeric characters.'})
 
     def save(self, *args, **kwargs):
         # Call the clean method to ensure validations are checked before saving
@@ -462,10 +533,9 @@ class Cart(models.Model):
         return f'Cart for {self.user or self.session_id}'
 
 
-
-
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, related_name="cart_items", on_delete=models.CASCADE)
+    cart = models.ForeignKey(
+        Cart, related_name="cart_items", on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
@@ -482,15 +552,18 @@ class CartItem(models.Model):
 
         # Max quantity validation
         if self.quantity > CartItem.MAX_QUANTITY:
-            raise ValidationError({'quantity': f'Quantity cannot exceed {CartItem.MAX_QUANTITY} per product.'})
+            raise ValidationError(
+                {'quantity': f'Quantity cannot exceed {CartItem.MAX_QUANTITY} per product.'})
 
         # Validate that quantity does not exceed available product stock
         if self.quantity > self.product.qtty:
-            raise ValidationError({'quantity': f'Not enough stock. Available stock is {self.product.qtty}.'})
+            raise ValidationError(
+                {'quantity': f'Not enough stock. Available stock is {self.product.qtty}.'})
 
         # Ensure cart is not for a non-existent product
         if not self.product:
-            raise ValidationError({'product': 'Product must exist for the cart item.'})
+            raise ValidationError(
+                {'product': 'Product must exist for the cart item.'})
 
     def save(self, *args, **kwargs):
         # Call the clean method to ensure validations are checked before saving

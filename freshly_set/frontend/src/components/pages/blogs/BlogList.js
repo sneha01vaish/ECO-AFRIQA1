@@ -14,6 +14,9 @@ const BlogList = ({ post }) => {
     const toggleBlog =(postId) => {
         setClicked((prev) => (prev === postId ? null : postId))
     }
+
+    const addLike = () => {
+    }
     return (
         <section>
             <div>
@@ -34,7 +37,7 @@ const BlogList = ({ post }) => {
                                 <p className='text-start text-[10px] text-slate-900 mt-0'>{description}</p>
                                 <p className='flex justify-between gap-5 text-[14px]'>
                                     <span className='cursor-pointer'>
-                                        <FaThumbsUp />
+                                        <FaThumbsUp onClick={addLike}/>
                                     </span>
                                     <span className='cursor-pointer'>
                                         <MdMessage />
