@@ -128,7 +128,7 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
             {/* <BlogsSubNavbar /> */}
             <BlogSearch />
 
-            <BlogMain blogs={blogs}/>
+            <BlogMain blogs={blogItems}/>
             {/* <BlogSearch /> */}
 
           </>
