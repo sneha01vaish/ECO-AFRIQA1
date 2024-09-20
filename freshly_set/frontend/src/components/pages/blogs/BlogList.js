@@ -29,7 +29,7 @@ const BlogList = ({ post }) => {
     return (
         <section>
             <div>
-                <div className={`cursor-pointer ${ clicked ? "sm:h-[300px] h-auto shadow-slate-600 shadow-sm rounded-[10px] bg-white/90": "h-[40px] py-2 " } sm:w-[400px] w-[320px] h-auto shadow-slate-600 shadow-sm rounded-[10px] bg-white/90 transition-all duration-300 ease-in-out`}>
+                <div className={`cursor-pointer ${ !clicked ? "sm:h-[300px] h-auto shadow-slate-600 shadow-sm rounded-[10px] bg-white/90": "h-[40px] py-2 " } sm:w-[400px] w-[320px] h-auto shadow-slate-600 shadow-sm rounded-[10px] bg-white/90 transition-all duration-300 ease-in-out`}>
                     <div className='p-2'>
                         <p className='flex justify-between items-center m-0 pb-1'>
                             <span onClick={() => onBlogClicked()}  className='capitalize font-bold w-[80%] text-start text-sm'>{title}</span>
@@ -40,7 +40,7 @@ const BlogList = ({ post }) => {
                                 <IoCaretDownSharp />
                             </span>
                         </p>
-                        <div className={`${clicked ? "flex gap-[3px] justify-between": "hidden"} `}>
+                        <div className={`${!clicked ? "flex gap-[3px] justify-between": "hidden"} `}>
                             <div className='flex flex-col justify-between items-start w-[52%]'>
                                 <p className='text-[10px] font-medium capitalize text-start mt-0'>{`by freshly farms, ${date}`}</p>
                                 <p className='text-start text-[10px] text-slate-900 mt-0'>{description}</p>
