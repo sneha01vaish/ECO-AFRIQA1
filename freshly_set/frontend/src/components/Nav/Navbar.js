@@ -155,11 +155,17 @@ function Nav() {
 
               <div className="absolute -top-[10px] left-[30px] bg-[#f30024] h-[25px] w-[25px] rounded-full text-center text-white">{cartItems.length}</div>
             </div>
+            <Link to="/notification">
             <div className="relative">
-              <IoIosNotifications className="text-white text-[39px]" />
-              <div className="absolute -top-[10px] left-[18px] bg-[#f30024] h-[25px] w-[25px] rounded-full text-center text-white">1</div>
-            </div>
-            <FaRegCircleUser className="text-[39px] text-white/[50%]" />
+            
+            <IoIosNotifications className="text-white text-[39px]" />
+            <div className="absolute -top-[10px] left-[18px] bg-[#f30024] h-[25px] w-[25px] rounded-full text-center text-white">1</div>
+          </div>
+            </Link>
+            
+            <Link to="/profile">
+              <FaRegCircleUser className="text-[39px] text-white/[50%]" />
+            </Link>
           </div>
         </div>
       </nav>
