@@ -3,6 +3,10 @@ import Nav from '../../Nav/Navbar';
 import ProfileSidebar from '../../Nav/ProfileSidebar';
 import AccountInformation from './AccountInformation';
 import PaymentInformation from './PaymentInformation';
+import OrderHistory from './OrderHistory';
+import QuotationHistory from './QuotationHistory';
+import VerifiedFarmers from './VerifiedFarmers';
+import Transporters from './Transporters';
 
 function Profile() {
   const [selectedSection, setSelectedSection] = useState('Account');
@@ -13,6 +17,17 @@ function Profile() {
         return <AccountInformation />;
       case 'Payment Information':
         return <PaymentInformation />;
+        case 'OrderHistory':
+        return <OrderHistory />;
+
+        case 'QuotationHistory':
+        return <QuotationHistory />;
+
+        case 'VerifiedFarmers':
+        return <VerifiedFarmers />;
+
+        case 'Transporters':
+        return <Transporters />;
       default:
         return <AccountInformation />;
     }

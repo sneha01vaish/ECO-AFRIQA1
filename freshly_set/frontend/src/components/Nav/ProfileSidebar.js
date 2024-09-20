@@ -2,8 +2,8 @@ import React from 'react';
 
 function ProfileSidebar({ setSelectedSection }) {
   return (
-    <div className="hidden lg:flex  h-[100%]] pt-[13px] ">
-      <ul className="fixed block space-y-[51.48px] bg-gradient-to-r from-[#008000]  rounded-[12px]  to-[#001A00] via-[#008000] w-[235.64px] pt-[34px] pb-[42.7px]">
+    <div className="hidden lg:flex  h-[100%] pt-[13px] ">
+      <ul className="fixed block space-y-[51.48px] bg-gradient-to-r from-[#008000]  to-[#001A00] via-[#008000] w-[235.64px] pt-[34px] pb-[42.7px]">
         <li 
           className="font-inter text-white text-[20px] font-[600] cursor-pointer"
           onClick={() => setSelectedSection('General')}
@@ -18,7 +18,7 @@ function ProfileSidebar({ setSelectedSection }) {
         </li>
         <li 
           className="font-inter text-white/[0.50] hover:text-white transition-all duration-500 ease-in-out text-[20px] cursor-pointer"
-          onClick={() => setSelectedSection('Order History')}
+          onClick={() => setSelectedSection('OrderHistory')}
         >
           Order History
         </li>
@@ -26,14 +26,14 @@ function ProfileSidebar({ setSelectedSection }) {
 
         <li 
           className="font-inter text-white/[0.50] hover:text-white transition-all duration-500 ease-in-out text-[20px] cursor-pointer"
-          onClick={() => setSelectedSection('Quotation History')}
+          onClick={() => setSelectedSection('QuotationHistory')}
         >
           Quotation History
         </li>
 
         <li 
           className="font-inter text-white/[0.50] hover:text-white transition-all duration-500 ease-in-out text-[20px] cursor-pointer"
-          onClick={() => setSelectedSection('Verified Farmers')}
+          onClick={() => setSelectedSection('VerifiedFarmers')}
         >
           Verified Farmers
         </li>
