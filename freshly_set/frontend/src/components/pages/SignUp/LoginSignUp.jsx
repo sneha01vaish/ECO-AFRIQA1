@@ -3,7 +3,8 @@ import './LoginSignUp.css';
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { BiShow } from "react-icons/bi";
 import Nav from '../../Nav/Navbar';
-
+import axios from 'axios';
+import { getCsrfToken } from '../../../utils/getCsrfToken';
 const LoginSignUp = () => {
   const [showForm, setShowForm] = useState(true);
   const [formData, setFormData] = useState({
@@ -20,6 +21,9 @@ const LoginSignUp = () => {
   const [passwordToggle, setPasswordToggle] = useState(false);
   const [confirmPasswordToggle, setConfirmPasswordToggle] = useState(false);
   const [errors, setErrors] = useState({});
+
+  const [backendErrors, setBackendErrors] = useState('');
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,7 +43,7 @@ const LoginSignUp = () => {
 
     if (validateForm()) {
       const payload = {
-        username: formData.email, // Assuming you want to use email as the username
+        username: formData.email,
         email: formData.email,
         password: formData.password,
         first_name: formData.firstName,
@@ -47,7 +51,7 @@ const LoginSignUp = () => {
         profile: {
           phone: formData.phone,
           location: formData.location,
-          remember_me: formData.rememberMe, // Add rememberMe to profile
+          remember_me: formData.rememberMe,
         },
       };
 
@@ -55,12 +59,15 @@ const LoginSignUp = () => {
         const response = await axios.post('http://127.0.0.1:8000/freshlyapp/register/', payload, {
           headers: {
             'Content-Type': 'application/json',
-            // 'X-CSRFToken': getCSRFToken(),
+            'X-CSRFToken': getCsrfToken(),
           },
+          withCredentials: true,  // Ensure cookies are sent with the request
+
         });
 
         if (response.status === 200) {
           alert('Signup successful!');
+          console.log("Signup Succesful")
         } else {
           // Handle the error message returned from the backend
           setBackendErrors(response.data.error || 'Signup failed. Please try again.');
@@ -86,8 +93,11 @@ const LoginSignUp = () => {
     if (!formData.password) errors.password = 'Required';
     if (!formData.confirmPassword) errors.confirmPassword = 'Required';
     if (formData.password !== formData.confirmPassword) errors.confirmPassword = 'Passwords do not match';
+    
     setErrors(errors);
+    return Object.keys(errors).length === 0;  // Return true if no errors, false otherwise
   };
+  
 
   return (
     <div className="signup-form ">
@@ -211,6 +221,8 @@ const LoginSignUp = () => {
               </span>
             </div>
             {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
+            {errors.password && <p className="error">{errors.password}</p>}
+{errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
             <label className="remember-me">
               <input
                 type="checkbox"
@@ -222,9 +234,10 @@ const LoginSignUp = () => {
               />
               Remember me
             </label>
-            <button  className="standardBtnLong" type="submit">Sign Up</button>
+            <button  className="standardBtnLong cursor-pointer" type="submit">Sign Up</button>
           </form>
 
+          {backendErrors && <p className="error">{backendErrors}</p>}
 
          <div className="block space-y-[17px] lg:space-y-[0px] lg:flex lg:space-x-[32px] items-center">
           <div className="flex justify-center space-x-[30px] lg:space-x-[23px] items-center">

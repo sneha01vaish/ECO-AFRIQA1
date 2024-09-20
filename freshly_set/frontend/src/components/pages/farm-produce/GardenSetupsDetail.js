@@ -4,13 +4,14 @@ import FarmCard from './FarmCard'
 import ProductsSearchBar from './ProductsSearchBar'
 import GardenSetupsHero from './GardenSetupsHero'
 import { GardensContext } from '../../context/PageContext'
+import Nav from '../../Nav/Navbar'
 
 function GardenSetupsDetail() {
     const [modalToggleContentsGardens, setModalToggleContentsGardens] = useContext(GardensContext);
 
   return (
     <div>
-        <NavAuthenticated />
+        <Nav />
         <div className="mt-[88px]">
          <ProductsSearchBar placeholder="Search for Garden Setups" />
 

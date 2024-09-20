@@ -21,7 +21,8 @@ function NavAuthenticated() {
 
     const [productsToggled, setProductsToggled] = useState(false);
 
-    const { cartItems } = useContext(CartContext)
+    const { cartItems, openCart } = useContext(CartContext)
+
     const showStar = () =>{
         if(window.scrollY>60){
             setScrolled(true)
@@ -194,7 +195,10 @@ function NavAuthenticated() {
 
 
                 <div className="-mt-[20px]">
-                    <FaShoppingBasket className="absolute freshlyGreenText text-[40px]"/>
+                    <FaShoppingBasket 
+                        className="absolute freshlyGreenText text-[40px] cursor-pointer"
+                        onClick={openCart}
+                    />
 
                     <div className="bg-[#f30024] h-[25px] w-[25px] rounded-[100%] relative -top-[12px] left-[30px] text-center font-inter mt-[5px]">{cartItems.length}</div>
                 </div>

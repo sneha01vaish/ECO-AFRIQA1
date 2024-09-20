@@ -28,10 +28,10 @@ from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.views import APIView
-from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart, Category
+from .models import Blog, Comment, Like, Share, Poll, Vote, IDVerification, Cart, Category, Notification
 from django.db.models import Q
 from rest_framework.generics import get_object_or_404
-from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer, PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer, CategorySerializer
+from .serializers import BlogSerializer, ProductSerializer, GardenSerializer, CommentSerializer, LikeSerializer, ShareSerializer, PollSerializer, VoteSerializer, IDVerificationSerializer, CartSerializer, BannerSerializer, CategorySerializer, NotificationSerializer
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -45,6 +45,8 @@ from rest_framework.validators import UniqueValidator
 from .validators import custom_validation, validate_email, validate_password
 # csrf_protect_method = method_decorator(csrf_protect)
 from django.utils import timezone
+import json
+from django.views.decorators.http import require_http_methods
 
 #imports for checkout
 
@@ -299,6 +301,10 @@ def Register(request):
         # Save the user if validation passes
         user = serializer.save()
         refresh = RefreshToken.for_user(user)
+        # Create notification
+        notification_message = f'Hi there {user.email}, welcome aboard you successfully created your account'
+        Notification.objects.create(user=user, message=notification_message)
+
         return Response({
             "message": "Signup successful!",
             "refresh": str(refresh),
@@ -307,6 +313,7 @@ def Register(request):
 
     # Return errors if validation fails
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class BlogRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -423,29 +430,56 @@ class PollListCreateView(generics.ListCreateAPIView):
 class PollDetailView(generics.RetrieveAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
+@permission_classes([AllowAny])
+class PollListView(APIView):
+    def get(self, request):
+        polls = Poll.objects.all()
+        serializer = PollSerializer(polls, many=True)
+        return Response(serializer.data)
 
-
-class VoteCreateView(generics.CreateAPIView):
-    serializer_class = VoteSerializer
-    permission_classes = (AllowAny,)
-
-    def post(self, request, *args, **kwargs):
-        poll = get_object_or_404(Poll, pk=kwargs['pk'])
+@permission_classes([AllowAny])
+class PollVoteView(APIView):
+    def put(self, request, pk):
+        poll = Poll.objects.get(pk=pk)
         choice = request.data.get('choice')
+        user = User.objects.get(id=request.user.id)  # Example of getting the logged-in user
 
-        if choice not in dict(Vote.CHOICES).keys():
-            return Response({'error': 'Invalid choice'}, status=status.HTTP_400_BAD_REQUEST)
-
+        # Create or update the vote for the poll
         vote, created = Vote.objects.update_or_create(
-            poll=poll, user=request.user,
+            poll=poll, user=user,
             defaults={'choice': choice}
         )
+        
+        return Response({'status': 'vote updated'}, status=status.HTTP_200_OK)
+@permission_classes([AllowAny])
+@api_view(['POST'])
+def SubmitVote(request):
+    serializer = VoteSerializer(data=request.data)
+    if serializer.is_valid():
+        vote = serializer.save()
+        poll = vote.poll
+        return Response({
+            'message': 'Vote submitted successfully',
+            'poll': poll.vote_counts()  # Return updated vote counts
+        })
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        if created:
-            return Response({'status': 'Vote added'}, status=status.HTTP_201_CREATED)
-        else:
-            return Response({'status': 'Vote updated'}, status=status.HTTP_200_OK)
+@require_http_methods(["PUT"])
+def vote_poll(request, poll_id):
+    poll = get_object_or_404(Poll, pk=poll_id)
 
+    try:
+        data = json.loads(request.body)
+        choice = data.get('choice')
+
+        if choice not in ['YES', 'NO', 'MAYBE', 'OTHER']:
+            return JsonResponse({'error': 'Invalid choice'}, status=400)
+
+        Vote.objects.create(poll=poll, user=request.user, choice=choice)
+        return JsonResponse({'message': 'Vote recorded successfully'})
+
+    except KeyError:
+        return JsonResponse({'error': 'Bad Request'}, status=400)
 
 # Verification photo and Id views
 # install bot03
@@ -457,11 +491,16 @@ class VerifyIDView(APIView):
         try:
             verification = request.user.id_verification
             if verification.verify_user():
+                notification_message = f'Hi {request.user.email}, you have successfully verified your ID'
+                Notification.objects.create(user=request.user, message=notification_message)
+
                 return Response({"message": "User successfully verified."}, status=status.HTTP_200_OK)
             else:
                 return Response({"message": "Verification failed. ID or photo did not match."}, status=status.HTTP_400_BAD_REQUEST)
         except IDVerification.DoesNotExist:
             return Response({"error": "ID verification record not found."}, status=status.HTTP_404_NOT_FOUND)
+
+
 
 
 class IDVerificationUpdateView(generics.UpdateAPIView):
@@ -645,6 +684,8 @@ def calculate_cart_total(request):
 
 
 # Create a new order after checkout
+# Temporary for testing
+@permission_classes([AllowAny])
 @api_view(['POST'])
 def create_order(request):
     try:
@@ -653,12 +694,18 @@ def create_order(request):
         serializer = OrderSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
+            notification_message = f'Hi {request.user.email} you placed your order successfully'
+            Notification.objects.create(user=request.user, message=notification_message)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         # Log and return an error message
         print(f"Error creating order: {str(e)}")
         return Response({"error": "Failed to create order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
 
 # View all orders for a user
 @api_view(['GET'])
@@ -671,6 +718,7 @@ def my_orders(request):
         print(f"Error fetching orders: {str(e)}")
         return Response({"error": "Failed to fetch orders"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
 # Cancel an order (allowed only if the status is 'out for shipping')
 @api_view(['POST'])
 def cancel_order(request, tracking_no):
@@ -679,6 +727,9 @@ def cancel_order(request, tracking_no):
         if order.status == 'out_for_shipping':
             order.status = 'cancelled'
             order.save()
+            notification_message = f'Hi {request.user.email}, your order of ID : {order.id} has been cancelled'
+            Notification.objects.create(user=request.user, message=notification_message)
+
             return Response({"message": "Order has been cancelled"}, status=status.HTTP_200_OK)
         else:
             return Response({"error": "Cannot cancel order unless it is 'out for shipping'"}, status=status.HTTP_400_BAD_REQUEST)
@@ -687,6 +738,8 @@ def cancel_order(request, tracking_no):
     except Exception as e:
         print(f"Error cancelling order: {str(e)}")
         return Response({"error": "Failed to cancel order"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 
 # View specific order details by tracking number
 @api_view(['GET'])
@@ -855,3 +908,30 @@ def remove_from_cart(request):
         cart_item.quantity -= int(quantity)
         cart_item.save()
         return Response({"success": "Item quantity updated in cart"}, status=status.HTTP_200_OK)
+
+
+
+
+class NotificationListView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        # Get all unread notifications ordered by timestamp
+        notifications = Notification.objects.filter(user=request.user.id, read=False).order_by('-timestamp')
+
+        # Paginate the results
+        paginator = PageNumberPagination()
+        paginator.page_size = 3
+        result_page = paginator.paginate_queryset(notifications, request)
+
+        # Serialize the notifications
+        serializer = NotificationSerializer(result_page, many=True)
+
+        # Return the paginated response first
+        response = paginator.get_paginated_response(serializer.data)
+
+        # Mark all unread notifications as read after the response is prepared
+        notifications.update(read=True)
+
+        return response
+

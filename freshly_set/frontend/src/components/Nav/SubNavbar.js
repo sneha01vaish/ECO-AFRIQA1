@@ -65,8 +65,8 @@ const smoothScroll = (event, targetId) => {
       className={`fixed flex justify-center items-center w-[100%] mx-auto z-40 transition-all duration-500 ease-in-out rounded-[26px]  ${visible ? 'top-[120px]' : '-top-[100px]'}`}
       style={{ transform: visible ? 'translateY(0)' : 'translateY(-100%)' }}
     >
-      <nav className="pr-[170px] bg-black/[0.40] backdrop-blur-[17px] mt-[50px]    px-[30px]">
-        <ul className="flex justify-between max-w-7xl space-x-[80px] w-[100%]">
+      <nav className="lg:pr-[170px] bg-black/[0.40] backdrop-blur-[17px] mt-[22px] lg:mt-[50px]  rounded-[26px] w-[400px] lg:w-auto lg:px-[30px]">
+        <ul className="flex justify-center -ml-[20px] w-[100%]  lg:max-w-7xl space-x-[14.1px] lg:space-x-[80px]">
           
           {
             sections.map((section) => (
@@ -74,10 +74,10 @@ const smoothScroll = (event, targetId) => {
               <li
             onMouseEnter={() => setActiveSection(section.id)}
             onMouseLeave={() => activeSection !== section.id && setActiveSection('')}
-            className="bg-[#D9D9D9]/[0.10] cursor-pointer py-[13px] px-[34px] whitespace-nowrap"
+            className="bg-[#D9D9D9]/[0.10] cursor-pointer py-[13px] px-[19.34px] lg:px-[34px] whitespace-nowrap"
           >
             <a
-              className="text-white text-center text-[19.25px] font-inter"
+              className="text-white text-center text-[10.94px] lg:text-[19.25px] font-inter"
               href={`#${section.id}`}
               onClick={(e) => {
                 smoothScroll(e, `#${section.id}`);
@@ -99,28 +99,28 @@ const smoothScroll = (event, targetId) => {
           }
 
           {
-            partnership && (
-              <div className="flex items-center space-x-[10px] relative">
+            // partnership && (
+            //   <div className="flex items-center space-x-[10px] relative">
 
-              <li onClick={() => setDropdownToggled(!dropdownToggled)} className="bg-[#D9D9D9]/[0.10] text-white cursor-pointer py-[13px] px-[34px] whitespace-nowrap"
-              >Partnership</li>
-              {/* <FaChevronUp onClick={() => setDropdownToggled(!dropdownToggled)} className={dropdownToggled ? "text-black text-[30px] ml-[10px] cursor-pointer rotate-180":"text-black text-[30px] ml-[10px] cursor-pointer" }/> */}
+            //   <li onClick={() => setDropdownToggled(!dropdownToggled)} className="bg-[#D9D9D9]/[0.10] text-white cursor-pointer py-[13px] px-[34px] whitespace-nowrap"
+            //   >Partnership</li>
+            //   {/* <FaChevronUp onClick={() => setDropdownToggled(!dropdownToggled)} className={dropdownToggled ? "text-black text-[30px] ml-[10px] cursor-pointer rotate-180":"text-black text-[30px] ml-[10px] cursor-pointer" }/> */}
               
-              <div className={dropdownToggled ? "block absolute bg-white  rounded-[14px] top-[50px] left-0 border border-solid shadow-lg border-gray-500 w-[285px] transition-all duration-500 ease-in-out":"hidden"}>
-                      <Link to="/verified">
-                          <p className="hover:bg-[#008000] cursor-pointer text-start bg-white px-[20px] py-[12px] rounded-[6px] transition-all duration-400 ease-in-out text-gray-800   text-[15px] hover:text-white">Verified Farmer</p>
+            //   <div className={dropdownToggled ? "block absolute bg-white  rounded-[14px] top-[50px] left-0 border border-solid shadow-lg border-gray-500 w-[285px] transition-all duration-500 ease-in-out":"hidden"}>
+            //           <Link to="/verified">
+            //               <p className="hover:bg-[#008000] cursor-pointer text-start bg-white px-[20px] py-[12px] rounded-[6px] transition-all duration-400 ease-in-out text-gray-800   text-[15px] hover:text-white">Verified Farmer</p>
               
-                      </Link>
+            //           </Link>
               
-                      <Link to="/transporters">
-                          <p className="hover:bg-[#008000] cursor-pointer text-start bg-white px-[20px] py-[12px] rounded-[6px] transition-all duration-400 ease-in-out text-gray-800   text-[15px] hover:text-white">Transporters</p>
+            //           <Link to="/transporters">
+            //               <p className="hover:bg-[#008000] cursor-pointer text-start bg-white px-[20px] py-[12px] rounded-[6px] transition-all duration-400 ease-in-out text-gray-800   text-[15px] hover:text-white">Transporters</p>
               
-                      </Link>
+            //           </Link>
               
-              </div>
+            //   </div>
               
-              </div> 
-            )
+            //   </div> 
+            // )
           }
           
           

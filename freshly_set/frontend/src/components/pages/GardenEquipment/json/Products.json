@@ -1,0 +1,90 @@
+[
+    {
+      "id": 1,
+      "category": "Hand Tools",
+      "name": "Pruning Saw",
+      "price": 1500,
+      "img": "/static/media/handTools.png"
+    },
+    {
+      "id": 2,
+      "category": "Hand Tools",
+      "name": "Hand Fork",
+      "price": 1700,
+      "img": "/static/media/handFork.png"
+    },
+    {
+      "id": 3,
+      "category": "Hand Tools",
+      "name": "Hand Gloves",
+      "price": 1700,
+      "img": "/static/media/handGloves.png"
+    },
+    {
+      "id": 4,
+      "category": "Hand Tools",
+      "name": "Trowel",
+      "price": 1000,
+      "img": "/static/media/trowel.png"
+    },
+
+    {
+        "id": 1,
+        "category": "Hand Tools",
+        "name": "Pruning Saw",
+        "price": 1500,
+        "img": "/static/media/handTools.png"
+      },
+      {
+        "id": 2,
+        "category": "Hand Tools",
+        "name": "Hand Fork",
+        "price": 1700,
+        "img": "/static/media/handFork.png"
+      },
+      {
+        "id": 3,
+        "category": "Hand Tools",
+        "name": "Hand Gloves",
+        "price": 1700,
+        "img": "/static/media/handGloves.png"
+      },
+      {
+        "id": 4,
+        "category": "Hand Tools",
+        "name": "Trowel",
+        "price": 1000,
+        "img": "/static/media/trowel.png"
+      },
+
+
+      {
+        "id": 5,
+        "category": "Hand Tools",
+        "name": "Pruning Saw",
+        "price": 1500,
+        "img": "/static/media/handTools.png"
+      },
+      {
+        "id": 6,
+        "category": "Hand Tools",
+        "name": "Hand Fork",
+        "price": 1700,
+        "img": "/static/media/handFork.png"
+      },
+      {
+        "id": 7,
+        "category": "Hand Tools",
+        "name": "Hand Gloves",
+        "price": 1700,
+        "img": "/static/media/handGloves.png"
+      },
+      {
+        "id": 8,
+        "category": "Hand Tools",
+        "name": "Trowel",
+        "price": 1000,
+        "img": "/static/media/trowel.png"
+      }
+
+]

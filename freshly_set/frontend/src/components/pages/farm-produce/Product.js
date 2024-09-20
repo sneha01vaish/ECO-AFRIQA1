@@ -22,7 +22,7 @@ function Product({img, title, name, price, unit, quantity, id}) {
       <h3 className='ProductName text-center uppercase mt-0 font-inter text-black text-[14px] lg:text-[20px] font-[700]'>{name}</h3>
       {/*Dynamic Product Price and Quantity */}
       <p className='PriceAndQtty text-center uppercase font-inter text-[12px] lg:text-[16px] font-[700]'>
-        <span className='ProductPrice text-[#008000]'>{price}</span>
+        <span className='ProductPrice text-[#008000]'>Ksh {price}</span>
         <span className='ProductQtty text-[#FF0C1A] '>&nbsp; - PER {unit}</span>
       </p>
       {/*Add to cart button */}

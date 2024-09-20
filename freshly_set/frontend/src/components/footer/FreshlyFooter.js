@@ -50,7 +50,7 @@ const FreshlyFooter = () => {
                 <Link className="block text-start font-inter text-[10px] lg:text-[16px] font-[400] my-0 mt-[10px] lg:mt-[8px] text-white w-fit" to="/">For Farmers</Link>
                 <Link className="block text-start font-inter text-[10px] lg:text-[16px] font-[400] my-0 mt-[10px] lg:mt-[8px] text-white w-fit" to="/">For Clients</Link>
                 <Link className="block text-start font-inter text-[10px] lg:text-[16px] font-[400] my-0 mt-[10px] lg:mt-[8px] text-white w-fit" to="/about-us">About Us</Link>
-                <Link className="block text-start font-inter text-[10px] lg:text-[16px] font-[400] my-0 mt-[10px] lg:mt-[8px] text-white w-fit" to="/">Contact Us</Link>             
+                <Link className="block text-start font-inter text-[10px] lg:text-[16px] font-[400] my-0 mt-[10px] lg:mt-[8px] text-white w-fit" to="/contact">Contact Us</Link>             
               </div>
               {/*Explore */}
               <div className="Explore ">
@@ -76,7 +76,7 @@ const FreshlyFooter = () => {
                 <Link className="block text-start font-inter text-[10px] lg:text-[16px] font-[400] my-0 mt-[10px] lg:mt-[8px] text-white w-fit" to="/">For Farmers</Link>
                 <Link className="block text-start font-inter text-[10px] lg:text-[16px] font-[400] my-0 mt-[10px] lg:mt-[8px] text-white w-fit" to="/">For Clients</Link>
                 <Link className="block text-start font-inter text-[10px] lg:text-[16px] font-[400] my-0 mt-[10px] lg:mt-[8px] text-white w-fit" to="about-us">About Us</Link>
-                <Link className="block text-start font-inter text-[10px] lg:text-[16px] font-[400] my-0 mt-[10px] lg:mt-[8px] text-white w-fit" to="/">Contact Us</Link>       
+                <Link className="block text-start font-inter text-[10px] lg:text-[16px] font-[400] my-0 mt-[10px] lg:mt-[8px] text-white w-fit" to="/contact">Contact Us</Link>       
               </div>
             </div>  {/*Grid Wrapper for Links Ends Here */}
 
@@ -86,7 +86,7 @@ const FreshlyFooter = () => {
         </div> {/*Links and Logo Container */}
 
         {/*White Line */}
-        <div className="hidden lg:block mt-[20px] w-full bg-white h-[px]" /> {/*Only show in Desktop Version*/}
+        <div className="hidden lg:block mt-[20px] w-full bg-white h-[5px]" /> {/*Only show in Desktop Version*/}
 
         {/*Back to Top Buttton */}
         <div className="p-1 fixed bottom-4 right-4">

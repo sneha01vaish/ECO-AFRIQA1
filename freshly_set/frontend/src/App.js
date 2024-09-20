@@ -36,6 +36,12 @@ import Consultation from './components/pages/cta-detail/Consultation';
 import CartPage from './components/pages/cta-detail/CartPage';
 import Booking from './components/pages/cta-detail/Booking';
 
+import GardenEquipment from './components/pages/GardenEquipment/GardenEquipment';
+import ContactUS from './components/pages/cta-detail/ContactUs';
+import Notifications from './components/pages/OrderManagement/Notifications';
+import OrderProgress from './components/pages/OrderManagement/OrderProgress';
+import Profile from './components/pages/profile/Profile';
+
 
 
 function App() {
@@ -75,7 +81,16 @@ function App() {
          <Route path="/credit" element={<Credit />} />
          <Route path="/resultssearch" element={<ResultsSearch />} />       
         <Route path="/consultation" element={<Consultation />} />
+
         <Route path="/installation" element={<Installation />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/booking" element={<Booking />}/>
+        <Route path="/gardenEquipment" element={<GardenEquipment />}/>
+        <Route path="/booking" element={<Booking />} />
+        <Route path="/contact" element={<ContactUS />} />
+        <Route path="/notification" element={<Notifications />} />
+        <Route path="/order-progress" element={<OrderProgress />}/>
+        <Route path="/profile" element={<Profile />}/>
         
 
         {/* <Route path="/api/blogs" element={<Blogs />} /> */}

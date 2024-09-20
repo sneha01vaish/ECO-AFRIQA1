@@ -1,0 +1,83 @@
+[
+    {
+        "id": "1",
+        "name": "Lettuce",
+        "img": "/static/media/cartItem.png",
+        "category": "Vegetables",
+        "quantity": "3 Bunches",
+        "status": "Packaging"
+    },
+    {
+        "id": "2",
+        "name": "Lettuce",
+        "img": "/static/media/cartItem.png",
+        "category": "Vegetables",
+        "quantity": "3 Bunches",
+        "status": "Packaging"
+    },
+    {
+        "id": "3",
+        "name": "Lettuce",
+        "img": "/static/media/cartItem.png",
+        "category": "Vegetables",
+        "quantity": "3 Bunches",
+        "status": "Packaging"
+    },
+    {
+        "id": "4",
+        "name": "Lettuce",
+        "img": "/static/media/cartItem.png",
+        "category": "Vegetables",
+        "quantity": "3 Bunches",
+        "status": "Packaging"
+    },
+    {
+        "id": "5",
+        "name": "Lettuce",
+        "img": "/static/media/cartItem.png",
+        "category": "Vegetables",
+        "quantity": "3 Bunches",
+        "status": "Packaging"
+    },
+    {
+        "id": "6",
+        "name": "Lettuce",
+        "img": "/static/media/cartItem.png",
+        "category": "Vegetables",
+        "quantity": "3 Bunches",
+        "status": "Packaging"
+    },
+    {
+        "id": "7",
+        "name": "Lettuce",
+        "img": "/static/media/cartItem.png",
+        "category": "Vegetables",
+        "quantity": "3 Bunches",
+        "status": "Packaging"
+    },
+    {
+        "id": "8",
+        "name": "Lettuce",
+        "img": "/static/media/cartItem.png",
+        "category": "Vegetables",
+        "quantity": "3 Bunches",
+        "status": "Packaging"
+    },
+    {
+        "id": "9",
+        "name": "Lettuce",
+        "img": "/static/media/cartItem.png",
+        "category": "Vegetables",
+        "quantity": "3 Bunches",
+        "status": "Packaging"
+    },
+    {
+        "id": "10",
+        "name": "Lettuce",
+        "img": "/static/media/cartItem.png",
+        "category": "Vegetables",
+        "quantity": "3 Bunches",
+        "status": "Packaging"
+    }
+    
+]
