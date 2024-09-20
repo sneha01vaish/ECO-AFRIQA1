@@ -18,6 +18,7 @@ import FaqDetails from './components/pages/cta-detail/FaqDetails';
 import HeroDetail from './components/pages/cta-detail/HeroDetail';
 import Detailed from './components/pages/homepage/Detailed';
 import Detail from './components/pages/about-us/Detail';
+import Details from './components/pages/about-us/Details';
 import TestimonialsDetails from './components/pages/cta-detail/TestimonialsDetails';
 import BlogsAllUpdates from "./components/pages/cta-detail/BlogsAllUpdates"
 import Transporters from './components/pages/cta-detail/Transporters';
@@ -62,6 +63,7 @@ function App() {
         <Route path="/whychoose-detail" element={<Detail />} />
         <Route path="/reviews2-detailed" element={<Detailed />} />
         <Route path="/team-detail" element={<Detailed />} />
+        <Route path="/details" element={<Details />} />
 
         <Route path="/products/farmingSystems" element={<FarmingSystemsDetail />}/>
         <Route path="/products/gardenSetups" element={<GardenSetupsDetail />} />
@@ -77,11 +79,10 @@ function App() {
 
         <Route path="/mpesa" element={<Mpesa />} />
          <Route path="/credit" element={<Credit />} />
-
-         <Route path="/resultssearch" element={<ResultsSearch />} />
-         <Route path="/installation" element={<Installation />} />
-         <Route path="/search" element={<ResultsSearch />} />       
+         <Route path="/resultssearch" element={<ResultsSearch />} />       
         <Route path="/consultation" element={<Consultation />} />
+
+        <Route path="/installation" element={<Installation />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/booking" element={<Booking />}/>
         <Route path="/gardenEquipment" element={<GardenEquipment />}/>
