@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import { EmptyContext } from '../../context/PageContext';
 
 function CartPage() {
-    const [cartOpen, setCartOpen] = useContext(CartOpenContext);
+    // const [cartOpen, setCartOpen] = useContext(CartOpenContext);
 
     const { addToCart, increaseQuantity, decreaseQuantity, cartItems, clearCart, removeFromCart, totalPrice } = useContext(CartContext);
     const [productId, setProductId] = useState(0);
@@ -24,10 +24,10 @@ function CartPage() {
 
     // const itemInCart = cartItems.find(item => item.id === productId);
 
-    useEffect(() => {
+//     useEffect(() => {
 
-        console.log("Cart Open", totalPrice)
-},[cartOpen])
+//         console.log("Cart Open", totalPrice)
+// },[cartOpen])
   return (
     <div>
         <Nav />
@@ -102,11 +102,11 @@ function CartPage() {
 
                             </div>
 
-                            {/* <div className="flex lg:space-x-[95px]">
+                            <div className="flex space-x-[56.09px] items-center  lg:space-x-[95px]">
                                 <h3 className="text-[25px] text-[#000000]/[0.75] font-semibold font-inter">Total</h3>
-                                <h3 className="text-[25px] text-[#FF0C1A]/[0.75] font-[700] font-inter">Ksh {totalPrice.toFixed(2)}</h3>
+                                <h3 className="text-[25px] text-[#FF0C1A]/[0.75] font-[700] font-inter">Ksh {totalPrice + delivery}</h3>
 
-                            </div> */}
+                            </div>
                         </div>
 
                         {/* Right Side */}

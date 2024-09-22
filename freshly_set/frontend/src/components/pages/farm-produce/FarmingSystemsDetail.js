@@ -5,6 +5,7 @@ import FarmCard from './FarmCard'
 import { ModalContext, ModalToggleContentsContext } from '../../context/PageContext'
 import FarmingSystemsHero from './FarmingSystemsHero'
 import CtaPopup from './CtaPopup'
+import Nav from '../../Nav/Navbar'
 
 function FarmingSystemsDetail() {
   const [modalOpen, setModalOpen] = useContext(ModalContext);
@@ -12,7 +13,7 @@ function FarmingSystemsDetail() {
 
   return (
     <div>
-        <NavAuthenticated />
+        <Nav />
         <div className="mt-[88px]">
          <ProductsSearchBar placeholder="Search For Farming System"/>
 

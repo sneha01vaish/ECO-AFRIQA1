@@ -16,6 +16,7 @@ import boto3
 import re
 
 
+
 """
 class AppUserManager(BaseUserManager):
 
@@ -83,6 +84,14 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 """
 
 
+# models.py (additional models)
+from django.db import models
+from django.contrib.auth.models import User
+
+# Cart Model
+
+
+    
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=15, blank=True, null=True)
@@ -410,6 +419,62 @@ class IDVerification(models.Model):
             self.verified_at = timezone.now()
             self.save()
             return True
+        
+        return False
+    
+from django.db import models
+from django.contrib.auth.models import User
+from .models import Product  # Ensure Product model is already defined
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_qty = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.user.username}'s Cart"
+
+    
+
+
+# Order model to store user and order details
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fname = models.CharField(max_length=150, null=False)
+    lname = models.CharField(max_length=150, null=False)
+    email = models.CharField(max_length=150, null=False)
+    phone = models.CharField(max_length=150, null=False)
+    address = models.TextField(null=False)
+    city = models.CharField(max_length=150, null=False)
+    state = models.CharField(max_length=150, null=False)
+    country = models.CharField(max_length=150, null=False)
+    pincode = models.CharField(max_length=150, null=False)
+    total_price = models.CharField(max_length=150, null=False)
+    payment_id = models.CharField(max_length=150, null=False)
+    
+    ORDER_STATUS = (
+        ('pending', 'Pending'),
+        ('out_for_shipping', 'Out for Shipping'),
+        ('completed', 'Completed'),
+    )
+    
+    status = models.CharField(max_length=150, choices=ORDER_STATUS, default='pending')
+    message = models.TextField(null=True)
+    tracking_no = models.CharField(max_length=150, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '{} - {}'.format(self.tracking_no, self.status)
+
+# OrderItem model to track items in each order
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)  # Assuming Product model exists
+    price = models.IntegerField(null=False)
+
+    def __str__(self):
+        return '{} {}'.format(self.order.id, self.product.name)
 
         return False
 
@@ -507,3 +572,17 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f'CartItem: {self.product.name} (Quantity: {self.quantity})'
+
+
+
+class Notification(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
+    message = models.TextField()
+    read = models.BooleanField(default=False)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Notification for {self.user.username} at {self.timestamp}"
+
+

@@ -99,29 +99,17 @@ useEffect(() => {
     fetchBlogs(searchTerm);
   }, [location.search]);
 
-  // Function to handle search input and update URL params
-  const handleSearch = (event) => {
-    event.preventDefault();
-    const searchTerm = event.target.search.value;
-    if (searchTerm) {
-      // Add the search term to the URL as a query parameter
-      navigate(`?q=${searchTerm}`);
-    } else {
-      // Clear the search term from the URL
-      navigate(`/blogs`);
-    }
-  };
+  
 
 const navigate = useNavigate()
 const handleNavigateToAllBlogs = () => navigate('all-blogs-update')
 const handleNavigateToAllUpdates = () => navigate('allUpdates')
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <BlogCtaPopup />
       <div className=" min-h-[100vh] py-16 bg-[#F5FAF9]">
         <Nav />
-        <BlogSearch />
 
 
         {
@@ -138,8 +126,10 @@ const handleNavigateToAllUpdates = () => navigate('allUpdates')
         { selectedSection === "blogs" && (
           <>
             {/* <BlogsSubNavbar /> */}
-            <BlogMain blogs={blogs}/>
             <BlogSearch />
+
+            <BlogMain blogs={blogItems}/>
+            {/* <BlogSearch /> */}
 
           </>
        )}       

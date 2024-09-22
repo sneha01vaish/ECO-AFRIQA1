@@ -3,11 +3,15 @@ from PIL import Image
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 
-from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification, Review, Farmer, Cart, CartItem, Banner, Category
+from .models import Blog, Product, Garden, Comment, Like, Share, Poll, Vote, IDVerification, Review, Farmer, Cart, CartItem, Banner, Category, Notification
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.validators import ValidationError
 from django.contrib.auth.models import User
 from better_profanity import profanity
+
+from rest_framework import serializers
+from .models import Order, OrderItem
+
 
 UserModel = get_user_model()
 
@@ -183,23 +187,39 @@ class ShareSerializer(serializers.ModelSerializer):
 # Polls serializer
 
 
+
 class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
-        fields = ['id', 'user', 'choice', 'created_at']
+        fields = ['poll', 'user', 'choice']
 
+    def create(self, validated_data):
+        # Check if user already voted
+        vote, created = Vote.objects.get_or_create(
+            poll=validated_data['poll'],
+            user=validated_data['user'],
+            defaults={'choice': validated_data['choice']}
+        )
+
+        if not created:
+            # If vote already exists, update the choice
+            vote.choice = validated_data['choice']
+            vote.save()
+
+        return vote
+
+class VoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vote
+        fields = ['id', 'poll', 'user', 'choice', 'created_at']
 
 class PollSerializer(serializers.ModelSerializer):
     votes = VoteSerializer(many=True, read_only=True)
-    vote_counts = serializers.SerializerMethodField()
 
     class Meta:
         model = Poll
-        fields = ['id', 'title', 'description', 'created_at',
-                  'created_by', 'votes', 'vote_counts']
+        fields = ['id', 'title', 'description', 'votes', 'created_at']
 
-    def get_vote_counts(self, obj):
-        return obj.vote_counts()
 
 # IDverification
 
@@ -251,9 +271,29 @@ class IDVerificationSerializer(serializers.ModelSerializer):
             instance.save()
             return instance
         else:
-            raise serializers.ValidationError(
-                "Verification failed. ID number or photo is not correct.")
+            raise serializers.ValidationError("Verification failed. ID number or photo is not correct.")
+        
 
+# Serializer for the Order model
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = ['product', 'price', 'quantity']
+
+class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Order
+        fields = ['id', 'user', 'fname', 'lname', 'email', 'phone', 'address', 'city', 'state', 'country', 'pincode', 'total_price', 'payment_mode', 'status', 'tracking_no', 'created_at', 'items']
+       
+        def validate(self, data):
+            if not self.context.get('is_verified'):  # Example of a condition
+                raise serializers.ValidationError("Verification failed. ID number or photo is not correct.")
+        
+            return data
 
 # Banner Serializer for Marketplace Page
 
@@ -320,3 +360,13 @@ class CartSerializer(serializers.ModelSerializer):
                 {'discount_code': 'Discount code cannot exceed 50 characters.'})
 
         return data
+    
+
+
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = ['id', 'message', 'read', 'timestamp','user']
+    

@@ -85,7 +85,7 @@ function Team() {
         <div className="block space-y-[100px] mt-[40px] lg:mt-[60px]">
               <div className="block lg:flex flex-wrap justify-between w-[100%] space-y-[20px] lg:space-y-[0px]">
           {groupedMembers['Chief Executive Officer']?.slice(0, 3).map((member, index) => (
-            <Link to="/team-detail" key={index} className="block cursor-pointer mx-auto w-[204px] space-y-[12px] relative">
+            <Link to="/Details" key={index} className="block cursor-pointer mx-auto w-[204px] space-y-[12px] relative">
               <div
                 className=" bg-center w-[286px] h-[380px] gap-[10px] border-radius-[12px] flex-shrink-0 border-[#008000] filter grayscale"
                 style={{ backgroundImage: "url('/static/media/teamMember2.png')" }}
@@ -113,13 +113,20 @@ function Team() {
 
       {/* Display "View All" button only if not showing all */}
       {!showAll && (
+       
         <div className='flex justify-center mt-[120px]'>
+           <Link to="/Details " className='absolute block  mx-[80px] -mt-[60px] lg:-mt-[180px]'>
+          
           <button
             onClick={() => setShowAll(true)}
             className='w-[272px] cursor-pointer h-[70px] bg-[#008000] rounded-[15px] mt-[40px] text-white text-[25px] border-none'
           >
+
+
             View All
+           
           </button>
+          </Link>
         </div>
       )}
 
