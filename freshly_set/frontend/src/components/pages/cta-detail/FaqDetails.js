@@ -14,20 +14,19 @@ function FaqDetails() {
         <div className='Navbar'>
             <Nav /> 
         </div>
-        
-        {/* Back Button */}
-        <div className='BackNav flex justify-start mt-[50px] relative top-[100px] ml-[20px] lg:ml-[40px]'> 
-            <Link to= "/">
-                <img src='/static/media/image10.png' alt='Back' className='w-[40px] lg:w-[80px] cursor-pointer active:scale-90 transition-all duration-100 ease-out'/>
-            </Link>
-        </div> 
-        
         {/*Main Page Contents */}
-        <div className='FaqInfo relative top-[100px] lg:top-0 lg:mx-[40px] '>
+        <div className='FaqWrapper relative top-[80px] lg:top-[100px] mx-[6px] lg:mx-[40px] '>    
+            {/* Back Button */}
+            <div className='BackNav mt-[80px] w-fit cursor-pointer active:scale-90 transition-all duration-100 ease-out'> 
+                <Link to= "/" className='w-[40px] lg:w-[80px] h-[36px] lg:h-[50px] content-evenly'>
+                    <img src='/static/media/image10.png' alt='Back' className='w-full h-full '/>
+                </Link>
+            </div> 
+        
             <div className='PageHero flex flex-row-reverse justify-between mx-2 lg:mt-[60px]'>
                 {/*Questions Image (Left) */}
                 <div className=' block mt-0'>
-                    <img src='/static/media/faqMark.png' alt='Questions' className='w-[160px] h-[200px] lg:h-full lg:w-[600px] -mr-[15px] -mt-[30px] lg:mt-[-50px]'/>
+                    <img src='/static/media/faqMark.png' alt='Questions' className='w-[140px] h-[180px] lg:h-full lg:w-[600px] -mr-[15px] -mt-[30px] lg:mt-[-50px]'/>
                 </div>
               
                 {/*Search Box (Right) */}
@@ -36,7 +35,7 @@ function FaqDetails() {
                         <p className='text-[22px]  lg:text-[45px] text-start font-[700] font-inter  text-[#008000]  mb-[10px] lg:mb-0 lg:mt-[250px]'>What Can We Help You Find</p>
                     </div>   
 
-                    <div className='SearchBox w-[160%] lg:w-[100%] flex  mx-2 mt-[50px] lg:mt-[10px] lg:mx-0 my-[20px] relative border-solid border-[3px] lg:border-[5px] border-[#008000] rounded-[12px] lg:rounded-[20px] '>
+                    <div className='SearchBox w-[150%] lg:w-[100%] flex  mx-2 mt-[50px] lg:mt-[10px] lg:mx-0 my-[20px] relative border-solid border-[3px] lg:border-[5px] border-[#008000] rounded-[12px] lg:rounded-[20px] '>
                         <input placeholder="Search For Questions" className="h-[20px] w-[90%] border-0  lg:h-[40px] text-[18px]  lg:text-[28px] font-[400] py-[7px] lg:py-[10px] px-[14px] rounded-[12px] lg:rounded-[20px] focus:outline-none" />
                         <div className='SearchButton justify-end'>
                             <img src='/static/media/search.png' alt='' className='h-[30px] lg:h-[46px] w-[30px] lg:w-[42px] py-[2px] lg:py-[5px] px-[2px] lg-px[5px] rounded-[12px] lg:rounded-[20px] cursor-pointer active:scale-90 transition-all duration-500 ease-in'/>
