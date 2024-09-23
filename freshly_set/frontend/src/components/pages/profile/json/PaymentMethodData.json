@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "name": "Visa",
+        "img": "/static/media/image 156.png",
+        "CardNumber": "12345",
+        "expire": "06/2027",
+        "CardRank": "Default"
+    },
+    {
+        "id": "2",
+        "name": "Pesapal",
+        "img": "/static/media/pesapal.png",
+        "CardNumber": "67890",
+        "expire": "None",
+        "CardRank": "Secondary"
+    },
+    {
+        "id": "3",
+        "name": "M-Pesa",
+        "img": "/static/media/mpesa.png",
+        "CardNumber": "11356",
+        "expire": "None",
+        "CardRank": "Tertiary"
+    }
+]
