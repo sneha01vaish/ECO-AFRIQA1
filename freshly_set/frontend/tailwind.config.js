@@ -11,6 +11,7 @@ module.exports = {
     },
     extend: { 
       backgroundImage: theme => ({
+        'hero-homepage': "url('/public/static/media/HomeHeroBg.png')",
         'hero-about': "url('/public/static/media/aboutHero.png')",
         'hero-products':"url('/public/static/media/productsHero.png')",
         'hero-gif':"url('/public/static/media/heroGIF.gif')",

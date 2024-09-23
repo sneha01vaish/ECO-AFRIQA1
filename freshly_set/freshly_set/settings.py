@@ -1,5 +1,10 @@
 from datetime import timedelta
+<<<<<<< HEAD
+#from logging import config
+from decouple import config
+=======
 from logging import config
+>>>>>>> 284ed0487312c23307013242d6a40d219bb16332
 import os
 from pathlib import Path
 from decouple import config
@@ -8,7 +13,7 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
-SECRET_KEY = 'fake-secret-key'
+SECRET_KEY = 'SECRET_KEY'
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 
@@ -117,11 +122,11 @@ WSGI_APPLICATION = 'freshly_set.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT', cast=int),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 

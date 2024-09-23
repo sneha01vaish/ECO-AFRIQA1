@@ -40,6 +40,11 @@ Before running the script ensure that you are in the freshly_set directory. This
 
 If you go to your Django app on localhost:8000, you should now see the same changes
 
+More intuitive documentation can be found on the Confluence link below:
+
+https://freshlyfarms.atlassian.net/wiki/spaces/~712020b18d771470d24cd988b4e425cc72b299/pages/753672/Frontend+Codebase+Guide+Creating+Seamless+User+Experience+with+TailwindCSS+and+React
+
+
 # Please refer to this Google Doc for the Directory Structure:
 
 https://docs.google.com/document/d/1Zj1jSHgGZlxg97a0Chn4lDM3CwItXum7Efbgc1lFHss/edit?usp=sharing
