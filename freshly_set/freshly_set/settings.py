@@ -1,9 +1,8 @@
 from datetime import timedelta
-#from logging import config
+# from logging import config
 from logging import config
 import os
 from pathlib import Path
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -53,14 +52,11 @@ REST_FRAMEWORK = {
 
 
 # Security and session management
-#SECURE_SSL_REDIRECT = True 
-#SESSION_COOKIE_SECURE = True  
-#CSRF_COOKIE_SECURE = True  
-#SESSION_COOKIE_HTTPONLY = True
-#SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
-
-
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_HTTPONLY = True
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 # made it False as we are still in development , it is rejecting the site without secured requet.
