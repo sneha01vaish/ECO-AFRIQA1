@@ -2,48 +2,82 @@ import React from 'react'
 
 function Services() {
   return (
-    <section id="services" className="block lg:mt-[100px]">
-        <div className="lg:flex lg:justify-center">
-            <h3 className="text-[#008000] text-[30px] font-[700] lg:text-[45px] text-center font-inter">Our Services</h3>
-        </div>
-
-        {/* Service card */}
-        <div className="flex justify-center w-[100%] ">
-            <div className="block lg:flex space-y-[34px] lg:space-y-0 lg:space-x-[78px]">
-                <div className="lg:h-[514.435px] lg:w-[345.802px] relative z-[10]">
-                    <img  src="/static/media/services_1.png" alt="serices1"/>
-                
-                    <div className="absolute bottom-[30px] z-[20] left-[38.9px]">
-                        <p className='text-white text-[40px] font-[700] font-inter'>Installations</p>
-                        <p className="text-white text-[15px] font-[600] font-josefin -mt-[15px] leading-[19.5px] w-[306.899px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
-                    </div>
-                </div>
-
-
-                <div className="lg:h-[514.435px] lg:w-[345.802px] relative z-[10]">
-                    <img  src="/static/media/services_3.png" alt="serices1"/>
-                
-                    <div className="absolute bottom-[30px] z-[20] left-[38.9px]">
-                        <p className='text-white text-[40px] font-[700] font-inter'>Consultations</p>
-                        <p className="text-white text-[15px] font-[600] font-josefin -mt-[15px] leading-[19.5px] w-[306.899px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
-                    </div>
-                </div>
-
-
-
-                <div className="lg:h-[514.435px] lg:w-[345.802px] relative z-[10]">
-                    <img  src="/static/media/services_2.png" alt="serices1"/>
-                
-                    <div className="absolute bottom-[30px] z-[20] left-[38.9px]">
-                        <p className='text-white text-[40px] font-[700] font-inter'>Gardening Equipment</p>
-                        <p className="text-white text-[15px] font-[600] font-josefin -mt-[15px] leading-[19.5px] w-[306.899px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
-                    </div>
-                </div>
+    <section id="services" className="OurServices mt-[80px] lg:mt-[100px] ">
+        <div className='OurServicesWrapper mx-[20px] lg:mx-[40px]'>
+            {/*Services Heading */}   
+            <div className="ServicesHeading">
+                <h3 className="text-center text-[#008000] text-[35px] lg:text-[45px] font-[700] font-inter my-0">Our Services</h3>
             </div>
 
-            
-        </div>
-    </section>
+            {/* Services cards */}
+            <div className="ServicesCards mt-[40px] grid gap-[30px] lg:gap-[50px] grid-cols-2 lg:grid-cols-3">
+                {/*Installation */}
+                <div className="Installation block bg-services-homepage-installation bg-no-repeat bg-center bg-cover rounded-[28px] lg:rounded-[60px]">
+                    <div className='OuterWrapper my-[10px] lg:my-[70px]'>
+                        <div className="InstallationWrapper mt-[130px] lg:mt-[410px] p-[2px] mx-[6px] lg:mx-[20px]  bg-[#0000007D] lg:bg-transparent rounded-[8px] ">
+                            {/*ServiceHeading */}
+                            <div className="ServiceHeading ml-[4px] lg:ml-[20px] ">
+                                <p className='text-start text-white text-[14px] lg:text-[40px] font-[700] font-inter my-0'>Installations</p>
+                            </div>
+                            {/*ServiceDetails */}
+                            <div className='ServiceDetails ml-[4px] lg:ml-[20px] mt-[10px] lg:mt-[24px]'>
+                                <p className="text-start text-white text-[8px] lg:text-[16px] font-[600] font-josefin my-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+                            </div>
+                        </div> {/*Installation Wrapper */}
+                    </div> {/*Outer Wrapper */}
+                </div> {/*Installation Card */}
+                
+                {/*Consultation */}
+                <div className="Consultation bg-services-homepage-consultation bg-no-repeat bg-center bg-cover rounded-[28px] lg:rounded-[60px] ">
+                    <div className='OuterWrapper my-[10px] lg:my-[70px]'>
+                        <div className="ConsultationWrapper mt-[130px] lg:mt-[410px] mx-[6px] lg:mx-[20px] p-[2px] bg-[#0000007D] lg:bg-transparent rounded-[8px]  ">
+                            {/*ServiceHeading */}
+                            <div className="ServiceHeading ml-[4px] lg:ml-[20px] ">
+                                <p className='text-start text-white text-[14px] lg:text-[40px] font-[700] font-inter my-0'>Installations</p>
+                            </div>
+                            {/*ServiceDetails */}
+                            <div className='ServiceDetails ml-[4px] lg:ml-[20px] mt-[10px] lg:mt-[24px]'>
+                                <p className="text-start text-white text-[8px] lg:text-[16px] font-[600] font-josefin my-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+                            </div>
+                        </div> {/*Consultation Wrapper */}
+                    </div> {/*Outer Wrapper */}
+                </div> {/*Consultation Card */}
+
+                {/*Garden Eqipment */}
+                <div className="GardenEquipment bg-services-homepage-gardenEquip bg-no-repeat bg-center bg-cover rounded-[28px] lg:rounded-[60px]">
+                    <div className='OuterWrapper my-[18px] lg:my-[105px]'>
+                        <div className="InstallationWrapper mt-[132px] lg:mt-[365px] mx-[6px] lg:mx-[20px] p-[2px] bg-[#0000007D] lg:bg-transparent rounded-[8px] ">
+                            {/*ServiceHeading */}
+                            <div className="ServiceHeading ml-[4px] lg:ml-[20px] ">
+                                <p className='text-start text-white text-[14px] lg:text-[40px] font-[700] font-inter my-0'>Gardening Equipment</p>
+                            </div>
+                            {/*ServiceDetails */}
+                            <div className='ServiceDetails ml-[4px] lg:ml-[20px] mt-[10px] lg:mt-[24px]'>
+                                <p className="text-start text-white text-[8px] lg:text-[16px] font-[600] font-josefin my-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+                            </div>
+                        </div> {/*Installation Wrapper */}
+                    </div> {/*Outer Wrapper */}
+                </div> {/*GardenEquipment Card */}
+
+                {/*Garden Eqipment (Only Visible on Mobile Devices) */}
+                <div className="GardenEquipment block lg:hidden bg-services-homepage-gardenEquip bg-no-repeat bg-center bg-cover rounded-[28px] lg:rounded-[60px] ">
+                    <div className='OuterWrapper my-[18px] lg:my-[105px]'>
+                        <div className="InstallationWrapper mt-[132px] lg:mt-[365px] mx-[6px] lg:mx-[20px] p-[2px] bg-[#0000007D] lg:bg-transparent rounded-[8px] ">
+                            {/*ServiceHeading */}
+                            <div className="ServiceHeading ml-[4px] lg:ml-[20px] ">
+                                <p className='text-start text-white text-[14px] lg:text-[40px] font-[700] font-inter my-0'>Gardening Equipment</p>
+                            </div>
+                            {/*ServiceDetails */}
+                            <div className='ServiceDetails ml-[4px] lg:ml-[20px] mt-[10px] lg:mt-[24px]'>
+                                <p className="text-start text-white text-[8px] lg:text-[16px] font-[600] font-josefin my-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+                            </div>
+                        </div> {/*Installation Wrapper */}
+                    </div> {/*Outer Wrapper */}
+                </div> {/*GardenEquipment Card */}
+            </div>  {/*Services Cards */}
+              
+        </div> {/*Our Services Wrapper */}
+    </section> //Our Services
   )
 }
 
