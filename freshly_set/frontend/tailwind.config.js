@@ -11,7 +11,11 @@ module.exports = {
     },
     extend: { 
       backgroundImage: theme => ({
+        'metrics-homepage': "url('/public/static/media/mesh.png')",
         'hero-homepage': "url('/public/static/media/HomeHeroBg.png')",
+        'services-homepage-installation': "url('/public/static/media/services_1.png')",
+        'services-homepage-consultation': "url('/public/static/media/services_3.png')",
+        'services-homepage-gardenEquip': "url('/public/static/media/services_2.png')",
         'hero-about': "url('/public/static/media/aboutHero.png')",
         'hero-products':"url('/public/static/media/productsHero.png')",
         'hero-gif':"url('/public/static/media/heroGIF.gif')",
@@ -36,7 +40,9 @@ module.exports = {
       textShadow: {
         'custom': '2px 2px 2px rgba(0, 0, 0, 0.5)',
       },
-
+        writingMode: {
+        vertical: 'vertical-rl',   // Writting text verically, right to left in Metrics section
+      },
 
       },
   },
