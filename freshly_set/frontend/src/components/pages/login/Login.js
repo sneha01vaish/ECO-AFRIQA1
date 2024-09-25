@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { BiShow } from "react-icons/bi";
 import Nav from '../../Nav/Navbar';
+import axios from 'axios';
 
 const Login = () => {
   const [showForm, setShowForm] = useState(true);
@@ -10,6 +11,32 @@ const Login = () => {
     password: '',
     rememberMe: false,
   });
+  const [error, setError] = useState("")
+
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    
+    const loginData = {
+      username: username,
+      password: password,
+    };
+
+    try {
+      const response = await axios.post('http://localhost:8000/freshlyapp/token/', loginData);
+      const { access, refresh } = response.data;
+
+      // Save tokens in localStorage or cookies
+      localStorage.setItem('accessToken', access);
+      localStorage.setItem('refreshToken', refresh);
+
+      // Redirect user or update UI based on successful login
+      console.log('Login successful');
+    } catch (error) {
+      console.error('Login failed:', error.response);
+      setError('Invalid username or password');
+    }
+  };
 
   const [passwordToggle, setPasswordToggle] = useState(false);
   const [confirmPasswordToggle, setConfirmPasswordToggle] = useState(false);
@@ -46,7 +73,7 @@ const Login = () => {
         
         
         <div className="flex justify-center lg:px-[77px] lg:py-[88px] lg:w-[1197px] mx-[40px] my-[100px] bg-white  rounded-[132px]">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleLogin}>
             <div className="block space-y-[30.08px]">
             <h1>Login to Your Account</h1>
 
