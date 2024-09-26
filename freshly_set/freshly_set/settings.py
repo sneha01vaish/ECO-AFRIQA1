@@ -1,10 +1,4 @@
 from datetime import timedelta
-<<<<<<< HEAD
-# from logging import config
-from logging import config
-import os
-from pathlib import Path
-=======
 from logging import config
 import os
 from pathlib import Path
@@ -17,7 +11,6 @@ load_dotenv()
 
 import environ
 from django.core.exceptions import ImproperlyConfigured
->>>>>>> origin/Simanga-dev
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
