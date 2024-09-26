@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import re_path
 from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
-from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, Register, search_blog
+from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, Register, search_blog, initiate_payment, mpesa_callback
 from .views import PollDetailView, PollListCreateView, VerifyIDView, SubmitVote, IDVerificationUpdateView, IDVerificationDetailView, BannerListView, CategoryListCreateView, CategoryDetailView, vote_poll
 from .views import *
 from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
@@ -151,6 +151,10 @@ urlpatterns = [
 
    #notification url
     path('notifications/', NotificationListView.as_view(), name='notification-list'),
+
+   # Payment urls
+    path('api/initiate-payment/', initiate_payment, name='initiate-payment'),
+    path('api/mpesa-callback/', mpesa_callback, name='mpesa-callback'),
 
     
 ]
