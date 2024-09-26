@@ -1,3 +1,4 @@
+import json
 from .models import CartItem
 from .serializers import CartSerializer, CartItemSerializer
 from rest_framework.pagination import PageNumberPagination
@@ -52,6 +53,7 @@ from django.views.decorators.http import require_http_methods
 
 from django.contrib.auth.decorators import login_required
 from .models import Cart, Order, OrderItem, Product
+from .mpesa_utils import lipa_na_mpesa_online
 
 import random
 
@@ -935,3 +937,26 @@ class NotificationListView(APIView):
 
         return response
 
+# Payment views
+@csrf_exempt
+def initiate_payment(request):
+    if request.method == 'POST':
+        phone_number = request.POST.get('phone_number')
+        amount = request.POST.get('amount')
+        user = request.user
+
+        # Initiate the M-Pesa payment
+        response = lipa_na_mpesa_online(user, phone_number, amount)
+        
+        return JsonResponse({
+            "status": response.status,
+            "message": "Payment initiated" if response.status == 'completed' else "Payment failed",
+            "error": response.error_message if response.status == 'failed' else None
+        })
+    
+@csrf_exempt
+def mpesa_callback(request):
+    mpesa_response = json.loads(request.body.decode('utf-8'))
+    # Handle the response here (e.g., save the transaction to your database)
+    
+    return JsonResponse({"ResultCode": 0, "ResultDesc": "Accepted"})
