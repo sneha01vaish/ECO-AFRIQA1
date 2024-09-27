@@ -3,9 +3,11 @@ import { Link } from "react-router-dom"
 import { IoStarSharp } from "react-icons/io5";
 import { FaEdit } from "react-icons/fa";
 
+import LineChart from './utils/LineChart';
+
 function Transporters() {
   return (
-    <section className="font-inter">
+    <section className="font-inter mb-10">
       <div>
 
         <h2 className="flex gap-5 font-bold m-0">
@@ -46,7 +48,7 @@ function Transporters() {
       </div>
 
       <div >
-        <h2 className="capitalize font-bold text-[#000]/80 text-xl text-start">your upcoming deliveries</h2>
+        <h2 className="capitalize font-bold text-[#000]/80 text-[18px] text-start">your upcoming deliveries</h2>
 
         <table className="min-w-full text-center text-sm font-light">
           <thead className="text-green-500">
@@ -62,7 +64,7 @@ function Transporters() {
           <tbody className="font-bold text-[14px]">
             <tr>
               <td>10256KI</td>
-              <td className="text-green-600">ready</td>
+              <td className="text-green-600">READY</td>
               <td>lukas market</td>
               <td>mid apartments</td>
               <td>071234567</td>
@@ -70,7 +72,7 @@ function Transporters() {
             </tr>
             <tr>
               <td>10256KI</td>
-              <td className="text-red-600">packaging</td>
+              <td className="text-red-600">PACKAGING</td>
               <td>lukas market</td>
               <td>mid apartments</td>
               <td>071234567</td>
@@ -78,7 +80,7 @@ function Transporters() {
             </tr>
             <tr>
               <td>10256KI</td>
-              <td className="text-[#000]/80">collection</td>
+              <td className="text-[#000]/80">COLLECTION</td>
               <td>lukas market</td>
               <td>mid apartments</td>
               <td>071234567</td>
@@ -89,6 +91,45 @@ function Transporters() {
 
       </div>
 
+      <div className="w-[88%]">
+      <h2 className="font-bold text-[#000]/80 text-[18px] text-start">Your Performance</h2>
+      {/* Line-Graph chart */}
+      <LineChart />
+      </div>
+
+      <div>
+      <h2 className="font-bold text-[#000]/80 text-[18px] text-start">Your Delivery History</h2>
+      <table className="min-w-full text-center text-sm font-light">
+          <thead className="text-green-500">
+            <tr className="capitalize">
+              <th>Order number</th>
+              <th>Location</th>
+              <th>Client contact</th>
+              <th>Expected delivery date</th>
+            </tr>
+          </thead>
+          <tbody className="font-bold text-[14px]">
+            <tr>
+              <td>10256KI</td>
+              <td>mid apartments</td>
+              <td>071234567</td>
+              <td>Thursday, 27/10/2024, 12:40pm</td>
+            </tr>
+            <tr>
+              <td>10256KI</td>
+              <td>mid apartments</td>
+              <td>071234567</td>
+              <td>Thursday, 27/10/2024, 12:40pm</td>
+            </tr>
+            <tr>
+              <td>10256KI</td>
+              <td>mid apartments</td>
+              <td>071234567</td>
+              <td>Thursday, 27/10/2024, 12:40pm</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   )
 }
