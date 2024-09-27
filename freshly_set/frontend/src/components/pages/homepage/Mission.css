@@ -62,21 +62,24 @@ text-align: start;
 }
 
 .missionRight img{
-    width: 145.886px;
-    height:131.759px ;
+    width: 45.886px;
+    height:31.759px ;
     background-size: cover;
+    margin-right: 80px;
 }
 
 .missionImg2{
     margin-left: 38.11px;
+    margin-right: 70px;
 }
 
 
 
 .missionParagraph{
-    margin-left: auto;
+    margin-left: 150px;
     margin-right: auto;
     width: 312px;
+    margin-bottom: 50px;
     
     
 }
@@ -106,19 +109,3 @@ line-height: 130%;
 }
 }
 
-/* Larger Screens */
-@media (min-width: 769px) {
-    .missionImg2{
-        margin-left: 58px;
-    }
-
-    .missionRight{
-        margin-left: 10%;
-
-    }
-    
-    .missionBg{
-        margin-top: 280px;
-
-    }
-}
