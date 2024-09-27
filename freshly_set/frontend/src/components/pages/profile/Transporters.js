@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 import { IoStarSharp } from "react-icons/io5";
 import { FaEdit } from "react-icons/fa";
+import UsersDeliveries from "./json/UsersDeliveries.json"
 
 import LineChart from './utils/LineChart';
 
 function Transporters() {
+
+  // Replace the state with orders fetched from backend
+  const [deliveryData, setDeliveryData] = useState(UsersDeliveries);
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "ready":
+        return "text-[#008000]";
+      case "packaging":
+        return "text-red-600";
+      case "collection":
+        return "text-[#000]/80";
+      default:
+        return "text-green-600";
+    }
+  }
+
   return (
     <section className="font-inter mb-10">
       <div>
@@ -22,6 +40,7 @@ function Transporters() {
           </Link>
         </h2>
       </div>
+
       <div className='w-[88%]'>
         <div className="flex justify-between">
           <p className="flex flex-col">
@@ -49,7 +68,6 @@ function Transporters() {
 
       <div >
         <h2 className="capitalize font-bold text-[#000]/80 text-[18px] text-start">your upcoming deliveries</h2>
-
         <table className="min-w-full text-center text-sm font-light">
           <thead className="text-green-500">
             <tr className="capitalize">
@@ -61,34 +79,25 @@ function Transporters() {
               <th>Expected delivery date/time</th>
             </tr>
           </thead>
-          <tbody className="font-bold text-[14px]">
-            <tr>
-              <td>10256KI</td>
-              <td className="text-green-600">READY</td>
-              <td>lukas market</td>
-              <td>mid apartments</td>
-              <td>071234567</td>
-              <td>Thursday, 27/10/2024, 12:40pm</td>
-            </tr>
-            <tr>
-              <td>10256KI</td>
-              <td className="text-red-600">PACKAGING</td>
-              <td>lukas market</td>
-              <td>mid apartments</td>
-              <td>071234567</td>
-              <td>Thursday, 27/10/2024, 12:40pm</td>
-            </tr>
-            <tr>
-              <td>10256KI</td>
-              <td className="text-[#000]/80">COLLECTION</td>
-              <td>lukas market</td>
-              <td>mid apartments</td>
-              <td>071234567</td>
-              <td>Thursday, 27/10/2024, 12:40pm</td>
-            </tr>
-          </tbody>
-        </table>
 
+          {/*Customers upcoming delivery values */}
+          {
+            deliveryData ? deliveryData.map(({OrderNumber, OrderStatus, PickUp, DropOff, ClientsContact, DeliveryDate}, index) => (
+            <tbody
+              key={index}
+              className="font-bold text-[14px]">
+              <tr>
+                <td>{OrderNumber}</td>
+                <td className={`${getStatusColor(OrderStatus)} font-bold uppercase`}>{OrderStatus}</td>
+                <td className="capitalize">{PickUp}</td>
+                <td className="capitalize">{DropOff}</td>
+                <td>{ClientsContact}</td>
+                <td>{DeliveryDate}</td>
+              </tr>
+            </tbody>
+            )) : <p className="text-center text-green-600">No upcoming deliveries</p>
+          }
+        </table>
       </div>
 
       <div className="w-[88%]">
@@ -108,26 +117,19 @@ function Transporters() {
               <th>Expected delivery date</th>
             </tr>
           </thead>
-          <tbody className="font-bold text-[14px]">
-            <tr>
-              <td>10256KI</td>
-              <td>mid apartments</td>
-              <td>071234567</td>
-              <td>Thursday, 27/10/2024, 12:40pm</td>
-            </tr>
-            <tr>
-              <td>10256KI</td>
-              <td>mid apartments</td>
-              <td>071234567</td>
-              <td>Thursday, 27/10/2024, 12:40pm</td>
-            </tr>
-            <tr>
-              <td>10256KI</td>
-              <td>mid apartments</td>
-              <td>071234567</td>
-              <td>Thursday, 27/10/2024, 12:40pm</td>
-            </tr>
-          </tbody>
+          {
+            deliveryData ? deliveryData.map(({OrderNumber, DropOff, ClientsContact, DeliveryDate}, index) => (
+              <tbody className="font-bold text-[14px]">
+                <tr>
+                  <td>{OrderNumber}</td>
+                  <td className="capitalize">{DropOff}</td>
+                  <td className="capitalize">{ClientsContact}</td>
+                  <td>{DeliveryDate}</td>
+                </tr>
+              </tbody>
+            ))
+            : <p className="text-green-600">You do not have any delivery History</p>
+          }
         </table>
       </div>
     </section>
