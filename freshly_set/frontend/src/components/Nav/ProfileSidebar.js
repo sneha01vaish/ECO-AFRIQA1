@@ -60,21 +60,21 @@ function ProfileSidebar({ setSelectedSection }) {
           {/*Help */}
           <div className='Help mt-[12px]'>
             <li className="font-inter font-[700] bg-gradient-to-b bg-clip-text text-transparent from-[#FFFFFF80] hover:from-[#FFFFFF] to-[#99999980] hover:to-[#999999] transition-all duration-500 ease-in-out text-[20px] cursor-pointer"
-              onClick={() => setSelectedSection('Account Information')}>Help
+              onClick={() => setSelectedSection('Help')}>Help
             </li>
           </div>
 
           {/*Privacy Policy */}
           <div className='PrivacyPolicy mt-[12px]'>
             <li className="font-inter font-[700] bg-gradient-to-b bg-clip-text text-transparent from-[#FFFFFF80] hover:from-[#FFFFFF] to-[#99999980] hover:to-[#999999] transition-all duration-500 ease-in-out text-[20px] cursor-pointer"
-              onClick={() => setSelectedSection('Payment Information')}>Privacy Policy
+              onClick={() => setSelectedSection('Privacy Policy')}>Privacy Policy
             </li>
           </div>
 
           {/*Terms & Conditions */}
           <div className='TermsAndConditions mt-[12px]'>
             <li className="font-inter font-[700] bg-gradient-to-b bg-clip-text text-transparent from-[#FFFFFF80] hover:from-[#FFFFFF] to-[#99999980] hover:to-[#999999] transition-all duration-500 ease-in-out text-[20px] cursor-pointer"
-              onClick={() => setSelectedSection('OrderHistory')}>Terms & Conditions
+              onClick={() => setSelectedSection('Terms and Conditions')}>Terms & Conditions
             </li>
           </div>
         </div> {/*Support Pages */}
@@ -82,7 +82,7 @@ function ProfileSidebar({ setSelectedSection }) {
         {/*Log Out */}
           <div className='Logout mt-[14px]'>
             <li className="font-inter bg-gradient-to-b bg-clip-text text-transparent from-[#FFFFFF80] hover:from-[#FFFFFF] to-[#99999980] hover:to-[#999999] font-[900] transition-all duration-500 ease-in-out text-[20px] cursor-pointer"
-              onClick={() => setSelectedSection('OrderHistory')}>LOGOUT
+              onClick={() => setSelectedSection('Logout')}>LOGOUT
             </li>
           </div>    
       </ul>
