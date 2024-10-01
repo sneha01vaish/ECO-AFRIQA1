@@ -68,7 +68,9 @@ urlpatterns = [
          name='password_reset_complete'),
     #     path('products/', views.products, name='products'),
     path('services/', views.services, name='services'),
-    path('profile/', views.profile, name='profile'),
+    path('profile/', views.GetUserProfile.as_view(), name='profile'),
+    path('profile/update/', UpdateUserProfile.as_view(), name='user-profile-update'),
+
     # path('blogs/', BlogListCreateAPIView.as_view(), name='blog_list_create'),
     path('blogs/<int:pk>/', BlogRetrieveUpdateDestroyAPIView.as_view(),
          name='blog_detail'),

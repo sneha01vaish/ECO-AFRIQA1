@@ -611,3 +611,14 @@ class Transaction(models.Model):
     def can_retry(self):
         return self.retry_count < 3 and self.status == 'failed'  # Set retry limit to 3 attempts
 
+
+
+
+
+
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    location = models.CharField(max_length=255, blank=True, null=True)
+    phone = models.CharField(max_length=15, blank=True, null=True)
