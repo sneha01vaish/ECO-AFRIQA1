@@ -5,6 +5,7 @@ from rest_framework.pagination import PageNumberPagination
 from .serializers import ProductSerializer
 from django.shortcuts import render, redirect
 from django.middleware.csrf import get_token
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -960,3 +961,54 @@ def mpesa_callback(request):
     # Handle the response here (e.g., save the transaction to your database)
     
     return JsonResponse({"ResultCode": 0, "ResultDesc": "Accepted"})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from .serializers import UserProfileSerializer
+
+# Fetch user profile
+@permission_classes([IsAuthenticated])
+class GetUserProfile(APIView):
+
+    def get(self, request):
+        user = request.user
+        serializer = UserProfileSerializer(user, many=False)
+        return Response(serializer.data)
+
+@permission_classes([IsAuthenticated])
+class UpdateUserProfile(APIView):
+
+    def put(self, request):
+        user = request.user
+        serializer = UserProfileSerializer(user, data=request.data, partial=True)  # Allow partial updates
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
