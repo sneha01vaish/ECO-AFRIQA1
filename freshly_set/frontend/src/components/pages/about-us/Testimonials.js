@@ -14,11 +14,11 @@ function Testimonials() {
     setCards(TestimonialsData); // Fetched Data From Json file
     }, []);
 
-    // Function to return the custom margin style based on card index
-    const getMarginStyle = (index) => {
+    // Function to return the custom margin style on Desktop Version based on card index
+    const getMarginStyleDesktop = (index) => {
 
     // Define custom margins for 9 cards in the Desktop (3x3 grid)
-    const marginStyles = [
+    const marginStylesDesktop = [
       { margin: '0 90px 120px 0' },     // First card   (Margin Bottom and Right)
       { margin: '120px 0 0 90px' },     // Second card  (Margin Top and Left)
       { margin: '0 0 120px 90px' },     // Third card   (Margin Bottom and Left)
@@ -31,37 +31,70 @@ function Testimonials() {
     ];
 
     // The pattern repeats every 9 cards (3x3 grid)
-    return marginStyles[index % 9]; // Repeats pattern after every 9 cards
+    return marginStylesDesktop[index % 9]; // Repeats pattern after every 9 cards
+    };
+
+    // Function to return the custom margin style on Mobile Version based on card index
+    const getMarginStyleMobile = (index) => {
+
+    // Define custom margins for 6 cards in the Mobile (2x3 grid)
+    const marginStylesMobile = [
+      { margin: '0 20px 30px 0' },     // First card   (Margin Bottom and Right)
+      { margin: '30px 14px 0 6px' },   // Second card  (Margin Top, Right and Left)
+      { margin: '0 6px 30px 14px' },   // Third card   (Margin Bottom, Right and Left)
+      { margin: '30px 14px 0 6px' },   // Fourth card  (Margin Top, Right and Left)
+      { margin: '0 20px 30px 0' },     // Fifth card   (Margin Bottom, Right and Left)
+      { margin: '30px 14px 0 6px' }    // Sixth card   (Margin Top, Right and Left)
+    ];
+
+    // The pattern repeats every 6 cards (2x3 grid)
+    return marginStylesMobile[index % 6]; // Repeats pattern after every 6 cards
     };
 
     return (   
-      <section id="testimonials" className="Testimonials relative lg:mx-[40px] lg:mt-[100px]">
-          {/*Main title */}
-          <div className="MainTitle text-[20px]  flex justify-center">
-              <h1 className="font-inter block font[700] text-[#008000] text-[28px] lg:text-[45px] ">Our Testimonials</h1>
-          </div>
+        <section id="testimonials" className="Testimonials relative lg:mx-[40px] lg:mt-[100px]">
+            {/*Main title */}
+            <div className="MainTitle text-[20px]  flex justify-center">
+                <h1 className="font-inter block font[700] text-[#008000] text-[28px] lg:text-[45px] ">Our Testimonials</h1>
+            </div>
           
-          {/* View All Button */}
-          <Link to= "/testimonials-detailed" className='flex justify-end mt-[20px] lg:mt-[30px]'>
-              <button className=' block  mr-[20px] lg:mr-[100px] cursor-pointer rounded-[10px] border-none active:scale-90 transition-all duration-100 ease-out font-inter text-white bg-[#008000] text-[12px] lg:text-[20px] font-[700] py-[10px] px-[28px] lg:px-[35px] '> View All </button>
-          </Link>
+            {/* View All Button */}
+            <Link to= "/testimonials-detailed" className='flex justify-end mt-[20px] lg:mt-[30px]'>
+                <button className=' block  mr-[20px] lg:mr-[100px] cursor-pointer rounded-[10px] border-none active:scale-90 transition-all duration-100 ease-out font-inter text-white bg-[#008000] text-[12px] lg:text-[20px] font-[700] py-[10px] px-[28px] lg:px-[35px] '> View All </button>
+            </Link>
 
-          {/*Cards */}
-          <div className="AllCards mt-[10px] lg:mt-[50px] mx-[6px] lg:mx-[80px]">
-              {/*Nine Cards Visible on Desktop Version*/}
-                <div className="DesktopCards grid grid-cols-2 sm:grid-cols-3 gap-0 mx-0 ">
-                    {TestimonialsData.slice(0,DesktopCards).map((TestimonialsData, index) => {
-                        const marginStyle = getMarginStyle(index);
-                        return (
-                            <div key={TestimonialsData.id} style={marginStyle}>
-                                <TestimonialsCard img={TestimonialsData.img} name={TestimonialsData.name} title={TestimonialsData.title} details={TestimonialsData.details}/>
-                            </div>
-                        )
-                    })}             
-                </div> {/*Desktop Cards (Only Show in Desktop Devices) */}
+            {/*Cards */}
+            <div className="AllCards mt-[10px] lg:mt-[50px] mx-[6px] lg:mx-[80px]">
+                {/*Nine Cards Visible on Desktop Version*/}
+                <div className='DesktopCards hidden lg:block'>
+                    <div className="DesktopCardsWrapper grid grid-cols-3 gap-0 mx-0 ">
+                        {TestimonialsData.slice(0,DesktopCards).map((TestimonialsData, index) => {
+                            const marginStylesDesktop = getMarginStyleDesktop(index);
+                            return (
+                                <div key={TestimonialsData.id} style={marginStylesDesktop}>
+                                    <TestimonialsCard img={TestimonialsData.img} name={TestimonialsData.name} title={TestimonialsData.title} details={TestimonialsData.details}/>
+                                </div>
+                            )
+                        })}             
+                    </div> {/*Desktop Cards Wrapper */}
+                </div>  {/*Desktop Cards (Only Show in Desktop Devices) */}
 
-          </div> {/*All Cards Ends Here */}
-  </section> //Detailed ends here
+                {/*Six Cards Visible on Mobile Version*/}
+                <div className='MobileCards block lg:hidden'>
+                    <div className="MobileCardsWrapper  grid grid-cols-2 gap-0 mx-0 ">
+                        {TestimonialsData.slice(0,MobileCards).map((TestimonialsData, index) => {
+                            const marginStylesMobile = getMarginStyleMobile(index);
+                            return (
+                                <div key={TestimonialsData.id} style={marginStylesMobile}>
+                                    <TestimonialsCard img={TestimonialsData.img} name={TestimonialsData.name} title={TestimonialsData.title} details={TestimonialsData.details}/>
+                                </div>
+                            )
+                        })}             
+                    </div> {/*Mobile Cards Wrapper */}
+                </div>  {/*Mobile Cards (Only Show in Mobile Devices) */}
+
+            </div> {/*All Cards*/}
+  </section> //Testimonials
    ); 
 }
 
