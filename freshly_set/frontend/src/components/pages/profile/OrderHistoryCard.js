@@ -7,7 +7,7 @@ function OrderHistoryCard({img, CropOrdered, QuantityOrdered, DateOrdered, Order
             <div className="OrderCardWrapper rounded-[27px] px-[28px] py-[30px] border-solid border-[0.7px] border-[#0000004A] shadow-md shadow-[#00000040] ">
                 <div className="InnerContents flex justify-between">
                     {/*Product Ordered */}
-                    <div className="ProductOrdered block">
+                    <div className="ProductOrdered block w-[40%]">
                         <div className="InnerWrapper flex justify-start">
                             {/*Crop Card */}
                             <div className="CropCard block bg-[#00AA5B1A] shadow-md shadow-[#00000040] mr-[40px] rounded-[7.5px] px-[20px] py-[30px] ">
@@ -36,7 +36,7 @@ function OrderHistoryCard({img, CropOrdered, QuantityOrdered, DateOrdered, Order
                     </div>  {/*Product Ordered */}
 
                     {/*Order Status */}
-                    <div className="OrderStatus block">
+                    <div className="OrderStatus block w-[15%]">
                         <p className={`${OrderStatus === "Delivered"? "text-[#008000]":OrderStatus === "Packaging"? "text-[#000000]": "text-[#FF0C1A]"} text-center text-[18px] font-inter font-[900] my-0`}>{OrderStatus}</p>
                     </div>
 
