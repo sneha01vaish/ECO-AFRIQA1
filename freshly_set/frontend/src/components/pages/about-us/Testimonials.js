@@ -59,12 +59,15 @@ function Testimonials() {
             </div>
           
             {/* View All Button */}
-            <Link to= "/testimonials-detailed" className='flex justify-end mt-[20px] lg:mt-[30px]'>
-                <button className=' block  mr-[20px] lg:mr-[100px] cursor-pointer rounded-[10px] border-none active:scale-90 transition-all duration-100 ease-out font-inter text-white bg-[#008000] text-[12px] lg:text-[20px] font-[700] py-[10px] px-[28px] lg:px-[35px] '> View All </button>
-            </Link>
+            <div className='ViewAllButton w-fit float-right pb-[20px] lg:pb-[50px] mr-[20px] lg:mr-[100px]'>
+                <Link to= "/testimonials-detailed" className=' mt-[20px] lg:mt-[30px]'>
+                    <button className=' block  cursor-pointer rounded-[10px] border-none active:scale-90 transition-all duration-100 ease-out font-inter text-white bg-[#008000] text-[12px] lg:text-[20px] font-[700] py-[10px] px-[28px] lg:px-[35px] '> View All </button>
+                </Link>
+            </div>
+            
 
             {/*Cards */}
-            <div className="AllCards mt-[10px] lg:mt-[50px] mx-[6px] lg:mx-[80px]">
+            <div className="AllCards clear-both  mx-[6px] lg:mx-[80px]">
                 {/*Nine Cards Visible on Desktop Version*/}
                 <div className='DesktopCards hidden lg:block'>
                     <div className="DesktopCardsWrapper grid grid-cols-3 gap-0 mx-0 ">
