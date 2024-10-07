@@ -86,3 +86,5 @@ class BannerAdmin(admin.ModelAdmin):
 admin.site.register(Cart)
 admin.site.register(CartItem)
 admin.site.register(Notification)
+admin.site.register(Profile)
+

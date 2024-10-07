@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import re_path
 from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
-from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, Register, search_blog
+from .views import BlogListCreateView, BlogListView, CustomPasswordResetView, Register, search_blog, initiate_payment, mpesa_callback
 from .views import PollDetailView, PollListCreateView, VerifyIDView, SubmitVote, IDVerificationUpdateView, IDVerificationDetailView, BannerListView, CategoryListCreateView, CategoryDetailView, vote_poll
 from .views import *
 from .forms import MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
@@ -68,7 +68,9 @@ urlpatterns = [
          name='password_reset_complete'),
     #     path('products/', views.products, name='products'),
     path('services/', views.services, name='services'),
-    path('profile/', views.profile, name='profile'),
+    path('profile/', views.GetUserProfile.as_view(), name='profile'),
+    path('profile/update/', UpdateUserProfile.as_view(), name='user-profile-update'),
+
     # path('blogs/', BlogListCreateAPIView.as_view(), name='blog_list_create'),
     path('blogs/<int:pk>/', BlogRetrieveUpdateDestroyAPIView.as_view(),
          name='blog_detail'),
@@ -151,6 +153,10 @@ urlpatterns = [
 
    #notification url
     path('notifications/', NotificationListView.as_view(), name='notification-list'),
+
+   # Payment urls
+    path('api/initiate-payment/', initiate_payment, name='initiate-payment'),
+    path('api/mpesa-callback/', mpesa_callback, name='mpesa-callback'),
 
     
 ]
