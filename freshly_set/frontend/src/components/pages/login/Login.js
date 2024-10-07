@@ -17,13 +17,13 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     
-    const loginData = {
-      username: username,
-      password: password,
-    };
+    // const loginData = {
+    //   email: email,
+    //   password: password,
+    // };
 
     try {
-      const response = await axios.post('http://localhost:8000/freshlyapp/token/', loginData);
+      const response = await axios.post('http://localhost:8000/freshlyapp/token/', formData);
       const { access, refresh } = response.data;
 
       // Save tokens in localStorage or cookies
