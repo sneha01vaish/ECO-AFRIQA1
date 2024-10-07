@@ -578,6 +578,7 @@ class DeleteProduct(APIView):
 
 
 @permission_classes([AllowAny])
+
 class ProductListView(APIView):
     def get(self, request, *args, **kwargs):
         # Filter products based on the search query parameter
@@ -1012,3 +1013,24 @@ class UpdateUserProfile(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+from .serializers import FarmerSerializer
+from .models import *
+
+
+class FarmerListView(APIView):
+    def get(self, request, *args, **kwargs):
+        # Filter farmers based on verification status
+        verified_farmers = Farmer.objects.filter(user__id_verification__is_verified=True)
+
+        paginator = PageNumberPagination()
+        paginator.page_size = 10  # Set the number of items per page
+        result_page = paginator.paginate_queryset(verified_farmers, request)
+
+        serializer = FarmerSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
