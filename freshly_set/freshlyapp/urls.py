@@ -158,5 +158,9 @@ urlpatterns = [
     path('api/initiate-payment/', initiate_payment, name='initiate-payment'),
     path('api/mpesa-callback/', mpesa_callback, name='mpesa-callback'),
 
+
+   #Verified Farmers
+    path('verified-farmers/', FarmerListView.as_view(), name='verified-farmers'),
+
     
 ]
