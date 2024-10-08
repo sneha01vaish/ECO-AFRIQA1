@@ -44,10 +44,46 @@ class UserLoginSerializer(serializers.Serializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
-        fields = ['email', 'username']
+        fields = '__all__'
 
+
+from .models import Profile
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['location', 'phone']
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name', 'profile']
+
+    def update(self, instance, validated_data):
+        profile_data = validated_data.pop('profile', {})
+
+        # Update user fields only if provided
+        instance.username = validated_data.get('username', instance.username)
+        instance.email = validated_data.get('email', instance.email)
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.save()
+
+        # Update profile fields only if provided
+        profile = instance.profile
+        profile.location = profile_data.get('location', profile.location)
+        profile.phone = profile_data.get('phone', profile.phone)
+        profile.save()
+
+        return instance
+ 
 
 class ProductSerializer(serializers.ModelSerializer):
 
@@ -135,15 +171,16 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class FarmerSerializer(serializers.ModelSerializer):
-    # Nested serializer to display product details
-    product = ProductSerializer(read_only=True)
-    product_id = serializers.PrimaryKeyRelatedField(
-        queryset=Product.objects.all(), source='product', write_only=True
-    )  # To allow assignment of product by ID
+    username = serializers.CharField(source='user.username', read_only=True)
+    email = serializers.EmailField(source='user.email', read_only=True)
+    first_name = serializers.CharField(source='user.first_name', read_only=True)
+    last_name = serializers.CharField(source='user.last_name', read_only=True)
+    phone = serializers.CharField(source='user.profile.phone', read_only=True)
+    location = serializers.CharField(source='user.profile.location', read_only=True)
 
     class Meta:
         model = Farmer
-        fields = ['id', 'product', 'product_id', 'name', 'email', 'phone']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'phone', 'location', 'user']
 
 
 class GardenSerializer(serializers.ModelSerializer):

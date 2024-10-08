@@ -1,9 +1,11 @@
+import json
 from .models import CartItem
 from .serializers import CartSerializer, CartItemSerializer
 from rest_framework.pagination import PageNumberPagination
 from .serializers import ProductSerializer
 from django.shortcuts import render, redirect
 from django.middleware.csrf import get_token
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -52,6 +54,7 @@ from django.views.decorators.http import require_http_methods
 
 from django.contrib.auth.decorators import login_required
 from .models import Cart, Order, OrderItem, Product
+from .mpesa_utils import lipa_na_mpesa_online
 
 import random
 
@@ -575,6 +578,7 @@ class DeleteProduct(APIView):
 
 
 @permission_classes([AllowAny])
+
 class ProductListView(APIView):
     def get(self, request, *args, **kwargs):
         # Filter products based on the search query parameter
@@ -957,3 +961,98 @@ class NotificationListView(APIView):
 
         return response
 
+# Payment views
+@csrf_exempt
+def initiate_payment(request):
+    if request.method == 'POST':
+        phone_number = request.POST.get('phone_number')
+        amount = request.POST.get('amount')
+        user = request.user
+
+        # Initiate the M-Pesa payment
+        response = lipa_na_mpesa_online(user, phone_number, amount)
+        
+        return JsonResponse({
+            "status": response.status,
+            "message": "Payment initiated" if response.status == 'completed' else "Payment failed",
+            "error": response.error_message if response.status == 'failed' else None
+        })
+    
+@csrf_exempt
+def mpesa_callback(request):
+    mpesa_response = json.loads(request.body.decode('utf-8'))
+    # Handle the response here (e.g., save the transaction to your database)
+    
+    return JsonResponse({"ResultCode": 0, "ResultDesc": "Accepted"})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from .serializers import UserProfileSerializer
+
+# Fetch user profile
+@permission_classes([IsAuthenticated])
+class GetUserProfile(APIView):
+
+    def get(self, request):
+        user = request.user
+        serializer = UserProfileSerializer(user, many=False)
+        return Response(serializer.data)
+
+@permission_classes([IsAuthenticated])
+class UpdateUserProfile(APIView):
+
+    def put(self, request):
+        user = request.user
+        serializer = UserProfileSerializer(user, data=request.data, partial=True)  # Allow partial updates
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+from .serializers import FarmerSerializer
+from .models import *
+
+
+class FarmerListView(APIView):
+    def get(self, request, *args, **kwargs):
+        # Filter farmers based on verification status
+        verified_farmers = Farmer.objects.filter(user__id_verification__is_verified=True)
+
+        paginator = PageNumberPagination()
+        paginator.page_size = 10  # Set the number of items per page
+        result_page = paginator.paginate_queryset(verified_farmers, request)
+
+        serializer = FarmerSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
